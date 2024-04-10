@@ -1,95 +1,122 @@
+"use client";
+import Post from "@/components/Post";
 import Image from "next/image";
-import styles from "./page.module.css";
+import styled from "styled-components";
+import avatar from "@/asset/images/avatar.png";
+import Avatar from "@/components/avatar";
+const lists = [
+  {
+    id: 1,
+    avatar: avatar,
+    name: "Thang",
+    content: "Trời mưa thèm đá bóng không biết có ai set kèo k",
+    images: avatar,
+  },
+  {
+    id: 2,
+    avatar: avatar,
+    name: "Thang",
+    content: "Hôm nay tôi buồn",
+    images: avatar,
+  },
+  {
+    id: 3,
+    avatar: avatar,
+    name: "Thang",
+    content: "Hôm nay tôi buồn",
+    images: avatar,
+  },
+  {
+    id: 4,
+    avatar: avatar,
+    name: "Thang",
+    content: "Hôm nay tôi buồn",
+    images: avatar,
+  },
+  {
+    id: 5,
+    avatar: avatar,
+    name: "Thang",
+    content: "Hôm nay tôi buồn",
+    images: avatar,
+  },
+];
+const Main = styled.div`
+  width: 100%;
+  height: 3000px;
+  
+`;
+const List = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+  .content {
+    display: flex;
+    flex-direction: column;
+    padding-block: 20px;
+    border-radius: 16px;
+    background-color: #fff;
+    gap: 10px;
+    .user {
+      padding-inline: 15px;
+      display: flex;
+      gap: 20px;
+      height: auto;
+      align-items: center;
+    }
+    .userName {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .name {
+        font-size: 16px;
+        font-weight: 500;
+      }
+      .time {
+        font-size: 12px;
+        font-weight: 400;
+      }
+    }
+    .text {
+      padding-inline: 15px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+  img {
+    width: 100%;
+    height: 100%;
+  }
+`;
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
+    <Main>
+      <Post />
+      <List>
+        {lists.map((content, index) => (
+          <li className="content" key={content.id}>
+            <div className="user">
+              <Avatar avatar={avatar}></Avatar>
+              <span className="userName">
+                <h2 className="name">Thang</h2>
+                <p className="time">13:12</p>
+              </span>
+            </div>
+            <div className="caption">
+              <p>{content.content}</p>
+            </div>
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+              src={avatar}
+              alt="Avatar"
+              width={900}
+              height={1000}
+              className="w-full h-full"
+            ></Image>
+          </li>
+        ))}
+      </List>
+    </Main>
   );
 }
