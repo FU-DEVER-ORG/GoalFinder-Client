@@ -2,7 +2,7 @@ import { useAppSelector, useAppDispatch } from "@/hooks";
 import { useRef } from "react";
 import * as Client from "./layoutModalPost.style";
 import Avatar from "../avatar";
-import avatar from "@/asset/images/avatar.png";
+import avatar from "@/public/images/avatar.png";
 import {actionModalPost} from "@/store/counterReducer"
 const ModalDialog = () => {
   const boxModalRef = useRef<HTMLDivElement>(null);
@@ -17,7 +17,7 @@ const ModalDialog = () => {
         <p className="title">Create New Post</p>
         <div className="content">
           <div className="user">
-            <Avatar avatar={avatar}></Avatar>
+            <Avatar src={avatar}></Avatar>
             <p className="user-name">Thang</p>
           </div>
           <div className="container-input">

@@ -5,8 +5,7 @@ import { themes } from "@/style/theme";
 import { Provider } from "react-redux";
 import { store } from "@/store";
 import GlobalStyle from "@/style/global";
-import ClientLayout from "@/components/layouts/clientLayout";
-import ModalDialog from "@/components/modalPost";
+import ModalDialog from "@/components/layouts/modalPost";
 type Props = {
   children: React.ReactNode;
 };
@@ -16,7 +15,7 @@ const ProviderComponents = ({ children }: Props) => {
       <ThemeProvider theme={themes.default}>
         <ModalDialog />
         <GlobalStyle />
-        <ClientLayout>{children}</ClientLayout>
+        {children}
       </ThemeProvider>
     </Provider>
   );

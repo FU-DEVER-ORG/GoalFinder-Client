@@ -1,41 +1,17 @@
+"use client";
 import Image from "next/image";
 import React from "react";
-import search_icon from "@/asset/icon/search-icon.svg";
-import bell_icon from "@/asset/icon/bell-icon.svg";
-import favourite_icon from "@/asset/icon/favourite-icon.svg";
-import chevron_down_icon from "@/asset/icon/chevron-down.svg";
-import avatar from "@/asset/images/avatar.png";
-import Avatar from "@/components/avatar";
+import search_icon from "../../../../public/icon/search-icon.svg";
+import Bell_icon from "../../../../public/icon/bell-icon/bell";
+import Favourite_icon from "@/public/icon/favourite-icon/favourite";
+import chevron_down_icon from "../../../../public/icon/chevron-down.svg";
+import avatar from "../../../../public/images/avatar.png";
+import Avatar from "@/components/layouts/avatar";
+
+import Hamburger from "@/public/icon/hamburger-icon/hamburger";
 import * as Clients from "./ClientLayouts.style";
-const Infors = [
-  {
-    title: "18k",
-    disc: "follower",
-  },
-  {
-    title: "1k",
-    disc: "following",
-  },
-  {
-    title: "18",
-    disc: "post",
-  },
-];
-const Navs = [
-  {
-    href: "/1",
-    icon: avatar,
-    title: "Home",
-  },
-  {
-    href: "/1",
-    icon: avatar,
-    title: "Profile",
-  },
-  { href: "/1", icon: avatar, title: "Messages" },
-  { href: "/1", icon: avatar, title: "Friends" },
-  { href: "/1", icon: avatar, title: "Setting" },
-];
+import NavBar from "@/components/layouts/navBar";
+
 const history = [
   { href: "/1", icon: avatar, name: "team 1" },
   { href: "/1", icon: avatar, name: "team 2" },
@@ -53,7 +29,7 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
               <Image src={avatar} alt="logo" width={50} height={50}></Image>
               <span>GoalFinder</span>
             </Clients.LinkLogo>
-            <Clients.Search >
+            <Clients.Search>
               <Image
                 src={search_icon}
                 alt="icon search "
@@ -64,31 +40,22 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
             </Clients.Search>
           </Clients.ContainerLogoSearch>
           <Clients.Setting>
+            <Hamburger></Hamburger>
             <Clients.Icon href="" className="btn btn-active">
-              <Image
-                src={bell_icon}
-                alt="bell icon"
-                width={50}
-                height={50}
-              ></Image>
+              <Bell_icon />
             </Clients.Icon>
             <Clients.Icon href="" className="btn btn-active">
-              <Image
-                src={favourite_icon}
-                alt="favourite icon"
-                width={50}
-                height={50}
-              ></Image>
+              <Favourite_icon />
             </Clients.Icon>
             <Clients.ContainerAvatar>
-              <Avatar avatar={avatar} />
+              <Avatar src={avatar} />
               <p>Thang</p>
               <button className="icon">
                 <Image
                   src={chevron_down_icon}
                   alt="caret down for more them"
-                  width={20}
-                  height={20}
+                  width={15}
+                  height={15}
                 ></Image>
               </button>
             </Clients.ContainerAvatar>
@@ -96,33 +63,10 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
         </Clients.ContainerHeader>
       </Clients.Header>
       <Clients.Container>
-        <Clients.ContainerAside>
-          <Clients.Section>
-            <div className="content">
-              <Clients.ContainerAvatar>
-                <Avatar avatar={avatar} />
-                <p>Thang</p>
-              </Clients.ContainerAvatar>
-              <ul className="rowUl">
-                {Infors.map((infor) => (
-                  <li key={infor.disc}>
-                    <h2 className="title">{infor.title}</h2>
-                    <p className="disc">{infor.disc}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Clients.Section>
-          <Clients.Navbar>
-            {Navs.map((nav) => (
-              <Clients.LinkNav href={nav.href} key={nav.title}>
-                <Image src={nav.icon} alt="icon" width={20} height={20}></Image>
-                <p>{nav.title}</p>
-              </Clients.LinkNav>
-            ))}
-          </Clients.Navbar>
-        </Clients.ContainerAside>
-        <Clients.Cointainermain>{children}</Clients.Cointainermain>
+        <NavBar></NavBar>
+        <Clients.Cointainermain>
+          <div className="main">{children}</div>
+        </Clients.Cointainermain>
         <Clients.ContainerAside>
           <Clients.Section>
             <Clients.Title>Teams are waiting</Clients.Title>

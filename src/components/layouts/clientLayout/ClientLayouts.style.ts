@@ -23,11 +23,23 @@ export const ContainerHeader = styled.div`
   height: 100%;
   align-items: center;
   justify-content: space-between;
-  padding-inline: 40px;
+  @media ${({ theme }) => theme.breakpoints.xxlMax} {
+    padding-inline: 40px;
+  }
+  @media ${({ theme }) => theme.breakpoints.xlMax} {
+    padding-inline: 20px;
+  }
+  @media ${({ theme }) => theme.breakpoints.mdMax} {
+    padding-inline: 10px;
+  }
+  @media ${({ theme }) => theme.breakpoints.xsMax} {
+    padding-inline: 0;
+  }
 `;
 export const ContainerLogoSearch = styled.div`
   display: flex;
   justify-content: start;
+  gap: 20px;
 `;
 export const LinkLogo = styled(LinkHref)`
   display: flex;
@@ -73,79 +85,6 @@ export const Setting = styled.div`
   align-items: center;
   height: 100%;
 `;
-export const Icon = styled(LinkHref)`
-  padding: 10px;
-  display: flex;
-  border-radius: ${({ theme }) => theme.radius.normalRadius};
-  cursor: pointer;
-  background-color: ${(props) =>
-    props.theme.colors.secondaryConponentsLightBackground};
-  aspect-ratio: 1 / 1;
-  img {
-    width: 20px;
-    height: 20px;
-  }
-`;
-export const ContainerAvatar = styled.span`
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  height: 100%;
-  gap: 10px;
-  .avatar {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-  }
-  p {
-    font-size: ${({ theme }) => theme.fontSize.xl};
-    font-weight: ${({ theme }) => theme.fontWeight.bold};
-  }
-  .icon {
-    width: 15px;
-    height: 15px;
-    background-color: transparent;
-    outline: 0;
-    border: 0;
-    cursor: pointer;
-    img {
-      width: 15px;
-      height: 15px;
-    }
-  }
-`;
-
-// main
-export const Container = styled.div`
-  gap: 20px;
-  display: flex;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  max-width: 1440px;
-  margin-inline: auto;
-  box-sizing: border-box;
-  padding: 20px;
-  @media ${({ theme }) => theme.breakpoints.xxlMax} {
-    padding-inline: 40px;
-  }
-  @media ${({ theme }) => theme.breakpoints.xlMax} {
-    padding-inline: 20px;
-  }
-  @media ${({ theme }) => theme.breakpoints.mdMax} {
-    padding-inline: 10px;
-  }
-  @media ${({ theme }) => theme.breakpoints.xsMax} {
-    padding-inline: 0;
-  }
-`;
-export const ContainerAside = styled.aside`
-  display: flex;
-  flex-direction: column;
-  min-width: 250px;
-  width: 250px;
-  gap: 20px;
-`;
 export const Section = styled.span`
   display: flex;
   flex-direction: column;
@@ -174,14 +113,14 @@ export const Section = styled.span`
     align-items: center;
     justify-content: center;
   }
-  .title {
-    font-weight: ${({ theme }) => theme.fontWeight.bold};
-    font-size: ${({theme}) => theme.fontSize.md};
+  .quantity {
+    font-weight: ${({ theme }) => theme.fontWeight.semiBold};
+    font-size: ${({ theme }) => theme.fontSize.md};
   }
-  .disc {
-    font-size:  ${({theme}) => theme.fontSize.base};;
+  .title {
+    font-size: ${({ theme }) => theme.fontSize.base};
     font-weight: ${({ theme }) => theme.fontWeight.medium};
-    color: ${({theme}) => theme.colors.secondaryLightText};
+    color: ${({ theme }) => theme.colors.secondaryLightText};
   }
   .colUl {
     display: flex;
@@ -190,32 +129,114 @@ export const Section = styled.span`
     list-style-type: none;
   }
 `;
+export const ContainerAvatar = styled.span`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 100%;
+  gap: 10px;
+  .avatar {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+  }
+  p {
+    font-size: ${({ theme }) => theme.fontSize.xl};
+    font-weight: ${({ theme }) => theme.fontWeight.medium};
+  }
+  .icon {
+    width: 15px;
+    height: 15px;
+    background-color: transparent;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+`;
+export const Icon = styled(LinkHref)`
+  padding: 10px;
+  display: flex;
+  border-radius: ${({ theme }) => theme.radius.normalRadius};
+  cursor: pointer;
+  background-color: ${(props) =>
+    props.theme.colors.secondaryConponentsLightBackground};
+  aspect-ratio: 1 / 1;
+  img {
+    width: 20px;
+    height: 20px;
+  }
+`;
+export const ContainerAside = styled.aside`
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+  width: 250px;
+  padding-top: 20px;
+  gap: 20px;
+`;
+
+// main
+export const Container = styled.div`
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  box-sizing: border-box;
+  @media ${({ theme }) => theme.breakpoints.xxlMax} {
+    padding-inline: 40px;
+  }
+  @media ${({ theme }) => theme.breakpoints.xlMax} {
+    padding-inline: 20px;
+  }
+  @media ${({ theme }) => theme.breakpoints.mdMax} {
+    padding-inline: 10px;
+  }
+  @media ${({ theme }) => theme.breakpoints.xsMax} {
+    padding-inline: 0;
+  }
+`;
+
 export const Title = styled.h2`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-size:  ${({theme}) => theme.fontSize.xl};
+  font-size: ${({ theme }) => theme.fontSize.xl};
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-export const Navbar = styled.nav`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 15px;
-  background-color: ${(props) =>
-    props.theme.colors.primaryConponentsLightBackground};
-  border-radius: ${({theme}) => theme.radius.mediumRadius};
+
+export const Cointainermain = styled.main`
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+  overflow-y: scroll;
+  border-radius: ${(props) => props.theme.radius.mediumRadius};
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  .main {
+    max-width: 600px;
+    margin-inline: auto;
+  }
 `;
 export const LinkNav = styled(LinkHref)`
-  border-radius: ${({theme}) => theme.radius.normalRadius};
+  border-radius: ${({ theme }) => theme.radius.normalRadius};
   display: flex;
-  color: ${({theme}) => theme.colors.tertiaryLightText};
+  color: ${({ theme }) => theme.colors.tertiaryLightText};
   text-decoration-line: none;
-  font-size: ${({theme}) => theme.fontSize.lg};
+  font-size: ${({ theme }) => theme.fontSize.lg};
   padding-inline: 20px;
   box-sizing: border-box;
-  font-weight: ${({theme}) => theme.fontWeight.semiBold};
+  font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   gap: 10px;
   align-items: center;
   width: 100%;
@@ -224,16 +245,5 @@ export const LinkNav = styled(LinkHref)`
   &:hover {
     background-color: ${(props) =>
       props.theme.colors.secondaryConponentsLightBackground};
-  }
-`;
-export const Cointainermain = styled.main`
-  width: 100%;
-  height: 100%;
-  overflow-y: scroll;
-  border-radius: ${(props) => props.theme.radius.mediumRadius};
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-  ::-webkit-scrollbar {
-    display: none;
   }
 `;

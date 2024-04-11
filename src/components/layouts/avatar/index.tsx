@@ -8,7 +8,7 @@ type PropsLinkHref = {
   className?: string;
 };
 type Props = {
-  avatar: StaticImageData;
+  src: StaticImageData;
 };
 const LinkHref = (props: PropsLinkHref) => (
   <Link className={props.className} href={props.href}>
@@ -24,10 +24,10 @@ const AvatarComponents = styled(LinkHref)`
     border-radius: 50%;
   }
 `;
-const Avatar = ({ avatar }: Props) => {
+const Avatar = ({ src }: Props) => {
   return (
     <AvatarComponents href="/">
-      <Image src={avatar} alt="image" width={50} height={50}></Image>
+      <Image src={src} alt="image" width={50} height={50}></Image>
     </AvatarComponents>
   );
 };

@@ -1,9 +1,9 @@
 "use client";
-import Post from "@/components/Post";
+import Post from "@/components/layouts/Post";
 import Image from "next/image";
 import styled from "styled-components";
-import avatar from "@/asset/images/avatar.png";
-import Avatar from "@/components/avatar";
+import avatar from "../../public/images/avatar.png";
+import Avatar from "@/components/layouts/avatar";
 const lists = [
   {
     id: 1,
@@ -63,12 +63,14 @@ const List = styled.ul`
       display: flex;
       gap: 20px;
       height: auto;
-      align-items: center;
+      align-items: start;
+      
     }
     .userName {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      padding-top: 5px;
       .name {
         font-size: 16px;
         font-weight: 500;
@@ -98,7 +100,7 @@ export default function Home() {
         {lists.map((content, index) => (
           <li className="content" key={content.id}>
             <div className="user">
-              <Avatar avatar={avatar}></Avatar>
+              <Avatar src={avatar}></Avatar>
               <span className="userName">
                 <h2 className="name">Thang</h2>
                 <p className="time">13:12</p>

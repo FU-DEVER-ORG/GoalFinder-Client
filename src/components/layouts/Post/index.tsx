@@ -1,5 +1,5 @@
 import React from "react";
-import avatar from "@/asset/images/avatar.png";
+import avatar from "@/public/images/avatar.png";
 import Avatar from "../avatar";
 import * as Client from "./layoutPost.style";
 import {actionModalPost} from "@/store/counterReducer"
@@ -12,7 +12,7 @@ const Post = () => {
   return (
     <Client.Section>
       <div className="content">
-        <Avatar avatar={avatar}></Avatar>
+        <Avatar src={avatar}></Avatar>
         <span className="input" onClick={handleModal}>
           <p className="text">What are you thing?</p>
         </span>
