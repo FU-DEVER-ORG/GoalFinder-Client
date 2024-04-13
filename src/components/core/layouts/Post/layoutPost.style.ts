@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Section = styled.span`
   display: flex;
   flex-direction: column;
+
   padding: 15px;
   background-color: #fff;
   border-radius: 16px;
@@ -18,8 +19,9 @@ export const Section = styled.span`
   }
   .input {
     display: flex;
-    cursor: pointer;
     align-items: center;
+
+    cursor: pointer;
     padding-left: 20px;
     background-color: #f8f8f8;
     border-radius: 16px;
@@ -36,10 +38,12 @@ export const Option = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   .tag {
     display: flex;
     justify-content: center;
     align-items: center;
+    
     padding: 15px;
     border-radius: 8px;
     width: 100%;

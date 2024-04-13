@@ -7,11 +7,13 @@ export const Main = styled.div`
 export const List = styled.ul`
   display: flex;
   flex-direction: column;
+  
   gap: 20px;
   margin-top: 20px;
   .content {
     display: flex;
     flex-direction: column;
+
     padding-block: 20px;
     border-radius: 16px;
     background-color: #fff;
@@ -27,6 +29,7 @@ export const List = styled.ul`
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+
       padding-top: 5px;
       .name {
         font-size: 16px;

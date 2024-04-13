@@ -2,11 +2,12 @@ import styled from "styled-components";
 
 export const Modal = styled.dialog<{ $isOpen?: Boolean }>`
   position: fixed;
+  justify-content: center;
+  align-items: center;
+  
   width: 100vw;
   height:  100vh;
   display: ${({$isOpen}) => $isOpen ? "flex" : "none"};
-  justify-content: center;
-  align-items: center;
   background-color: ${({ theme }) => theme.colors.lightOverplay};
   z-index: 99;
 `;
@@ -18,22 +19,25 @@ export const BoxModal = styled.div`
   border: 2px solid ${({ theme }) => theme.colors.primaryLightBackground};
   .title {
     display: flex;
-    padding: 20px;
     justify-content: center;
     align-items: center;
+
+    padding: 20px;
     font-size: ${({ theme }) => theme.fontSize.xxl};
     font-weight: ${({ theme }) => theme.fontWeight.extraBold};
   }
   .content {
-    width: 100%;
     display: flex;
     flex-direction: column;
+    
+    width: 100%;
     padding: 16px;
     gap: 20px;
     border-top: 2px solid ${({ theme }) => theme.colors.primaryLightBackground};
     .user {
       display: flex;
       align-items: start;
+      
       gap: 10px;
       .user-name {
         font-size: ${({ theme }) => theme.fontSize.xl};

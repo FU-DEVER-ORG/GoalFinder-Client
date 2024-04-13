@@ -29,6 +29,9 @@ export const ContainerHeader = styled.div`
   @media ${({ theme }) => theme.breakpoints.xlMax} {
     padding-inline: 20px;
   }
+  @media ${({ theme }) => theme.breakpoints.lgMax} {
+    padding-inline: 10px;
+  }
   @media ${({ theme }) => theme.breakpoints.mdMax} {
     padding-inline: 10px;
   }
@@ -96,6 +99,7 @@ export const Section = styled.span`
   .content {
     display: flex;
     flex-direction: column;
+
     background-color: ${(props) =>
       props.theme.colors.secondaryConponentsLightBackground};
     border-radius: ${({ theme }) => theme.radius.normalRadius};
@@ -105,6 +109,7 @@ export const Section = styled.span`
   .rowUl {
     display: flex;
     justify-content: space-between;
+
     list-style-type: none;
   }
   li {
@@ -112,6 +117,7 @@ export const Section = styled.span`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
   }
   .quantity {
     font-weight: ${({ theme }) => theme.fontWeight.semiBold};
@@ -126,6 +132,7 @@ export const Section = styled.span`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
     list-style-type: none;
   }
 `;
@@ -133,6 +140,7 @@ export const ContainerAvatar = styled.span`
   display: flex;
   justify-content: start;
   align-items: center;
+
   height: 100%;
   gap: 10px;
   .avatar {
@@ -158,8 +166,9 @@ export const ContainerAvatar = styled.span`
   }
 `;
 export const Icon = styled(LinkHref)`
-  padding: 10px;
   display: flex;
+
+  padding: 10px;
   border-radius: ${({ theme }) => theme.radius.normalRadius};
   cursor: pointer;
   background-color: ${(props) =>
@@ -173,6 +182,7 @@ export const Icon = styled(LinkHref)`
 export const ContainerAside = styled.aside`
   display: flex;
   flex-direction: column;
+
   min-width: 250px;
   width: 250px;
   padding-top: 20px;
@@ -184,6 +194,8 @@ export const Container = styled.div`
   display: flex;
   position: relative;
   justify-content: space-between;
+
+
   width: 100%;
   height: 100%;
   max-width: 1440px;
@@ -195,6 +207,9 @@ export const Container = styled.div`
   @media ${({ theme }) => theme.breakpoints.xlMax} {
     padding-inline: 20px;
   }
+  @media ${({ theme }) => theme.breakpoints.lgMax} {
+    padding-inline: 10px;
+  }
   @media ${({ theme }) => theme.breakpoints.mdMax} {
     padding-inline: 10px;
   }
@@ -204,12 +219,13 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-size: ${({ theme }) => theme.fontSize.xl};
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  font-size: ${({ theme }) => theme.fontSize.xl};
+  width: 100%;
 `;
 
 export const Cointainermain = styled.main`
@@ -224,13 +240,15 @@ export const Cointainermain = styled.main`
     display: none;
   }
   .main {
-    max-width: 600px;
+    max-width: 680px;
     margin-inline: auto;
   }
 `;
 export const LinkNav = styled(LinkHref)`
-  border-radius: ${({ theme }) => theme.radius.normalRadius};
   display: flex;
+  align-items: center;
+  
+  border-radius: ${({ theme }) => theme.radius.normalRadius};
   color: ${({ theme }) => theme.colors.tertiaryLightText};
   text-decoration-line: none;
   font-size: ${({ theme }) => theme.fontSize.lg};
@@ -238,7 +256,6 @@ export const LinkNav = styled(LinkHref)`
   box-sizing: border-box;
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   gap: 10px;
-  align-items: center;
   width: 100%;
   height: 40px;
   user-select: none;

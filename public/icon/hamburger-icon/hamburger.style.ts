@@ -1,18 +1,21 @@
 import styled from "styled-components";
 
 export const Container = styled.button`
-  display: flex;
+  display: none;
   flex-direction: column;
+  justify-content: space-between;
+
   width: 40px;
   height: 40px;
-  cursor: pointer;
   padding: 8px 8px;
   border-radius: ${({ theme }) => theme.radius.normalRadius};
+
+  cursor: pointer;
   overflow: hidden;
 
-  justify-content: space-between;
   background-color: ${({ theme }) =>
     theme.colors.secondaryConponentsLightBackground};
+
   &:hover {
     background-color: ${({ theme }) => theme.colors.tertiaryLightBackground};
     span {
@@ -30,15 +33,20 @@ export const Container = styled.button`
   }
   .first {
     display: flex;
+    justify-content: start;
+
     width: 100%;
     background-color: transparent;
-    justify-content: start;
   }
   .second {
     display: flex;
+    justify-content: end;
+
     width: 100%;
     background-color: transparent;
-    justify-content: end;
   }
   transition: all 0.8s ease-in;
+  @media ${({ theme }) => theme.breakpoints.xlMax} {
+    display: flex;
+  }
 `;

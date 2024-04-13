@@ -2,7 +2,7 @@
 import Image from "next/image";
 
 import Post from "@/components/core/layouts/Post";
-import Avatar from "@/components/core/layouts/Avatar";
+import Avatar from "@/components/common/Avatar";
 
 import * as S from "./home.style"
 

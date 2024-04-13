@@ -7,7 +7,7 @@ import * as S from "./ClientLayouts.style";
 import Bell_icon from "@/public/icon/bell-icon/bell";
 import Favourite_icon from "@/public/icon/favourite-icon/favourite";
 import Hamburger from "@/public/icon/hamburger-icon/hamburger";
-import Avatar from "@/components/core/layouts/Avatar";
+import Avatar from "@/components/common/Avatar";
 import NavBar from "@/components/core/layouts/NavBar";
 
 import avatar from "@/public/images/avatar.png";

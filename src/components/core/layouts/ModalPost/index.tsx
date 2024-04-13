@@ -4,7 +4,7 @@ import {actionModalPost} from "@/store/features/auth"
 
 
 import * as Client from "./layoutModalPost.style";
-import Avatar from "../Avatar";
+import Avatar from "../../../common/Avatar";
 import avatar from "@/public/images/avatar.png";
 
 const ModalDialog = () => {

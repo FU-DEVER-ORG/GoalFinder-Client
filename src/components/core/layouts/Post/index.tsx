@@ -6,7 +6,7 @@ import { useAppDispatch} from "@/hooks"
 
 import * as Client from "./layoutPost.style";
 
-import Avatar from "../Avatar";
+import Avatar from "../../../common/Avatar";
 
 import avatar from "@/public/images/avatar.png";
 const Post = () => {

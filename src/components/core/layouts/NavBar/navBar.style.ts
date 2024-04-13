@@ -3,6 +3,7 @@ import { LinkHref } from "./navBar";
 export const ContainerAside = styled.aside`
   display: flex;
   flex-direction: column;
+
   min-width: 250px;
   width: 250px;
   gap: 20px;
@@ -12,6 +13,7 @@ export const ContainerAvatar = styled.span`
   display: flex;
   justify-content: start;
   align-items: center;
+
   height: 100%;
   gap: 10px;
   .avatar {
@@ -56,6 +58,7 @@ export const Section = styled.span`
   .rowUl {
     display: flex;
     justify-content: space-between;
+
     list-style-type: none;
   }
   li {
@@ -63,6 +66,7 @@ export const Section = styled.span`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
   }
   .quantity {
     font-weight: ${({ theme }) => theme.fontWeight.semiBold};
@@ -77,6 +81,7 @@ export const Section = styled.span`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
     list-style-type: none;
   }
 `;
@@ -91,8 +96,10 @@ export const Navbar = styled.nav`
   border-radius: ${({ theme }) => theme.radius.mediumRadius};
 `;
 export const LinkNav = styled(LinkHref)<{ $isFocus?: boolean }>`
-  border-radius: ${({ theme }) => theme.radius.normalRadius};
   display: flex;
+  align-items: center;
+  
+  border-radius: ${({ theme }) => theme.radius.normalRadius};
   color: ${(props) =>
     props.$isFocus ? "#fff !important" : props.theme.colors.tertiaryLightText};
   background-color: ${(props) =>
@@ -105,7 +112,6 @@ export const LinkNav = styled(LinkHref)<{ $isFocus?: boolean }>`
   box-sizing: border-box;
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   gap: 10px;
-  align-items: center;
   width: 100%;
   height: 40px;
   user-select: none;
