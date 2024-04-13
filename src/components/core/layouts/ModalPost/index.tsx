@@ -1,9 +1,12 @@
 import { useAppSelector, useAppDispatch } from "@/hooks";
 import { useRef } from "react";
+import {actionModalPost} from "@/store/features/auth"
+
+
 import * as Client from "./layoutModalPost.style";
-import Avatar from "../avatar";
+import Avatar from "../Avatar";
 import avatar from "@/public/images/avatar.png";
-import {actionModalPost} from "@/store/counterReducer"
+
 const ModalDialog = () => {
   const boxModalRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();

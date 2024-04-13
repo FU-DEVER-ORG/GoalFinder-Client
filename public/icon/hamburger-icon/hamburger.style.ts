@@ -6,7 +6,7 @@ export const Container = styled.button`
   width: 40px;
   height: 40px;
   cursor: pointer;
-  padding: 8px 6px;
+  padding: 8px 8px;
   border-radius: ${({ theme }) => theme.radius.normalRadius};
   overflow: hidden;
 
@@ -17,6 +17,7 @@ export const Container = styled.button`
     background-color: ${({ theme }) => theme.colors.tertiaryLightBackground};
     span {
       background-color: #fff;
+      transition: all 0.1s ease-in;
     }
   }
   span {
@@ -39,11 +40,5 @@ export const Container = styled.button`
     background-color: transparent;
     justify-content: end;
   }
-  &:hover .first span,
-  &:hover .second span {
-    width: 50%;
-  }
-  &:hover span {
-    transition: all 0.2s ease-in;
-  }
+  transition: all 0.8s ease-in;
 `;

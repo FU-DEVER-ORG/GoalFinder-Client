@@ -1,7 +1,12 @@
+"use client"
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import React from "react";
+
+
 import styled from "styled-components";
+
+
 type PropsLinkHref = {
   href: string;
   children: React.ReactNode;

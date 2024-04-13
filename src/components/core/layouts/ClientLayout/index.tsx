@@ -1,16 +1,18 @@
-"use client";
+"use client"
 import Image from "next/image";
 import React from "react";
-import search_icon from "../../../../public/icon/search-icon.svg";
-import Bell_icon from "../../../../public/icon/bell-icon/bell";
-import Favourite_icon from "@/public/icon/favourite-icon/favourite";
-import chevron_down_icon from "../../../../public/icon/chevron-down.svg";
-import avatar from "../../../../public/images/avatar.png";
-import Avatar from "@/components/layouts/avatar";
 
+import * as S from "./ClientLayouts.style";
+
+import Bell_icon from "@/public/icon/bell-icon/bell";
+import Favourite_icon from "@/public/icon/favourite-icon/favourite";
 import Hamburger from "@/public/icon/hamburger-icon/hamburger";
-import * as Clients from "./ClientLayouts.style";
-import NavBar from "@/components/layouts/navBar";
+import Avatar from "@/components/core/layouts/Avatar";
+import NavBar from "@/components/core/layouts/NavBar";
+
+import avatar from "@/public/images/avatar.png";
+import chevron_down_icon from "@/public/icon/chevron-down.svg";
+import search_icon from "@/public/icon/search-icon.svg";
 
 const history = [
   { href: "/1", icon: avatar, name: "team 1" },
@@ -21,15 +23,15 @@ const history = [
 ];
 const ClientLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Clients.ContainerBody>
-      <Clients.Header>
-        <Clients.ContainerHeader>
-          <Clients.ContainerLogoSearch>
-            <Clients.LinkLogo href="/">
+    <S.ContainerBody>
+      <S.Header>
+        <S.ContainerHeader>
+          <S.ContainerLogoSearch>
+            <S.LinkLogo href="/">
               <Image src={avatar} alt="logo" width={50} height={50}></Image>
               <span>GoalFinder</span>
-            </Clients.LinkLogo>
-            <Clients.Search>
+            </S.LinkLogo>
+            <S.Search>
               <Image
                 src={search_icon}
                 alt="icon search "
@@ -37,17 +39,17 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
                 height={50}
               ></Image>
               <input type="text" placeholder="Search" />
-            </Clients.Search>
-          </Clients.ContainerLogoSearch>
-          <Clients.Setting>
+            </S.Search>
+          </S.ContainerLogoSearch>
+          <S.Setting>
             <Hamburger></Hamburger>
-            <Clients.Icon href="" className="btn btn-active">
+            <S.Icon href="" className="btn btn-active">
               <Bell_icon />
-            </Clients.Icon>
-            <Clients.Icon href="" className="btn btn-active">
+            </S.Icon>
+            <S.Icon href="" className="btn btn-active">
               <Favourite_icon />
-            </Clients.Icon>
-            <Clients.ContainerAvatar>
+            </S.Icon>
+            <S.ContainerAvatar>
               <Avatar src={avatar} />
               <p>Thang</p>
               <button className="icon">
@@ -58,21 +60,21 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
                   height={15}
                 ></Image>
               </button>
-            </Clients.ContainerAvatar>
-          </Clients.Setting>
-        </Clients.ContainerHeader>
-      </Clients.Header>
-      <Clients.Container>
+            </S.ContainerAvatar>
+          </S.Setting>
+        </S.ContainerHeader>
+      </S.Header>
+      <S.Container>
         <NavBar></NavBar>
-        <Clients.Cointainermain>
+        <S.Cointainermain>
           <div className="main">{children}</div>
-        </Clients.Cointainermain>
-        <Clients.ContainerAside>
-          <Clients.Section>
-            <Clients.Title>Teams are waiting</Clients.Title>
+        </S.Cointainermain>
+        <S.ContainerAside>
+          <S.Section>
+            <S.Title>Teams are waiting</S.Title>
             <ul className="colUl">
               {history.map((infor, index) => (
-                <Clients.LinkNav href={infor.href} key={index}>
+                <S.LinkNav href={infor.href} key={index}>
                   <Image
                     src={infor.icon}
                     alt="icon"
@@ -80,13 +82,13 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
                     height={20}
                   ></Image>
                   <p>{infor.name}</p>
-                </Clients.LinkNav>
+                </S.LinkNav>
               ))}
             </ul>
-          </Clients.Section>
-        </Clients.ContainerAside>
-      </Clients.Container>
-    </Clients.ContainerBody>
+          </S.Section>
+        </S.ContainerAside>
+      </S.Container>
+    </S.ContainerBody>
   );
 };
 

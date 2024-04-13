@@ -1,9 +1,14 @@
+"use client"
 import React from "react";
-import avatar from "@/public/images/avatar.png";
-import Avatar from "../avatar";
-import * as Client from "./layoutPost.style";
-import {actionModalPost} from "@/store/counterReducer"
+
+import {actionModalPost} from "@/store/features/auth"
 import { useAppDispatch} from "@/hooks"
+
+import * as Client from "./layoutPost.style";
+
+import Avatar from "../Avatar";
+
+import avatar from "@/public/images/avatar.png";
 const Post = () => {
   const dispatch = useAppDispatch();
   const handleModal = () => {

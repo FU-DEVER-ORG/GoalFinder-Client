@@ -1,15 +1,19 @@
-import React, { ReactElement, useEffect, useState } from "react";
-import * as Clients from "./navBar.style";
-import Home from "../../../../public/icon/home-icon/home";
-import Profile from "../../../../public/icon/profile-icon/profile";
-import Friends from "../../../../public/icon/friends-icon/friends";
-import Message from "../../../../public/icon/message-icon/message";
-import Setting from "../../../../public/icon/setting-icon/setting";
-import avatar from "../../../../public/images/avatar.png";
+
+import { ReactElement} from "react";
 import { motion } from "framer-motion";
 
 import { usePathname } from "next/navigation";
-import Avatar from "../avatar";
+
+import * as S from "./navBar.style";
+
+import Home from "@/public/icon/home-icon/home";
+import Profile from "@/public/icon/profile-icon/profile";
+import Friends from "@/public/icon/friends-icon/friends";
+import Message from "@/public/icon/message-icon/message";
+import Setting from "@/public/icon/setting-icon/setting";
+import avatar from "@/public/images/avatar.png";
+import Avatar from "@/components/core/layouts/Avatar";
+
 const Infors = [
   {
     quantity: "18k",
@@ -68,13 +72,13 @@ const NavBar = () => {
     <motion.div 
       
     >
-      <Clients.ContainerAside>
-        <Clients.Section>
+      <S.ContainerAside>
+        <S.Section>
           <div className="content">
-            <Clients.ContainerAvatar>
+            <S.ContainerAvatar>
               <Avatar src={avatar} />
               <p>Thang</p>
-            </Clients.ContainerAvatar>
+            </S.ContainerAvatar>
             <ul className="rowUl">
               {Infors.map((infor) => (
                 <li key={infor.title}>
@@ -84,20 +88,20 @@ const NavBar = () => {
               ))}
             </ul>
           </div>
-        </Clients.Section>
-        <Clients.Navbar>
+        </S.Section>
+        <S.Navbar>
           {Navs.map((nav) => (
-            <Clients.LinkNav
+            <S.LinkNav
               href={nav.href}
               key={nav.title}
               $isFocus={pathname === nav.href}
             >
               <nav.icon isFocus={pathname === nav.href} />
               <p>{nav.title}</p>
-            </Clients.LinkNav>
+            </S.LinkNav>
           ))}
-        </Clients.Navbar>
-      </Clients.ContainerAside>
+        </S.Navbar>
+      </S.ContainerAside>
     </motion.div>
   );
 };

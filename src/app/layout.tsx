@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-// import { Inter } from "next/font/google";
+
+
+import ClientLayout from "@/components/core/layouts/ClientLayout";
+import ProviderComponents from "./provider";
 export const metadata: Metadata = {
   title: "Goal Finder",
 };
-import "./globals.css";
-import ClientLayout from "@/components/layouts/clientLayout";
-import ProviderComponents from "./provider";
 
-// const inter = Inter({ subsets: ["latin"] });
+
 export default function RootLayout({
   children,
 }: Readonly<{
