@@ -11,6 +11,7 @@ const themeColors = {
     tertiaryLightText : '#7d8186',
     primaryDarkText: '#ffffff',
     //
+    primaryGreen: '#4DAA57'
 
 
 }

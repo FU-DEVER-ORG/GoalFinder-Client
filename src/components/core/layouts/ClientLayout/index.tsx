@@ -13,7 +13,8 @@ import NavBar from "@/components/core/common/NavBar";
 import avatar from "@/public/images/avatar.png";
 import chevron_down_icon from "@/public/icon/chevron-down.svg";
 import search_icon from "@/public/icon/search-icon.svg";
-
+import GoalFinderLogo from "@/public/logo/goalfinder.svg";
+import { SearchOutlined } from "@ant-design/icons";
 const history = [
   { href: "/1", icon: avatar, name: "team 1" },
   { href: "/1", icon: avatar, name: "team 2" },
@@ -24,7 +25,26 @@ const history = [
 const ClientLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <S.ContainerBody>
-      <S.Header>
+      <S.AppHeader>
+        <S.HeaderContainer>
+          <S.LogoStyled>
+            <Image src={GoalFinderLogo} width={40} height={40} alt="logo"></Image>
+            <S.AppName>GoalFinder</S.AppName>
+          </S.LogoStyled>
+          <S.SearchingInput 
+            addonBefore={<SearchOutlined></SearchOutlined>}
+            placeholder="Tìm kiếm"
+            allowClear
+          >  
+          </S.SearchingInput>
+          <S.UtilsContainer>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+          </S.UtilsContainer>
+        </S.HeaderContainer>
+      </S.AppHeader>
+      {/* <S.Header>
         <S.ContainerHeader>
           <S.ContainerLogoSearch>
             <S.LinkLogo href="/">
@@ -64,6 +84,7 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
           </S.Setting>
         </S.ContainerHeader>
       </S.Header>
+
       <S.Container>
         <NavBar></NavBar>
         <S.Cointainermain>
@@ -87,7 +108,8 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
             </ul>
           </S.Section>
         </S.ContainerAside>
-      </S.Container>
+      </S.Container> */}
+      
     </S.ContainerBody>
   );
 };
