@@ -5,13 +5,24 @@ const useModal = () => {
   const [visible, setVisible] = useState<boolean>(false);
 
   function toggle() {
-    setVisible(!visible);
+      setVisible(!visible);
   }
-
+  function openModal() {
+      setVisible(true);
+  }
+  function closeModal() {
+      setVisible(false);
+  }
+  function modalState(state: boolean) {
+      setVisible(state);
+  }
   return {
-    visible,
-    toggle,
-  };
+      toggle,
+      visible,
+      openModal,
+      closeModal,
+      modalState
+  }
 };
 
 export default useModal;

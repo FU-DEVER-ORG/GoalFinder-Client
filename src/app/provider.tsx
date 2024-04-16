@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 
 import { ThemeProvider } from "styled-components";
@@ -7,7 +7,9 @@ import { Provider } from "react-redux";
 import { store } from "@/store";
 
 import GlobalStyle from "@/style/global";
-import ModalDialog from "@/components/core/layouts/ModalPost";
+import ModalDialog from "@/components/core/common/ModalPost";
+import StyledComponentsRegistry from "@/services/base/styledComponentsRegistry";
+import { AntdRegistry } from '@ant-design/nextjs-registry';
 
 
 type Props = {
@@ -16,13 +18,17 @@ type Props = {
 const ProviderComponents = ({ children }: Props) => {
   return (
     <>
-      <Provider store={store}>
-        <ThemeProvider theme={themes.default}>
-          <ModalDialog />
-          <GlobalStyle />
-          {children}
-        </ThemeProvider>
-      </Provider>
+      <StyledComponentsRegistry>
+        <Provider store={store}>
+          <ThemeProvider theme={themes.default}>
+            <ModalDialog />
+            <GlobalStyle />
+            <AntdRegistry>
+              {children}
+            </AntdRegistry>
+          </ThemeProvider>
+        </Provider>
+      </StyledComponentsRegistry>
     </>
   );
 };
