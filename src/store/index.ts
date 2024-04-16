@@ -1,13 +1,21 @@
 import { configureStore, ConfigureStoreOptions } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
-import client from "./features/auth";
+import { api } from "./services/base";
+import auth from "./features/auth";
 
-const createStore = () =>
+export const createStore = (
+  option?: ConfigureStoreOptions["preloadedState"] | undefined
+) =>
   configureStore({
     reducer: {
-      client,
+        //todo state for adding reducer
+        [api.reducerPath]: api.reducer,
+        auth,
     },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(api.middleware),
+    ...option,
   });
 export const store = createStore();
 

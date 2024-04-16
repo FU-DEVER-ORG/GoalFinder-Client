@@ -1,24 +1,20 @@
 "use client"
 import React from "react";
 
-import {actionModalPost} from "@/store/features/auth"
 import { useAppDispatch} from "@/hooks"
 
 import * as Client from "./layoutPost.style";
 
-import Avatar from "../../../common/Avatar";
+import Avatar from "@/components/core/common/Avatar";
 
 import avatar from "@/public/images/avatar.png";
 const Post = () => {
-  const dispatch = useAppDispatch();
-  const handleModal = () => {
-    dispatch(actionModalPost())
-  }; 
+
   return (
     <Client.Section>
       <div className="content">
         <Avatar src={avatar}></Avatar>
-        <span className="input" onClick={handleModal}>
+        <span className="input" onClick={() => {}}>
           <p className="text">What are you thing?</p>
         </span>
       </div>

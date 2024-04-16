@@ -1,9 +1,8 @@
 "use client"
 import Image from "next/image";
 
-import Post from "@/components/core/layouts/Post";
-import Avatar from "@/components/common/Avatar";
-
+import Post from "@/components/core/modules/Post";
+import Avatar from "@/components/core/common/Avatar";
 import * as S from "./home.style"
 
 import avatar from "@/public/images/avatar.png";

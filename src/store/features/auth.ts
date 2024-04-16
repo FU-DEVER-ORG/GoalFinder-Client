@@ -1,20 +1,44 @@
 import { createSlice } from "@reduxjs/toolkit";
-type ClientInterFace = {
-  openModalPost: boolean;
-};
-const initialState: ClientInterFace = {
-  openModalPost: false,
+import { authAPI } from "../services/auth";
+import webStorageClient from "@/utils/webStorageClient";
+import { constants } from "@/settings";
+
+const isAuthFromClientStorage = webStorageClient.get(constants.IS_AUTH);
+export interface IAuth {
+  isAuth: boolean;
+  //todo
+}
+const initialState: IAuth = {
+  isAuth: isAuthFromClientStorage || false,
 };
 const slice = createSlice({
-  name: "client",
+  name: "auth",
   initialState,
   reducers: {
-    actionModalPost: (state) => {
-      state.openModalPost = !state.openModalPost;
-    },
+    //todo adding reducers
+  },
+  extraReducers: (builder) => {
+    //todo
+    builder
+      .addMatcher(authAPI.endpoints.signIn.matchPending, () => {
+        //todo do storage action when req is pending
+      })
+      .addMatcher(authAPI.endpoints.signIn.matchFulfilled, (state, action) => {
+        // webStorageClient.set(constants.IS_AUTH, (state.isAuth = true));
+        webStorageClient.setToken(action?.payload?.body?.accessToken);
+        webStorageClient.set(
+          constants.REFRESH_TOKEN,
+          action?.payload?.body?.refreshToken
+        );
+      })
+      .addMatcher(authAPI.endpoints.signIn.matchRejected, (state) => {
+        //todo do storage action when req rejected
+        webStorageClient.removeAll();
+        state.isAuth = false;
+      });
   },
 });
 export const {
-    actionModalPost
-} = slice.actions
-export default slice.reducer
+  //todo add reducer in need
+} = slice.actions;
+export default slice.reducer;

@@ -12,7 +12,7 @@ import Friends from "@/public/icon/friends-icon/friends";
 import Message from "@/public/icon/message-icon/message";
 import Setting from "@/public/icon/setting-icon/setting";
 import avatar from "@/public/images/avatar.png";
-import Avatar from "@/components/common/Avatar";
+import Avatar from "@/components/core/common/Avatar";
 
 const Infors = [
   {
