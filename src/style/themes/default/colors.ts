@@ -37,9 +37,9 @@ const themeColors = {
   /**
    * Neutral colors palette used for body, texts, boxes, etc.
    */
-  newtral: '#1D1D1B',
-  newtralDark: '#394D60',
   newtralDarker: '#131A20',
+  newtralDark: '#394D60',
+  newtral: '#1D1D1B',
   newtralLight: '#646464',
   newtralLighter: '#D7D7D7',
   newtralLightest: '#FFFFFF',
@@ -47,15 +47,21 @@ const themeColors = {
   /**
    * Is asssociated with but not limited to danger conditions
    */
-  errorDarker: '#990F0F',
-  errorDark: '#DF1010',
-  errorLiger: '#ffa39e',
+  errorDarker: '#a52c2d',
+  errorDark: '#cc3a3c',
+  error: '#ff4d4f',
 
   /**
    * Is asssociated with but not limited to danger conditions
    */
-  successDarker: '#097E38',
-  successDark: '#0CC556',
+  successDarker: '#337214',
+  successDark: '#429a17',
+  success: '#52c41a',
+
+
+  backgroundWhite: '#fffff',
+  backgroundGray: '#F9F9FA',
+
 };
 
 export default themeColors;

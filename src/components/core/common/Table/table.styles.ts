@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Table as TableAntd, Pagination } from 'antd';
+import styled from "styled-components";
+import { Table as TableAntd, Pagination } from "antd";
 
 export const WrapTable = styled.div`
   /*  */
@@ -29,6 +29,8 @@ export const Table = styled(TableAntd)`
   .ant-table {
     background: transparent !important;
 
+    border-radius: 8px !important;
+
     .ant-table-thead {
       background-color: ${(props) => props?.theme?.colors?.primary};
       border-collapse: unset;
@@ -36,7 +38,7 @@ export const Table = styled(TableAntd)`
       .ant-table-cell {
         font-size: ${(props) => props.theme.fontSize.base};
         font-weight: ${(props) => props.theme.fontWeight.medium};
-        color: ${(props) => props?.theme?.colors?.other?.text5};
+        color: ${(props) => props?.theme?.colors?.newtralLightest};
 
         border-bottom: none;
         white-space: nowrap;
@@ -90,9 +92,9 @@ export const Table = styled(TableAntd)`
           }
 
           a {
-            font-size: ${(props) => props.theme.fontSize.base};
+            /* font-size: ${(props) => props.theme.fontSize.md};
             font-weight: ${(props) => props.theme.fontWeight.regular};
-            color: ${(props) => props?.theme?.colors?.other?.text1};
+            color: ${(props) => props?.theme?.colors?.other?.text1}; */
 
             &:hover {
               color: ${(props) => props?.theme?.colors?.primary};

@@ -190,7 +190,7 @@ const reset = css`
 
 const typography = css`
   .display {
-    font-family: 'FontinSans-Bold';
+    /* font-family: 'FontinSans-Bold'; */
     font-weight: ${({ theme }) => theme.fontWeight.bold};
     font-size: 64px;
     line-height: 80px;
