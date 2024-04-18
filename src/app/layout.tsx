@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 
-
-import ClientLayout from "@/components/core/layouts/ClientLayout";
 import ProviderComponents from "./provider";
+
 export const metadata: Metadata = {
   title: "Goal Finder",
 };
