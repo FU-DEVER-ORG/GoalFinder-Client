@@ -4,11 +4,11 @@ const themeColors = {
    * All interactive elements , such as buttons , link , from elements etc .
    * Use  primary color palette.
    */
-  primary: '#476C5E',
-  primaryDark: '#93B8AA',
-  primaryDarker: '#001E1F',
-  primaryLight: '#EAFAF1',
-  primaryLighter: '#E6FFF8',
+  primaryDarker: '#0F6C19',
+  primaryDark: '#2B8F36',
+  primary: '#4DAA57',
+  primaryLight: '#65C76F',
+  primaryLighter: '#8CE495',
 
   /**
    * The secondary color is as important as the main color ,

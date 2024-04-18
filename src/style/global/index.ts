@@ -11,7 +11,8 @@ export const calculateLetterSpacing = (
 };
 
 const fontFamily = css`
-  @font-face {
+/* font-family: 'Inter'; */
+  /* @font-face {
     font-family: 'FontinSans';
     src: url('/fonts/FontinSans-Regular.otf') format('opentype');
     font-style: normal;
@@ -28,7 +29,7 @@ const fontFamily = css`
       url('/fonts/FontinSansCR-Bold.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
-  }
+  } */
 `;
 
 const reset = css`
@@ -36,7 +37,7 @@ const reset = css`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'FontinSans';
+    /* font-family: 'FontinSans'; */
     font-weight: 400;
   }
 
@@ -429,7 +430,9 @@ const scrollApp = css`
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
+
   ${fontFamily}
+  
   ${typography}
   ${utility.checkbox}
   ${utility.radioButton}
