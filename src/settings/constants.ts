@@ -1,4 +1,6 @@
 const API_SERVER = process.env.NEXT_PUBLIC_API_SERVER;  
+import { TIME_FORMAT } from './formatDateTime';
+
 
 //cookie keys storage
 const ACCESS_TOKEN = '_access_token';
@@ -13,6 +15,7 @@ const constants = {
     ACCESS_TOKEN,
     REFRESH_TOKEN,
     IS_AUTH,
-    USER_INFO
+    USER_INFO,
+    TIME_FORMAT
 }
 export default constants;

@@ -1,21 +1,44 @@
-import { createGlobalStyle, css } from "styled-components";
-import { Inter } from "next/font/google";
+import { createGlobalStyle, css } from 'styled-components';
 
-import { utility } from "./utility";
+import { utility } from './utility';
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-});
+export const calculateLetterSpacing = (
+  fontSize: string,
+  percent: number = 0.02,
+) => {
+  const fontSizeNumber = parseFloat(fontSize);
+  return `${fontSizeNumber * percent}px`;
+};
+
+const fontFamily = css`
+/* font-family: 'Inter'; */
+  /* @font-face {
+    font-family: 'FontinSans';
+    src: url('/fonts/FontinSans-Regular.otf') format('opentype');
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: 'FontinSans';
+    src:
+      local('Fontin Sans Bold'),
+      local('Fontin-Sans-Bold'),
+      url('/fonts/FontinSansCR-Bold.woff2') format('woff2'),
+      url('/fonts/FontinSansCR-Bold.woff') format('woff'),
+      url('/fonts/FontinSansCR-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  } */
+`;
 
 const reset = css`
   * {
     margin: 0;
     padding: 0;
-    border: 0;
     box-sizing: border-box;
-    font-family: ${inter.style.fontFamily};
-    aspect-ratio: none;
+    /* font-family: 'FontinSans'; */
+    font-weight: 400;
   }
 
   html,
@@ -128,7 +151,7 @@ const reset = css`
   blockquote:after,
   q:before,
   q:after {
-    content: "";
+    content: '';
     content: none;
   }
   a,
@@ -155,54 +178,268 @@ const reset = css`
     visibility: visible;
     opacity: 1;
   }
+
+  a {
+    color: unset !important;
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
 `;
 
-const typoraphy = css`
-  .caption {
-    padding-left: 15px;
-    font-weight: ${({ theme }) => theme?.fontWeight?.medium};
-    font-size: ${({ theme }) => theme?.fontSize.md};
-    line-height: 24px;
-    letter-spacing: 0;
-  }
-  .user-name {
-    font-weight: ${({ theme }) => theme?.fontWeight.bold};
-    font-size: ${({ theme }) => theme?.fontSize.xxl};
-    line-height: 24px;
-    letter-spacing: 0;
-  }
-  .option {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    border-radius: ${({theme}) => theme.radius.normalRadius};
-    width: 100%;
-    font-size: ${({theme}) => theme.fontSize.xl};
-    font-weight: ${({theme}) => theme.fontWeight.semiBold};
-    color:  ${({theme}) => theme.colors.secondaryLightText};
-    cursor: pointer;
-    &:hover {
-      background-color: ${({ theme }) =>
-        theme.colors.secondaryConponentsLightBackground};
-        color : ${({theme}) => theme.colors.primaryLightText}
+const typography = css`
+  .display {
+    /* font-family: 'FontinSans-Bold'; */
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+    font-size: 64px;
+    line-height: 80px;
+    letter-spacing: ${({ theme }) =>
+      calculateLetterSpacing(theme.fontSize.xxxl, 0.12)};
+    color: ${({ theme }) => theme.colors.newtralLightest};
+
+    @media ${({ theme }) => theme.breakpoints.mdMax} {
+      font-size: calc(64px * 0.8);
+      line-height: calc(80px * 0.8);
+    }
+
+    @media ${({ theme }) => theme.breakpoints.xsMax} {
+      font-size: calc(64px * 0.6);
+      line-height: calc(80px * 0.6);
     }
   }
-  .thumnail {
+
+  h1 {
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+    font-size: ${({ theme }) => theme.fontSize.xxxl};
+    line-height: 50px;
+    letter-spacing: ${({ theme }) =>
+      calculateLetterSpacing(theme.fontSize.xxxl, 0.08)};
+
+    @media ${({ theme }) => theme.breakpoints.mdMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.xxxl} * 0.8);
+      line-height: calc(50px * 0.8);
+    }
+
+    @media ${({ theme }) => theme.breakpoints.xsMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.xxxl} * 0.6);
+      line-height: calc(50px * 0.6);
+    }
+  }
+
+  h2 {
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+    font-size: ${({ theme }) => theme.fontSize.xxl};
+    line-height: 40px;
+    letter-spacing: ${({ theme }) =>
+      calculateLetterSpacing(theme.fontSize.xxl, 0.06)};
+
+    @media ${({ theme }) => theme.breakpoints.mdMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.xxl} * 0.8);
+      line-height: calc(40px * 0.8);
+    }
+
+    @media ${({ theme }) => theme.breakpoints.xsMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.xxl} * 0.6);
+      line-height: calc(40px * 0.6);
+    }
+  }
+
+  h3 {
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+    font-size: ${({ theme }) => theme.fontSize.xl};
+    line-height: 30px;
+    letter-spacing: ${({ theme }) =>
+      calculateLetterSpacing(theme.fontSize.xl, 0.08)};
+
+    @media ${({ theme }) => theme.breakpoints.mdMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.xl} * 0.8);
+      line-height: calc(30px * 0.8);
+    }
+
+    @media ${({ theme }) => theme.breakpoints.xsMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.xl} * 0.6);
+      line-height: calc(30px * 0.6);
+    }
+  }
+
+  h4 {
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+    font-size: ${({ theme }) => theme.fontSize.md};
+    line-height: 28px;
+    letter-spacing: ${({ theme }) =>
+      calculateLetterSpacing(theme.fontSize.md, 0.04)};
+
+    @media ${({ theme }) => theme.breakpoints.mdMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.md} * 0.8);
+      line-height: calc(28px * 0.8);
+    }
+
+    @media ${({ theme }) => theme.breakpoints.xsMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.md} * 0.6);
+      line-height: calc(28px * 0.6);
+    }
+  }
+
+  h5 {
+    font-weight: ${({ theme }) => theme.fontWeight.semiBold};
+    font-size: ${({ theme }) => theme.fontSize.lg};
+    line-height: 28px;
+    letter-spacing: ${({ theme }) =>
+      calculateLetterSpacing(theme.fontSize.lg, 0.02)};
+
+    @media ${({ theme }) => theme.breakpoints.mdMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.lg} * 0.8);
+      line-height: calc(28px * 0.8);
+    }
+
+    @media ${({ theme }) => theme.breakpoints.xsMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.lg} * 0.6);
+      line-height: calc(28px * 0.6);
+    }
+  }
+
+  .body-text-bold {
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+    font-size: ${({ theme }) => theme.fontSize.base};
+    line-height: 24px;
+    letter-spacing: ${({ theme }) =>
+      calculateLetterSpacing(theme.fontSize.base, 0.06)};
+
+    @media ${({ theme }) => theme.breakpoints.mdMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.base} * 0.8);
+      line-height: calc(24px * 0.8);
+    }
+
+    /* @media ${({ theme }) => theme.breakpoints.xsMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.base} * 0.6);
+      line-height: calc(24px * 0.6);
+    } */
+  }
+
+  .body-text-normal {
+    font-weight: ${({ theme }) => theme.fontWeight.regular};
+    font-size: ${({ theme }) => theme.fontSize.base};
+    line-height: 24px;
+    letter-spacing: ${({ theme }) =>
+      calculateLetterSpacing(theme.fontSize.base, 0.06)};
+
+    @media ${({ theme }) => theme.breakpoints.mdMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.base} * 0.8);
+      line-height: calc(24px * 0.8);
+    }
+
+    /* @media ${({ theme }) => theme.breakpoints.xsMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.base} * 0.6);
+      line-height: calc(24px * 0.6);
+    } */
+  }
+
+  .body-text-small-bold {
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+    font-size: ${({ theme }) => theme.fontSize.sm};
+    line-height: 20px;
+    letter-spacing: ${({ theme }) =>
+      calculateLetterSpacing(theme.fontSize.base, 0.04)};
+
+    @media ${({ theme }) => theme.breakpoints.mdMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.sm} * 0.8);
+      line-height: calc(20px * 0.8);
+    }
+
+    /* @media ${({ theme }) => theme.breakpoints.xsMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.sm} * 0.6);
+      line-height: calc(20px * 0.6);
+    } */
+  }
+
+  .body-text-small-normal {
+    font-weight: ${({ theme }) => theme.fontWeight.regular};
+    font-size: ${({ theme }) => theme.fontSize.sm};
+    line-height: 20px;
+    letter-spacing: ${({ theme }) =>
+      calculateLetterSpacing(theme.fontSize.base, 0.04)};
+
+    @media ${({ theme }) => theme.breakpoints.mdMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.sm} * 0.8);
+      line-height: calc(20px * 0.8);
+    }
+
+    /* @media ${({ theme }) => theme.breakpoints.xsMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.sm} * 0.6);
+      line-height: calc(20px * 0.6);
+    } */
+  }
+
+  .caption-normal {
+    font-weight: ${({ theme }) => theme.fontWeight.semiBold};
+    font-size: ${({ theme }) => theme.fontSize.md};
+    line-height: 24px;
+    letter-spacing: ${({ theme }) =>
+      calculateLetterSpacing(theme.fontSize.md, 0.02)};
+
+    @media ${({ theme }) => theme.breakpoints.mdMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.md} * 0.8);
+      line-height: calc(24px * 0.8);
+    }
+
+    @media ${({ theme }) => theme.breakpoints.xsMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.md} * 0.6);
+      line-height: calc(24px * 0.6);
+    }
+  }
+
+  .caption-small {
+    font-weight: ${({ theme }) => theme.fontWeight.semiBold};
+    font-size: ${({ theme }) => theme.fontSize.base};
+    line-height: 20px;
+    letter-spacing: ${({ theme }) =>
+      calculateLetterSpacing(theme.fontSize.base, 0.02)};
+
+    @media ${({ theme }) => theme.breakpoints.mdMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.base} * 0.8);
+      line-height: calc(20px * 0.8);
+    }
+
+    @media ${({ theme }) => theme.breakpoints.xsMax} {
+      font-size: calc(${({ theme }) => theme.fontSize.base} * 0.6);
+      line-height: calc(20px * 0.6);
+    }
   }
 `;
-const button = css`
-    .btn-active{
-        transition: all 0.8s ease-out ;
-        &:hover{
-            background-color: ${({theme}) => theme.colors.tertiaryLightBackground};
-            transition: all 0.2s ease-in ;
-        }
-    }
-`
+
+const scrollApp = css`
+  ::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #a0a0a5;
+    border-radius: 16px;
+    z-index: 1000;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a0a0a5;
+  }
+
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
+`;
+
 const GlobalStyle = createGlobalStyle`
-    ${reset}
-    ${typoraphy}
-    ${button}
+  ${reset}
+
+  ${fontFamily}
+  
+  ${typography}
+  ${utility.checkbox}
+  ${utility.radioButton}
+  ${utility.select}
+  ${utility.switchToggle}
+  ${utility.input}
+  ${scrollApp}
 `;
+
 export default GlobalStyle;
