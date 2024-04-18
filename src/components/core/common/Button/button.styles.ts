@@ -16,7 +16,7 @@ export const ButtonCommon = styled(Button)<ButtonPropsInterface>`
   background: ${(props) => props.$backgroundColor || 'transparent'} !important;
   border-radius: ${(props) => props?.$borderRadius || '8px'} !important;
   font-size: ${(props) =>
-    props.$fontSize || props.theme.fontSize.base} !important;
+    props.$fontSize || props.theme.fontSize} !important;
   font-weight: ${(props) =>
     props.$fontWeight || props.theme.fontWeight.semiBold} !important;
   line-height: auto;

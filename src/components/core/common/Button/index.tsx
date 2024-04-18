@@ -1,4 +1,3 @@
-import React from 'react';
 import { ButtonProps } from 'antd';
 
 import * as S from './button.styles';
