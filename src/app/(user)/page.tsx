@@ -1,10 +1,5 @@
-import Home from '@/components/modules/Home'
-import React from 'react'
+import Home from "@/components/modules/Home/Main";
 
 export default function page() {
-    return (
-        <div>
-            {/* <Home></Home> */}
-        </div>
-    )
+  return <Home />;
 }

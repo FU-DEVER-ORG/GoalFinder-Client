@@ -1,0 +1,21 @@
+{
+	"React Component": {
+		"prefix": "rc",
+		"body": [
+			"'use client';",
+			"",
+			"import * as S from './styles';",
+			"",
+			"function $index() {",
+			"  return (",
+			"    <div>",
+			"      $index",
+			"    </div>",
+			"  );",
+			"}",
+			"",
+			"export default $index;"
+		],
+		"description": "Create a new React component with styles import"
+	}
+}

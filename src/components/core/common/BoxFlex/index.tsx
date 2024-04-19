@@ -1,13 +1,13 @@
-import { FlexProps } from "antd";
+import { FlexProps } from 'antd';
 
-import * as S from "./styles";
+import * as S from './styles';
 
 interface BoxFlexProps extends FlexProps {
   children: React.ReactNode;
-  padding: string;
+  padding?: string;
 }
 
-function BoxFlex({ children, padding = "20px", ...rest }: BoxFlexProps) {
+function BoxFlex({ children, padding = '20px', ...rest }: BoxFlexProps) {
   return (
     <S.BoxWrapper {...rest} $padding={padding}>
       {children}

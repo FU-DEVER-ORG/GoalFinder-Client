@@ -15,6 +15,7 @@ export interface ButtonPropsInterface extends ButtonProps {
   $iconBefore?: string;
   $borderRadius?: string;
   $isCancel?: boolean;
+  $full?: boolean;
   children: React.ReactNode;
 }
 

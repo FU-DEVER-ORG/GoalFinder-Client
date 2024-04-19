@@ -1,0 +1,11 @@
+{
+	"React Component": {
+	  "prefix": "sc",
+	  "body": [
+		"export const NewComponent = styled.div`",
+  		"// Add your styles here",
+		"`;",
+	  ],
+	  "description": "Create a new React component with styles import"
+	}
+  }

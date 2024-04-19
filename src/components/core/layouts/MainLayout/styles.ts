@@ -1,5 +1,5 @@
-import { Flex } from "antd";
-import styled from "styled-components";
+import { Flex } from 'antd';
+import styled from 'styled-components';
 
 export const LayoutWrapper = styled.main`
   background-color: ${(props) => props?.theme?.colors?.backgroundGray};
@@ -11,6 +11,12 @@ export const Header = styled.header`
   background-color: ${(props) => props?.theme?.colors?.backgroundWhite};
 
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
 `;
 
 export const Container = styled.div`
@@ -32,8 +38,8 @@ export const ImageWrapper = styled.div`
 `;
 
 export const InputWrap = styled.div`
-    width: 400px;
-`
+  width: 400px;
+`;
 
 export const Circle = styled(Flex)`
   background-color: #f8f8f9;
@@ -96,4 +102,9 @@ export const Down = styled(Flex)`
   span {
     font-size: 8px;
   }
+`;
+
+export const Body = styled.div`
+  padding-top: 80px;
+  // Add your styles here
 `;

@@ -1,20 +1,19 @@
-"use client";
+'use client';
 
-import React from "react";
-import Image from "next/image";
+import React from 'react';
+import Image from 'next/image';
 import {
   MehFilled,
   BellFilled,
   CaretDownFilled,
   SearchOutlined,
-} from "@ant-design/icons";
-import { Flex } from "antd";
+} from '@ant-design/icons';
 
-import logo from "@/public/icon/layout/logo.svg";
+import logo from '@/public/icon/layout/logo.svg';
+import { Flex } from 'antd';
+import Input from '../../common/form/Input';
 
-import Input from "../../common/form/Input";
-
-import * as S from "./styles";
+import * as S from './styles';
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -29,7 +28,7 @@ function MainLayout({ children }: MainLayoutProps) {
             <Image src={logo} alt="" fill sizes="auto" />
           </S.ImageWrapper>
           <S.InputWrap>
-          <Input placeholder="Tìm kiếm" prefix={<SearchOutlined />} />
+            <Input placeholder="Tìm kiếm" prefix={<SearchOutlined />} />
           </S.InputWrap>
           <Flex gap={16}>
             <S.Circle justify="center" align="center">
@@ -39,13 +38,18 @@ function MainLayout({ children }: MainLayoutProps) {
               </S.Badge>
             </S.Circle>
             <S.Circle justify="center" align="center">
-              <BellFilled  twoToneColor="#fff"/>
+              <BellFilled twoToneColor="#fff" />
               <S.Badge justify="center" align="center">
                 19
               </S.Badge>
             </S.Circle>
             <S.Avatar>
-              <Image alt="" src={"/images/layout/avatar.jpeg"} width={40} height={40} />
+              <Image
+                alt=""
+                src={'/images/layout/avatar.jpeg'}
+                width={40}
+                height={40}
+              />
               <S.Down justify="center" align="center">
                 <CaretDownFilled size={6} />
               </S.Down>
@@ -53,7 +57,7 @@ function MainLayout({ children }: MainLayoutProps) {
           </Flex>
         </S.Container>
       </S.Header>
-      <div>{children}</div>
+      <S.Body>{children}</S.Body>
     </S.LayoutWrapper>
   );
 }
