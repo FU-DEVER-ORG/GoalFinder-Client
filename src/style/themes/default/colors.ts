@@ -59,7 +59,7 @@ const themeColors = {
   success: '#52c41a',
 
 
-  backgroundWhite: '#fffff',
+  backgroundWhite: '#fff',
   backgroundGray: '#F9F9FA',
 
 };

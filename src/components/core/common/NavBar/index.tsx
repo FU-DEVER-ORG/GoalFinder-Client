@@ -12,7 +12,6 @@ import Friends from "@/public/icon/friends-icon/friends";
 import Message from "@/public/icon/message-icon/message";
 import Setting from "@/public/icon/setting-icon/setting";
 import avatar from "@/public/images/avatar.png";
-import Avatar from "@/components/core/common/Avatar";
 
 const Infors = [
   {
@@ -76,7 +75,6 @@ const NavBar = () => {
         <S.Section>
           <div className="content">
             <S.ContainerAvatar>
-              <Avatar src={avatar} />
               <p>Thang</p>
             </S.ContainerAvatar>
             <ul className="rowUl">
