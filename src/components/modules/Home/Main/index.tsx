@@ -5,10 +5,10 @@ import { Flex } from 'antd';
 import UserInfo from '../UserInfo';
 import Nav from '../Nav';
 import YourMatch from '../YourMatch';
+import FeedScroll from '../FeedScroll';
 import Button from '@/components/core/common/Button';
 
 import * as S from './styles';
-import FeedScroll from '../FeedScroll';
 
 function Home() {
   return (
