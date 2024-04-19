@@ -3,7 +3,6 @@ import { useRef } from "react";
 
 
 import * as Client from "./layoutModalPost.style";
-import Avatar from "@/components/core/common/Avatar";
 import UserAvatar from '@/public/images/avatar.png';
 
 const ModalDialog = () => {
@@ -18,7 +17,6 @@ const ModalDialog = () => {
         <p className="title">Create New Post</p>
         <div className="content">
           <div className="user">
-            <Avatar src={UserAvatar}></Avatar>
             <p className="user-name">Thang</p>
           </div>
           <div className="container-input">
