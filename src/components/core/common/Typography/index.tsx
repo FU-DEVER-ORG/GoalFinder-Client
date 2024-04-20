@@ -203,7 +203,7 @@ export default function Typography({
           $padding={padding}
           $transform={transform}
           $align={align}
-          $fontStyle={style}
+          $style={style}
         >
           {children}
         </S.P>
