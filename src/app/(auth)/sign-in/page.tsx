@@ -1,12 +1,12 @@
 'use client';
 
+import SignIn from '@/components/modules/SignIn/Main';
 import { postRequest } from '@/services/request';
-import { Button } from 'antd';
 import { setCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
-function page() {
+function Page() {
   const router = useRouter();
   const handleSignIn = async () => {
     try {
@@ -31,19 +31,20 @@ function page() {
     }
   };
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      Sign in
-      {/* thang da code */}
-      <Button onClick={() => handleSignIn()}>Login</Button>
-    </div>
+    // <div
+    //   style={{
+    //     display: 'flex',
+    //     flexDirection: 'column',
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    //   }}
+    // >
+    //   Sign in
+    //   {/* thang da code */}
+    //   <Button onClick={() => handleSignIn()}>Login</Button>
+    // </div>
+    <SignIn></SignIn>
   );
 }
 
-export default page;
+export default Page;
