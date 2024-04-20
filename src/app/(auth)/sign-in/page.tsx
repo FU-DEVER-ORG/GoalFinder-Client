@@ -6,7 +6,7 @@ import { setCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
-function page() {
+function Page() {
   const router = useRouter();
   const handleSignIn = async () => {
     try {
@@ -46,4 +46,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
