@@ -13,7 +13,7 @@ interface PageProps {
   setNavigation: Dispatch<SetStateAction<string>>;
 }
 
-function OTPMail(props: PageProps) {
+function OTPMail({ navigation, setNavigation }: PageProps) {
   return (
     <S.AddMailWrapper>
       <Typography variant="h3">E-mail Verification</Typography>
@@ -26,7 +26,7 @@ function OTPMail(props: PageProps) {
         />
       </S.ImgLogo>
       <S.TypographyWrapper>
-        {props.navigation === 'step1' ? (
+        {navigation === 'step1' ? (
           <>
             <Typography variant="h5">Add your gmail</Typography>
             <Typography style="italic">
@@ -42,10 +42,7 @@ function OTPMail(props: PageProps) {
           </>
         )}
       </S.TypographyWrapper>
-      <FormAdd
-        navigation={props.navigation}
-        setNavigation={props.setNavigation}
-      />
+      <FormAdd navigation={navigation} setNavigation={setNavigation} />
     </S.AddMailWrapper>
   );
 }
