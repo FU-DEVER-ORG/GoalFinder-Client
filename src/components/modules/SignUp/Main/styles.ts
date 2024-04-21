@@ -14,7 +14,7 @@ export const HomeWrapper = styled(Flex)`
 export const ButtonLogo = styled.button`
     position: relative;
 
-    padding: 20px;
+    padding: 10px;
 
     width: 70px;
     height: 70px;

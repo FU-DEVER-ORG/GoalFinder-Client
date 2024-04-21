@@ -1,12 +1,12 @@
 'use client';
 
 import { Flex } from 'antd';
+import Title from 'antd/es/typography/Title';
 
 import Typography from '@/components/core/common/Typography';
 import FormSignin from '@/components/modules/SignIn/FormSignin';
 
 import * as S from './styles';
-import Title from 'antd/es/typography/Title';
 
 function SignIn() {
     return (
