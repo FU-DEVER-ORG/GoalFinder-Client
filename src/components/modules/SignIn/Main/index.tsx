@@ -12,16 +12,16 @@ function SignIn() {
     return (
         <S.HomeWrapper>
             <Title level={2}>Đăng nhập</Title>
-            <FormSignin></FormSignin>
+            <FormSignin/>
             <Typography>
-                Or Login With
+                Hoặc đăng nhập bằng
             </Typography>
             <Flex gap={40}>
                 <S.ButtonLogo>
-                    <S.ImgLogo alt="" src={'/images/signin/logo-facebook.png'} />
+                    <S.ImgLogo preview={false} alt="" src={'/images/signin/logo-facebook.png'} />
                 </S.ButtonLogo>
                 <S.ButtonLogo>
-                    <S.ImgLogo alt="" src={'/images/signin/logo-gg.png'} />
+                    <S.ImgLogo preview={false} alt="" src={'/images/signin/logo-gg.png'} />
                 </S.ButtonLogo>
             </Flex>
         </S.HomeWrapper>

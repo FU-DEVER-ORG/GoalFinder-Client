@@ -1,4 +1,4 @@
-import { Flex } from 'antd';
+import { Flex, Image } from 'antd';
 import styled from 'styled-components';
 
 export const HomeWrapper = styled(Flex)`
@@ -27,8 +27,8 @@ export const ButtonLogo = styled.button`
     align-items: center;
 `
 
-export const ImgLogo = styled.img`
-    width: 50px;
-    height: 50px;
+export const ImgLogo = styled(Image)`
+  width: 100;
+  height: 100;
 `;
 

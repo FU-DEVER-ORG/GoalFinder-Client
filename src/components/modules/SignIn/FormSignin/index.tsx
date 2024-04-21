@@ -1,13 +1,14 @@
 'use client';
 
-import { Checkbox, Form, FormProps } from 'antd';
+import { Checkbox, Flex, Form, FormProps } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
-import {LockOutlined, PhoneOutlined } from '@ant-design/icons';
+import { LockOutlined, PhoneOutlined } from '@ant-design/icons';
 
 import Input from '@/components/core/common/form/Input';
 import InputPassword from '@/components/core/common/form/InputPassword';
 
 import * as S from './styles';
+import Link from 'antd/es/typography/Link';
 
 type FieldType = {
   phone?: string;
@@ -57,14 +58,15 @@ function FormSignin() {
             label="Mật khẩu"
           />
         </Form.Item>
-
-        <FormItem<FieldType>
-          name="remember"
-          valuePropName="checked"
-          wrapperCol={{ offset: 8, span: 16 }}
-        >
-          <Checkbox>Nhớ mật khẩu</Checkbox>
-        </FormItem>
+        <S.RowRememberForgot>
+          <FormItem<FieldType>
+            name="remember"
+            valuePropName="checked"
+          >
+            <Checkbox>Nhớ mật khẩu</Checkbox>
+          </FormItem>
+          <S.LinkTag href=''>Quên mật khẩu</S.LinkTag>
+        </S.RowRememberForgot>
         <FormItem>
           <S.ButtonLogin type="primary" htmlType="submit">
             Đăng nhập

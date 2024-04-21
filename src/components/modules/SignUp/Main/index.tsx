@@ -12,16 +12,16 @@ function SignUp() {
     return (
         <S.HomeWrapper>
             <Title level={2}>Đăng ký</Title>
-            <FormSignUp></FormSignUp>
+            <FormSignUp/>
             <Typography>
                 Or Login With
             </Typography>
             <Flex gap={20}>
                 <S.ButtonLogo>
-                    <S.ImgLogo alt="" src={'/images/signin/logo-facebook.png'} />
+                    <S.ImgLogo preview={false} alt="" src={'/images/signin/logo-facebook.png'} />
                 </S.ButtonLogo>
                 <S.ButtonLogo>
-                    <S.ImgLogo alt="" src={'/images/signin/logo-gg.png'} />
+                    <S.ImgLogo preview={false} alt="" src={'/images/signin/logo-gg.png'} />
                 </S.ButtonLogo>
             </Flex>
         </S.HomeWrapper>
