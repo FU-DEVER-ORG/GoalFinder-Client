@@ -8,6 +8,7 @@ export const H1 = styled.h1<{
   $transform?: string;
   $align?: string;
   $style?: string;
+  $textDecoration: string;
 }>`
   text-transform: ${(props) => props.$transform};
   text-align: ${(props) => props?.$align};
@@ -15,6 +16,8 @@ export const H1 = styled.h1<{
   color: ${(props) => props.$color || props.theme.colors.newtral};
   font-family: ${(props) => props.$fontFamily};
   font-style: ${(props) => props.$style};
+  text-decoration: ${(props) => props.$textDecoration};
+
   ${(props) =>
     props.$padding &&
     css`
@@ -36,6 +39,7 @@ export const H2 = styled.h2<{
   $transform?: string;
   $align?: string;
   $style?: string;
+  $textDecoration: string;
 }>`
   text-transform: ${(props) => props.$transform};
   text-align: ${(props) => props?.$align};
@@ -43,6 +47,7 @@ export const H2 = styled.h2<{
   color: ${(props) => props.$color || props.theme.colors.newtral};
   font-family: ${(props) => props.$fontFamily};
   font-style: ${(props) => props.$style};
+  text-decoration: ${(props) => props.$textDecoration};
 
   ${(props) =>
     props.$padding &&
@@ -65,6 +70,7 @@ export const H3 = styled.h3<{
   $transform?: string;
   $align?: string;
   $style?: string;
+  $textDecoration: string;
 }>`
   text-transform: ${(props) => props.$transform};
   text-align: ${(props) => props?.$align};
@@ -72,6 +78,7 @@ export const H3 = styled.h3<{
   color: ${(props) => props.$color || props.theme.colors.newtral};
   font-family: ${(props) => props.$fontFamily};
   font-style: ${(props) => props.$style};
+  text-decoration: ${(props) => props.$textDecoration};
 
   ${(props) =>
     props.$padding &&
@@ -94,6 +101,7 @@ export const H4 = styled.h4<{
   $transform?: string;
   $align?: string;
   $style?: string;
+  $textDecoration: string;
 }>`
   text-transform: ${(props) => props.$transform};
   text-align: ${(props) => props?.$align};
@@ -101,6 +109,7 @@ export const H4 = styled.h4<{
   color: ${(props) => props.$color || props.theme.colors.newtral};
   font-family: ${(props) => props.$fontFamily};
   font-style: ${(props) => props.$style};
+  text-decoration: ${(props) => props.$textDecoration};
 
   ${(props) =>
     props.$padding &&
@@ -123,6 +132,7 @@ export const H5 = styled.h5<{
   $transform?: string;
   $align?: string;
   $style?: string;
+  $textDecoration: string;
 }>`
   text-transform: ${(props) => props.$transform};
   text-align: ${(props) => props?.$align};
@@ -130,6 +140,7 @@ export const H5 = styled.h5<{
   color: ${(props) => props.$color || props.theme.colors.newtral};
   font-family: ${(props) => props.$fontFamily};
   font-style: ${(props) => props.$style};
+  text-decoration: ${(props) => props.$textDecoration};
 
   ${(props) =>
     props.$padding &&
@@ -152,6 +163,7 @@ export const P = styled.p<{
   $transform?: string;
   $align?: string;
   $style?: string;
+  $textDecoration: string;
 }>`
   text-transform: ${(props) => props.$transform};
   text-align: ${(props) => props?.$align};
@@ -159,6 +171,7 @@ export const P = styled.p<{
   color: ${(props) => props.$color || props.theme.colors.newtral};
   font-family: ${(props) => props.$fontFamily};
   font-style: ${(props) => props.$style};
+  text-decoration: ${(props) => props.$textDecoration};
 
   ${(props) =>
     props.$padding &&

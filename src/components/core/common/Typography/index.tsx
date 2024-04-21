@@ -26,6 +26,7 @@ interface TypographyProps {
   transform?: 'uppercase' | 'lowercase' | 'capitalize' | 'none';
   align?: 'left' | 'right' | 'center';
   style?: 'normal' | 'italic' | 'oblique';
+  textDecoration?: 'none' | 'underline';
 }
 
 export default function Typography({
@@ -38,6 +39,7 @@ export default function Typography({
   transform = 'none',
   align = 'left',
   style = 'normal',
+  textDecoration = 'none',
 }: TypographyProps) {
   switch (variant) {
     case 'h1':
@@ -50,6 +52,7 @@ export default function Typography({
           $transform={transform}
           $align={align}
           $style={style}
+          $textDecoration={textDecoration}
         >
           {children}
         </S.H1>
@@ -64,6 +67,7 @@ export default function Typography({
           $transform={transform}
           $align={align}
           $style={style}
+          $textDecoration={textDecoration}
         >
           {children}
         </S.H2>
@@ -78,6 +82,7 @@ export default function Typography({
           $transform={transform}
           $align={align}
           $style={style}
+          $textDecoration={textDecoration}
         >
           {children}
         </S.H3>
@@ -92,6 +97,7 @@ export default function Typography({
           $transform={transform}
           $align={align}
           $style={style}
+          $textDecoration={textDecoration}
         >
           {children}
         </S.H4>
@@ -106,6 +112,7 @@ export default function Typography({
           $transform={transform}
           $align={align}
           $style={style}
+          $textDecoration={textDecoration}
         >
           {children}
         </S.H5>
@@ -120,6 +127,7 @@ export default function Typography({
           $transform={transform}
           $align={align}
           $style={style}
+          $textDecoration={textDecoration}
         >
           {children}
         </S.P>
@@ -134,6 +142,7 @@ export default function Typography({
           $transform={transform}
           $align={align}
           $style={style}
+          $textDecoration={textDecoration}
         >
           {children}
         </S.P>
@@ -148,6 +157,7 @@ export default function Typography({
           $transform={transform}
           $align={align}
           $style={style}
+          $textDecoration={textDecoration}
         >
           {children}
         </S.P>
@@ -162,6 +172,7 @@ export default function Typography({
           $transform={transform}
           $align={align}
           $style={style}
+          $textDecoration={textDecoration}
         >
           {children}
         </S.P>
@@ -176,6 +187,7 @@ export default function Typography({
           $transform={transform}
           $align={align}
           $style={style}
+          $textDecoration={textDecoration}
         >
           {children}
         </S.P>
@@ -190,6 +202,7 @@ export default function Typography({
           $transform={transform}
           $align={align}
           $style={style}
+          $textDecoration={textDecoration}
         >
           {children}
         </S.P>
@@ -204,6 +217,7 @@ export default function Typography({
           $transform={transform}
           $align={align}
           $style={style}
+          $textDecoration={textDecoration}
         >
           {children}
         </S.P>
