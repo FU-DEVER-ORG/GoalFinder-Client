@@ -1,3 +1,4 @@
+import AuthLayout from '@/components/core/layouts/AuthLayout';
 import { checkToken } from '@/utils/checkToken';
 import { getCookie } from 'cookies-next';
 import { cookies } from 'next/headers';
@@ -18,5 +19,5 @@ export default async function LayoutAuth({
     redirect('/');
   }
 
-  return <div>{children}</div>;
+  return <AuthLayout>{children}</AuthLayout>;
 }
