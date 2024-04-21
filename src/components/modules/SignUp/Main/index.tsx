@@ -14,7 +14,7 @@ function SignUp() {
             <Title level={2}>Đăng ký</Title>
             <FormSignUp/>
             <Typography>
-                Or Login With
+                Đăng nhập bằng
             </Typography>
             <Flex gap={20}>
                 <S.ButtonLogo>
