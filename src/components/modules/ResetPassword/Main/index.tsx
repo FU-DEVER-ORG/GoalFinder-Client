@@ -1,15 +1,13 @@
 'use client';
 
-import * as S from './styles';
-import Typography from '@/components/core/common/Typography';
 import { Dispatch, SetStateAction, useState } from 'react';
-import { FormReset } from '../FormReset';
-export interface IProps {
-  navigation: string;
-  setNavigation: Dispatch<SetStateAction<string>>;
-}
-function Reset_Password() {
-  const [navigation, setNavigation] = useState('step1');
+
+import Typography from '@/components/core/common/Typography';
+import FormReset from '../FormReset';
+
+import * as S from './styles';
+
+function ResetPassword() {
   return (
     <S.HomeWrapper>
       <Typography variant="h2">Set new password</Typography>
@@ -18,4 +16,4 @@ function Reset_Password() {
   );
 }
 
-export default Reset_Password;
+export default ResetPassword;

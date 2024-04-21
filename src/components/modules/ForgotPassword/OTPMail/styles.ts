@@ -22,11 +22,3 @@ export const TypographyWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-export const Input = styled.div`
-  position: relative;
-  width: 100%;
-  & img {
-    display: block;
-    cursor: pointer;
-  }
-`;
