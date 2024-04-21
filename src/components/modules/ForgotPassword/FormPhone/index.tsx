@@ -16,16 +16,16 @@ interface PageProps {
   setNavigation: Dispatch<SetStateAction<string>>;
 }
 
-const FormItem = Form.Item;
-const FormAdd = ({ navigation, setNavigation }: PageProps) => {
+const FormPhone = ({ navigation, setNavigation }: PageProps) => {
   const route = useRouter();
   const [form] = Form.useForm();
   const [digits, setDigits] = useState(['', '', '', '']);
+  const FormItem = Form.Item;
 
   const handleSubmit = async () => {
     try {
       const values = await form.validateFields();
-      setNavigation('step2-mail');
+      setNavigation('step2-phone');
       console.log('Success:', values);
     } catch (errorInfo) {
       console.log('Failed:', errorInfo);
@@ -52,7 +52,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
 
   return (
     <>
-      {navigation === 'step1-mail' ? (
+      {navigation === 'step1-phone' ? (
         <S.Input>
           <Form form={form} onFinish={handleSubmit}>
             <FormItem
@@ -114,4 +114,4 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
   );
 };
 
-export default FormAdd;
+export default FormPhone;

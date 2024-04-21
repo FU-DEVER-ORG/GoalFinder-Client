@@ -1,11 +1,11 @@
 'use client';
 
 import { Dispatch, SetStateAction } from 'react';
-import { PhoneOutlined } from '@ant-design/icons';
 import Image from 'next/image';
+import { MailOutlined } from '@ant-design/icons';
 
-import FormAdd from '../FormAdd';
 import Typography from '@/components/core/common/Typography';
+import FormPhone from '../FormPhone';
 
 import * as S from './styles';
 interface PageProps {
@@ -13,43 +13,44 @@ interface PageProps {
   setNavigation: Dispatch<SetStateAction<string>>;
 }
 
-function OTPMail(props: PageProps) {
+function OTPPhone(props: PageProps) {
   return (
     <S.AddMailWrapper>
-      <Typography variant="h3">E-mail Verification</Typography>
+      <Typography variant="h3">Phone Verification</Typography>
       <S.ImgLogo>
         <Image
           alt=""
-          src={'/images/forgot-password/logo.png'}
-          width={150}
+          src={'/images/forgot-password/logo_phone.png'}
+          width={200}
           height={150}
         />
       </S.ImgLogo>
       <S.TypographyWrapper>
-        {props.navigation === 'step1' ? (
+        {props.navigation === 'step1-phone' ? (
           <>
-            <Typography variant="h5">Add your gmail</Typography>
+            <Typography variant="h5">Enter your phone number</Typography>
             <Typography style="italic">
-              Enter your gmail in order to send you your OTP security code
+              Enter your phone number in order to send you your OTP security
+              code
             </Typography>
           </>
         ) : (
           <>
-            <Typography variant="h5">Gmail verification</Typography>
+            <Typography variant="h5">Phone verification</Typography>
             <Typography style="italic">
-              A OTP code has been sent to ****@gmail.com, please fill the form
+              A OTP code has been sent to ****987, please fill the form
             </Typography>
           </>
         )}
       </S.TypographyWrapper>
-      <FormAdd
+      <FormPhone
         navigation={props.navigation}
         setNavigation={props.setNavigation}
       />
       <Typography>Try another way to verification</Typography>
-      <PhoneOutlined onClick={() => props.setNavigation('step1-phone')} />
+      <MailOutlined onClick={() => props.setNavigation('step1-mail')} />
     </S.AddMailWrapper>
   );
 }
 
-export default OTPMail;
+export default OTPPhone;

@@ -1,10 +1,9 @@
 'use client';
 
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import OTPMail from '../OTPMail';
-import Typography from '@/components/core/common/Typography';
-import { PhoneOutlined } from '@ant-design/icons';
+import OTPPhone from '../OTPPhone';
 
 import * as S from './styles';
 export interface Props {
@@ -13,15 +12,23 @@ export interface Props {
 }
 
 function ForgotPassword() {
-  const [navigation, setNavigation] = useState<string>('step1');
+  const [navigation, setNavigation] = useState<string>('step1-mail');
+  const [title, setTitle] = useState<string>('');
 
+  useEffect(() => {
+    if (navigation === 'step1-mail' || navigation === 'step2-mail') {
+      setTitle('Mail');
+    } else {
+      setTitle('Phone');
+    }
+  }, [navigation]);
   return (
     <S.HomeWrapper>
-      <OTPMail navigation={navigation} setNavigation={setNavigation} />
-      <Typography padding="0px 0px 24px 0px">
-        Try another way to verification
-      </Typography>
-      <PhoneOutlined />
+      {title === 'Mail' ? (
+        <OTPMail navigation={navigation} setNavigation={setNavigation} />
+      ) : (
+        <OTPPhone navigation={navigation} setNavigation={setNavigation} />
+      )}
     </S.HomeWrapper>
   );
 }
