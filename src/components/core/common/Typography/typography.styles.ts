@@ -7,13 +7,14 @@ export const H1 = styled.h1<{
   $fontFamily?: string;
   $transform?: string;
   $align?: string;
+  $style?: string;
 }>`
   text-transform: ${(props) => props.$transform};
   text-align: ${(props) => props?.$align};
 
   color: ${(props) => props.$color || props.theme.colors.newtral};
   font-family: ${(props) => props.$fontFamily};
-
+  font-style: ${(props) => props.$style};
   ${(props) =>
     props.$padding &&
     css`
@@ -34,12 +35,14 @@ export const H2 = styled.h2<{
   $fontFamily?: string;
   $transform?: string;
   $align?: string;
+  $style?: string;
 }>`
   text-transform: ${(props) => props.$transform};
   text-align: ${(props) => props?.$align};
 
   color: ${(props) => props.$color || props.theme.colors.newtral};
   font-family: ${(props) => props.$fontFamily};
+  font-style: ${(props) => props.$style};
 
   ${(props) =>
     props.$padding &&
@@ -61,12 +64,14 @@ export const H3 = styled.h3<{
   $fontFamily?: string;
   $transform?: string;
   $align?: string;
+  $style?: string;
 }>`
   text-transform: ${(props) => props.$transform};
   text-align: ${(props) => props?.$align};
 
   color: ${(props) => props.$color || props.theme.colors.newtral};
   font-family: ${(props) => props.$fontFamily};
+  font-style: ${(props) => props.$style};
 
   ${(props) =>
     props.$padding &&
@@ -88,12 +93,14 @@ export const H4 = styled.h4<{
   $fontFamily?: string;
   $transform?: string;
   $align?: string;
+  $style?: string;
 }>`
   text-transform: ${(props) => props.$transform};
   text-align: ${(props) => props?.$align};
 
   color: ${(props) => props.$color || props.theme.colors.newtral};
   font-family: ${(props) => props.$fontFamily};
+  font-style: ${(props) => props.$style};
 
   ${(props) =>
     props.$padding &&
@@ -115,12 +122,14 @@ export const H5 = styled.h5<{
   $fontFamily?: string;
   $transform?: string;
   $align?: string;
+  $style?: string;
 }>`
   text-transform: ${(props) => props.$transform};
   text-align: ${(props) => props?.$align};
 
   color: ${(props) => props.$color || props.theme.colors.newtral};
   font-family: ${(props) => props.$fontFamily};
+  font-style: ${(props) => props.$style};
 
   ${(props) =>
     props.$padding &&
@@ -142,12 +151,14 @@ export const P = styled.p<{
   $fontFamily?: string;
   $transform?: string;
   $align?: string;
+  $style?: string;
 }>`
   text-transform: ${(props) => props.$transform};
   text-align: ${(props) => props?.$align};
 
   color: ${(props) => props.$color || props.theme.colors.newtral};
   font-family: ${(props) => props.$fontFamily};
+  font-style: ${(props) => props.$style};
 
   ${(props) =>
     props.$padding &&
