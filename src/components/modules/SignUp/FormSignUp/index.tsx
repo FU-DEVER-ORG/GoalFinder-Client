@@ -2,7 +2,7 @@
 
 import {Form, FormProps } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
-import {LockOutlined, UserOutlined } from '@ant-design/icons';
+import {LockOutlined, PhoneOutlined } from '@ant-design/icons';
 
 import Input from '@/components/core/common/form/Input';
 import InputPassword from '@/components/core/common/form/InputPassword';
@@ -41,7 +41,7 @@ function FormSignUp() {
         >
           <Input
             placeholder="0XXXXXX"
-            prefix={<UserOutlined />}
+            prefix={<PhoneOutlined />}
             isRequired
             label="Số điện thoại"
           />
