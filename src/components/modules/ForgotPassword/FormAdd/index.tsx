@@ -1,36 +1,65 @@
 'use client';
-import * as S from './styles';
-import { MailOutlined } from '@ant-design/icons';
-import Button from '@/components/core/common/Button';
-import React from 'react';
-import { Form } from 'antd';
-import Input from '@/components/core/common/form/Input';
-import Link from 'next/link';
-const FormItem = Form.Item;
-import { IProps } from '../Main';
-import InputNumber from '@/components/core/common/form/InputNumber';
+
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-function FormAdd(props: IProps) {
-  const route = useRouter();
-  const handleSubmit = (e: any) => {
-    props.setNavigation('step2');
-    console.log(e.target[0].defaultValue);
-  };
-  const handleSubmitVerification = (e: any) => {
-    console.log('imple fc');
-    console.log(e.target[0].value);
-    console.log(e.target[1].value, e.target[2].value, e.target[3].value);
+import { MailOutlined } from '@ant-design/icons';
 
-    route.push('/reset-password');
+import Button from '@/components/core/common/Button';
+import { Form } from 'antd';
+const FormItem = Form.Item;
+import Input from '@/components/core/common/form/Input';
+import InputNumber from '@/components/core/common/form/InputNumber';
+
+import * as S from './styles';
+
+interface PageProps {
+  navigation: string;
+  setNavigation: Dispatch<SetStateAction<string>>;
+}
+
+const FormAdd = ({ navigation, setNavigation }: PageProps) => {
+  const route = useRouter();
+  const [form] = Form.useForm();
+  const [digits, setDigits] = useState(['', '', '', '']);
+
+  const handleSubmit = async () => {
+    try {
+      const values = await form.validateFields();
+      setNavigation('step2');
+      console.log('Success:', values);
+    } catch (errorInfo) {
+      console.log('Failed:', errorInfo);
+    }
+  };
+
+  const handleChange = (index: number, value: string) => {
+    const updateDigit = [...digits];
+    updateDigit[index] = value;
+    setDigits(updateDigit);
+  };
+
+  const handleSubmitVerification = async () => {
+    try {
+      const otp = digits.join('');
+      const values = await form.validateFields();
+      console.log('otp:', otp);
+      console.log('Success:', values);
+      route.push('/reset-password');
+    } catch (errorInfo) {
+      console.log('Failed:', errorInfo);
+    }
   };
 
   return (
     <>
-      {props.navigation === 'step1' ? (
+      {navigation === 'step1' ? (
         <S.Input>
-          <Form onSubmitCapture={(e) => handleSubmit(e)}>
-            <FormItem>
+          <Form form={form} onFinish={handleSubmit}>
+            <FormItem
+              name={'email'}
+              rules={[{ required: true, message: 'Please input your email!' }]}
+            >
               <Input
                 width={'100%'}
                 placeholder="******@gmail.com"
@@ -53,27 +82,28 @@ function FormAdd(props: IProps) {
       ) : (
         <>
           <S.Input>
-            <Form onSubmitCapture={(e) => handleSubmitVerification(e)}>
+            <Form form={form} onFinish={handleSubmitVerification}>
+              <S.InputNumber>
+                {digits.map((digit, index) => (
+                  <FormItem
+                    key={index}
+                    name={`OTP${index + 1}`}
+                    rules={[{ required: true, message: 'Input the OTP!' }]}
+                  >
+                    <InputNumber
+                      min={0}
+                      max={9}
+                      width={'30%'}
+                      value={digit}
+                      onChange={(e: any) => {
+                        handleChange(index, e);
+                      }}
+                    />
+                  </FormItem>
+                ))}
+              </S.InputNumber>
               <FormItem>
-                <S.InputNumber>
-                  <InputNumber min={0} max={9} width={'25%'} />
-                  <InputNumber
-                    min={0}
-                    max={9}
-                    maxLength={1}
-                    width={'25%'}
-                  />{' '}
-                  <InputNumber min={0} max={9} maxLength={1} width={'25%'} />{' '}
-                  <InputNumber min={0} max={9} maxLength={1} width={'25%'} />
-                </S.InputNumber>
-              </FormItem>
-              <FormItem>
-                <Button
-                  $width={'100%'}
-                  type="default"
-                  htmlType="submit"
-                  className="login-form-button"
-                >
+                <Button $width={'100%'} type="default" htmlType="submit">
                   Verify
                 </Button>
               </FormItem>
@@ -83,6 +113,6 @@ function FormAdd(props: IProps) {
       )}
     </>
   );
-}
+};
 
 export default FormAdd;

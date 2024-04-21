@@ -1,10 +1,18 @@
 'use client';
-import * as S from './styles';
-import Image from 'next/image';
+
+import React, { Dispatch, SetStateAction } from 'react';
+
 import Typography from '@/components/core/common/Typography';
-import { IProps } from '../Main';
+import Image from 'next/image';
 import FormAdd from '../FormAdd';
-function OTPMail(props: IProps) {
+
+import * as S from './styles';
+interface PageProps {
+  navigation: string;
+  setNavigation: Dispatch<SetStateAction<string>>;
+}
+
+function OTPMail(props: PageProps) {
   return (
     <S.AddMailWrapper>
       <Typography variant="h3">E-mail Verification</Typography>
