@@ -8,7 +8,6 @@ import Input from '@/components/core/common/form/Input';
 import InputPassword from '@/components/core/common/form/InputPassword';
 
 import * as S from './styles';
-import Link from 'antd/es/typography/Link';
 
 type FieldType = {
   phone?: string;
