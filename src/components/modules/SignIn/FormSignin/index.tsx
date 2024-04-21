@@ -1,15 +1,12 @@
 'use client';
-import { Button, Checkbox, Form, FormProps } from 'antd';
+
+import { Checkbox, Form, FormProps } from 'antd';
 import * as S from './styles';
-
-
 import React from 'react'
 import Input from '@/components/core/common/form/Input';
 import InputPassword from '../../../core/common/form/InputPassword/index';
 import { UserOutlined } from '@ant-design/icons';
 import FormItem from 'antd/es/form/FormItem';
-import { ButtonCommon } from '@/components/core/common/Button/button.styles';
-import SignIn from '../Main/index';
 
 type FieldType = {
   phone?: string;

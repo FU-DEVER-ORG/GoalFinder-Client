@@ -2,13 +2,9 @@
 
 import Typography from '@/components/core/common/Typography';
 import * as S from './styles';
-
 import React from 'react'
 import FormSignin from '../FormSignin';
-import { Button, Flex } from 'antd';
-import Image from 'next/image';
-import Link from 'next/link';
-import { ButtonLogin } from '../FormSignin/styles';
+import { Flex } from 'antd';
 
 function SignIn() {
     return (
