@@ -1,7 +1,8 @@
-import { Flex } from 'antd';
+
 import Title from 'antd/es/typography/Title';
-import Link from 'next/link';
 import styled from 'styled-components';
+
+import { Flex } from 'antd';
 
 export const HomeWrapper = styled(Flex)`
   padding: 50px 20px;
@@ -14,11 +15,7 @@ export const HomeWrapper = styled(Flex)`
 export const TitleLogin = styled(Title)`
     
 `
-export const LinkLogo = styled(Link)`
-    display: block;
-    width: 100px;
-    height: 100px;
-`
+
 
 export const ButtonLogo = styled.button`
     position: relative;
