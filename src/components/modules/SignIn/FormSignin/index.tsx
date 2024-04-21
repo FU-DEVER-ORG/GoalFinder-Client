@@ -8,6 +8,8 @@ import Input from '@/components/core/common/form/Input';
 import InputPassword from '../../../core/common/form/InputPassword/index';
 import { UserOutlined } from '@ant-design/icons';
 import FormItem from 'antd/es/form/FormItem';
+import { ButtonCommon } from '@/components/core/common/Button/button.styles';
+import SignIn from '../Main/index';
 
 type FieldType = {
   phone?: string;
@@ -28,7 +30,7 @@ function FormSignin() {
     <S.HomeWrapper>
       <Form
         name="basic"
-        style={{width: '100%'}}
+        style={{ width: '100%' }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
@@ -40,22 +42,22 @@ function FormSignin() {
           rules={[{ required: true, message: 'Please input your phone!' }]}
         >
           <Input
-          placeholder="0XXXXXX"
-          prefix={<UserOutlined />}
-          isRequired
-          label="Phone"
-        />
+            placeholder="0XXXXXX"
+            prefix={<UserOutlined />}
+            isRequired
+            label="Phone"
+          />
         </FormItem>
         <Form.Item<FieldType>
           name="password"
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
           <InputPassword
-          placeholder="*****"
-          prefix={<UserOutlined />}
-          isRequired
-          label="Password"
-        />
+            placeholder="*****"
+            prefix={<UserOutlined />}
+            isRequired
+            label="Password"
+          />
         </Form.Item>
 
         <FormItem<FieldType>

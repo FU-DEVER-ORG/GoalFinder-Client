@@ -1,3 +1,4 @@
+import { ButtonCommon } from '@/components/core/common/Button/button.styles';
 import { Button, Flex } from 'antd';
 import Title from 'antd/es/typography/Title';
 import Link from 'next/link';
@@ -22,6 +23,7 @@ export const LinkLogo = styled(Link)`
 
 export const ButtonLogo = styled.button`
     position: relative;
+    padding: 20px;
     width: 70px;
     height: 70px;
     background-color: white;
