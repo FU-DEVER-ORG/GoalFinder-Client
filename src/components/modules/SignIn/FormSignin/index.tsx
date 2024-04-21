@@ -1,15 +1,13 @@
 'use client';
 
 import { Checkbox, Form, FormProps } from 'antd';
-import {LockOutlined, UserOutlined } from '@ant-design/icons';
 import FormItem from 'antd/es/form/FormItem';
+import {LockOutlined, UserOutlined } from '@ant-design/icons';
 
-import React from 'react'
 import Input from '@/components/core/common/form/Input';
 import InputPassword from '@/components/core/common/form/InputPassword';
 
 import * as S from './styles';
-
 
 type FieldType = {
   phone?: string;
@@ -39,24 +37,24 @@ function FormSignin() {
         <FormItem<FieldType>
           label=""
           name="phone"
-          rules={[{ required: true, message: 'Please input your phone!' }]}
+          rules={[{ required: true, message: 'Hãy nhập số điện thoại!' }]}
         >
           <Input
             placeholder="0XXXXXX"
-            prefix={<LockOutlined />}
+            prefix={<UserOutlined />}
             isRequired
-            label="Phone"
+            label="Số điện thoại"
           />
         </FormItem>
         <Form.Item<FieldType>
           name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
+          rules={[{ required: true, message: 'Hãy nhập mật khẩu!' }]}
         >
           <InputPassword
             placeholder="*****"
-            prefix={<UserOutlined />}
+            prefix={<LockOutlined />}
             isRequired
-            label="Password"
+            label="Mật khẩu"
           />
         </Form.Item>
 
@@ -65,16 +63,16 @@ function FormSignin() {
           valuePropName="checked"
           wrapperCol={{ offset: 8, span: 16 }}
         >
-          <Checkbox>Remember me</Checkbox>
+          <Checkbox>Nhớ mật khẩu</Checkbox>
         </FormItem>
         <FormItem>
           <S.ButtonLogin type="primary" htmlType="submit">
-            Sign In
+            Đăng nhập
           </S.ButtonLogin>
         </FormItem>
         <FormItem>
           <S.ButtonLogin type="default" >
-            Sign Up
+            Đăng ký
           </S.ButtonLogin>
         </FormItem>
       </Form>

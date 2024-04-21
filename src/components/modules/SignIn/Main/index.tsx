@@ -2,12 +2,10 @@
 
 import { Flex } from 'antd';
 
-import React from 'react'
 import Typography from '@/components/core/common/Typography';
 import FormSignin from '@/components/modules/SignIn/FormSignin';
 
 import * as S from './styles';
-
 
 function SignIn() {
     return (
@@ -17,7 +15,7 @@ function SignIn() {
             <Typography>
                 Or Login With
             </Typography>
-            <Flex gap={20}>
+            <Flex gap={40}>
                 <S.ButtonLogo>
                     <S.ImgLogo alt="" src={'/images/signin/logo-facebook.png'} />
                 </S.ButtonLogo>

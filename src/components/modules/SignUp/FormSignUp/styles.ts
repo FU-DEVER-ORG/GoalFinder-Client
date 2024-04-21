@@ -5,9 +5,7 @@ import styled from 'styled-components';
 export const HomeWrapper = styled(Flex)`
   padding: 24px 0px;
   width: 30%;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+
 `;
 
 export const ButtonLogin = styled(ButtonCommon)`

@@ -1,6 +1,7 @@
 import { Flex } from 'antd';
-import Title from 'antd/es/typography/Title';
 import styled from 'styled-components';
+import Title from 'antd/es/typography/Title';
+
 
 export const HomeWrapper = styled(Flex)`
   padding: 50px 20px;

@@ -2,7 +2,6 @@
 
 import { Flex } from 'antd';
 
-import React from 'react'
 import Typography from '@/components/core/common/Typography';
 import FormSignUp from '@/components/modules/SignUp/FormSignUp';
 
