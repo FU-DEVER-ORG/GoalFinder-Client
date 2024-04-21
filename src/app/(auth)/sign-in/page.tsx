@@ -1,5 +1,3 @@
-'use client';
-
 import SignIn from '@/components/modules/SignIn/Main';
 import { postRequest } from '@/services/request';
 import { setCookie } from 'cookies-next';
@@ -31,18 +29,6 @@ function Page() {
     }
   };
   return (
-    // <div
-    //   style={{
-    //     display: 'flex',
-    //     flexDirection: 'column',
-    //     alignItems: 'center',
-    //     justifyContent: 'center',
-    //   }}
-    // >
-    //   Sign in
-    //   {/* thang da code */}
-    //   <Button onClick={() => handleSignIn()}>Login</Button>
-    // </div>
     <SignIn></SignIn>
   );
 }
