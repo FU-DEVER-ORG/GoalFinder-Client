@@ -1,5 +1,4 @@
 import { Flex } from 'antd';
-import Title from 'antd/es/typography/Title';
 import styled from 'styled-components';
 
 export const HomeWrapper = styled(Flex)`
@@ -11,9 +10,6 @@ export const HomeWrapper = styled(Flex)`
   gap:10px;
 `;
 
-export const TitleLogin = styled(Title)`
-    
-`
 
 export const ButtonLogo = styled.button`
     position: relative;

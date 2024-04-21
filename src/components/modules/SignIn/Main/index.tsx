@@ -6,11 +6,12 @@ import Typography from '@/components/core/common/Typography';
 import FormSignin from '@/components/modules/SignIn/FormSignin';
 
 import * as S from './styles';
+import Title from 'antd/es/typography/Title';
 
 function SignIn() {
     return (
         <S.HomeWrapper>
-            <S.TitleLogin level={2}>Đăng nhập</S.TitleLogin>
+            <Title level={2}>Đăng nhập</Title>
             <FormSignin></FormSignin>
             <Typography>
                 Or Login With
