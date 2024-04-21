@@ -1,5 +1,5 @@
 'use client';
-import { Checkbox, Form, FormProps } from 'antd';
+import {Form, FormProps } from 'antd';
 import * as S from './styles';
 
 import React from 'react'
@@ -8,11 +8,10 @@ import InputPassword from '../../../core/common/form/InputPassword/index';
 import {LockOutlined, UserOutlined } from '@ant-design/icons';
 import FormItem from 'antd/es/form/FormItem';
 
-
 type FieldType = {
   phone?: string;
   password?: string;
-  remember?: string;
+  confirmPassword?: string;
 };
 
 const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
@@ -23,7 +22,7 @@ const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
   console.log('Failed:', errorInfo);
 };
 
-function FormSignin() {
+function FormSignUp() {
   return (
     <S.HomeWrapper>
       <Form
@@ -41,7 +40,7 @@ function FormSignin() {
         >
           <Input
             placeholder="0XXXXXX"
-            prefix={<LockOutlined />}
+            prefix={<UserOutlined />}
             isRequired
             label="Phone"
           />
@@ -52,19 +51,23 @@ function FormSignin() {
         >
           <InputPassword
             placeholder="*****"
-            prefix={<UserOutlined />}
+            prefix={<LockOutlined />}
             isRequired
             label="Password"
           />
         </Form.Item>
 
-        <FormItem<FieldType>
-          name="remember"
-          valuePropName="checked"
-          wrapperCol={{ offset: 8, span: 16 }}
+        <Form.Item<FieldType>
+          name="confirmPassword"
+          rules={[{ required: true, message: 'Please input the same password!' }]}
         >
-          <Checkbox>Remember me</Checkbox>
-        </FormItem>
+          <InputPassword
+            placeholder="*****"
+            prefix={<LockOutlined />}
+            isRequired
+            label="Confirm Password"
+          />
+        </Form.Item>
         <FormItem>
           <S.ButtonLogin type="primary" htmlType="submit">
             Sign In
@@ -80,4 +83,4 @@ function FormSignin() {
   )
 }
 
-export default FormSignin
+export default FormSignUp

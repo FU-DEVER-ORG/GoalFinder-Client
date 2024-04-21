@@ -4,14 +4,14 @@ import Typography from '@/components/core/common/Typography';
 import * as S from './styles';
 
 import React from 'react'
-import FormSignin from '../FormSignin';
 import { Flex } from 'antd';
+import FormSignUp from '../FormSignUp';
 
-function SignIn() {
+function SignUp() {
     return (
         <S.HomeWrapper>
-            <S.TitleLogin level={2}>Đăng nhập</S.TitleLogin>
-            <FormSignin></FormSignin>
+            <S.TitleLogin level={2}>Đăng ký</S.TitleLogin>
+            <FormSignUp></FormSignUp>
             <Typography>
                 Or Login With
             </Typography>
@@ -27,4 +27,4 @@ function SignIn() {
     )
 }
 
-export default SignIn
+export default SignUp
