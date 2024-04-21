@@ -1,14 +1,13 @@
 'use client';
 
-import React from 'react';
-
 import Image from 'next/image';
+import { Flex } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-import logo from '@/public/icon/layout/logo.svg';
 
 import Input from '../../common/form/Input';
-import { Flex } from 'antd';
 import Button from '../../common/Button';
+
+import logo from '@/public/icon/layout/logo.svg';
 
 import * as S from './styles';
 
