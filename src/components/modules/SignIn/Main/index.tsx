@@ -1,11 +1,13 @@
 'use client';
 
-import Typography from '@/components/core/common/Typography';
-import * as S from './styles';
+import { Flex } from 'antd';
 
 import React from 'react'
-import FormSignin from '../FormSignin';
-import { Flex } from 'antd';
+import Typography from '@/components/core/common/Typography';
+import FormSignin from '@/components/modules/SignIn/FormSignin';
+
+import * as S from './styles';
+
 
 function SignIn() {
     return (

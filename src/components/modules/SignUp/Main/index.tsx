@@ -1,11 +1,12 @@
 'use client';
 
-import Typography from '@/components/core/common/Typography';
-import * as S from './styles';
+import { Flex } from 'antd';
 
 import React from 'react'
-import { Flex } from 'antd';
-import FormSignUp from '../FormSignUp';
+import Typography from '@/components/core/common/Typography';
+import FormSignUp from '@/components/modules/SignUp/FormSignUp';
+
+import * as S from './styles';
 
 function SignUp() {
     return (

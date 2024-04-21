@@ -1,12 +1,14 @@
 'use client';
+
 import {Form, FormProps } from 'antd';
-import * as S from './styles';
+import {LockOutlined, UserOutlined } from '@ant-design/icons';
+import FormItem from 'antd/es/form/FormItem';
 
 import React from 'react'
 import Input from '@/components/core/common/form/Input';
-import InputPassword from '../../../core/common/form/InputPassword/index';
-import {LockOutlined, UserOutlined } from '@ant-design/icons';
-import FormItem from 'antd/es/form/FormItem';
+import InputPassword from '@/components/core/common/form/InputPassword';
+
+import * as S from './styles';
 
 type FieldType = {
   phone?: string;
@@ -70,12 +72,12 @@ function FormSignUp() {
         </Form.Item>
         <FormItem>
           <S.ButtonLogin type="primary" htmlType="submit">
-            Sign In
+            Sign Up
           </S.ButtonLogin>
         </FormItem>
         <FormItem>
           <S.ButtonLogin type="default" >
-            Sign Up
+            Sign In
           </S.ButtonLogin>
         </FormItem>
       </Form>

@@ -1,6 +1,5 @@
 import { Flex } from 'antd';
 import Title from 'antd/es/typography/Title';
-import Link from 'next/link';
 import styled from 'styled-components';
 
 export const HomeWrapper = styled(Flex)`

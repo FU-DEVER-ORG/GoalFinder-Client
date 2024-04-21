@@ -1,5 +1,5 @@
 import { ButtonCommon } from '@/components/core/common/Button/button.styles';
-import { Button, Flex } from 'antd';
+import { Flex } from 'antd';
 import styled from 'styled-components';
 
 export const HomeWrapper = styled(Flex)`
