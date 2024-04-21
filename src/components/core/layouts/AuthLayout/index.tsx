@@ -1,25 +1,22 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
-import {
-  MehFilled,
-  BellFilled,
-  CaretDownFilled,
-  SearchOutlined,
-} from '@ant-design/icons';
-import logo from '@/public/icon/layout/logo.svg';
-import { Flex } from 'antd';
-import Input from '../../common/form/Input';
 
-import * as S from './styles';
+import Image from 'next/image';
+import { SearchOutlined } from '@ant-design/icons';
+import logo from '@/public/icon/layout/logo.svg';
+
+import Input from '../../common/form/Input';
+import { Flex } from 'antd';
 import Button from '../../common/Button';
 
-interface MainLayoutProps {
+import * as S from './styles';
+
+interface AuthLayoutProps {
   children: React.ReactNode;
 }
 
-function AuthLayout({ children }: MainLayoutProps) {
+function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <S.LayoutWrapper>
       <S.Header>

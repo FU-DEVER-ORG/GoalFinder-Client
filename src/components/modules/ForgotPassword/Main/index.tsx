@@ -1,17 +1,19 @@
 'use client';
 
-import * as S from './styles';
-import { PhoneOutlined } from '@ant-design/icons';
-import Typography from '@/components/core/common/Typography';
-import OTPMail from '../OTPMail';
-import Link from 'next/link';
 import { Dispatch, SetStateAction, useState } from 'react';
-export interface IProps {
+
+import OTPMail from '../OTPMail';
+import Typography from '@/components/core/common/Typography';
+import { PhoneOutlined } from '@ant-design/icons';
+
+import * as S from './styles';
+export interface Props {
   navigation: string;
   setNavigation: Dispatch<SetStateAction<string>>;
 }
-function Forgot_Password() {
-  const [navigation, setNavigation] = useState('step1');
+
+function ForgotPassword() {
+  const [navigation, setNavigation] = useState<string>('step1');
 
   return (
     <S.HomeWrapper>
@@ -19,11 +21,9 @@ function Forgot_Password() {
       <Typography padding="0px 0px 24px 0px">
         Try another way to verification
       </Typography>
-      {/* <Link href={'phone'}> */}
       <PhoneOutlined />
-      {/* </Link> */}
     </S.HomeWrapper>
   );
 }
 
-export default Forgot_Password;
+export default ForgotPassword;
