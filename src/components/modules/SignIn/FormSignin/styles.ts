@@ -11,5 +11,6 @@ export const HomeWrapper = styled(Flex)`
 export const ButtonLogin = styled(ButtonCommon)`
     padding: 30px 20px;
     width: 100%;
+    
     background-color: green;
 `;
