@@ -18,17 +18,17 @@ const FormReset = () => {
           <S.Input>
             <Input
               width={'100%'}
-              placeholder="Password"
+              placeholder="Mật khẩu"
               prefix={<LockOutlined />}
-              label="Password"
+              label="Mật khẩu mới"
               suffix={<EyeOutlined />}
               // suffix={<EyeInvisibleOutlined />}
             />
             <Input
               width={'100%'}
-              placeholder="Confirm password"
+              placeholder="Xác nhận mật khẩu mới"
               prefix={<LockOutlined />}
-              label="Confirm password"
+              label="Xác nhận mật khẩu mới"
               suffix={<EyeOutlined />}
             />
           </S.Input>
@@ -40,7 +40,7 @@ const FormReset = () => {
             htmlType="submit"
             className="login-form-button"
           >
-            Save
+            Lưu
           </Button>
         </FormItem>
       </Form>

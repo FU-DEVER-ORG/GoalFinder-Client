@@ -8,7 +8,7 @@ import * as S from './styles';
 function ResetPassword() {
   return (
     <S.HomeWrapper>
-      <Typography variant="h2">Set new password</Typography>
+      <Typography variant="h2">Đặt lại mật khẩu</Typography>
       <FormReset />
     </S.HomeWrapper>
   );
