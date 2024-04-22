@@ -27,6 +27,8 @@ export const ImageWall = styled.div`
     width: 100%;
     height: 100%;
 
+    object-fit: cover;
+
     z-index: 0;
   }
 
@@ -112,7 +114,7 @@ export const AvatarWrapper = styled.div`
 export const Avatar = styled(Image)`
   width: 100%;
   height: 100%;
-  
+
   border-radius: 50%;
   border: 4px solid #fff;
 `;
