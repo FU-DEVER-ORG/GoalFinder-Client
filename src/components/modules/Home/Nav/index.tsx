@@ -1,10 +1,10 @@
 import React from 'react';
-
 import { EllipsisOutlined, HeartOutlined, HistoryOutlined, HomeOutlined } from '@ant-design/icons';
 import { Menu, MenuProps, theme } from 'antd';
 import Sider from 'antd/es/layout/Sider';
 
 import BoxFlex from '@/components/core/common/BoxFlex';
+
 import { MenuCss } from './styles';
 
 const menuItems = [
