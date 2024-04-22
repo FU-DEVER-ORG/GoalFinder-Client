@@ -1,3 +1,4 @@
+import { Flex } from 'antd';
 import styled from 'styled-components';
 
 export const Input = styled.div`
@@ -8,7 +9,7 @@ export const Input = styled.div`
     background-color: #2f473e !important;
   }
 
-  .bTCrvA.ant-btn-default {
+  .ant-btn-default {
     border: 1px solid #f5f7fa !important;
   }
 
@@ -18,11 +19,10 @@ export const Input = styled.div`
   }
 `;
 
-export const InputNumber = styled.div`
+export const InputNumber = styled(Flex)`
   width: 100%;
   gap: 15px;
 
-  display: flex;
   flex-direction: row;
   justify-content: center;
 
@@ -32,17 +32,15 @@ export const InputNumber = styled.div`
   }
 `;
 
-export const InputMenu = styled.div`
+export const InputMenu = styled(Flex)`
   width: 100%;
   gap: 10px;
 
-  display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
 
-export const CountdownContainer = styled.div`
-  display: flex;
+export const CountdownContainer = styled(Flex)`
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -51,10 +49,9 @@ export const CountdownContainer = styled.div`
   padding-bottom: 40px;
 `;
 
-export const ModalContent = styled.div`
+export const ModalContent = styled(Flex)`
   gap: 40px;
 
-  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;

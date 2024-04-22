@@ -10,7 +10,7 @@ export const AddMailWrapper = styled(Flex)`
   align-items: center;
 `;
 
-export const ImgLogo = styled.div`
+export const ImgLogo = styled(Flex)`
   position: relative;
 
   & img {
@@ -19,8 +19,7 @@ export const ImgLogo = styled.div`
   }
 `;
 
-export const TypographyWrapper = styled.div`
-  display: flex;
+export const TypographyWrapper = styled(Flex)`
   justify-content: center;
   flex-direction: column;
   align-items: center;

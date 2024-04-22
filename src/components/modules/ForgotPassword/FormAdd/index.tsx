@@ -8,6 +8,7 @@ import Modal from 'antd/es/modal/Modal';
 import { CaretDownOutlined } from '@ant-design/icons';
 
 import { useModal } from '@/hooks';
+
 import Button from '@/components/core/common/Button';
 import Input from '@/components/core/common/form/Input';
 import Typography from '@/components/core/common/Typography';
@@ -27,7 +28,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
   const FormItem = Form.Item;
   const modalState = useModal();
 
-  const [digits, setDigits] = useState(['', '', '', '']);
+  const [digits, setDigits] = useState<string[]>(['', '', '', '']);
 
   const phoneAreaData = [
     {
@@ -158,7 +159,9 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
                         </Button>
                       </Space>
                     </Dropdown>
-                    <Typography>{selectedCountry.code}</Typography>
+                    <Typography variant="body-text-normal">
+                      {selectedCountry.code}
+                    </Typography>
                   </>
                 }
               />

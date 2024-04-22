@@ -2,8 +2,6 @@ import { Flex } from 'antd';
 import styled from 'styled-components';
 
 export const HomeWrapper = styled(Flex)`
-  font-family: none !important;
-
   padding: 24px 20px;
   width: 100%;
 
@@ -24,7 +22,7 @@ export const HomeWrapper = styled(Flex)`
     border: 1px solid rgba(71, 108, 94, 1) !important;
   }
 
-  .bTCrvA.ant-btn-default {
+  .ant-btn-default {
     border-color: #d9d9d9;
   }
 
@@ -33,12 +31,12 @@ export const HomeWrapper = styled(Flex)`
     width: 50px;
   }
 
-  .bTCrvA {
+  .ant-btn-default {
     border-radius: 0px !important;
     padding: 12px 0px 12px 8px !important;
   }
 
-  .cbQfXF.ant-input-affix-wrapper span {
+  .ant-input-affix-wrapper span {
     color: #000;
   }
 
