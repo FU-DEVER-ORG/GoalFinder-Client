@@ -13,13 +13,13 @@ const FormPage = () => {
       <Form
         form={form}
         name="edit form"
-        onFinish={(values: any) => {
-          console.log('e', values);
+        onFinish={() => {
+          console.log('e', form.getFieldsValue());
         }}
       >
         <Flex gap={24} vertical>
           <ImageWall />
-          <FormItem />
+          <FormItem form={form} />
         </Flex>
       </Form>
     </S.FormEditWrapper>

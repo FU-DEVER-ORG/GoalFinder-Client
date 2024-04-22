@@ -20,7 +20,7 @@ const initialStatePosition: InterfaceStatePosition = {
   defender: false,
   striker: false,
 };
-const FormItem = () => {
+const FormItem = ({ form }: any) => {
   const [position, setPosition] = useState(initialStatePosition);
   const HandleClickPositionButton = (name: string) => {
     const NewPosition = {
@@ -44,7 +44,7 @@ const FormItem = () => {
       <Flex justify="space-between" align="center">
         <Typography variant="caption-small">Khu vực</Typography>
         <S.FlexWrapper justify="space-between">
-          <SelectAddress></SelectAddress>
+          <SelectAddress form={form} />
         </S.FlexWrapper>
       </Flex>
       <Flex justify="space-between" align="center">
@@ -96,8 +96,8 @@ const FormItem = () => {
         <S.FormItem name="attitude">
           <S.FlexWrapper justify="space-between" gap={24}>
             <S.RadioGroup name="ButtonLevel" optionType="button">
-              <S.RadioButton value="professional">Vui vẻ</S.RadioButton>
-              <S.RadioButton value="amateur">Nghiêm túc</S.RadioButton>
+              <S.RadioButton value="funny">Vui vẻ</S.RadioButton>
+              <S.RadioButton value="seriously">Nghiêm túc</S.RadioButton>
             </S.RadioGroup>
           </S.FlexWrapper>
         </S.FormItem>

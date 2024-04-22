@@ -60,7 +60,7 @@ export const ButtonCommon = styled(Button)<ButtonPropsInterface>`
   &.ant-btn-primary {
     border: none;
     box-shadow: none;
-    color: #fff;
+    color: #fff !important;
     background: ${(props) =>
       props.$backgroundColor || props.theme?.colors?.primary} !important;
   }

@@ -1,15 +1,14 @@
-import { Form } from 'antd';
+import { Form, Flex } from 'antd';
 import styled from 'styled-components';
 
 export const FormItem = styled(Form.Item)<{ $full?: boolean }>`
   width: ${({ $full }) => ($full ? '50%' : 'auto')};
   max-width: ${({ $full }) => ($full ? '440px' : 'auto')};
 
-
   margin: 0 !important;
-  
+
   color: #d9d9d9;
-  
+
   .ant-radio-group,
   .ant-form-item,
   .ant-checkbox-group {
@@ -28,4 +27,12 @@ export const FormItem = styled(Form.Item)<{ $full?: boolean }>`
     display: flex !important;
     flex-direction: column;
   }
+`;
+export const FlexWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  width: 100% !important;
+
+  gap: 10px;
 `;

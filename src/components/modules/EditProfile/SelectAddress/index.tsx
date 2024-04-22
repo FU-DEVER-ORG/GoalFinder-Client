@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { DefaultOptionType } from 'antd/es/select';
 
@@ -17,23 +17,43 @@ const textRemoves: any = {
 
 interface optionType extends DefaultOptionType {
   label?: string;
-  value?: number;
+  value?: string;
+  id?: number;
 }
+type InterFaceinitialStateValue = {
+  province: null | string;
+  district: null | string;
+  ward: null | string;
+};
+
 const initialStateData: optionType = {
   province: [],
   district: [],
   ward: [],
 };
-const SelectAddress = () => {
-  const [id, SetId] = useState(initialStateData);
+const initialStateValue: InterFaceinitialStateValue = {
+  province: null,
+  district: null,
+  ward: null,
+};
+const SelectAddress = ({ form }: any) => {
+  const [value, setValue] = useState(initialStateValue);
   const [option, setOption] = useState(initialStateData);
+
   const removeUselessText = (text: string, listTextRemove: Array<string>) => {
     const newText = listTextRemove.reduce(
-      (result: string, textRemove: string) => result.replace(textRemove, ''),
+      (result: string, textRemove: string) =>
+        result.length > 10 ? result.replace(textRemove, '') : result,
       text,
     );
     return newText;
   };
+
+  const filterOption: boolean | optionType | undefined = (
+    input: string,
+    option: optionType,
+  ) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
+
   const setEndPoint = (endPoint: string, id: number) => {
     return `${endPoint}/${id}`;
   };
@@ -47,7 +67,11 @@ const SelectAddress = () => {
             vn[`${type}_name`],
             textRemoves[type],
           );
-          return { value: vn[`${type}_id`], label: label };
+          return {
+            value: vn[`${type}_name`],
+            label: label,
+            id: vn[`${type}_id`],
+          };
         });
         setOption({
           ...option,
@@ -65,27 +89,79 @@ const SelectAddress = () => {
   }, []);
   return (
     <>
-      <S.FormItem name="city">
+      <S.FormItem name="province">
+        <S.FormItem name="district">
+          <S.FormItem name="ward" value={value.ward}></S.FormItem>
+        </S.FormItem>
+      </S.FormItem>
+      <S.FlexWrapper>
         <Select
-          onChange={(id: number) => {
-            GetRequest('district', setEndPoint(endPoint.DISTRICT, id));
+          allowClear
+          showSearch
+          optionFilterProp="children"
+          onChange={(valueProvince: string) => {
+            GetRequest(
+              'district',
+              setEndPoint(
+                endPoint.DISTRICT,
+                option.province.find(
+                  (province: any) => province.value == valueProvince,
+                )?.id,
+              ),
+            );
+            if (value.province)
+              setValue({
+                ...initialStateValue,
+                province: valueProvince,
+              });
+            else setValue({ ...value, province: valueProvince });
           }}
+          //   filterOption={filterOption}
+          value={value.province}
           placeholder="Tỉnh/ Thành phố"
           options={option.province}
         ></Select>
-      </S.FormItem>
-      <S.FormItem name="district">
         <Select
-          onChange={(id: number) => {
-            GetRequest('ward', setEndPoint(endPoint.WARD, id));
+          value={value.district}
+          allowClear
+          showSearch
+          optionFilterProp="children"
+          onChange={(valueDistrict: string) => {
+            GetRequest(
+              'ward',
+              setEndPoint(
+                endPoint.WARD,
+                option.district.find(
+                  (district: any) => district.value == valueDistrict,
+                )?.id,
+              ),
+            );
+            if (value.district)
+              setValue({
+                ...initialStateValue,
+                province: value.province,
+                district: valueDistrict,
+              });
+            else setValue({ ...value, district: valueDistrict });
           }}
+          //   filterOption={filterOption}
           placeholder="Huyện/ Quận"
           options={option.district}
         ></Select>
-      </S.FormItem>
-      <S.FormItem name="ward">
-        <Select placeholder="Xã/ Đường" options={option.ward}></Select>
-      </S.FormItem>
+        <Select
+          value={value.ward}
+          onChange={(valueWard) => {
+            form.setFieldsValue({ ...value, ward: valueWard });
+            setValue({ ...value, ward: valueWard });
+          }}
+          allowClear
+          showSearch
+          optionFilterProp="children"
+          placeholder="Xã/ Đường"
+          //   filterOption={filterOption}
+          options={option.ward}
+        ></Select>
+      </S.FlexWrapper>
     </>
   );
 };
