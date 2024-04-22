@@ -13,7 +13,7 @@ const FormPage = () => {
       <Form
         form={form}
         name="edit form"
-        onFinish={(values) => {
+        onFinish={(values : any) => {
           console.log('e', values);
         }}
       >

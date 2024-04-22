@@ -5,7 +5,11 @@ export const FormEditWrapper = styled(Flex)`
   padding: 20px 0;
   background-color: ${({ theme }) => theme.colors.backgroundWhite};
   border-radius: 10px;
-  min-width: 600px;
+  width: 100%;
+  max-width: 600px;
+  .ant-form{
+    width: 100%;
+  }
 `;
 export const Tittle = styled.label`
   display: flex;

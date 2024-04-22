@@ -27,7 +27,9 @@ export const ButtonCommon = styled(Button)<ButtonPropsInterface>`
   max-height: 48px;
   width: ${(props) => props?.$width || 'fit-content'};
   ${(props) => props?.$isCancel && css``}
-
+  span {
+    pointer-events: none !important;
+  }
   &:not(:disabled):hover {
     border-color: ${({ theme }) => theme?.colors?.primaryDark};
     box-shadow: 0 0 5px 0 ${({ theme }) => theme?.colors?.primaryLighter};

@@ -1,79 +1,104 @@
-import { Flex, Form } from 'antd';
+import { Checkbox, Flex } from 'antd';
+import { useState } from 'react';
 
 import Input from '@/components/core/common/form/Input';
 import Typography from '@/components/core/common/Typography';
-import Select from '@/components/core/common/form/Select';
+import Button from '@/components/core/common/Button';
+import SelectAddress from '@/components/modules/EditProfile/SelectAddress';
 
 import * as S from './style';
-import Button from '@/components/core/common/Button';
 
+type InterfaceStatePosition = {
+  goalker: boolean;
+  defender: boolean;
+  striker: boolean;
+  [key: string]: boolean;
+};
+
+const initialStatePosition: InterfaceStatePosition = {
+  goalker: false,
+  defender: false,
+  striker: false,
+};
 const FormItem = () => {
+  const [position, setPosition] = useState(initialStatePosition);
+  const HandleClickPositionButton = (name: string) => {
+    const NewPosition = {
+      ...position,
+      [name]: !position[name],
+    };
+    setPosition(NewPosition);
+  };
+  const colorBtnGoalker = position.goalker ? '' : '#d9d9d9';
+  const colorBtnDefender = position.defender ? '' : '#d9d9d9';
+  const colorBtnStriker = position.striker ? '' : '#d9d9d9';
+
   return (
     <S.WrapperItem vertical gap={24}>
-      <S.FormItem>
+      <S.FormItem name="inputNickName">
         <Input label="Tên tài khoản" />
       </S.FormItem>
-      <S.FormItem>
+      <S.FormItem name="inputFullName">
         <Input label="Họ và tên" />
       </S.FormItem>
-
       <Flex justify="space-between" align="center">
         <Typography variant="caption-small">Khu vực</Typography>
         <S.FlexWrapper justify="space-between">
-          <S.FormItem>
-            <Select mode="multiple" placeholder="Tỉnh/ Thành phố"></Select>
-          </S.FormItem>
-          <S.FormItem>
-            <Select mode="multiple" placeholder="Huyện/ Quận"></Select>
-          </S.FormItem>
-          <S.FormItem>
-            <Select mode="multiple" placeholder="Xã/ Đường"></Select>
-          </S.FormItem>
+          <SelectAddress></SelectAddress>
         </S.FlexWrapper>
       </Flex>
       <Flex justify="space-between" align="center">
         <Typography variant="caption-small">Trình độ</Typography>
-        <S.FormItem>
+        <S.FormItem name="level">
           <S.FlexWrapper justify="space-between" gap={24}>
-            <Button $color="#d9d9d9" $borderColor="#d9d9d9" $width="100%">
-              Chuyên nghiệp
-            </Button>
-            <Button $color="#d9d9d9" $borderColor="#d9d9d9" $width="100%">
-              Nghiệp dư
-            </Button>
+            <S.RadioGroup name="ButtonLevel" optionType="button">
+              <S.RadioButton value="professional">Chuyên nghiệp</S.RadioButton>
+              <S.RadioButton value="amateur">Nghiệp dư</S.RadioButton>
+            </S.RadioGroup>
           </S.FlexWrapper>
         </S.FormItem>
       </Flex>
       <Flex justify="space-between" align="center">
         <Typography variant="caption-small">Vị trí sở trường</Typography>
-        <S.FlexWrapper justify="space-between" gap={10}>
-          <S.FormItem $full>
-            <Button $color="#d9d9d9" $borderColor="#d9d9d9" $width="100%">
-              Thủ môn
-            </Button>
-          </S.FormItem>
-          <S.FormItem $full>
-            <Button $color="#d9d9d9" $borderColor="#d9d9d9" $width="100%">
-              Hậu vệ
-            </Button>
-          </S.FormItem>
-          <S.FormItem $full>
-            <Button $color="#d9d9d9" $borderColor="#d9d9d9" $width="100%">
-              Tiền đạo
-            </Button>
-          </S.FormItem>
-        </S.FlexWrapper>
+        <S.FormItem name="position">
+          <S.CheckboxGroup>
+            <S.FlexWrapper justify="space-between" gap={24}>
+              <S.Checkbox type="checkbox" value="goalker" id="goalker" />
+              <S.Checkbox type="checkbox" value="defender" id="defender" />
+              <S.Checkbox type="checkbox" value="striker" id="striker" />
+              <S.Label
+                htmlFor="goalker"
+                $color={colorBtnGoalker}
+                onClick={() => HandleClickPositionButton('goalker')}
+              >
+                <span>Thủ môn</span>
+              </S.Label>
+              <S.Label
+                htmlFor="defender"
+                $color={colorBtnDefender}
+                onClick={() => HandleClickPositionButton('defender')}
+              >
+                <span>Hậu vệ</span>
+              </S.Label>
+              <S.Label
+                htmlFor="striker"
+                $color={colorBtnStriker}
+                onClick={() => HandleClickPositionButton('striker')}
+              >
+                <span>Tiền đạo</span>
+              </S.Label>
+            </S.FlexWrapper>
+          </S.CheckboxGroup>
+        </S.FormItem>
       </Flex>
       <Flex justify="space-between" align="center">
         <Typography variant="caption-small">Trình độ</Typography>
-        <S.FormItem>
+        <S.FormItem name="attitude">
           <S.FlexWrapper justify="space-between" gap={24}>
-            <Button $color="#d9d9d9" $borderColor="#d9d9d9" $width="100%">
-              Vui vẻ
-            </Button>
-            <Button $color="#d9d9d9" $borderColor="#d9d9d9" $width="100%">
-              Nghiêm túc
-            </Button>
+            <S.RadioGroup name="ButtonLevel" optionType="button">
+              <S.RadioButton value="professional">Vui vẻ</S.RadioButton>
+              <S.RadioButton value="amateur">Nghiêm túc</S.RadioButton>
+            </S.RadioGroup>
           </S.FlexWrapper>
         </S.FormItem>
       </Flex>
@@ -83,9 +108,11 @@ const FormItem = () => {
           <S.TextAreaInput rows={4} />
         </S.FormItem>
       </Flex>
-      <Button type="primary" $color="#fff" $width="100%" htmlType="submit">
-        Xác nhận
-      </Button>
+      <S.FormItem>
+        <Button type="primary" $color="#fff" $width="100%" htmlType="submit">
+          Xác nhận
+        </Button>
+      </S.FormItem>
     </S.WrapperItem>
   );
 };
