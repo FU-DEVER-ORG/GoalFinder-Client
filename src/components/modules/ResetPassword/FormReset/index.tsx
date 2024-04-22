@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { LockOutlined, EyeOutlined } from '@ant-design/icons';
+import { LockOutlined } from '@ant-design/icons';
 import { Form } from 'antd';
 
 import Button from '@/components/core/common/Button';
-import Input from '@/components/core/common/form/Input';
+import InputPassword from '@/components/core/common/form/InputPassword';
 
 import * as S from './styles';
 
@@ -16,20 +16,17 @@ const FormReset = () => {
       <Form>
         <FormItem>
           <S.Input>
-            <Input
+            <InputPassword
               width={'100%'}
               placeholder="Mật khẩu"
               prefix={<LockOutlined />}
               label="Mật khẩu mới"
-              suffix={<EyeOutlined />}
-              // suffix={<EyeInvisibleOutlined />}
             />
-            <Input
+            <InputPassword
               width={'100%'}
-              placeholder="Xác nhận mật khẩu mới"
+              placeholder="Mật khẩu"
               prefix={<LockOutlined />}
               label="Xác nhận mật khẩu mới"
-              suffix={<EyeOutlined />}
             />
           </S.Input>
         </FormItem>
