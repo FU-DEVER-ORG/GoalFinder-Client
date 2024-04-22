@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
-import { Flex, Table, Button } from 'antd';
-import './owner.css';
-interface Column {
-  title: string;
-  dataIndex: string;
-  key: string;
-  align: 'center';
-  width?: number;
-  render?: (text: any, record: any) => JSX.Element;
+import React, { useState } from 
+'react';
+import { Flex, TableProps, Typography } from 
+'antd';
+
+import Table from 
+'@/components/core/common/Table';
+import Button from
+ '@/components/core/common/Button';
+
+import * as S from './styles' 
+interface DataType {
+  name: string;
+  reputation: number;
+  position: string;
+  compete: string;
+  phone: string;
 }
 function Subscribers() {
-  const dataSource = [
+  const dataSource: DataType[] = [
     {
       name: 'Minh Hiển',
       reputation: 100,
@@ -41,7 +48,7 @@ function Subscribers() {
     },
   ];
 
-  const columns: Column[] = [
+  const columns: TableProps<DataType>['columns'] = [
     {
       title: 'STT',
       dataIndex: 'number',
@@ -91,13 +98,12 @@ function Subscribers() {
       render: (text: any, record: any) => (
         <Flex justify="center">
           <Button
-            type="primary"
             onClick={() => handleAccept(record.number)}
             style={{ marginRight: '10px' }}
           >
             Chấp nhận
           </Button>
-          <Button type="default" onClick={() => handleReject(record.key)}>
+          <Button danger onClick={() => handleReject(record.key)}>
             Từ chối
           </Button>
         </Flex>
@@ -106,35 +112,19 @@ function Subscribers() {
   ];
 
   const newData = dataSource.map((item, index) => {
-    return { ...item, number: index+1 };
+    return { ...item, number: index + 1 };
   });
 
-  const handleAccept = (key: number) => {
-    // Đảm bảo key là kiểu string
-    console.log('Chấp nhận item có key:', key);
-    // Viết code xử lý tại đây
-  };
+  const handleAccept = (key: number) => {};
 
-  const handleReject = (key: string) => {
-    // Đảm bảo key là kiểu string
-    console.log('Từ chối item có key:', key);
-    // Viết code xử lý tại đây
-  };
-
-  // Thêm số thứ tự vào mỗi đối tượng dữ liệu trong mảng
- 
+  const handleReject = (key: string) => {};
 
   return (
-    <Flex vertical align="center">
-      <h5>Phê Duyệt</h5>
-      <Flex justify="center">
-        <Table
-          dataSource={newData}
-          columns={columns}
-          pagination={false}
-          className="custom-table"
-        />
-      </Flex>
+    <Flex gap={8} vertical align="center">
+      <Typography.Title level={2}>Phê duyệt</Typography.Title>
+      <S.Custom>
+      <Table columns={columns} dataSource={newData} />
+      </S.Custom>
     </Flex>
   );
 }

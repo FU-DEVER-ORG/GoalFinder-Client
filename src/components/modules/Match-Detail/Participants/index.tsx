@@ -1,16 +1,23 @@
-import React from 'react';
-import { Flex, Table, Button } from 'antd';
-import './owner.css';
-interface Column {
-  title: string;
-  dataIndex: string;
-  key: string;
-  align: 'center';
-  width?: number;
-  render?: () => JSX.Element;
+import React from 
+'react';
+import { Flex, TableProps, Typography} from
+'antd';
+
+import Table from 
+"@/components/core/common/Table";
+import Button from 
+"@/components/core/common/Button";
+
+import * as S from './styles' 
+interface DataType {
+  name: string;
+  reputation: number;
+  position: string;
+  compete: string;
+  phone: string;
 }
 function Participants() {
-  const dataSource = [
+  const dataSource : DataType[] = [
     {
       name: 'Minh Hiển',
       reputation: 100,
@@ -41,7 +48,7 @@ function Participants() {
     },
   ];
 
-  const columns: Column[] = [
+  const columns: TableProps<DataType>["columns"] = [
     {
       title: 'STT',
       dataIndex: 'number',
@@ -100,16 +107,11 @@ function Participants() {
     return { ...item, number: index+1 };
   });
   return (
-    <Flex vertical align ="center">
-      <h5>Thành viên tham gia</h5>
-      <Flex justify="center">
-        <Table
-          dataSource={newData}
-          columns={columns}
-          pagination={false} 
-          className="custom-table"
-        />
-      </Flex>
+    <Flex gap={8} vertical align ="center">
+    <Typography.Title level={2}>Thành viên tham gia</Typography.Title>
+    <S.Custom>
+    <Table columns={columns} dataSource={newData} />
+    </S.Custom>
     </Flex>
   );
 }
