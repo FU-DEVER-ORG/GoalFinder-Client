@@ -2,7 +2,7 @@
 
 import {Form, FormProps } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
-import {LockOutlined, PhoneOutlined } from '@ant-design/icons';
+import {LockOutlined, PhoneOutlined, MailOutlined } from '@ant-design/icons';
 
 import Input from '@/components/core/common/form/Input';
 import InputPassword from '@/components/core/common/form/InputPassword';
@@ -11,6 +11,7 @@ import { ButtonCommon } from '@/components/core/common/Button/button.styles';
 import * as S from './styles';
 
 type FieldType = {
+  email?: string;
   phone?: string;
   password?: string;
   confirmPassword?: string;
@@ -36,17 +37,28 @@ function FormSignUp() {
         autoComplete="off"
       >
         <FormItem<FieldType>
-          label=""
+          name="email"
+          rules={[{ required: true, message: 'Hãy nhập email!' }]}
+        >
+          <Input
+            placeholder="example@gmail.com"
+            prefix={<MailOutlined />}
+            isRequired
+            label="Email"
+          />
+        </FormItem>
+        <Form.Item<FieldType>
           name="phone"
           rules={[{ required: true, message: 'Hãy nhập số điện thoại!' }]}
         >
           <Input
-            placeholder="0XXXXXX"
+            placeholder="0xxxxxx"
             prefix={<PhoneOutlined />}
             isRequired
             label="Số điện thoại"
           />
-        </FormItem>
+        </Form.Item>
+
         <Form.Item<FieldType>
           name="password"
           rules={[{ required: true, message: 'Hãy nhập mật khẩu!' }]}
@@ -76,7 +88,7 @@ function FormSignUp() {
           </ButtonCommon>
         </FormItem>
         <FormItem>
-          <ButtonCommon $width={'100%'} type="default" >
+          <ButtonCommon $width={'100%'} type="default" href='/sign-in'>
             Đăng nhập
           </ButtonCommon>
         </FormItem>

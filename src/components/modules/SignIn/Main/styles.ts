@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 
 export const HomeWrapper = styled(Flex)`
-  padding: 50px 20px;
+  margin-top: 50px;
+  padding-bottom: 50px;
   
   justify-content: center;
   flex-direction: column;

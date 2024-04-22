@@ -2,7 +2,7 @@
 
 import { Checkbox, Form, FormProps } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
-import { LockOutlined, PhoneOutlined } from '@ant-design/icons';
+import { LockOutlined, MailOutlined } from '@ant-design/icons';
 
 import Input from '@/components/core/common/form/Input';
 import InputPassword from '@/components/core/common/form/InputPassword';
@@ -11,7 +11,7 @@ import { ButtonCommon } from '@/components/core/common/Button/button.styles';
 import * as S from './styles';
 
 type FieldType = {
-  phone?: string;
+  email?: string;
   password?: string;
   remember?: string;
 };
@@ -37,14 +37,14 @@ function FormSignin() {
       >
         <FormItem<FieldType>
           label=""
-          name="phone"
-          rules={[{ required: true, message: 'Hãy nhập số điện thoại!' }]}
+          name="email"
+          rules={[{ required: true, message: 'Hãy nhập email!' }]}
         >
           <Input
-            placeholder="0XXXXXX"
-            prefix={<PhoneOutlined />}
+            placeholder="example@gmail.com"
+            prefix={<MailOutlined />}
             isRequired
-            label="Số điện thoại"
+            label="Email"
           />
         </FormItem>
         <Form.Item<FieldType>
@@ -73,7 +73,7 @@ function FormSignin() {
           </ButtonCommon>
         </FormItem>
         <FormItem>
-          <ButtonCommon $width={'100%'} type="default" >
+          <ButtonCommon $width={'100%'} type="default" href='/sign-up'>
             Đăng ký
           </ButtonCommon>
         </FormItem>
