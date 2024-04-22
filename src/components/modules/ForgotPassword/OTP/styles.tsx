@@ -2,13 +2,14 @@ import { Flex } from 'antd';
 import styled from 'styled-components';
 
 export const AddMailWrapper = styled(Flex)`
-  gap: 24px;
-  padding: 24px 20px;
+  gap: 40px;
+  width: 48%;
 
   justify-content: center;
   flex-direction: column;
   align-items: center;
 `;
+
 export const ImgLogo = styled.div`
   position: relative;
 
@@ -17,6 +18,7 @@ export const ImgLogo = styled.div`
     cursor: pointer;
   }
 `;
+
 export const TypographyWrapper = styled.div`
   display: flex;
   justify-content: center;
