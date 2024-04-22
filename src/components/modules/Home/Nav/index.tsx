@@ -1,33 +1,34 @@
-import BoxFlex from '@/components/core/common/BoxFlex';
-
-import * as S from './styles';
-import { EllipsisOutlined, HeartOutlined, HistoryOutlined, HomeOutlined } from '@ant-design/icons';
-import Sider from 'antd/es/layout/Sider';
-import { Menu, MenuProps, theme } from 'antd';
 import React from 'react';
-import { color } from 'framer-motion';
 
-const options = ["Trang chủ", "Lưu trữ", "Lịch sử đăng ký", "Xem thêm"];
-const icons = [HomeOutlined, HeartOutlined, HistoryOutlined, EllipsisOutlined];
-const items: MenuProps['items'] = icons.map((icon, key) => ({
-  key: `${key}`,
-  icon: React.createElement(icon),
-  label: `${options[key]}`,
+import { EllipsisOutlined, HeartOutlined, HistoryOutlined, HomeOutlined } from '@ant-design/icons';
+import { Menu, MenuProps, theme } from 'antd';
+import Sider from 'antd/es/layout/Sider';
+
+import BoxFlex from '@/components/core/common/BoxFlex';
+import { MenuCss } from './styles';
+
+const menuItems = [
+  { label: "Trang chủ", icon: HomeOutlined, href: "/" },
+  { label: "Lưu trữ", icon: HeartOutlined, href: "/" },
+  { label: "Lịch sử đăng ký", icon: HistoryOutlined, href: "/" },
+  { label: "Trang chủ", icon: EllipsisOutlined, href: "/" }]
+
+const items: MenuProps['items'] = menuItems.map((item, index) => ({
+  key: `${index}`,
+  icon: React.createElement(item.icon),
+  label: `${item.label}`,
+  href: `${item.href}`,
 }));
-
 
 function Nav() {
   console.log(items);
-  
+
   return (
     <BoxFlex vertical gap={16}>
-      <S.Sider >
-        <S.MenuCss
+        <MenuCss
           mode="inline"
           items={items}
-        >
-        </S.MenuCss>
-      </S.Sider>
+        />
     </BoxFlex>
   );
 };
