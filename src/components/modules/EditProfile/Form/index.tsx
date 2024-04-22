@@ -1,9 +1,9 @@
 import { Flex, Form } from 'antd';
 
-import ImageWall from '../ImageWall';
+import ImageWall from '@/components/modules/EditProfile/ImageWall';
+import FormItem from '@/components/modules/EditProfile/InputItem';
 
 import * as S from './style';
-import FormItem from '../InputItem';
 
 const FormPage = () => {
   const [form] = Form.useForm();
@@ -13,13 +13,13 @@ const FormPage = () => {
       <Form
         form={form}
         name="edit form"
-        onFinish={(values : any) => {
+        onFinish={(values: any) => {
           console.log('e', values);
         }}
       >
         <Flex gap={24} vertical>
           <ImageWall />
-          <FormItem></FormItem>
+          <FormItem />
         </Flex>
       </Form>
     </S.FormEditWrapper>
