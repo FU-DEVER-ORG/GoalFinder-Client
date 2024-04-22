@@ -6,6 +6,7 @@ import {LockOutlined, PhoneOutlined } from '@ant-design/icons';
 
 import Input from '@/components/core/common/form/Input';
 import InputPassword from '@/components/core/common/form/InputPassword';
+import { ButtonCommon } from '@/components/core/common/Button/button.styles';
 
 import * as S from './styles';
 
@@ -70,14 +71,14 @@ function FormSignUp() {
           />
         </Form.Item>
         <FormItem>
-          <S.ButtonLogin type="primary" htmlType="submit">
+          <ButtonCommon $width={'100%'} type="primary" htmlType="submit">
             Đăng ký
-          </S.ButtonLogin>
+          </ButtonCommon>
         </FormItem>
         <FormItem>
-          <S.ButtonLogin type="default" >
+          <ButtonCommon $width={'100%'} type="default" >
             Đăng nhập
-          </S.ButtonLogin>
+          </ButtonCommon>
         </FormItem>
       </Form>
     </S.HomeWrapper>
