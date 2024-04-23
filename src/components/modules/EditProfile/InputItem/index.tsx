@@ -41,13 +41,13 @@ const FormItem = ({ form }: any) => {
       <S.FormItem name="inputFullName">
         <Input label="Họ và tên" />
       </S.FormItem>
-      <Flex justify="space-between" align="center">
+      <S.Flex justify="space-between" align="center" wrap="wrap">
         <Typography variant="caption-small">Khu vực</Typography>
         <S.FlexWrapper justify="space-between">
           <SelectAddress form={form} />
         </S.FlexWrapper>
-      </Flex>
-      <Flex justify="space-between" align="center">
+      </S.Flex>
+      <S.Flex justify="space-between" align="center" wrap="wrap">
         <Typography variant="caption-small">Trình độ</Typography>
         <S.FormItem name="level">
           <S.FlexWrapper justify="space-between" gap={24}>
@@ -57,8 +57,8 @@ const FormItem = ({ form }: any) => {
             </S.RadioGroup>
           </S.FlexWrapper>
         </S.FormItem>
-      </Flex>
-      <Flex justify="space-between" align="center">
+      </S.Flex>
+      <S.Flex justify="space-between" align="center" wrap="wrap">
         <Typography variant="caption-small">Vị trí sở trường</Typography>
         <S.FormItem name="position">
           <S.CheckboxGroup>
@@ -90,8 +90,8 @@ const FormItem = ({ form }: any) => {
             </S.FlexWrapper>
           </S.CheckboxGroup>
         </S.FormItem>
-      </Flex>
-      <Flex justify="space-between" align="center">
+      </S.Flex>
+      <S.Flex justify="space-between" align="center" wrap="wrap">
         <Typography variant="caption-small">Trình độ</Typography>
         <S.FormItem name="attitude">
           <S.FlexWrapper justify="space-between" gap={24}>
@@ -101,13 +101,13 @@ const FormItem = ({ form }: any) => {
             </S.RadioGroup>
           </S.FlexWrapper>
         </S.FormItem>
-      </Flex>
-      <Flex justify="space-between" align="center">
+      </S.Flex>
+      <S.Flex justify="space-between" align="center" wrap="wrap">
         <Typography variant="caption-small">Giới thiệu</Typography>
         <S.FormItem $full>
           <S.TextAreaInput rows={4} />
         </S.FormItem>
-      </Flex>
+      </S.Flex>
       <S.FormItem>
         <Button type="primary" $color="#fff" $width="100%" htmlType="submit">
           Xác nhận

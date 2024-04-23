@@ -1,6 +1,7 @@
 import { Form } from 'antd';
 import styled from 'styled-components';
 
+import SelectFromCommon from '@/components/core/common/form/Select';
 export const FormItem = styled(Form.Item)<{ $full?: boolean }>`
   width: ${({ $full }) => ($full ? '50%' : 'auto')};
   max-width: ${({ $full }) => ($full ? '440px' : 'auto')};
@@ -35,4 +36,26 @@ export const FlexWrapper = styled.div`
   width: 100% !important;
 
   gap: 10px;
+
+  .ant-select-selection-placeholder {
+    color: #d9d9d9 !important;
+    :hover {
+      color: ${({ theme }) => theme.colors.primary} !important;
+    }
+  }
+`;
+
+export const Select = styled(SelectFromCommon)<{ $isValue?: boolean }>`
+  transition: all 0.3s !important;
+
+  * {
+    color: ${(props) =>
+      props?.$isValue ? props.theme.colors.primary : '#d9d9d9'}!important;
+    border-color: ${(props) =>
+      props?.$isValue ? props.theme.colors.primary : '#d9d9d9'}!important;
+  }
+
+  &:hover * {
+    color: ${({ theme }) => theme.colors.primary} !important;
+  }
 `;

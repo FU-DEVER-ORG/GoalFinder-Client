@@ -1,10 +1,10 @@
-import { Flex, Form, Radio, Checkbox as CheckboxFromAtnd } from 'antd';
+import { Flex as FlexFromAntd, Form, Radio, Checkbox as CheckboxFromAtnd } from 'antd';
 import styled from 'styled-components';
 import TextArea from 'antd/es/input/TextArea';
 
 import ButtonFromCommon from '@/components/core/common/Button';
 
-export const WrapperItem = styled(Flex)`
+export const WrapperItem = styled(FlexFromAntd)`
   padding-inline: 20px;
 
   .input-styles__WrapInput-sc-e73b7906-0 {
@@ -19,10 +19,9 @@ export const WrapperItem = styled(Flex)`
     .ant-input {
       width: 440px;
     }
-
   }
 `;
-export const FlexWrapper = styled(Flex)`
+export const FlexWrapper = styled(FlexFromAntd)`
   width: 440px;
 
   .ant-select-selector {
@@ -51,9 +50,9 @@ export const FormItem = styled(Form.Item)<{ $full?: boolean }>`
     border-color: ${({ theme }) => theme.colors.primary} !important;
     color: ${({ theme }) => theme.colors.primary} !important;
   }
+
 `;
 export const TextAreaInput = styled(TextArea)`
-
   &:hover {
     border-color: ${({ theme }) => theme.colors.primary} !important ;
   }
@@ -124,8 +123,11 @@ export const Label = styled.label<{ $color?: string }>`
   span {
     font-size: 14px;
     font-weight: 400;
-    
+
     color: ${(props) => props?.$color || props.theme.colors.primary};
     transition: all 0.3s !important;
   }
 `;
+export const Flex = styled(FlexFromAntd)`
+  flex-wrap: wrap !important;
+`

@@ -41,7 +41,7 @@ export const ImageWall = styled.div`
     
     border: 0 !important;
     
-    z-index: 99;
+    z-index: 2;
     @media ${({ theme }) => theme.breakpoints.mdMax} {
       padding: 5px 10px !important;
       

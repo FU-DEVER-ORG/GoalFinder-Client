@@ -4,8 +4,6 @@ import { DefaultOptionType } from 'antd/es/select';
 
 import { editProfileEndpoint as endPoint } from '@/services/endpoint';
 
-import Select from '@/components/core/common/form/Select';
-
 import * as S from './style';
 
 const HOST = 'https://vapi.vnappmob.com';
@@ -95,7 +93,8 @@ const SelectAddress = ({ form }: any) => {
         </S.FormItem>
       </S.FormItem>
       <S.FlexWrapper>
-        <Select
+        <S.Select
+          $isValue={!!value.province}
           allowClear
           showSearch
           optionFilterProp="children"
@@ -120,8 +119,9 @@ const SelectAddress = ({ form }: any) => {
           value={value.province}
           placeholder="Tỉnh/ Thành phố"
           options={option.province}
-        ></Select>
-        <Select
+        ></S.Select>
+        <S.Select
+          $isValue={!!value.district}
           value={value.district}
           allowClear
           showSearch
@@ -147,8 +147,9 @@ const SelectAddress = ({ form }: any) => {
           //   filterOption={filterOption}
           placeholder="Huyện/ Quận"
           options={option.district}
-        ></Select>
-        <Select
+        ></S.Select>
+        <S.Select
+          $isValue={!!value.ward}
           value={value.ward}
           onChange={(valueWard) => {
             form.setFieldsValue({ ...value, ward: valueWard });
@@ -160,7 +161,7 @@ const SelectAddress = ({ form }: any) => {
           placeholder="Xã/ Đường"
           //   filterOption={filterOption}
           options={option.ward}
-        ></Select>
+        ></S.Select>
       </S.FlexWrapper>
     </>
   );
