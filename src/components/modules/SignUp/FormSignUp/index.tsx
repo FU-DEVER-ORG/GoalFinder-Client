@@ -1,17 +1,18 @@
 'use client';
 
+import Link from 'next/link';
 import {Form, FormProps } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 import {LockOutlined, PhoneOutlined } from '@ant-design/icons';
 
 import Input from '@/components/core/common/form/Input';
 import InputPassword from '@/components/core/common/form/InputPassword';
-import { ButtonCommon } from '@/components/core/common/Button/button.styles';
+import Button from '@/components/core/common/Button';
 
 import * as S from './styles';
 
 type FieldType = {
-  phone?: string;
+  email?: string;
   password?: string;
   confirmPassword?: string;
 };
@@ -36,12 +37,11 @@ function FormSignUp() {
         autoComplete="off"
       >
         <FormItem<FieldType>
-          label=""
-          name="phone"
+          name="email"
           rules={[{ required: true, message: 'Hãy nhập số điện thoại!' }]}
         >
           <Input
-            placeholder="0XXXXXX"
+            placeholder="0xxxxxxxx"
             prefix={<PhoneOutlined />}
             isRequired
             label="Số điện thoại"
@@ -71,14 +71,16 @@ function FormSignUp() {
           />
         </Form.Item>
         <FormItem>
-          <ButtonCommon $width={'100%'} type="primary" htmlType="submit">
+          <Button $width={'100%'} type="primary" htmlType="submit">
             Đăng ký
-          </ButtonCommon>
+          </Button>
         </FormItem>
         <FormItem>
-          <ButtonCommon $width={'100%'} type="default" >
-            Đăng nhập
-          </ButtonCommon>
+        <Link href={'/sign-in'}>
+            <Button $width={'100%'} type="default">
+              Đăng nhập
+            </Button>
+          </Link>
         </FormItem>
       </Form>
     </S.HomeWrapper>
