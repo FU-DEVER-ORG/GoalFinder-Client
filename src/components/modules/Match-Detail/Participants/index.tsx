@@ -1,4 +1,3 @@
-import React from 'react';
 import { Flex, TableProps, Typography, Avatar } from 'antd';
 import { PhoneOutlined } from '@ant-design/icons';
 
@@ -115,10 +114,10 @@ function Participants() {
   ];
 
   return (
-    <Flex gap={8} vertical align="center">
+    <S.Flexs gap={8} vertical align="center">
       <Typography.Title level={2}>Thành viên tham gia</Typography.Title>
       <Table columns={columns} dataSource={dataSource} />
-    </Flex>
+    </S.Flexs>
   );
 }
 

@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Avatar, Flex, TableProps, Typography } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 
