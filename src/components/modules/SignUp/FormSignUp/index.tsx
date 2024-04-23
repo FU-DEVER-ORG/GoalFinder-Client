@@ -2,7 +2,7 @@
 
 import {Form, FormProps } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
-import {LockOutlined, MailOutlined } from '@ant-design/icons';
+import {LockOutlined, PhoneOutlined } from '@ant-design/icons';
 
 import Input from '@/components/core/common/form/Input';
 import InputPassword from '@/components/core/common/form/InputPassword';
@@ -37,13 +37,13 @@ function FormSignUp() {
       >
         <FormItem<FieldType>
           name="email"
-          rules={[{ required: true, message: 'Hãy nhập email!' }]}
+          rules={[{ required: true, message: 'Hãy nhập số điện thoại!' }]}
         >
           <Input
-            placeholder="example@gmail.com"
-            prefix={<MailOutlined />}
+            placeholder="0xxxxxxxx"
+            prefix={<PhoneOutlined />}
             isRequired
-            label="Email"
+            label="Số điện thoại"
           />
         </FormItem>
         <Form.Item<FieldType>
