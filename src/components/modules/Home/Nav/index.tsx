@@ -1,7 +1,6 @@
 import React from 'react';
 import { EllipsisOutlined, HeartOutlined, HistoryOutlined, HomeOutlined } from '@ant-design/icons';
-import { Menu, MenuProps, theme } from 'antd';
-import Sider from 'antd/es/layout/Sider';
+import {MenuProps} from 'antd';
 
 import BoxFlex from '@/components/core/common/BoxFlex';
 
@@ -21,8 +20,7 @@ const items: MenuProps['items'] = menuItems.map((item, index) => ({
 }));
 
 function Nav() {
-  console.log(items);
-
+  // console.log(items);
   return (
     <BoxFlex vertical gap={16}>
         <MenuCss
