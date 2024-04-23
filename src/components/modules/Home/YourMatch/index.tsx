@@ -1,36 +1,40 @@
 'use client';
 
-import React from 'react';
-import {MenuProps} from 'antd';
+import { MenuProps } from 'antd';
 
 import * as S from './styles';
+import { MenuItemGroupType, MenuItemType, SubMenuType } from 'antd/es/menu/hooks/useItems';
 
 interface MenuItem {
   label?: string;
   date?: string;
   time?: string;
-  status?: boolean;
+  curentNumber?: number;
+  maxNumber?: number;
   href?: string;
 }
-
-// function calculateMember(fullRatio: string) : string {
-  
-// }
+type MyItemType = MenuItemType | SubMenuType | MenuItemGroupType;
 
 const listItems: MenuItem[] = [
-  { label: "Kèo anh em văn phòng đấm nhau", date: "", time: "16/04/2024", status: true, href: "/" },
-  { label: "Đại hội võ lâm văn phòng", date: "", time: "16/04/2024", status: false, href: "/" },
-  { label: "Giao lưu FPT", date: "", time: "16/04/2024", status: true, href: "/" },
-  { label: "Đấm đá túi bụi", date: "", time: "16/04/2024", status: false, href: "/" }]
+  { label: "Kèo anh em văn phòng đấm nhau", date: "", time: "16/04/2024", curentNumber: 0, maxNumber: 12, href: "/" },
+  { label: "Đại hội võ lâm văn phòng", date: "", time: "16/04/2024", curentNumber: 12, maxNumber: 12, href: "/" },
+  { label: "Giao lưu FPT", date: "", time: "16/04/2024", curentNumber: 0, maxNumber: 12, href: "/" },
+  { label: "Đấm đá túi bụi", date: "", time: "16/04/2024", curentNumber: 0, maxNumber: 12, href: "/" }]
 
 const items: MenuProps['items'] = listItems.map((item, index) => {
   return {
     key: `${index}`,
-    label: `${item.label}`,
+    label: `${item.label}` ?? '',
+    curentNumber: item.curentNumber ?? 0,
+    maxNumber: item.maxNumber ?? 12,
     href: `${item.href}`,
-    status: item.status,
+    // status: item.status,
   }
 });
+
+function calculateMember(curentNumber: string, maxNumber: string): boolean {
+  return curentNumber === maxNumber;
+}
 
 function YourMatch() {
   return (
@@ -44,19 +48,20 @@ function YourMatch() {
       <S.List>
         {
           items?.map((item, index) => {
-            const menuItem = item as MenuItem;
-              return <li key={item?.key}>
-                <S.ItemsContainer>
-                  <S.CustomCalendarOutlined $status={menuItem.status ?? false}/>
-                  <S.MiddleInfor>
-                    <S.CustomText $status={menuItem.status ?? false}>{menuItem.label}</S.CustomText>
-                    <S.CustomTimeText $status={menuItem.status ?? false}>17:30 | 16/04/2024</S.CustomTimeText>
-                  </S.MiddleInfor>
-                  <S.CustomTag $status={menuItem.status ?? false} >
-                    <S.CustomTextTag >12/12</S.CustomTextTag>
-                  </S.CustomTag>
-                </S.ItemsContainer>
-              </li>
+            if (!item) return null;
+            const isFull = calculateMember(item.curentNumber, item.maxNumber);
+            return <li key={item?.key}>
+              <S.ItemsContainer>
+                <S.CustomCalendarOutlined $status={isFull} />
+                <S.MiddleInfor>
+                  <S.CustomText $status={isFull}>{item.label}</S.CustomText>
+                  <S.CustomTimeText $status={isFull}>17:30 | 16/04/2024</S.CustomTimeText>
+                </S.MiddleInfor>
+                <S.CustomTag $status={isFull} >
+                  <S.CustomTextTag >12/12</S.CustomTextTag>
+                </S.CustomTag>
+              </S.ItemsContainer>
+            </li>
           }
           )}
       </S.List>
