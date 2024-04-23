@@ -9,11 +9,10 @@ export const HomeWrapper = styled(Flex)`
   flex-direction: column;
   align-items: center;
 
-  .ant-input-affix-wrapper {
-    border-radius: 0px;
-  }
+  .resetWrapper {
+    width: 48%;
 
-  .ant-btn-primary {
-    background-color: rgba(71, 108, 94, 1) !important;
+    display: flex;
+    flex-direction: column;
   }
 `;

@@ -1,7 +1,22 @@
 'use client';
 
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { Form, Menu, Space, Statistic, Dropdown } from 'antd';
+import {
+  Dispatch,
+  InputHTMLAttributes,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
+import {
+  Form,
+  Menu,
+  Space,
+  Statistic,
+  Dropdown,
+  message,
+  MenuProps,
+} from 'antd';
+import OTPInput from 'react-otp-input';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Modal from 'antd/es/modal/Modal';
@@ -12,7 +27,6 @@ import { useModal } from '@/hooks';
 import Button from '@/components/core/common/Button';
 import Input from '@/components/core/common/form/Input';
 import Typography from '@/components/core/common/Typography';
-import InputNumber from '@/components/core/common/form/InputNumber';
 
 import * as S from './styles';
 
@@ -27,8 +41,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
   const { Countdown } = Statistic;
   const FormItem = Form.Item;
   const modalState = useModal();
-
-  const [digits, setDigits] = useState<string[]>(['', '', '', '']);
+  const [messageApi, contextHolder] = message.useMessage();
 
   const phoneAreaData = [
     {
@@ -54,7 +67,15 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
     },
   ];
 
-  const [selectedCountry, setSelectedCountry] = useState(phoneAreaData[0]);
+  const [digits, setDigits] = useState<string[]>([]);
+
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
+  const [targetTime, setTargetTime] = useState<number>(Date.now() + 30 * 1000);
+
+  const [finish, setFinish] = useState<boolean>(false);
+
+  const [selectedCountry, setSelectedCountry] = useState<any>(phoneAreaData[0]);
 
   const menu = (
     <Menu onClick={handleMenuClick}>
@@ -79,36 +100,65 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
   const handleSubmit = async () => {
     try {
       setNavigation('step2');
+      setTargetTime(Date.now() + 30 * 1000);
     } catch (errorInfo) {}
   };
 
   const handleSubmitVerification = async () => {
     try {
-      const otp = digits.join('');
-      if (otp.length != digits.length) {
+      if (digits.length != 4) {
         modalState.openModal();
       }
-      if (navigation == 'step3' && otp.length === digits.length) {
+      if (navigation == 'step3' && digits.length === 4) {
         route.push('/reset-password');
       }
     } catch (error) {}
   };
 
-  const handleChange = (index: number, value: string) => {
-    const updateDigit = [...digits];
-    updateDigit[index] = value;
-    setDigits(updateDigit);
+  const handleChange = (otp: string, index: number) => {
+    setDigits(otp.split(''));
+    setSelectedIndex(index);
   };
 
+  const onFinish = () => {
+    setFinish(true);
+  };
+
+  const success = () => {
+    messageApi
+      .open({
+        type: 'loading',
+        content: 'Mã xác thực đang được gửi tới bạn',
+        duration: 1,
+      })
+      .then(() => message.success('Mã xác thực đã được gửi', 2.5))
+      .then(() => setFinish(false))
+      .then(() => setTargetTime(Date.now() + 30 * 1000));
+  };
+
+  const renderInput = (inputProps: InputHTMLAttributes<HTMLInputElement>) => (
+    <input
+      {...inputProps}
+      onKeyPress={(e) => {
+        const isValidKey = /^\d$/.test(e.key);
+        if (!isValidKey) {
+          e.preventDefault();
+        }
+      }}
+      inputMode="numeric"
+      autoComplete="off"
+    />
+  );
+
   useEffect(() => {
-    const otp = digits.join('');
-    if (otp.length === digits.length) {
-      setNavigation('step3');
-    }
-    if (navigation === 'step3' && otp.length != digits.length) {
-      setNavigation('step3_changeOTP');
-    }
-  }, [digits, navigation, setNavigation]);
+    navigation === 'step1'
+      ? setNavigation('step1')
+      : digits.length === 4
+      ? setNavigation('step3')
+      : finish === false
+      ? setNavigation('step2')
+      : setNavigation('step3_changeOTP');
+  }, [digits, finish, navigation, setNavigation]);
 
   return (
     <>
@@ -133,6 +183,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
           </Typography>
         </S.ModalContent>
       </Modal>
+
       {navigation === 'step1' ? (
         <S.Input>
           <Form form={form} onFinish={handleSubmit}>
@@ -146,7 +197,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
                 width={'100%'}
                 prefix={
                   <>
-                    <Dropdown overlay={menu} placement="bottomLeft">
+                    <Dropdown menu={menu as MenuProps} placement="bottomLeft">
                       <Space>
                         <Button $full={false} $backgroundColor="#F5F7FA">
                           <Image
@@ -159,9 +210,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
                         </Button>
                       </Space>
                     </Dropdown>
-                    <Typography variant="body-text-normal">
-                      {selectedCountry.code}
-                    </Typography>
+                    <Typography>{selectedCountry.code}</Typography>
                   </>
                 }
               />
@@ -170,7 +219,6 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
             <FormItem>
               <Button
                 $borderRadius="0px"
-                $backgroundColor="#829d8a"
                 $width={'100%'}
                 type="primary"
                 htmlType="submit"
@@ -186,48 +234,55 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
           <S.Input>
             <Form form={form} onFinish={handleSubmitVerification}>
               <S.InputNumber>
-                {digits.map((digit: string, index: number) => (
-                  <FormItem key={index} name={`OTP${index + 1}`}>
-                    <InputNumber
-                      className={navigation != 'step3' ? '' : 'inputBlock'}
-                      min={0}
-                      max={9}
-                      value={digit}
-                      onChange={(e: any) => {
-                        handleChange(index, e);
-                      }}
-                    />
-                  </FormItem>
-                ))}
+                <OTPInput
+                  value={digits.join('')}
+                  onChange={(otp: string) => handleChange(otp, selectedIndex)}
+                  inputStyle={{
+                    overflow: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                  inputType="text"
+                  numInputs={4}
+                  renderSeparator={<span style={{ padding: '5px' }}></span>}
+                  renderInput={renderInput}
+                />
               </S.InputNumber>
+
               {navigation === 'step3' || navigation === 'step3_changeOTP' ? (
                 <S.CountdownContainer>
                   <Typography>
                     Không nhận được mã xác thực?
-                    <a className="resend">Gửi lại</a>
+                    {contextHolder}
+                    <a className="resend" onClick={success}>
+                      Gửi lại
+                    </a>
                   </Typography>
                 </S.CountdownContainer>
               ) : (
                 <S.CountdownContainer>
                   <Countdown
-                    onFinish={() => {
-                      setNavigation('step3_changeOTP');
-                    }}
+                    onFinish={onFinish}
                     className="countdown-item"
                     format="mm:ss"
-                    value={Date.now() + 60 * 1000}
+                    value={targetTime}
                   />
+
                   <Typography>
                     Không nhận được mã xác thực?
-                    <a className="resend">Gửi lại</a>
+                    {contextHolder}
+                    <a className="resend" onClick={success}>
+                      Gửi lại
+                    </a>
                   </Typography>
                 </S.CountdownContainer>
               )}
+
               <FormItem>
                 <Button
                   $borderRadius="0px"
                   $backgroundColor={
-                    navigation === 'step3' ? 'rgba(71, 108, 94, 1)' : '#98ad9e'
+                    navigation === 'step3' ? '#0F6C19' : '#4DAA57'
                   }
                   $width={'100%'}
                   type="primary"
