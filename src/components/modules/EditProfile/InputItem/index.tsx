@@ -2,7 +2,7 @@ import { Checkbox, Flex } from 'antd';
 import { useState } from 'react';
 
 import Input from '@/components/core/common/form/Input';
-import Typography from '@/components/core/common/Typography';
+
 import Button from '@/components/core/common/Button';
 import SelectAddress from '@/components/modules/EditProfile/SelectAddress';
 
@@ -36,19 +36,21 @@ const FormItem = ({ form }: any) => {
   return (
     <S.WrapperItem vertical gap={24}>
       <S.FormItem name="inputNickName">
-        <Input label="Tên tài khoản" />
+        <S.Typography variant="caption-small">Tên tài khoản</S.Typography>
+        <Input />
       </S.FormItem>
       <S.FormItem name="inputFullName">
-        <Input label="Họ và tên" />
+        <S.Typography variant="caption-small">Họ và tên</S.Typography>
+        <Input />
       </S.FormItem>
-      <S.Flex justify="space-between" align="center" wrap="wrap">
-        <Typography variant="caption-small">Khu vực</Typography>
+      <S.Flex justify="space-between" align="center">
+        <S.Typography variant="caption-small">Khu vực</S.Typography>
         <S.FlexWrapper justify="space-between">
           <SelectAddress form={form} />
         </S.FlexWrapper>
       </S.Flex>
-      <S.Flex justify="space-between" align="center" wrap="wrap">
-        <Typography variant="caption-small">Trình độ</Typography>
+      <S.Flex justify="space-between" align="center">
+        <S.Typography variant="caption-small">Trình độ</S.Typography>
         <S.FormItem name="level">
           <S.FlexWrapper justify="space-between" gap={24}>
             <S.RadioGroup name="ButtonLevel" optionType="button">
@@ -58,8 +60,8 @@ const FormItem = ({ form }: any) => {
           </S.FlexWrapper>
         </S.FormItem>
       </S.Flex>
-      <S.Flex justify="space-between" align="center" wrap="wrap">
-        <Typography variant="caption-small">Vị trí sở trường</Typography>
+      <S.Flex justify="space-between" align="center">
+        <S.Typography variant="caption-small">Vị trí</S.Typography>
         <S.FormItem name="position">
           <S.CheckboxGroup>
             <S.FlexWrapper justify="space-between" gap={24}>
@@ -91,19 +93,23 @@ const FormItem = ({ form }: any) => {
           </S.CheckboxGroup>
         </S.FormItem>
       </S.Flex>
-      <S.Flex justify="space-between" align="center" wrap="wrap">
-        <Typography variant="caption-small">Trình độ</Typography>
+      <S.Flex justify="space-between" align="center">
+        <S.Typography variant="caption-small">Thái độ</S.Typography>
         <S.FormItem name="attitude">
           <S.FlexWrapper justify="space-between" gap={24}>
-            <S.RadioGroup name="ButtonLevel" optionType="button">
+            <S.RadioGroup
+              name="ButtonLevel"
+              optionType="button"
+              buttonStyle="solid"
+            >
               <S.RadioButton value="funny">Vui vẻ</S.RadioButton>
               <S.RadioButton value="seriously">Nghiêm túc</S.RadioButton>
             </S.RadioGroup>
           </S.FlexWrapper>
         </S.FormItem>
       </S.Flex>
-      <S.Flex justify="space-between" align="center" wrap="wrap">
-        <Typography variant="caption-small">Giới thiệu</Typography>
+      <S.Flex justify="space-between" align="center">
+        <S.Typography variant="caption-small">Giới thiệu</S.Typography>
         <S.FormItem $full>
           <S.TextAreaInput rows={4} />
         </S.FormItem>

@@ -27,6 +27,8 @@ export const FormItem = styled(Form.Item)<{ $full?: boolean }>`
   @media ${({ theme }) => theme.breakpoints.mdMax} {
     display: flex !important;
     flex-direction: column;
+    width: ${({ $full }) => ($full ? '100%' : 'auto')};
+    max-width: ${({ $full }) => ($full ? '100%' : 'auto')};
   }
 `;
 export const FlexWrapper = styled.div`
@@ -43,6 +45,11 @@ export const FlexWrapper = styled.div`
       color: ${({ theme }) => theme.colors.primary} !important;
     }
   }
+
+  @media ${({ theme }) => theme.breakpoints.smMax } {
+    width: 100% !important;
+    gap: 4px;
+  }
 `;
 
 export const Select = styled(SelectFromCommon)<{ $isValue?: boolean }>`
@@ -57,5 +64,9 @@ export const Select = styled(SelectFromCommon)<{ $isValue?: boolean }>`
 
   &:hover * {
     color: ${({ theme }) => theme.colors.primary} !important;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.smMax } {
+    font-size: ${({ theme }) => theme.fontSize.sm } !important;
   }
 `;
