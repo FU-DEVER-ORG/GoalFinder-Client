@@ -93,75 +93,81 @@ const SelectAddress = ({ form }: any) => {
         </S.FormItem>
       </S.FormItem>
       <S.FlexWrapper>
-        <S.Select
-          $isValue={!!value.province}
-          allowClear
-          showSearch
-          optionFilterProp="children"
-          onChange={(valueProvince: string) => {
-            GetRequest(
-              'district',
-              setEndPoint(
-                endPoint.DISTRICT,
-                option.province.find(
-                  (province: any) => province.value == valueProvince,
-                )?.id,
-              ),
-            );
-            if (value.province)
-              setValue({
-                ...initialStateValue,
-                province: valueProvince,
-              });
-            else setValue({ ...value, province: valueProvince });
-          }}
-          //   filterOption={filterOption}
-          value={value.province}
-          placeholder="Tỉnh/ Thành phố"
-          options={option.province}
-        ></S.Select>
-        <S.Select
-          $isValue={!!value.district}
-          value={value.district}
-          allowClear
-          showSearch
-          optionFilterProp="children"
-          onChange={(valueDistrict: string) => {
-            GetRequest(
-              'ward',
-              setEndPoint(
-                endPoint.WARD,
-                option.district.find(
-                  (district: any) => district.value == valueDistrict,
-                )?.id,
-              ),
-            );
-            if (value.district)
-              setValue({
-                ...initialStateValue,
-                province: value.province,
-                district: valueDistrict,
-              });
-            else setValue({ ...value, district: valueDistrict });
-          }}
-          //   filterOption={filterOption}
-          placeholder="Huyện/ Quận"
-          options={option.district}
-        ></S.Select>
-        <S.Select
-          $isValue={!!value.ward}
-          value={value.ward}
-          onChange={(valueWard) => {
-            form.setFieldsValue({ ...value, ward: valueWard });
-            setValue({ ...value, ward: valueWard });
-          }}
-          allowClear
-          showSearch
-          optionFilterProp="children"
-          placeholder="Xã/ Đường"
-          //   filterOption={filterOption}
-          options={option.ward}
-        ></S.Select>
+        <div className="containerSelect">
+          <S.Select
+            $isValue={!!value.province}
+            allowClear
+            showSearch
+            optionFilterProp="children"
+            onChange={(valueProvince: string) => {
+              GetRequest(
+                'district',
+                setEndPoint(
+                  endPoint.DISTRICT,
+                  option.province.find(
+                    (province: any) => province.value == valueProvince,
+                  )?.id,
+                ),
+              );
+              if (value.province)
+                setValue({
+                  ...initialStateValue,
+                  province: valueProvince,
+                });
+              else setValue({ ...value, province: valueProvince });
+            }}
+            //   filterOption={filterOption}
+            value={value.province}
+            placeholder="Tỉnh/ Thành phố"
+            options={option.province}
+          ></S.Select>
+        </div>
+        <div className="containerSelect">
+          <S.Select
+            $isValue={!!value.district}
+            value={value.district}
+            allowClear
+            showSearch
+            optionFilterProp="children"
+            onChange={(valueDistrict: string) => {
+              GetRequest(
+                'ward',
+                setEndPoint(
+                  endPoint.WARD,
+                  option.district.find(
+                    (district: any) => district.value == valueDistrict,
+                  )?.id,
+                ),
+              );
+              if (value.district)
+                setValue({
+                  ...initialStateValue,
+                  province: value.province,
+                  district: valueDistrict,
+                });
+              else setValue({ ...value, district: valueDistrict });
+            }}
+            //   filterOption={filterOption}
+            placeholder="Huyện/ Quận"
+            options={option.district}
+          ></S.Select>
+        </div>
+        <div className="containerSelect">
+          <S.Select
+            $isValue={!!value.ward}
+            value={value.ward}
+            onChange={(valueWard) => {
+              form.setFieldsValue({ ...value, ward: valueWard });
+              setValue({ ...value, ward: valueWard });
+            }}
+            allowClear
+            showSearch
+            optionFilterProp="children"
+            placeholder="Xã/ Đường"
+            //   filterOption={filterOption}
+            options={option.ward}
+          ></S.Select>
+        </div>
       </S.FlexWrapper>
     </>
   );

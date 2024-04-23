@@ -9,14 +9,13 @@ import TextArea from 'antd/es/input/TextArea';
 
 import TypographyFromCommon from '@/components/core/common/Typography';
 import ButtonFromCommon from '@/components/core/common/Button';
+import InputFromCommon from '@/components/core/common/form/Input';
 
 export const WrapperItem = styled(FlexFromAntd)`
   padding-inline: 20px;
 
-  @media ${({ theme }) => theme.breakpoints.smMax} {
-    .ant-form-item {
-      width: 100% !important;
-    }
+  .containerTextArea {
+    width: 100%;
   }
 
   .ant-form-item-control-input-content {
@@ -24,29 +23,40 @@ export const WrapperItem = styled(FlexFromAntd)`
     justify-content: space-between;
     align-items: center !important;
 
-    @media ${({ theme }) => theme.breakpoints.smMax} {
+    @media ${({ theme }) => theme.breakpoints.mdMax} {
       flex-wrap: wrap !important;
+
+      .full {
+        width: 100%;
+      }
     }
   }
 
-  .input-styles__WrapInput-sc-e73b7906-0 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    width: 440px !important;
-    * {
-      margin: 0 !important;
-    }
-
-    .ant-input {
+  @media ${({ theme }) => theme.breakpoints.mdMax} {
+    .ant-form-item {
       width: 100% !important;
     }
+  }
+`;
 
-    @media ${({ theme }) => theme.breakpoints.smMax} {
-      flex-wrap: wrap !important;
-      width: 100% !important;
-    }
+export const Input = styled(InputFromCommon)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 440px !important;
+
+  * {
+    margin: 0 !important;
+  }
+
+  .ant-input {
+    width: 100% !important;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.mdMax} {
+    flex-wrap: wrap !important;
+    width: 100% !important;
   }
 `;
 export const FlexWrapper = styled(FlexFromAntd)`
@@ -57,7 +67,7 @@ export const FlexWrapper = styled(FlexFromAntd)`
     min-width: 130px;
   }
 
-  @media ${({ theme }) => theme.breakpoints.smMax} {
+  @media ${({ theme }) => theme.breakpoints.mdMax} {
     gap: 12px;
 
     flex-wrap: wrap !important;
@@ -79,19 +89,20 @@ export const FormItem = styled(Form.Item)<{ $full?: boolean }>`
     justify-content: space-between !important;
     gap: 24px;
 
+    width: 100% !important;
+
     @media ${({ theme }) => theme.breakpoints.mdMax} {
       gap: 12px;
     }
-
-    width: 100% !important;
   }
 
-  .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
-    border-color: ${({ theme }) => theme.colors.primary} !important;
-    color: ${({ theme }) => theme.colors.primary} !important;
+  @media ${({ theme }) => theme.breakpoints.mdMax} {
+    max-width: none !important;
   }
 `;
 export const TextAreaInput = styled(TextArea)`
+  width: 100% !important;
+
   &:hover {
     border-color: ${({ theme }) => theme.colors.primary} !important ;
   }
@@ -144,10 +155,11 @@ export const Button = styled(ButtonFromCommon)`
   }
 `;
 export const CheckboxGroup = styled(CheckboxFromAtnd.Group)`
+  width: 100% !important;
+
   label {
     width: 100% !important;
   }
-  width: 100% !important;
 `;
 export const Label = styled.label<{ $color?: string }>`
   display: flex;

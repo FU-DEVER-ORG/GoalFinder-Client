@@ -1,8 +1,6 @@
 import { Checkbox, Flex } from 'antd';
 import { useState } from 'react';
 
-import Input from '@/components/core/common/form/Input';
-
 import Button from '@/components/core/common/Button';
 import SelectAddress from '@/components/modules/EditProfile/SelectAddress';
 
@@ -37,11 +35,15 @@ const FormItem = ({ form }: any) => {
     <S.WrapperItem vertical gap={24}>
       <S.FormItem name="inputNickName">
         <S.Typography variant="caption-small">Tên tài khoản</S.Typography>
-        <Input />
+        <div className="full">
+          <S.Input />
+        </div>
       </S.FormItem>
       <S.FormItem name="inputFullName">
         <S.Typography variant="caption-small">Họ và tên</S.Typography>
-        <Input />
+        <div className="full">
+          <S.Input />
+        </div>
       </S.FormItem>
       <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Khu vực</S.Typography>
@@ -111,7 +113,9 @@ const FormItem = ({ form }: any) => {
       <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Giới thiệu</S.Typography>
         <S.FormItem $full>
-          <S.TextAreaInput rows={4} />
+          <div className="containerTextArea">
+            <S.TextAreaInput rows={4} />
+          </div>
         </S.FormItem>
       </S.Flex>
       <S.FormItem>
