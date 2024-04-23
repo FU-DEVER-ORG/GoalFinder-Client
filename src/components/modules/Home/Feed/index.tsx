@@ -18,7 +18,7 @@ function Feed() {
             <S.PrestigeScore>120 Uy tín</S.PrestigeScore>
           </S.FlexPrestige>
         </S.CustomFlex>
-        <EllipsisOutlined></EllipsisOutlined>
+        <EllipsisOutlined/>
       </S.UserInfor>
       <S.FlexMatchInfor>
         <S.TitleMatchInfor>Kèo anh em văn phòng đấm nhau</S.TitleMatchInfor>

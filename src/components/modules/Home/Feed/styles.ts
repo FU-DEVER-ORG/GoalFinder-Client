@@ -69,15 +69,11 @@ export const ListMatchInfor = styled.ul`
   padding: 0;
 
   column-count: 2;
-  list-style-position: inside;
-  ::marker {
-    padding-left: 0px 0px 0px 0px !important;
-  }
 `;
 
 export const ItemMatchInfor = styled.li`
   margin-bottom: 12px;
-
+  margin-left: 20px;
   line-height: 1.2;
 `;
 
@@ -92,6 +88,7 @@ export const FlexBoxTextItem = styled.div`
 
 export const BoldText = styled.p`
   font-weight: 500;
+  text-wrap: nowrap;
 `;
 
 export const NoneBoldText = styled.p`
