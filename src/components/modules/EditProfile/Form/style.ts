@@ -1,4 +1,4 @@
-import { Flex, Form } from 'antd';
+import { Flex } from 'antd';
 import styled from 'styled-components';
 
 export const FormEditWrapper = styled(Flex)`

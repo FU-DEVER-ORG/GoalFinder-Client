@@ -14,7 +14,7 @@ const FormPage = () => {
         form={form}
         name="edit form"
         onFinish={() => {
-          console.log('e', form.getFieldsValue());
+          // console.log('e', form.getFieldsValue());
         }}
       >
         <Flex gap={24} vertical>

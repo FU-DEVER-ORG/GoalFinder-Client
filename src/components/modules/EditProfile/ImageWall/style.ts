@@ -1,5 +1,3 @@
-import Button from '@/components/core/common/Button';
-import { Form } from 'antd';
 import Image from 'next/image';
 import styled from 'styled-components';
 
@@ -48,8 +46,10 @@ export const ImageWall = styled.div`
       padding: 5px 10px !important;
       
       img {
+
         width: 20px;
         height: 20px;
+      
       }
     
     }

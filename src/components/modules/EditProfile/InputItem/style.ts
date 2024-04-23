@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import TextArea from 'antd/es/input/TextArea';
 
 import ButtonFromCommon from '@/components/core/common/Button';
-import exp from 'constants';
 
 export const WrapperItem = styled(Flex)`
   padding-inline: 20px;
