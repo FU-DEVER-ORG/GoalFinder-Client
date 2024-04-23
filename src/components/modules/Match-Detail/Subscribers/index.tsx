@@ -1,16 +1,14 @@
-import React, { useState } from 
-'react';
-import { Flex, TableProps, Typography } from 
-'antd';
+import React, { useState } from 'react';
+import { Avatar, Flex, TableProps, Typography } from 'antd';
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 
-import Table from 
-'@/components/core/common/Table';
-import Button from
- '@/components/core/common/Button';
+import Table from '@/components/core/common/Table';
 
-import * as S from './styles' 
+import * as S from './styles';
+
 interface DataType {
   name: string;
+  avata: string;
   reputation: number;
   position: string;
   compete: string;
@@ -20,6 +18,7 @@ function Subscribers() {
   const dataSource: DataType[] = [
     {
       name: 'Minh Hiển',
+      avata: '/images/layout/avatar.jpeg',
       reputation: 100,
       position: 'Tiền đạo, tiền vệ',
       compete: 'Vui vẻ',
@@ -27,6 +26,7 @@ function Subscribers() {
     },
     {
       name: 'Minh Hiển',
+      avata: '/images/layout/avatar.jpeg',
       reputation: 100,
       position: 'Tiền đạo, tiền vệ',
       compete: 'Vui vẻ',
@@ -34,13 +34,15 @@ function Subscribers() {
     },
     {
       name: 'Minh Hiển Nguyễn ',
+      avata: '/images/layout/avatar.jpeg',
       reputation: 100,
       position: 'Tiền đạo, tiền vệ',
       compete: 'Vui vẻ',
       phone: '0356555425',
     },
     {
-      name: 'Minh Hiển Minh Hiển Minh Hiển ',
+      name: 'Minh Hiển Minh',
+      avata: '/images/layout/avatar.jpeg',
       reputation: 100,
       position: 'Tiền đạo, tiền vệ',
       compete: 'Vui vẻ',
@@ -54,13 +56,20 @@ function Subscribers() {
       dataIndex: 'number',
       key: 'number',
       align: 'center',
+      render: (text, record, index) => index + 1
     },
     {
       title: 'Tên',
       dataIndex: 'name',
       key: 'name',
-      align: 'center',
-      width: 160,
+      align: 'left',
+      width: 200,
+      render: (text, record) => (
+        <Flex justify="left" align='center'>
+          <Avatar src={record.avata} size={35} alt="Avatar" />
+          <S.Name>{record.name}</S.Name>
+        </Flex>
+      ),
     },
     {
       title: 'Uy tín',
@@ -94,26 +103,23 @@ function Subscribers() {
       dataIndex: 'action',
       key: 'action',
       align: 'center',
-      width: 230,
+      width: 160,
       render: (text: any, record: any) => (
         <Flex justify="center">
-          <Button
+          <S.Buttons
             onClick={() => handleAccept(record.number)}
             style={{ marginRight: '10px' }}
           >
-            Chấp nhận
-          </Button>
-          <Button danger onClick={() => handleReject(record.key)}>
-            Từ chối
-          </Button>
+          <CheckOutlined />
+          </S.Buttons>
+          <S.Buttons danger onClick={() => handleReject(record.key)}>
+          <CloseOutlined />
+          </S.Buttons>
         </Flex>
       ),
     },
   ];
 
-  const newData = dataSource.map((item, index) => {
-    return { ...item, number: index + 1 };
-  });
 
   const handleAccept = (key: number) => {};
 
@@ -122,9 +128,7 @@ function Subscribers() {
   return (
     <Flex gap={8} vertical align="center">
       <Typography.Title level={2}>Phê duyệt</Typography.Title>
-      <S.Custom>
-      <Table columns={columns} dataSource={newData} />
-      </S.Custom>
+        <Table columns={columns} dataSource={dataSource} />
     </Flex>
   );
 }
