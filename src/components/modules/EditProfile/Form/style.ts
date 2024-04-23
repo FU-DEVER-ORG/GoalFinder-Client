@@ -14,6 +14,12 @@ export const FormEditWrapper = styled(Flex)`
   .ant-form {
     width: 100%;
   }
+
+  @media ${({theme}) => theme.breakpoints.smMax} {
+    span{
+      font-size: ${({theme}) => theme.fontSize.sm} !important;
+    }
+  }
 `;
 export const Tittle = styled.label`
   display: flex;

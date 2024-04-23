@@ -52,7 +52,7 @@ const FormItem = ({ form }: any) => {
       <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Trình độ</S.Typography>
         <S.FormItem name="level">
-          <S.FlexWrapper justify="space-between" gap={24}>
+          <S.FlexWrapper justify="space-between">
             <S.RadioGroup name="ButtonLevel" optionType="button">
               <S.RadioButton value="professional">Chuyên nghiệp</S.RadioButton>
               <S.RadioButton value="amateur">Nghiệp dư</S.RadioButton>
@@ -64,7 +64,7 @@ const FormItem = ({ form }: any) => {
         <S.Typography variant="caption-small">Vị trí</S.Typography>
         <S.FormItem name="position">
           <S.CheckboxGroup>
-            <S.FlexWrapper justify="space-between" gap={24}>
+            <S.FlexWrapper justify="space-between">
               <S.Checkbox type="checkbox" value="goalker" id="goalker" />
               <S.Checkbox type="checkbox" value="defender" id="defender" />
               <S.Checkbox type="checkbox" value="striker" id="striker" />

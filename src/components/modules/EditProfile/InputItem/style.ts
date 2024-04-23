@@ -13,10 +13,17 @@ import ButtonFromCommon from '@/components/core/common/Button';
 export const WrapperItem = styled(FlexFromAntd)`
   padding-inline: 20px;
 
+  @media ${({ theme }) => theme.breakpoints.smMax} {
+    .ant-form-item {
+      width: 100% !important;
+    }
+  }
+
   .ant-form-item-control-input-content {
     display: flex !important;
     justify-content: space-between;
     align-items: center !important;
+
     @media ${({ theme }) => theme.breakpoints.smMax} {
       flex-wrap: wrap !important;
     }
@@ -27,7 +34,7 @@ export const WrapperItem = styled(FlexFromAntd)`
     justify-content: space-between;
     align-items: center;
 
-    width: 440px!important;
+    width: 440px !important;
     * {
       margin: 0 !important;
     }
@@ -44,10 +51,17 @@ export const WrapperItem = styled(FlexFromAntd)`
 `;
 export const FlexWrapper = styled(FlexFromAntd)`
   width: 440px !important;
-  /* min-width: 440px !important; */
+  gap: 24px;
 
   .ant-select-selector {
     min-width: 130px;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.smMax} {
+    gap: 12px;
+
+    flex-wrap: wrap !important;
+    width: 100% !important;
   }
 `;
 export const FormItem = styled(Form.Item)<{ $full?: boolean }>`
@@ -64,6 +78,10 @@ export const FormItem = styled(Form.Item)<{ $full?: boolean }>`
     display: flex !important;
     justify-content: space-between !important;
     gap: 24px;
+
+    @media ${({ theme }) => theme.breakpoints.mdMax} {
+      gap: 12px;
+    }
 
     width: 100% !important;
   }

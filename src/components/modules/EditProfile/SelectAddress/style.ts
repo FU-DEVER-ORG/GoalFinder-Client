@@ -3,10 +3,8 @@ import styled from 'styled-components';
 
 import SelectFromCommon from '@/components/core/common/form/Select';
 export const FormItem = styled(Form.Item)<{ $full?: boolean }>`
-  width: ${({ $full }) => ($full ? '50%' : 'auto')};
-  max-width: ${({ $full }) => ($full ? '440px' : 'auto')};
-
   margin: 0 !important;
+  position: absolute;
 
   color: #d9d9d9;
 
@@ -27,8 +25,6 @@ export const FormItem = styled(Form.Item)<{ $full?: boolean }>`
   @media ${({ theme }) => theme.breakpoints.mdMax} {
     display: flex !important;
     flex-direction: column;
-    width: ${({ $full }) => ($full ? '100%' : 'auto')};
-    max-width: ${({ $full }) => ($full ? '100%' : 'auto')};
   }
 `;
 export const FlexWrapper = styled.div`
@@ -37,7 +33,6 @@ export const FlexWrapper = styled.div`
 
   width: 100% !important;
 
-  gap: 10px;
 
   .ant-select-selection-placeholder {
     color: #d9d9d9 !important;
@@ -46,9 +41,18 @@ export const FlexWrapper = styled.div`
     }
   }
 
-  @media ${({ theme }) => theme.breakpoints.smMax } {
+  @media ${({ theme }) => theme.breakpoints.smMax} {
     width: 100% !important;
-    gap: 4px;
+    .firjEh {
+      width: 100% !important;
+    }
+    .select-styles__WrapSelect-sc-eadc0b06-0 {
+      width: 32% !important;
+    }
+  }
+  .ant-select-selector {
+    min-width: 100%  !important;
+    width: 100% !important;
   }
 `;
 
@@ -66,7 +70,7 @@ export const Select = styled(SelectFromCommon)<{ $isValue?: boolean }>`
     color: ${({ theme }) => theme.colors.primary} !important;
   }
 
-  @media ${({ theme }) => theme.breakpoints.smMax } {
-    font-size: ${({ theme }) => theme.fontSize.sm } !important;
+  @media ${({ theme }) => theme.breakpoints.smMax} {
+    font-size: ${({ theme }) => theme.fontSize.sm} !important;
   }
 `;
