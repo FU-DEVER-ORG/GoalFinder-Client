@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Header = styled(Flex)`
   margin-top: 10px;
   width: 100%;
-  height: 617px;
+  height: 560px;
   position: relative;
   background-color: white;
   display: flex;
@@ -12,11 +12,15 @@ export const Header = styled(Flex)`
   align-items: center;
   justify-content: center;
   @media (max-width: 768px) {
-    height: 430px; /* hoặc bất kỳ giá trị nào khác phù hợp với thiết kế của bạn */
+    height: 460px;
+  }
+  @media (max-width: 578px) {
+    height: 440px;
   }
 `;
 
 export const Wrapper = styled.div`
+  max-width: 1440px;
   position: absolute;
   top: 10px;
   width: 74%;
@@ -49,7 +53,7 @@ export const BannerUser = styled(Flex)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  gap: 30px;
   cursor: pointer;
   @media (max-width: 1023px) {
     gap: 20px;
@@ -93,28 +97,16 @@ export const UserAvatar = styled.img`
   background-color: #d9d9d9;
   position: absolute;
 `;
-export const Camera = styled.div`
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgb(208 208 208);
-  bottom: 14px;
-  right: 16px;
-  padding: 2px;
 
-  @media (max-width: 768px) {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    bottom: 10px;
-    right: 12px;
-    padding: 1px;
-  }
-`;
 export const BoxUser = styled(Flex)`
-  display: flex;
+  margin-top: 70px;
   flex-direction: column;
+  @media (max-width: 768px) {
+    margin-top: 40px;
+  }
+  @media (max-width: 576px) {
+    margin-top: 0px;
+  }
 `;
 export const Name = styled.p`
   font-size: 32px;
@@ -129,13 +121,21 @@ export const Name = styled.p`
     line-height: 28px;
   }
 `;
-
+export const Icon = styled.div`
+  width: 24px;
+  height: 24px;
+`;
 export const Prestige = styled.span`
+  display: flex;
+  flex-direciton: row;
+  align-items: center;
+  gap: 4px;
+`;
+export const PrestigeScore = styled.span`
   font-size: 24px;
   font-weight: 400;
   line-height: 29.05px;
   text-align: left;
-
   @media (max-width: 1023px) {
     font-size: 20px;
     line-height: 28px;

@@ -1,153 +1,70 @@
-import React from 'react';
+import Image from 'next/image';
+
+import location from '@/public/icon/match-propertiesIcon/location.svg';
+import rank from '@/public/icon/match-propertiesIcon/rank.svg';
+import stadiumCost from '@/public/icon/match-propertiesIcon/stadiumCost.svg';
+import people from '@/public/icon/match-propertiesIcon/people.svg';
+import area from '@/public/icon/match-propertiesIcon/area.svg';
+import time from '@/public/icon/match-propertiesIcon/time.svg';
+import { matchHistoryItems } from './actionList';
+
 import * as S from './style';
+
 export default function Right() {
   return (
     <>
       <S.Right>
         <S.MatchHistory>
-          <S.Activites>
-            <S.Content>
-              <S.UserAction>Bảo Thắng đã tham gia</S.UserAction>
-              <S.Title> Kèo anh em văn phòng đấm nhau</S.Title>
-              <S.MatchProperties>
-                <S.PropertiesList>
-                  <S.Item>
-                    <S.ItemName>Thời gian: </S.ItemName>
-                    <span>20/04/2024, 15:00</span>
-                  </S.Item>
-                  <S.Item>
-                    <S.ItemName>Địa Điểm: </S.ItemName>
-                    <span>Sân ABC, Đường XYZ</span>
-                  </S.Item>
-                  <S.Item>
-                    <S.ItemName>Cạnh tranh: </S.ItemName>
-                    <span>Vui vẻ</span>
-                  </S.Item>
-
-                  <S.Item>
-                    <S.ItemName>Khu vực: </S.ItemName>
-                    <span>Hoà Hải, Ngũ Hành Sơn, Đà Nẵng</span>
-                  </S.Item>
-                  <S.Item>
-                    <S.ItemName>Số lượng: </S.ItemName>
-                    <span>12 người</span>
-                  </S.Item>
-                  <S.Item>
-                    <S.ItemName>Tiền sân: </S.ItemName>
-                    <span>500.000 VNĐ</span>
-                  </S.Item>
-                </S.PropertiesList>
-              </S.MatchProperties>
-            </S.Content>
-          </S.Activites>
-
-          <S.Activites>
-            <S.Content>
-              <S.UserAction>Bảo Thắng đã tham gia</S.UserAction>
-              <S.Title> Kèo anh em văn phòng đấm nhau</S.Title>
-              <S.MatchProperties>
-                <S.PropertiesList>
-                  <S.Item>
-                    <S.ItemName>Thời gian: </S.ItemName>
-                    <span>20/04/2024, 15:00</span>
-                  </S.Item>
-                  <S.Item>
-                    <S.ItemName>Địa Điểm: </S.ItemName>
-                    <span>Sân ABC, Đường XYZ</span>
-                  </S.Item>
-                  <S.Item>
-                    <S.ItemName>Cạnh tranh: </S.ItemName>
-                    <span>Vui vẻ</span>
-                  </S.Item>
-
-                  <S.Item>
-                    <S.ItemName>Khu vực: </S.ItemName>
-                    <span>Hoà Hải, Ngũ Hành Sơn, Đà Nẵng</span>
-                  </S.Item>
-                  <S.Item>
-                    <S.ItemName>Số lượng: </S.ItemName>
-                    <span>12 người</span>
-                  </S.Item>
-                  <S.Item>
-                    <S.ItemName>Tiền sân: </S.ItemName>
-                    <span>500.000 VNĐ</span>
-                  </S.Item>
-                </S.PropertiesList>
-              </S.MatchProperties>
-            </S.Content>
-          </S.Activites>
-
-          <S.Activites>
-            <S.Content>
-              <S.UserAction>Bảo Thắng đã tham gia</S.UserAction>
-              <S.Title> Kèo anh em văn phòng đấm nhau</S.Title>
-              <S.MatchProperties>
-                <S.PropertiesList>
-                  <S.Item>
-                    <S.ItemName>Thời gian: </S.ItemName>
-                    <span>20/04/2024, 15:00</span>
-                  </S.Item>
-                  <S.Item>
-                    <S.ItemName>Địa Điểm: </S.ItemName>
-                    <span>Sân ABC, Đường XYZ</span>
-                  </S.Item>
-                  <S.Item>
-                    <S.ItemName>Cạnh tranh: </S.ItemName>
-                    <span>Vui vẻ</span>
-                  </S.Item>
-
-                  <S.Item>
-                    <S.ItemName>Khu vực: </S.ItemName>
-                    <span>Hoà Hải, Ngũ Hành Sơn, Đà Nẵng</span>
-                  </S.Item>
-                  <S.Item>
-                    <S.ItemName>Số lượng: </S.ItemName>
-                    <span>12 người</span>
-                  </S.Item>
-                  <S.Item>
-                    <S.ItemName>Tiền sân: </S.ItemName>
-                    <span>500.000 VNĐ</span>
-                  </S.Item>
-                </S.PropertiesList>
-              </S.MatchProperties>
-            </S.Content>
-          </S.Activites>
-
-          <S.Activites>
-            <S.Content>
-              <S.UserAction>Bảo Thắng đã tham gia</S.UserAction>
-              <S.Title> Kèo anh em văn phòng đấm nhau</S.Title>
-              <S.MatchProperties>
-                <S.PropertiesList>
-                  <S.Item>
-                    <S.ItemName>Thời gian: </S.ItemName>
-                    <span>20/04/2024, 15:00</span>
-                  </S.Item>
-                  <S.Item>
-                    <S.ItemName>Địa Điểm: </S.ItemName>
-                    <span>Sân ABC, Đường XYZ</span>
-                  </S.Item>
-                  <S.Item>
-                    <S.ItemName>Cạnh tranh: </S.ItemName>
-                    <span>Vui vẻ</span>
-                  </S.Item>
-
-                  <S.Item>
-                    <S.ItemName>Khu vực: </S.ItemName>
-                    <span>Hoà Hải, Ngũ Hành Sơn, Đà Nẵng</span>
-                  </S.Item>
-                  <S.Item>
-                    <S.ItemName>Số lượng: </S.ItemName>
-                    <span>12 người</span>
-                  </S.Item>
-                  <S.Item>
-                    <S.ItemName>Tiền sân: </S.ItemName>
-                    <span>500.000 VNĐ</span>
-                  </S.Item>
-                </S.PropertiesList>
-              </S.MatchProperties>
-            </S.Content>
-          </S.Activites>
+          {matchHistoryItems.map((item, index) => (
+            <S.Activites key={index}>
+              <S.Content>
+                <S.UserAction>Bảo Thắng đã tham gia</S.UserAction>
+                <S.Title>
+                  <S.TitleText>{item.valueTitleAction}</S.TitleText>
+                </S.Title>
+                <S.MatchProperties>
+                  <S.PropertiesList>
+                    <S.Item>
+                      <S.ImageWrapper>
+                        <Image src={time} alt="" fill sizes="auto" />
+                      </S.ImageWrapper>
+                      <span>{item.valueTime}</span>
+                    </S.Item>
+                    <S.Item>
+                      <S.ImageWrapper>
+                        <Image src={location} alt="" fill sizes="auto" />
+                      </S.ImageWrapper>
+                      <span>{item.valueLocation}</span>
+                    </S.Item>
+                    <S.Item>
+                      <S.ImageWrapper>
+                        <Image src={rank} alt="" fill sizes="auto" />
+                      </S.ImageWrapper>
+                      <span>{item.valueRank}</span>
+                    </S.Item>
+                    <S.Item>
+                      <S.ImageWrapper>
+                        <Image src={area} alt="" fill sizes="auto" />
+                      </S.ImageWrapper>
+                      <span>{item.valueArea}</span>
+                    </S.Item>
+                    <S.Item>
+                      <S.ImageWrapper>
+                        <Image src={people} alt="" fill sizes="auto" />
+                      </S.ImageWrapper>
+                      <span>{item.valuePeople}</span>
+                    </S.Item>
+                    <S.Item>
+                      <S.ImageWrapper>
+                        <Image src={stadiumCost} alt="" fill sizes="auto" />
+                      </S.ImageWrapper>
+                      <span>{item.costStadium} VNĐ</span>
+                    </S.Item>
+                  </S.PropertiesList>
+                </S.MatchProperties>
+              </S.Content>
+            </S.Activites>
+          ))}
         </S.MatchHistory>
       </S.Right>
     </>

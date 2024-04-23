@@ -18,9 +18,11 @@ export const Body = styled(Flex)`
   box-sizing: border-box;
   @media (max-width: 1086px) {
     width: 100%;
-    justify-content: space-between;
   }
   @media (max-width: 888px) {
+  }
+  @media (max-width: 870px) {
+    flex-direction: column;
   }
   @media (max-width: 768px) {
     flex-direction: column;

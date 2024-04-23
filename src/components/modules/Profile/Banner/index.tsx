@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './style';
-import ChangeAvt from './icon';
+import PrestigeIcon from '../PrestigeIcon';
 export default function Banner() {
   return (
     <>
@@ -10,11 +10,15 @@ export default function Banner() {
           <S.BannerUser>
             <S.Avatar>
               <S.UserAvatar src={'/images/Profile/avatarUser.jpg'} />
-              <ChangeAvt />
             </S.Avatar>
             <S.BoxUser>
               <S.Name>Trần Văn Bảo Thắng</S.Name>
-              <S.Prestige>100 Uy tín</S.Prestige>
+              <S.Prestige>
+                <S.Icon>
+                  <PrestigeIcon></PrestigeIcon>
+                </S.Icon>
+                <S.PrestigeScore>100 Uy tín</S.PrestigeScore>
+              </S.Prestige>
             </S.BoxUser>
           </S.BannerUser>
         </S.Wrapper>
