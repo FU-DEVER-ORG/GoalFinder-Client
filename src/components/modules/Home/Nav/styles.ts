@@ -21,9 +21,9 @@ export const MenuCss = styled(Menu)`
   }
 
   .ant-menu-item span {
-    font-weight: 500;
+    font-weight: 400;
     font-size: 16px;
-    line-height: 19.36px;
+    /* line-height: 19.36px; */
     text-align: left;
   }
 
