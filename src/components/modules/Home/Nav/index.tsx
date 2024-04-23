@@ -20,7 +20,6 @@ const items: MenuProps['items'] = menuItems.map((item, index) => ({
 }));
 
 function Nav() {
-  // console.log(items);
   return (
     <BoxFlex vertical gap={16}>
         <MenuCss
