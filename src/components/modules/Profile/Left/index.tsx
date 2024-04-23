@@ -1,6 +1,6 @@
-import React from 'react';
+
 import * as S from './style';
-import { Divider } from 'antd';
+
 export default function Left() {
   return (
     <>
@@ -12,7 +12,7 @@ export default function Left() {
             <br />
             Hòm thư: contact.cotdien@gmail.com
           </S.IntroQuotes>
-          <Divider />
+          <S.CardDivider />
           <S.Aboutme>Hoà Hải, Ngũ Hành Sơn, Đà Nẵng</S.Aboutme>
           <S.Aboutme>Nghiệp dư</S.Aboutme>
           <S.Aboutme>Thủ môn, hậu vệ, tiền đạo</S.Aboutme>

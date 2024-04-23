@@ -10,7 +10,7 @@ export const Left = styled(Flex)`
   }
   @media (max-width: 888px) {
     width: 80%;
-    height: auto;
+    height: 300px;
   }
 `;
 export const Introduction = styled(Card)`
@@ -26,7 +26,18 @@ export const IntroTitle = styled.span`
   text-align: left;
   margin-bottom: 20px;
 `;
-
+export const CardDivider = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: rgb(211 211 211);
+  margin: 24px 0;
+  @media (max-width: 888px) {
+    margin: 12px 0;
+  }
+  @media (max-width: 767px) {
+    margin: 5px 0;
+  }
+`;
 export const IntroQuotes = styled.p`
   margin-top: 20px;
   font-size: 16px;
@@ -45,10 +56,10 @@ export const Aboutme = styled.p`
   line-height: 19.36px;
   letter-spacing: 0.08em;
   text-align: left;
-  padding: 8px 0;
+  padding-bottom: 8px;
   @media (max-width: 1023px) {
     font-size: 14px;
-    padding: 2px 0;
+    padding-bottom: 2px;
   }
 
   @media (max-width: 768px) {

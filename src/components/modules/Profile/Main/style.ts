@@ -21,12 +21,11 @@ export const Body = styled(Flex)`
     justify-content: space-between;
   }
   @media (max-width: 888px) {
-    display: flex;
+  }
+  @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-  @media (max-width: 768px) {
   }
   @media (max-width: 576px) {
   }

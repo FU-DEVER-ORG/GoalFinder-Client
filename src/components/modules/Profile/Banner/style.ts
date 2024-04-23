@@ -12,7 +12,7 @@ export const Header = styled(Flex)`
   align-items: center;
   justify-content: center;
   @media (max-width: 768px) {
-    height: 517px; /* hoặc bất kỳ giá trị nào khác phù hợp với thiết kế của bạn */
+    height: 430px; /* hoặc bất kỳ giá trị nào khác phù hợp với thiết kế của bạn */
   }
 `;
 
