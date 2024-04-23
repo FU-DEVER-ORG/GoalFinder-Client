@@ -197,7 +197,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
                 width={'100%'}
                 prefix={
                   <>
-                    <Dropdown menu={menu as MenuProps} placement="bottomLeft">
+                    <Dropdown overlay={menu} placement="bottomLeft">
                       <Space>
                         <Button $full={false} $backgroundColor="#F5F7FA">
                           <Image
