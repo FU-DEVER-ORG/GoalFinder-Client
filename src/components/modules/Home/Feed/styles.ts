@@ -1,7 +1,8 @@
-import styled from 'styled-components';
-import BoxFlex from '@/components/core/common/BoxFlex';
 import { Flex } from 'antd';
+import styled from 'styled-components';
 import { CrownFilled } from '@ant-design/icons';
+
+import BoxFlex from '@/components/core/common/BoxFlex';
 
 export const FeedContainer = styled(BoxFlex)`
   width: 712px;
@@ -34,9 +35,11 @@ export const CustomFlex = styled(Flex)`
 `;
 
 export const Name = styled.p`
-  font-weight: 500;
   font-size: 16px;
+  font-weight: 500;
   line-height: 19.36px;
+  letter-spacing: 0.08em;
+  text-align: left;
 `;
 
 export const FlexPrestige = styled(Flex)`
@@ -63,7 +66,12 @@ export const FlexMatchInfor = styled(Flex)`
   gap: 12px;
 `;
 
-export const TitleMatchInfor = styled.p``;
+export const TitleMatchInfor = styled.p`
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.36px;
+  letter-spacing: 0.08em;
+`;
 
 export const ListMatchInfor = styled.ul`
   padding: 0;
@@ -87,14 +95,42 @@ export const FlexBoxTextItem = styled.div`
 `;
 
 export const BoldText = styled.p`
+  font-size: 16px;
   font-weight: 500;
+  line-height: 19.36px;
+  letter-spacing: 0.08em;
   text-wrap: nowrap;
 `;
 
 export const NoneBoldText = styled.p`
+  font-size: 16px;
   font-weight: 400;
-  
+  line-height: 19.36px;
+  letter-spacing: 0.08em;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+export const ContainerDescription = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
+export const TitleDescription = styled.p`
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.36px;
+  letter-spacing: 0.08em;
+  text-decoration: underline;
+`;
+
+export const Description = styled.p`
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.08em;
+  text-align: left;
 `;
