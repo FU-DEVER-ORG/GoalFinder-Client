@@ -59,7 +59,7 @@ function Subscribers() {
       render: (text, record, index) => index + 1
     },
     {
-      title: 'Tên',
+      title: 'Tên cầu thủ',
       dataIndex: 'name',
       key: 'name',
       align: 'left',
