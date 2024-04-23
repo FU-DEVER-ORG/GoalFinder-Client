@@ -14,6 +14,7 @@ import { Flex } from 'antd';
 import Input from '../../common/form/Input';
 
 import * as S from './styles';
+import NotificationDropdown from './NotificationDropdown';
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -55,6 +56,7 @@ function MainLayout({ children }: MainLayoutProps) {
               </S.Down>
             </S.Avatar>
           </Flex>
+          <NotificationDropdown />
         </S.Container>
       </S.Header>
       <S.Body>{children}</S.Body>
