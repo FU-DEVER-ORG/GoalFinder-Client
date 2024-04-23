@@ -1,7 +1,6 @@
 import { Menu } from 'antd';
 import styled from 'styled-components';
 
-
 export const MenuCss = styled(Menu)`
   width: 280px;
   padding: 20px;
@@ -21,6 +20,13 @@ export const MenuCss = styled(Menu)`
     gap: 12px;
   }
 
+  .ant-menu-item span {
+    font-weight: 400;
+    font-size: 16px;
+    /* line-height: 19.36px; */
+    text-align: left;
+  }
+
   .ant-menu-item-selected {
     background-color: #f1fff2 !important;
     color: #4daa57 !important;
@@ -28,5 +34,10 @@ export const MenuCss = styled(Menu)`
 
   .ant-menu-divider {
     background-color: red !important;
+  }
+
+  .anticon svg {
+    width: 24px;
+    height: 24px;
   }
 `;
