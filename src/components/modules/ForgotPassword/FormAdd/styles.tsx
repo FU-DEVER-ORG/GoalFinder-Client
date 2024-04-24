@@ -12,6 +12,13 @@ export const Input = styled.div`
     color: rgba(16, 0, 201, 1) !important;
     font-weight: 600;
   }
+
+  .resendWrapper {
+    gap: 4px;
+
+    display: flex;
+    flex-direction: row;
+  }
 `;
 
 export const InputNumber = styled.div`
@@ -71,4 +78,5 @@ export const ModalContent = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  text-align: center;
 `;

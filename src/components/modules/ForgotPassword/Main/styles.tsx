@@ -2,8 +2,6 @@ import { Flex } from 'antd';
 import styled from 'styled-components';
 
 export const HomeWrapper = styled(Flex)`
-  font-family: none !important;
-
   padding: 24px 20px;
   width: 100%;
 

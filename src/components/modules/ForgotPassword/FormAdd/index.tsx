@@ -218,7 +218,6 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
 
             <FormItem>
               <Button
-                $borderRadius="0px"
                 $width={'100%'}
                 type="primary"
                 htmlType="submit"
@@ -268,7 +267,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
                     value={targetTime}
                   />
 
-                  <Typography>
+                  <Typography className="resendWrapper">
                     Không nhận được mã xác thực?
                     {contextHolder}
                     <a className="resend" onClick={success}>
@@ -280,7 +279,6 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
 
               <FormItem>
                 <Button
-                  $borderRadius="0px"
                   $backgroundColor={
                     navigation === 'step3' ? '#0F6C19' : '#4DAA57'
                   }
