@@ -6,9 +6,9 @@ import stadiumCost from '@/public/icon/match-propertiesIcon/stadiumCost.svg';
 import people from '@/public/icon/match-propertiesIcon/people.svg';
 import area from '@/public/icon/match-propertiesIcon/area.svg';
 import time from '@/public/icon/match-propertiesIcon/time.svg';
-import { matchHistoryItems } from './actionList';
 
 import * as S from './style';
+import { matchHistoryItems } from './actionList';
 
 export default function Right() {
   return (
@@ -24,42 +24,49 @@ export default function Right() {
                 </S.Title>
                 <S.MatchProperties>
                   <S.PropertiesList>
-                    <S.Item>
-                      <S.ImageWrapper>
-                        <Image src={time} alt="" fill sizes="auto" />
-                      </S.ImageWrapper>
-                      <span>{item.valueTime}</span>
-                    </S.Item>
-                    <S.Item>
-                      <S.ImageWrapper>
-                        <Image src={location} alt="" fill sizes="auto" />
-                      </S.ImageWrapper>
-                      <span>{item.valueLocation}</span>
-                    </S.Item>
-                    <S.Item>
-                      <S.ImageWrapper>
-                        <Image src={rank} alt="" fill sizes="auto" />
-                      </S.ImageWrapper>
-                      <span>{item.valueRank}</span>
-                    </S.Item>
-                    <S.Item>
-                      <S.ImageWrapper>
-                        <Image src={area} alt="" fill sizes="auto" />
-                      </S.ImageWrapper>
-                      <span>{item.valueArea}</span>
-                    </S.Item>
-                    <S.Item>
-                      <S.ImageWrapper>
-                        <Image src={people} alt="" fill sizes="auto" />
-                      </S.ImageWrapper>
-                      <span>{item.valuePeople}</span>
-                    </S.Item>
-                    <S.Item>
-                      <S.ImageWrapper>
-                        <Image src={stadiumCost} alt="" fill sizes="auto" />
-                      </S.ImageWrapper>
-                      <span>{item.costStadium} VNĐ</span>
-                    </S.Item>
+                    <S.StyledTimeline>
+                      <S.Item>
+                        <S.ImageWrapper>
+                          <Image src={time} alt="" fill sizes="auto" />
+                        </S.ImageWrapper>
+                        <span>{item.valueTime}</span>
+                      </S.Item>
+                      <S.Item>
+                        <S.ImageWrapper>
+                          <Image src={rank} alt="" fill sizes="auto" />
+                        </S.ImageWrapper>
+                        <span>{item.valueRank}</span>
+                      </S.Item>
+                      <S.Item>
+                        <S.ImageWrapper>
+                          <Image src={people} alt="" fill sizes="auto" />
+                        </S.ImageWrapper>
+                        <span>{item.valuePeople}</span>
+                      </S.Item>
+                    </S.StyledTimeline>
+
+                    <S.StyledTimeline>
+                      <S.Item>
+                        <S.ImageWrapper>
+                          <Image src={location} alt="" fill sizes="auto" />
+                        </S.ImageWrapper>
+                        <span>{item.valueLocation}</span>
+                      </S.Item>
+
+                      <S.Item>
+                        <S.ImageWrapper>
+                          <Image src={area} alt="" fill sizes="auto" />
+                        </S.ImageWrapper>
+                        <span>{item.valueArea}</span>
+                      </S.Item>
+
+                      <S.Item>
+                        <S.ImageWrapper>
+                          <Image src={stadiumCost} alt="" fill sizes="auto" />
+                        </S.ImageWrapper>
+                        <span>{item.costStadium} VNĐ</span>
+                      </S.Item>
+                    </S.StyledTimeline>
                   </S.PropertiesList>
                 </S.MatchProperties>
               </S.Content>

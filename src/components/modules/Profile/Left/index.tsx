@@ -1,9 +1,12 @@
 import Image from 'next/image';
-import * as S from './style';
+
 import ball from '@/public/icon/match-propertiesIcon/aboutme/ball.svg';
 import medal from '@/public/icon/match-propertiesIcon/aboutme/medal-outline.svg';
 import local from '@/public/icon/match-propertiesIcon/aboutme/navigate-circle-outline.svg';
 import reward from '@/public/icon/match-propertiesIcon/aboutme/reward.svg';
+
+import * as S from './style';
+
 export default function Left() {
   return (
     <>

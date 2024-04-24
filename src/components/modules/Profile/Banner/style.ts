@@ -1,5 +1,5 @@
-import { Flex } from 'antd';
 import styled from 'styled-components';
+import { Flex } from 'antd';
 
 export const Header = styled(Flex)`
   margin-top: 10px;
@@ -124,6 +124,7 @@ export const Name = styled.p`
 export const Icon = styled.div`
   width: 24px;
   height: 24px;
+  position: relative;
 `;
 export const Prestige = styled.span`
   display: flex;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Card, Flex } from 'antd';
+import { Card, Flex, Timeline } from 'antd';
 
 export const Right = styled(Flex)``;
 
@@ -12,17 +12,22 @@ export const MatchHistory = styled(Flex)`
 `;
 
 export const Activites = styled(Card)`
-  width: 100%;
+  width: 750px;
+  height: 250px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   @media (max-width: 1090px) {
     width: 100%;
   }
   @media (max-width: 1023px) {
     width: 100%;
+    height: 260px;
   }
   @media (max-width: 768px) {
+    width: 100%;
+    height: 270px;
   }
   @media (max-width: 576px) {
+    height: auto;
   }
 `;
 export const Content = styled.div`
@@ -68,20 +73,39 @@ export const PropertiesList = styled.ul`
   grid-template-columns: 0.8fr 1fr;
   grid-gap: 10px;
   align-items: center;
-  padding-bottom: 12px;
+
   @media (max-width: 1090px) {
     row-gap: 14px;
     column-gap: 20px;
   }
-  @media (max-width: 1023px) {
+`;
+
+export const StyledTimeline = styled(Timeline)`
+  .ant-timeline
+    style__StyledTimeline-sc-4491373b-10
+    dNvpLi
+    css-dev-only-do-not-override-1kuana8 {
+    padding: 14px;
   }
-  @media (max-width: 768px) {
+  .ant-timeline-item-content {
+    display: flex;
   }
-  @media (max-width: 576px) {
+  .ant-timeline-item {
+    padding-bottom: 12px;
+    box-sizing: border-box;
+  }
+
+  .ant-timeline-item-last {
+    padding-bottom: 10px;
+  }
+  .ant-timeline-item:last-child .ant-timeline-item-content {
+    padding-bottom: 0;
+    min-height: 0px;
   }
 `;
 
 export const Item = styled(Flex)`
+  flex-direction: row;
   align-items: center;
   gap: 10px;
   flex-shrink: 0;

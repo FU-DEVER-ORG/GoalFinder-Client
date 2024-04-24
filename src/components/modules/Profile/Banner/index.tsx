@@ -1,6 +1,7 @@
-import React from 'react';
+import Image from 'next/image';
+import pretigeIcon from '@/public/icon/match-propertiesIcon/prestigeIcon.svg';
 import * as S from './style';
-import PrestigeIcon from '../PrestigeIcon';
+
 export default function Banner() {
   return (
     <>
@@ -15,7 +16,7 @@ export default function Banner() {
               <S.Name>Trần Văn Bảo Thắng</S.Name>
               <S.Prestige>
                 <S.Icon>
-                  <PrestigeIcon></PrestigeIcon>
+                  <Image src={pretigeIcon} alt="" fill sizes="auto"></Image>
                 </S.Icon>
                 <S.PrestigeScore>100 Uy tín</S.PrestigeScore>
               </S.Prestige>

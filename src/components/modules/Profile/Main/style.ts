@@ -1,5 +1,5 @@
-import { Flex } from 'antd';
 import styled from 'styled-components';
+import { Flex } from 'antd';
 
 export const Container = styled(Flex)`
   width: 100%;
@@ -19,7 +19,8 @@ export const Body = styled(Flex)`
   @media (max-width: 1086px) {
     width: 100%;
   }
-  @media (max-width: 888px) {
+  @media (max-width: 890px) {
+    flex-direction: column;
   }
   @media (max-width: 870px) {
     flex-direction: column;

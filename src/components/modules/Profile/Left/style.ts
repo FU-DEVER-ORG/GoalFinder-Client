@@ -1,5 +1,5 @@
-import { Card, Flex } from 'antd';
 import styled from 'styled-components';
+import { Card, Flex } from 'antd';
 
 export const Left = styled(Flex)`
   width: 380px;
@@ -13,17 +13,11 @@ export const Left = styled(Flex)`
     height: 300px;
   }
   @media (max-width: 888px) {
-    width: 320px;
-    height: 300px;
-  }
-  @media (max-width: 870px) {
     width: 100%;
     height: auto;
   }
   @media (max-width: 767px) {
     margin-top: 0;
-    width: 80%;
-    height: auto;
   }
 `;
 export const Introduction = styled(Card)`
