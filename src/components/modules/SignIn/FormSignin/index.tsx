@@ -27,7 +27,7 @@ const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
 
 function FormSignin() {
   const router = useRouter();
-  const [signIn, {isLoading}] = useSignInMutation();
+  const [signIn, { isLoading }] = useSignInMutation();
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     console.log('Success:', values);
@@ -38,20 +38,19 @@ function FormSignin() {
       const data = {
         username: values.email!,
         password: values.password!,
-        isRemember: values.isRemember!
-      }
+        isRemember: values.isRemember!,
+      };
       // const res: any = await postRequest(
       //  constants.API_SERVER + authEndpoint.SIGN_IN,
       //  {data}
       // )
-      const res: any = await signIn(data)
+      const res: any = await signIn(data);
       console.log(res?.data);
       // console.log(res?.data?.body?.accessToken);
       // webStorageClient.setToken(res?.data?.body?.accessToken, {maxAge: 60*4})
       router.push('/');
     } catch (error) {
       console.log(error);
-      
     }
   };
 
@@ -89,13 +88,10 @@ function FormSignin() {
           />
         </Form.Item>
         <S.RowRememberForgot>
-          <FormItem<FieldType>
-            name="isRemember"
-            valuePropName="checked"
-          >
+          <FormItem<FieldType> name="isRemember" valuePropName="checked">
             <Checkbox>Nhớ mật khẩu</Checkbox>
           </FormItem>
-          <S.LinkTag href=''>Quên mật khẩu</S.LinkTag>
+          <S.LinkTag href="">Quên mật khẩu</S.LinkTag>
         </S.RowRememberForgot>
         <FormItem>
           <Button $width={'100%'} type="primary" htmlType="submit">
@@ -111,7 +107,7 @@ function FormSignin() {
         </FormItem>
       </Form>
     </S.HomeWrapper>
-  )
+  );
 }
 
-export default FormSignin
+export default FormSignin;

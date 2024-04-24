@@ -29,10 +29,10 @@ function AuthLayout({ children }: AuthLayoutProps) {
           </S.InputWrap>
           <Flex gap={20}>
             <Link href={'/sign-up'}>
-              <Button type='default'>Đăng ký</Button>
+              <Button type="default">Đăng ký</Button>
             </Link>
             <Link href={'/sign-in'}>
-              <Button type='primary'>Đăng nhập</Button>
+              <Button type="primary">Đăng nhập</Button>
             </Link>
           </Flex>
         </S.Container>
