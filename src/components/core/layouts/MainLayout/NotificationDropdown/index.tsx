@@ -25,42 +25,8 @@ function Feature () {
         </S.Body>
   )
 }
+
 function NotificationDropdown() {
-  // const [role, setRole] = useState('dev');
-  // const [notification, setNotification] = useState (
-  //   [
-  //     {
-  //       avatar: 'https://images-ext-1.discordapp.net/external/1cC__FAMCJpeDcSUazZGKkkO2YkJuSNn23fqWZmmN8U/https/res.cloudinary.com/dy1uuo6ql/image/upload/v1713897426/nk4zyhnkf8yghycffnqs.jpg?format=webp&width=662&height=662',
-  //       noti: 'Huy Tran đã gửi đơn đăng ký vào Kèo anh em văn phòng đấm nhau',
-  //       time: 'Hôm nay lúc 06:38',
-  //     },
-
-  //     {
-  //       avatar: 'https://images-ext-1.discordapp.net/external/1cC__FAMCJpeDcSUazZGKkkO2YkJuSNn23fqWZmmN8U/https/res.cloudinary.com/dy1uuo6ql/image/upload/v1713897426/nk4zyhnkf8yghycffnqs.jpg?format=webp&width=662&height=662',
-  //       noti: 'Huy Tran đã gửi đơn đăng ký vào Kèo anh em văn phòng đấm nhau',
-  //       time: 'Hôm nay lúc 06:38',
-  //     },
-
-  //     {
-  //       avatar: 'https://images-ext-1.discordapp.net/external/1cC__FAMCJpeDcSUazZGKkkO2YkJuSNn23fqWZmmN8U/https/res.cloudinary.com/dy1uuo6ql/image/upload/v1713897426/nk4zyhnkf8yghycffnqs.jpg?format=webp&width=662&height=662',
-  //       noti: 'Huy Tran đã gửi đơn đăng ký vào Kèo anh em văn phòng đấm nhau',
-  //       time: 'Hôm nay lúc 06:38',
-  //     },
-
-  //     {
-  //       avatar: 'https://images-ext-1.discordapp.net/external/1cC__FAMCJpeDcSUazZGKkkO2YkJuSNn23fqWZmmN8U/https/res.cloudinary.com/dy1uuo6ql/image/upload/v1713897426/nk4zyhnkf8yghycffnqs.jpg?format=webp&width=662&height=662',
-  //       noti: 'Bạn đã bị trừ 20 uy tín vì sủi kèo Kèo anh em văn phòng đấm nhau',
-  //       time: 'Hôm nay lúc 06:38',
-  //     },
-
-  //     {
-  //       avatar: 'https://images-ext-1.discordapp.net/external/1cC__FAMCJpeDcSUazZGKkkO2YkJuSNn23fqWZmmN8U/https/res.cloudinary.com/dy1uuo6ql/image/upload/v1713897426/nk4zyhnkf8yghycffnqs.jpg?format=webp&width=662&height=662',
-  //       noti: 'Huy Tran đã được cộng 20 uy tín sau khi tham gia Kèo anh em văn phòng đấm nhau',
-  //       time: 'Hôm nay lúc 06:38',
-  //     },
-
-  //   ]
-  // )
   return (
     <S.NotificationWrapper>
       <S.Heading>
