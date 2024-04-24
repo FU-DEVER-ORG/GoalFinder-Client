@@ -12,11 +12,13 @@ export const Header = styled.header`
 
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
 
+
+
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 2;
+  z-index: 5;
 `;
 
 export const Container = styled.div`
