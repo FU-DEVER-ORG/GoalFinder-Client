@@ -1,8 +1,9 @@
-import { Flex } from 'antd';
 import styled from 'styled-components';
-import { CrownFilled } from '@ant-design/icons';
+import { Flex } from 'antd';
+import { CrownFilled, EllipsisOutlined } from '@ant-design/icons';
 
 import BoxFlex from '@/components/core/common/BoxFlex';
+import Button from '@/components/core/common/Button';
 
 export const FeedContainer = styled(BoxFlex)`
   width: 712px;
@@ -58,6 +59,10 @@ export const PrestigeScore = styled.span`
   font-weight: 400;
   line-height: 14.52px;
   text-align: center;
+`;
+
+export const CustomEllipsisOutlined = styled(EllipsisOutlined)`
+  font-size: 24px;
 `;
 
 export const FlexMatchInfor = styled(Flex)`
@@ -128,9 +133,42 @@ export const TitleDescription = styled.p`
 `;
 
 export const Description = styled.p`
+  max-height: 120px;
+
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
   letter-spacing: 0.08em;
   text-align: left;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const RegisterButton = styled(Button)`
+  width: 100%;
+  max-height: 62px !important;
+  padding: 12px 20px !important;
+  
+`;
+
+export const RegisterButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+export const TitleTextButton = styled.p`
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.36px;
+  text-align: center;
+`;
+
+export const RequirementText = styled.span`
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: center;
+  opacity: 0.6;
 `;
