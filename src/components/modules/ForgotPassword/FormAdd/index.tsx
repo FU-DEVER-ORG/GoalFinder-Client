@@ -67,7 +67,11 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
 
   const [finish, setFinish] = useState<boolean>(false);
 
-  const [selectedCountry, setSelectedCountry] = useState<any>(phoneAreaData[0]);
+  const [selectedCountry, setSelectedCountry] = useState<{
+    country: string;
+    code: string;
+    flag: string;
+  }>(phoneAreaData[0]);
 
   const menu = (
     <Menu onClick={handleMenuClick}>
