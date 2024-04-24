@@ -20,11 +20,79 @@ export const PlayerItem = styled.li`
   @media (max-width: 768px) {
     font-size: 12px;
   }
-
   @media (max-width: 480px) {
     font-size: 10px;
   }
-  
+`
+export const PlayerItemOrder = styled.li`
+  width: 5%;
+  list-style: none;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  margin: auto 0px;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+  @media (max-width: 480px) {
+    font-size: 10px;
+  }
+`
+export const PlayerItemAge = styled.li`
+  width: 5%;
+  list-style: none;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  margin: auto 0px;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+  @media (max-width: 480px) {
+    font-size: 10px;
+  }
+`
+export const PlayerItemPosition = styled.li`
+  width: 30%;
+  list-style: none;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  margin: auto 0px;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+  @media (max-width: 480px) {
+    font-size: 10px;
+  }
+`
+export const PlayerItemCompetitive = styled.li`
+  width: 15%;
+  list-style: none;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  margin: auto 0px;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+  @media (max-width: 480px) {
+    font-size: 10px;
+  }
+`
+export const PlayerItemPhoneNum = styled.li`
+  width: 15%;
+  list-style: none;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  margin: auto 0px;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+  @media (max-width: 480px) {
+    font-size: 10px;
+  }
 `
 export const CustomButton = styled(Button) <{ selected: boolean }>`
   width: 100%;
@@ -69,6 +137,8 @@ export const CustomAvatar = styled(Avatar)`
     }
 `
 export const PlayerAvatarName = styled.li`
+    width: 30%;
+    text-align: left;
     list-style: none;
     font-weight: 500;
     font-size: 16px;
@@ -91,8 +161,5 @@ export const RatingTitle = styled.p`
   text-align: left;
   font-weight: 500;
   text-decoration: underline;
-
-  // @media (max-width: 480px) {
-  //   font-size: 10px;
-  // }
+  margin: 18px 0px;
 `

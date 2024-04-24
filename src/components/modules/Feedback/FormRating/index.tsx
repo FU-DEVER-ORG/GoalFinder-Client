@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { List, Avatar, Flex } from 'antd';
 
 import * as S from './styles';
-
 
 interface Player {
   id: number;
@@ -13,8 +11,6 @@ interface Player {
   competitiveness: string;
   phoneNumber: string;
 }
-
-
 
 const FormRating: React.FC = () => {
   const [selectedPlayers, setSelectedPlayers] = useState<number[]>([]);
@@ -136,33 +132,41 @@ const FormRating: React.FC = () => {
   };
 
   return (
-
     <>
-      <S.RatingTitle style={{margin: "18px 0px"}}>Chọn để tố cáo sủi kèo</S.RatingTitle>
+      <S.RatingTitle style={{ margin: '18px 0px' }}>
+        Chọn để tố cáo sủi kèo
+      </S.RatingTitle>
       <S.PlayerWrapper>
         {players.map((player) => (
-          <S.CustomButton 
-          key={player.id}
-          onClick={() => toggleSelection(player.id)}
-          selected= {selectedPlayers.includes(player.id)}
+          <S.CustomButton
+            key={player.id}
+            onClick={() => toggleSelection(player.id)}
+            selected={selectedPlayers.includes(player.id)}
           >
             <S.PlayerFlex>
-              <S.PlayerItem style={{width:"5%"}}>{player.id}</S.PlayerItem>
-              <S.PlayerAvatarName style={{width:"30%", textAlign: "left"}}>
+              <S.PlayerItemOrder >{player.id}</S.PlayerItemOrder>
+              <S.PlayerAvatarName>
                 <S.CustomAvatar src={player.avatar} />
                 {player.name}
               </S.PlayerAvatarName>
-              <S.PlayerItem style={{width:"5%"}}>{player.age}</S.PlayerItem>              
-              <S.PlayerItem style={{width:"30%"}}>{player.position}</S.PlayerItem>
-              <S.PlayerItem style={{width:"15%"}}>{player.competitiveness}</S.PlayerItem>
-              <S.PlayerItem style={{width:"15%"}}>{player.phoneNumber}</S.PlayerItem>
+              <S.PlayerItemAge >
+                {player.age}
+                </S.PlayerItemAge>
+              <S.PlayerItemPosition>
+                {player.position}
+              </S.PlayerItemPosition>
+              <S.PlayerItemCompetitive>
+                {player.competitiveness}
+              </S.PlayerItemCompetitive>
+              <S.PlayerItemPhoneNum>
+                {player.phoneNumber}
+              </S.PlayerItemPhoneNum>
             </S.PlayerFlex>
           </S.CustomButton>
-
         ))}
       </S.PlayerWrapper>
       <S.ConfirmButton type="primary" onClick={handleSubmit}>
-        Submit
+        Xác nhận
       </S.ConfirmButton>
     </>
   );
