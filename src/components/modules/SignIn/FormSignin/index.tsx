@@ -1,13 +1,12 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import { Checkbox, Form, FormProps } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 import { LockOutlined, PhoneOutlined } from '@ant-design/icons';
-import { authEndpoint } from '@/services/endpoint';
-import { constants } from '@/settings';
-import { postRequest } from '@/services/request';
+import { useSignInMutation } from '@/store/services/auth';
 
 import Input from '@/components/core/common/form/Input';
 import InputPassword from '@/components/core/common/form/InputPassword';
@@ -15,21 +14,20 @@ import Button from '@/components/core/common/Button';
 
 import * as S from './styles';
 
+
 type FieldType = {
   email?: string;
   password?: string;
-  remember?: string;
+  isRemember?: boolean;
 };
-
-// const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-//   console.log('Success:', values);
-// };
 
 const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
   console.log('Failed:', errorInfo);
 };
 
 function FormSignin() {
+  const router = useRouter();
+  const [signIn, {isLoading}] = useSignInMutation();
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     console.log('Success:', values);
@@ -38,16 +36,21 @@ function FormSignin() {
       // ledinhdangkhoa10a9@gmail.com
       // Admin123@
       const data = {
-        username: values.email,
-        password: values.password,
-        isRemember: values.remember
+        username: values.email!,
+        password: values.password!,
+        isRemember: values.isRemember!
       }
-      const res: any = await postRequest(
-       constants.API_SERVER + authEndpoint.SIGN_IN,
-       {data}
-      )
-      console.log(res?.body);
-      
+      // const res: any = await postRequest(
+      //  constants.API_SERVER + authEndpoint.SIGN_IN,
+      //  {data}
+      // )
+      const res: any = await signIn(data)
+      // console.log(res);
+      // console.log(res?.data?.body?.accessToken);
+      // webStorageClient.setToken(res?.data?.body?.accessToken, {maxAge: 60*4})
+      router.push('/');
+
+
     } catch (error) {
       console.log(error);
       
@@ -89,7 +92,7 @@ function FormSignin() {
         </Form.Item>
         <S.RowRememberForgot>
           <FormItem<FieldType>
-            name="remember"
+            name="isRemember"
             valuePropName="checked"
           >
             <Checkbox>Nhớ mật khẩu</Checkbox>
@@ -103,7 +106,7 @@ function FormSignin() {
         </FormItem>
         <FormItem>
           <Link href={'/sign-up'}>
-            <Button $width={'100%'} type="default" >
+            <Button $width={'100%'} type="default">
               Đăng ký
             </Button>
           </Link>

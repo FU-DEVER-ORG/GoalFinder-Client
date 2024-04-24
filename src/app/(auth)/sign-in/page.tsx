@@ -1,9 +1,4 @@
-import { setCookie } from 'cookies-next';
-import { useRouter } from 'next/navigation';
-
 import SignIn from '@/components/modules/SignIn/Main';
-
-import { postRequest } from '@/services/request';
 
 function Page() {
   // const router = useRouter();

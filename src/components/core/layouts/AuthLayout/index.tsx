@@ -22,7 +22,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
       <S.Header>
         <S.Container>
           <S.ImageWrapper>
-            <Image src={logo} alt="" fill sizes="auto" />
+            <Image src={logo} alt="" fill sizes="auto" priority />
           </S.ImageWrapper>
           <S.InputWrap>
             <Input placeholder="Tìm kiếm" prefix={<SearchOutlined />} />

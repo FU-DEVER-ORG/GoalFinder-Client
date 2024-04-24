@@ -1,16 +1,17 @@
-import Cookies from 'js-cookie';
-import _ from 'lodash';
 
+import _ from 'lodash';
 import { constants } from '@/settings';
+import { getCookie, setCookie } from 'cookies-next';
+import Cookies from 'js-cookie';
 
 const webStorageClient = {
   set(key: string, rawValue: any, option?: any) {
     const value = _.isString(rawValue) ? rawValue : JSON?.stringify(rawValue);
-    Cookies.set(key, value, option);
+    setCookie(key, value, option);
   },
 
   get(key: string) {
-    const value: string = Cookies.get(key) || '';
+    const value: string = getCookie(key) || '';
     try {
       return JSON?.parse(value);
     } catch {
@@ -19,7 +20,7 @@ const webStorageClient = {
   },
 
   remove(key: string) {
-    Cookies.remove(key);
+    setCookie(key, null, {maxAge: 0});
   },
 
   removeAll() {
@@ -29,11 +30,11 @@ const webStorageClient = {
   },
 
   setToken(value: string, option?: any) {
-    this.set(constants.ACCESS_TOKEN, value, option);
+    setCookie(constants.ACCESS_TOKEN, value, option);
   },
 
   getToken() {
-    return this.get(constants.ACCESS_TOKEN);
+    return getCookie(constants.ACCESS_TOKEN);
   },
 };
 

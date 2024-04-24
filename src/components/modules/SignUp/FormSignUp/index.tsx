@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Form, FormProps } from 'antd';
+import {Form, FormProps } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 import { LockOutlined, PhoneOutlined } from '@ant-design/icons';
 
@@ -76,7 +76,7 @@ function FormSignUp() {
           </Button>
         </FormItem>
         <FormItem>
-          <Link href={'/sign-in'}>
+        <Link href={'/sign-in'}>
             <Button $width={'100%'} type="default">
               Đăng nhập
             </Button>
