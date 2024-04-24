@@ -17,11 +17,6 @@ type FieldType = {
   confirmPassword?: string;
 };
 
-const validateMessage = {
-  
-
-}
-
 const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
   console.log('Success:', values);
 };
