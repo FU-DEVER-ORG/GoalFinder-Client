@@ -9,6 +9,12 @@ export const Container = styled(Flex)`
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  @media (max-width: 768px) {
+    padding: 10px 30px;
+  }
+  @media (max-width: 576px) {
+    padding: 10px 30px;
+  }
 `;
 
 export const Body = styled(Flex)`

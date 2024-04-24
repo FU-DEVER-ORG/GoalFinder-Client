@@ -5,12 +5,31 @@ import { Card, Flex, Timeline } from 'antd';
 export const Right = styled(Flex)``;
 
 export const MatchHistory = styled(Flex)`
+  margin-top: 6px;
   width: 100%;
   flex-direction: column;
   align-items: center;
   gap: 20px;
 `;
-
+export const TimeLineActivites = styled(Timeline)`
+  .ant-timeline
+    style__StyledTimeline-sc-4491373b-10
+    dNvpLi
+    css-dev-only-do-not-override-1kuana8 {
+    padding: 14px;
+  }
+  .ant-timeline-item-content {
+    display: flex;
+  }
+  .ant-timeline-item {
+    padding-bottom: 12px;
+    box-sizing: border-box;
+  }
+  .ant-timeline-item:last-child .ant-timeline-item-content {
+    padding-bottom: 0;
+    min-height: 0px;
+  }
+`;
 export const Activites = styled(Card)`
   width: 750px;
   height: 250px;
@@ -80,34 +99,10 @@ export const PropertiesList = styled.ul`
   }
 `;
 
-export const StyledTimeline = styled(Timeline)`
-  .ant-timeline
-    style__StyledTimeline-sc-4491373b-10
-    dNvpLi
-    css-dev-only-do-not-override-1kuana8 {
-    padding: 14px;
-  }
-  .ant-timeline-item-content {
-    display: flex;
-  }
-  .ant-timeline-item {
-    padding-bottom: 12px;
-    box-sizing: border-box;
-  }
-
-  .ant-timeline-item-last {
-    padding-bottom: 10px;
-  }
-  .ant-timeline-item:last-child .ant-timeline-item-content {
-    padding-bottom: 0;
-    min-height: 0px;
-  }
-`;
-
 export const Item = styled(Flex)`
   flex-direction: row;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   flex-shrink: 0;
   font-size: 16px;
   font-weight: 400;

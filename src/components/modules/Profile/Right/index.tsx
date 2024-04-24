@@ -9,69 +9,71 @@ import time from '@/public/icon/match-propertiesIcon/time.svg';
 
 import * as S from './style';
 import { matchHistoryItems } from './actionList';
+import { Flex, Timeline } from 'antd';
 
 export default function Right() {
   return (
     <>
       <S.Right>
         <S.MatchHistory>
-          {matchHistoryItems.map((item, index) => (
-            <S.Activites key={index}>
-              <S.Content>
-                <S.UserAction>Bảo Thắng đã tham gia</S.UserAction>
-                <S.Title>
-                  <S.TitleText>{item.valueTitleAction}</S.TitleText>
-                </S.Title>
-                <S.MatchProperties>
-                  <S.PropertiesList>
-                    <S.StyledTimeline>
-                      <S.Item>
-                        <S.ImageWrapper>
-                          <Image src={time} alt="" fill sizes="auto" />
-                        </S.ImageWrapper>
-                        <span>{item.valueTime}</span>
-                      </S.Item>
-                      <S.Item>
-                        <S.ImageWrapper>
-                          <Image src={rank} alt="" fill sizes="auto" />
-                        </S.ImageWrapper>
-                        <span>{item.valueRank}</span>
-                      </S.Item>
-                      <S.Item>
-                        <S.ImageWrapper>
-                          <Image src={people} alt="" fill sizes="auto" />
-                        </S.ImageWrapper>
-                        <span>{item.valuePeople}</span>
-                      </S.Item>
-                    </S.StyledTimeline>
+          <Timeline>
+            {matchHistoryItems.map((item, index) => (
+              <Timeline.Item key={index}>
+                <S.Activites>
+                  <S.Content>
+                    <S.UserAction>Bảo Thắng đã tham gia</S.UserAction>
+                    <S.Title>
+                      <S.TitleText>{item.valueTitleAction}</S.TitleText>
+                    </S.Title>
+                    <S.MatchProperties>
+                      <S.PropertiesList>
+                        <S.Item>
+                          <S.ImageWrapper>
+                            <Image src={time} alt="" fill sizes="auto" />
+                          </S.ImageWrapper>
+                          <span>{item.valueTime}</span>
+                        </S.Item>
+                        <S.Item>
+                          <S.ImageWrapper>
+                            <Image src={rank} alt="" fill sizes="auto" />
+                          </S.ImageWrapper>
+                          <span>{item.valueRank}</span>
+                        </S.Item>
+                        <S.Item>
+                          <S.ImageWrapper>
+                            <Image src={people} alt="" fill sizes="auto" />
+                          </S.ImageWrapper>
+                          <span>{item.valuePeople}</span>
+                        </S.Item>
 
-                    <S.StyledTimeline>
-                      <S.Item>
-                        <S.ImageWrapper>
-                          <Image src={location} alt="" fill sizes="auto" />
-                        </S.ImageWrapper>
-                        <span>{item.valueLocation}</span>
-                      </S.Item>
+                        <S.Item>
+                          <S.ImageWrapper>
+                            <Image src={location} alt="" fill sizes="auto" />
+                          </S.ImageWrapper>
+                          <span>{item.valueLocation}</span>
+                        </S.Item>
 
-                      <S.Item>
-                        <S.ImageWrapper>
-                          <Image src={area} alt="" fill sizes="auto" />
-                        </S.ImageWrapper>
-                        <span>{item.valueArea}</span>
-                      </S.Item>
+                        <S.Item>
+                          <S.ImageWrapper>
+                            <Image src={area} alt="" fill sizes="auto" />
+                          </S.ImageWrapper>
+                          <span>{item.valueArea}</span>
+                        </S.Item>
 
-                      <S.Item>
-                        <S.ImageWrapper>
-                          <Image src={stadiumCost} alt="" fill sizes="auto" />
-                        </S.ImageWrapper>
-                        <span>{item.costStadium} VNĐ</span>
-                      </S.Item>
-                    </S.StyledTimeline>
-                  </S.PropertiesList>
-                </S.MatchProperties>
-              </S.Content>
-            </S.Activites>
-          ))}
+                        <S.Item>
+                          <S.ImageWrapper>
+                            <Image src={stadiumCost} alt="" fill sizes="auto" />
+                          </S.ImageWrapper>
+
+                          <span>{item.costStadium} VNĐ</span>
+                        </S.Item>
+                      </S.PropertiesList>
+                    </S.MatchProperties>
+                  </S.Content>
+                </S.Activites>
+              </Timeline.Item>
+            ))}
+          </Timeline>
         </S.MatchHistory>
       </S.Right>
     </>

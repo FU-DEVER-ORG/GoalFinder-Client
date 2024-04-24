@@ -17,6 +17,9 @@ export const Header = styled(Flex)`
   @media (max-width: 578px) {
     height: 440px;
   }
+  @media (max-width: 400px) {
+    height: 340px;
+  }
 `;
 
 export const Wrapper = styled.div`

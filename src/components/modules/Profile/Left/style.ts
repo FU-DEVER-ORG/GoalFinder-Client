@@ -19,6 +19,9 @@ export const Left = styled(Flex)`
   @media (max-width: 767px) {
     margin-top: 0;
   }
+  @media (max-width: 400px) {
+    margin-top: 0;
+  }
 `;
 export const Introduction = styled(Card)`
   width: 100%;
@@ -56,6 +59,11 @@ export const IntroQuotes = styled.p`
     font-size: 14px;
     line-height: 16.36px;
     text-align: left;
+  }
+  @media (max-width: 768px) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 export const Story = styled.div`
