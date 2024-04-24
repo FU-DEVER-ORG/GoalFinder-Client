@@ -19,27 +19,14 @@ function OTP() {
   return (
     <S.AddMailWrapper>
       <Typography variant="h2">Xác thực tài khoản</Typography>
-
-      {navigation != 'step3' ? (
-        <S.ImgLogo>
-          <Image
-            alt=""
-            src={'/images/forgot-password/Verification.svg'}
-            width={150}
-            height={150}
-          />
-        </S.ImgLogo>
-      ) : (
-        <S.ImgLogo>
-          <Image
-            alt=""
-            src={'/images/forgot-password/Step3.svg'}
-            width={150}
-            height={150}
-          />
-        </S.ImgLogo>
-      )}
-
+      <S.ImgLogo>
+        <Image
+          alt=""
+          src={'/images/forgot-password/Verification.svg'}
+          width={150}
+          height={150}
+        />
+      </S.ImgLogo>
       <S.TypographyWrapper>
         {navigation === 'step1' ? (
           <Typography variant="h5">Nhập số điện thoại</Typography>
@@ -56,7 +43,6 @@ function OTP() {
           </>
         )}
       </S.TypographyWrapper>
-
       <FormAdd navigation={navigation} setNavigation={setNavigation} />
     </S.AddMailWrapper>
   );
