@@ -7,22 +7,14 @@ import {
   useEffect,
   useState,
 } from 'react';
-import {
-  Form,
-  Menu,
-  Space,
-  Statistic,
-  Dropdown,
-  message,
-  MenuProps,
-} from 'antd';
+import { Form, Menu, Space, Statistic, Dropdown, message } from 'antd';
 import OTPInput from 'react-otp-input';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Modal from 'antd/es/modal/Modal';
 import { CaretDownOutlined } from '@ant-design/icons';
 
-import { useModal } from '@/hooks';
+import useModal from '@/hooks/useModal';
 
 import Button from '@/components/core/common/Button';
 import Input from '@/components/core/common/form/Input';
