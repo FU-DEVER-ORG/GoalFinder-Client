@@ -1,7 +1,7 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Flex } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 
@@ -22,7 +22,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
       <S.Header>
         <S.Container>
           <S.ImageWrapper>
-            <Image src={logo} alt="" fill sizes="auto" />
+            <Image src={logo} alt="" fill sizes="auto" priority />
           </S.ImageWrapper>
           <S.InputWrap>
             <Input placeholder="Tìm kiếm" prefix={<SearchOutlined />} />
