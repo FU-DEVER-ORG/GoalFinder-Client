@@ -9,7 +9,7 @@ export const authAPI = api.injectEndpoints({
       query: (data: {
         username: string;
         password: string;
-        rememberMe: boolean;
+        isRemember: boolean;
       }) => ({
         //todo
         url: authEndpoint.SIGN_IN,

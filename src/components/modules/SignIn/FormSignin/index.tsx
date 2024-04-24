@@ -1,9 +1,13 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
 import { Checkbox, Form, FormProps } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 import { LockOutlined, PhoneOutlined } from '@ant-design/icons';
+
+import { useSignInMutation } from '@/store/services/auth';
 
 import Input from '@/components/core/common/form/Input';
 import InputPassword from '@/components/core/common/form/InputPassword';
@@ -14,11 +18,7 @@ import * as S from './styles';
 type FieldType = {
   email?: string;
   password?: string;
-  remember?: string;
-};
-
-const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-  console.log('Success:', values);
+  isRemember?: boolean;
 };
 
 const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
@@ -26,6 +26,34 @@ const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
 };
 
 function FormSignin() {
+  const router = useRouter();
+  const [signIn, { isLoading }] = useSignInMutation();
+
+  const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
+    console.log('Success:', values);
+    try {
+      // example account
+      // ledinhdangkhoa10a9@gmail.com
+      // Admin123@
+      const data = {
+        username: values.email!,
+        password: values.password!,
+        isRemember: values.isRemember!,
+      };
+      // const res: any = await postRequest(
+      //  constants.API_SERVER + authEndpoint.SIGN_IN,
+      //  {data}
+      // )
+      const res: any = await signIn(data);
+      console.log(res?.data);
+      // console.log(res?.data?.body?.accessToken);
+      // webStorageClient.setToken(res?.data?.body?.accessToken, {maxAge: 60*4})
+      router.push('/');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <S.HomeWrapper>
       <Form
@@ -60,7 +88,7 @@ function FormSignin() {
           />
         </Form.Item>
         <S.RowRememberForgot>
-          <FormItem<FieldType> name="remember" valuePropName="checked">
+          <FormItem<FieldType> name="isRemember" valuePropName="checked">
             <Checkbox>Nhớ mật khẩu</Checkbox>
           </FormItem>
           <S.LinkTag href="">Quên mật khẩu</S.LinkTag>
