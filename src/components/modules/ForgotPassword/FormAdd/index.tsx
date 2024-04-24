@@ -143,6 +143,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
   );
 
   useEffect(() => {
+    if (finish) setNavigation('step3_changeOTP');
     navigation === 'step1'
       ? setNavigation('step1')
       : digits.length === 4
@@ -242,7 +243,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
 
               {navigation === 'step3' || navigation === 'step3_changeOTP' ? (
                 <S.CountdownContainer>
-                  <Typography>
+                  <Typography className="resendWrapper">
                     Không nhận được mã xác thực?
                     {contextHolder}
                     <a className="resend" onClick={success}>
