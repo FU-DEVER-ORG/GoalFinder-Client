@@ -76,10 +76,21 @@ export const AvatarContainer = styled.div`
   }
 `;
 
-export const Ellipse = styled.ellipse<{ $active?: boolean }>`
-
-  display: flex;
+export const Content = styled.div`
+  align-items: center;
+`
+ export const Ellipse = styled.div<{ $active?: boolean }>`
+  height: 30px;
   font-size: 100px;
 
+  display: flex;
+  align-items: center;
+ 
   color: ${({ $active }) => ($active ? '#fff' : '#0031E0')};
-`;
+
+  span {
+  margin-bottom: 100px;
+  }
+  
+  
+  `;

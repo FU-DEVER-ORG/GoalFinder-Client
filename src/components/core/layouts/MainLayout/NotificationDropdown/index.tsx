@@ -1,8 +1,66 @@
 import { Avatar, Flex, Divider } from 'antd';
 import React from 'react';
+import { useState } from 'react';
 import * as S from './styles';
 
+function Feature () {
+  return (
+    <S.Body>
+        <Flex gap={20}>
+        <S.AvatarContainer>
+          <Avatar size={60} 
+            src={'https://images-ext-1.discordapp.net/external/1cC__FAMCJpeDcSUazZGKkkO2YkJuSNn23fqWZmmN8U/https/res.cloudinary.com/dy1uuo6ql/image/upload/v1713897426/nk4zyhnkf8yghycffnqs.jpg?format=webp&width=662&height=662'} />
+        </S.AvatarContainer>
+          <S.Content style={{ display: 'flex'}}>
+            <div>
+              <h4>Huy Tran đã gửi đơn đăng ký vào Kèo anh em văn phòng đấm nhau</h4>
+              <h5>Hôm nay lúc 06:38</h5>
+            </div>
+            <S.Ellipse>
+              <span>.</span>
+            </S.Ellipse>
+
+          </S.Content>
+        </Flex>
+        </S.Body>
+  )
+}
 function NotificationDropdown() {
+  // const [role, setRole] = useState('dev');
+  // const [notification, setNotification] = useState (
+  //   [
+  //     {
+  //       avatar: 'https://images-ext-1.discordapp.net/external/1cC__FAMCJpeDcSUazZGKkkO2YkJuSNn23fqWZmmN8U/https/res.cloudinary.com/dy1uuo6ql/image/upload/v1713897426/nk4zyhnkf8yghycffnqs.jpg?format=webp&width=662&height=662',
+  //       noti: 'Huy Tran đã gửi đơn đăng ký vào Kèo anh em văn phòng đấm nhau',
+  //       time: 'Hôm nay lúc 06:38',
+  //     },
+
+  //     {
+  //       avatar: 'https://images-ext-1.discordapp.net/external/1cC__FAMCJpeDcSUazZGKkkO2YkJuSNn23fqWZmmN8U/https/res.cloudinary.com/dy1uuo6ql/image/upload/v1713897426/nk4zyhnkf8yghycffnqs.jpg?format=webp&width=662&height=662',
+  //       noti: 'Huy Tran đã gửi đơn đăng ký vào Kèo anh em văn phòng đấm nhau',
+  //       time: 'Hôm nay lúc 06:38',
+  //     },
+
+  //     {
+  //       avatar: 'https://images-ext-1.discordapp.net/external/1cC__FAMCJpeDcSUazZGKkkO2YkJuSNn23fqWZmmN8U/https/res.cloudinary.com/dy1uuo6ql/image/upload/v1713897426/nk4zyhnkf8yghycffnqs.jpg?format=webp&width=662&height=662',
+  //       noti: 'Huy Tran đã gửi đơn đăng ký vào Kèo anh em văn phòng đấm nhau',
+  //       time: 'Hôm nay lúc 06:38',
+  //     },
+
+  //     {
+  //       avatar: 'https://images-ext-1.discordapp.net/external/1cC__FAMCJpeDcSUazZGKkkO2YkJuSNn23fqWZmmN8U/https/res.cloudinary.com/dy1uuo6ql/image/upload/v1713897426/nk4zyhnkf8yghycffnqs.jpg?format=webp&width=662&height=662',
+  //       noti: 'Bạn đã bị trừ 20 uy tín vì sủi kèo Kèo anh em văn phòng đấm nhau',
+  //       time: 'Hôm nay lúc 06:38',
+  //     },
+
+  //     {
+  //       avatar: 'https://images-ext-1.discordapp.net/external/1cC__FAMCJpeDcSUazZGKkkO2YkJuSNn23fqWZmmN8U/https/res.cloudinary.com/dy1uuo6ql/image/upload/v1713897426/nk4zyhnkf8yghycffnqs.jpg?format=webp&width=662&height=662',
+  //       noti: 'Huy Tran đã được cộng 20 uy tín sau khi tham gia Kèo anh em văn phòng đấm nhau',
+  //       time: 'Hôm nay lúc 06:38',
+  //     },
+
+  //   ]
+  // )
   return (
     <S.NotificationWrapper>
       <S.Heading>
@@ -13,76 +71,11 @@ function NotificationDropdown() {
         </Flex>
       </S.Heading>
       <Divider />
-      <S.Body>
-        <Flex gap={20}>
-        <S.AvatarContainer>
-          <Avatar size={60} 
-            src={'https://images-ext-1.discordapp.net/external/1cC__FAMCJpeDcSUazZGKkkO2YkJuSNn23fqWZmmN8U/https/res.cloudinary.com/dy1uuo6ql/image/upload/v1713897426/nk4zyhnkf8yghycffnqs.jpg?format=webp&width=662&height=662'} />
-        </S.AvatarContainer>
-            <div>
-              <h4>Huy Tran đã gửi đơn đăng ký vào Kèo anh em văn phòng đấm nhau</h4>
-              <h5>Hôm nay lúc 06:38</h5>
-            </div>
-            <S.Ellipse>
-             .
-            </S.Ellipse>
-        </Flex>
-
-        <Flex gap={20}>
-        <S.AvatarContainer>
-          <Avatar size={60} 
-            src={'https://images-ext-1.discordapp.net/external/1cC__FAMCJpeDcSUazZGKkkO2YkJuSNn23fqWZmmN8U/https/res.cloudinary.com/dy1uuo6ql/image/upload/v1713897426/nk4zyhnkf8yghycffnqs.jpg?format=webp&width=662&height=662'} />
-        </S.AvatarContainer>
-          <div>
-            <h4>Huy Tran đã gửi đơn đăng ký vào Kèo anh em văn phòng đấm nhau</h4>
-            <h5>Hôm nay lúc 06:38</h5>
-          </div>
-        </Flex>
-
-        <Flex gap={20}>
-        <S.AvatarContainer>
-          <Avatar size={60} 
-            src={'https://images-ext-1.discordapp.net/external/1cC__FAMCJpeDcSUazZGKkkO2YkJuSNn23fqWZmmN8U/https/res.cloudinary.com/dy1uuo6ql/image/upload/v1713897426/nk4zyhnkf8yghycffnqs.jpg?format=webp&width=662&height=662'} />
-        </S.AvatarContainer>
-          <div>
-            <h4>Huy Tran đã gửi đơn đăng ký vào Kèo anh em văn phòng đấm nhau</h4>
-            <h5>Hôm nay lúc 06:38</h5>
-          </div>
-        </Flex>
-
-        <Flex gap={20}>
-        <S.AvatarContainer>
-          <Avatar size={60} 
-            src={'https://images-ext-1.discordapp.net/external/1cC__FAMCJpeDcSUazZGKkkO2YkJuSNn23fqWZmmN8U/https/res.cloudinary.com/dy1uuo6ql/image/upload/v1713897426/nk4zyhnkf8yghycffnqs.jpg?format=webp&width=662&height=662'} />
-        </S.AvatarContainer>
-          <div>
-            <h4>Huy Tran đã gửi đơn đăng ký vào Kèo anh em văn phòng đấm nhau</h4>
-            <h5>Hôm nay lúc 06:38</h5>
-          </div>
-        </Flex>
-
-        <Flex gap={20}>
-        <S.AvatarContainer>
-          <Avatar size={60} 
-            src={'https://images-ext-1.discordapp.net/external/1cC__FAMCJpeDcSUazZGKkkO2YkJuSNn23fqWZmmN8U/https/res.cloudinary.com/dy1uuo6ql/image/upload/v1713897426/nk4zyhnkf8yghycffnqs.jpg?format=webp&width=662&height=662'} />
-        </S.AvatarContainer>
-          <div>
-            <h4>Huy Tran đã gửi đơn đăng ký vào Kèo anh em văn phòng đấm nhau</h4>
-            <h5>Hôm nay lúc 06:38</h5>
-          </div>
-        </Flex>
-
-        <Flex gap={20}>
-        <S.AvatarContainer>
-          <Avatar size={60} 
-            src={'https://images-ext-1.discordapp.net/external/1cC__FAMCJpeDcSUazZGKkkO2YkJuSNn23fqWZmmN8U/https/res.cloudinary.com/dy1uuo6ql/image/upload/v1713897426/nk4zyhnkf8yghycffnqs.jpg?format=webp&width=662&height=662'} />
-        </S.AvatarContainer>
-          <div>
-            <h4>Huy Tran đã gửi đơn đăng ký vào Kèo anh em văn phòng đấm nhau</h4>
-            <h5>Hôm nay lúc 06:38</h5>
-          </div>
-        </Flex>
-      </S.Body>
+      <Feature></Feature>
+      <Feature></Feature>
+      <Feature></Feature>
+      <Feature></Feature>
+      <Feature></Feature>
     </S.NotificationWrapper>
   );
 }
