@@ -12,11 +12,13 @@ export const ButtonCommon = styled(Button)<ButtonPropsInterface>`
   padding: 12px 20px !important;
 
   gap: 8px;
-  color: ${(props) => props?.color || props?.theme?.colors?.primary};
+  color: ${(props) =>
+    props?.$color || props?.theme?.colors?.primary} !important;
   background: ${(props) => props.$backgroundColor || 'transparent'} !important;
   border-radius: ${(props) => props?.$borderRadius || '8px'} !important;
-  font-size: ${(props) =>
-    props.$fontSize || props.theme.fontSize} !important;
+  border-color: ${(props) =>
+    props.$borderColor || props?.theme?.colors?.primary} !important;
+  font-size: ${(props) => props.$fontSize || props.theme.fontSize} !important;
   font-weight: ${(props) =>
     props.$fontWeight || props.theme.fontWeight.semiBold} !important;
   line-height: auto;
@@ -24,13 +26,10 @@ export const ButtonCommon = styled(Button)<ButtonPropsInterface>`
   height: auto !important;
   max-height: 48px;
   width: ${(props) => props?.$width || 'fit-content'};
-
-  ${(props) =>
-    props?.$isCancel &&
-    css`
-     
-    `}
-
+  ${(props) => props?.$isCancel && css``}
+  span {
+    pointer-events: none !important;
+  }
   &:not(:disabled):hover {
     border-color: ${({ theme }) => theme?.colors?.primaryDark};
     box-shadow: 0 0 5px 0 ${({ theme }) => theme?.colors?.primaryLighter};
@@ -63,7 +62,7 @@ export const ButtonCommon = styled(Button)<ButtonPropsInterface>`
   &.ant-btn-primary {
     border: none;
     box-shadow: none;
-    color: #fff;
+    color: #fff !important;
     background: ${(props) =>
       props.$backgroundColor || props.theme?.colors?.primary} !important;
   }
@@ -133,15 +132,11 @@ export const ButtonCommon = styled(Button)<ButtonPropsInterface>`
     color: ${(props) => props?.theme?.colors?.primaryDark} !important;
     border-color: ${(props) => props?.theme?.colors?.primaryDark} !important;
 
-    ${(props) =>
-      props?.$isCancel &&
-      css`
-      `}
+    ${(props) => props?.$isCancel && css``}
   }
 
   &.ant-btn-default:disabled {
     color: ${({ theme }) => theme?.colors?.secondary} !important;
-    
 
     border-radius: ${(props) => props?.$borderRadius || '0px'} !important;
     border-color: ${({ theme }) => theme?.colors?.secondary} !important;

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { authAPI } from "../services/auth";
-import webStorageClient from "@/utils/webStorageClient";
 import { constants } from "@/settings";
+import { authAPI } from "@/store/services/auth";
+import webStorageClient from "@/utils/webStorageClient";
 
 const isAuthFromClientStorage = webStorageClient.get(constants.IS_AUTH);
 export interface IAuth {
@@ -25,10 +25,14 @@ const slice = createSlice({
       })
       .addMatcher(authAPI.endpoints.signIn.matchFulfilled, (state, action) => {
         // webStorageClient.set(constants.IS_AUTH, (state.isAuth = true));
-        webStorageClient.setToken(action?.payload?.body?.accessToken);
+        // console.log(action);
+        webStorageClient.setToken(action?.payload?.body?.accessToken, 
+          {expires: new Date(Date.now() + 15*60*1000)}
+        );
         webStorageClient.set(
           constants.REFRESH_TOKEN,
-          action?.payload?.body?.refreshToken
+          action?.payload?.body?.refreshToken,
+          {expires: new Date(Date.now() + 20*60*1000)}
         );
       })
       .addMatcher(authAPI.endpoints.signIn.matchRejected, (state) => {

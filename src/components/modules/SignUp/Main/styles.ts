@@ -7,28 +7,26 @@ export const HomeWrapper = styled(Flex)`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  gap:10px;
+  gap: 10px;
 `;
 
-
 export const ButtonLogo = styled.button`
-    position: relative;
+  position: relative;
 
-    padding: 10px;
+  padding: 10px;
 
-    width: 70px;
-    height: 70px;
+  width: 70px;
+  height: 70px;
 
-    background-color: white;
-    border-radius: 10px;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
+  background-color: white;
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const ImgLogo = styled(Image)`
   width: 100;
   height: 100;
 `;
-
