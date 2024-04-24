@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-
+import { setCookie } from 'cookies-next';
+import { useRouter } from 'next/navigation';
 import { Checkbox, Form, FormProps } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 import { LockOutlined, PhoneOutlined } from '@ant-design/icons';
@@ -30,6 +31,7 @@ const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
 };
 
 function FormSignin() {
+  const router = useRouter();
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     console.log('Success:', values);
@@ -47,10 +49,10 @@ function FormSignin() {
        {data}
       )
       console.log(res?.body);
-      
+      setCookie('next_token', res?.body?.accessToken);
+      router.push('/demo');
     } catch (error) {
       console.log(error);
-      
     }
   };
 
@@ -103,7 +105,7 @@ function FormSignin() {
         </FormItem>
         <FormItem>
           <Link href={'/sign-up'}>
-            <Button $width={'100%'} type="default" >
+            <Button $width={'100%'} type="default">
               Đăng ký
             </Button>
           </Link>
