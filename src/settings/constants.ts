@@ -1,6 +1,5 @@
-const API_SERVER = process.env.NEXT_PUBLIC_API_SERVER;  
+const API_SERVER = 'https://goalfinder.fudeverwebapi.io.vn';  
 import { TIME_FORMAT } from './formatDateTime';
-
 
 //cookie keys storage
 const ACCESS_TOKEN = '_access_token';

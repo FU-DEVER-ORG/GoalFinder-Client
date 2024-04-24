@@ -1,12 +1,17 @@
 'use client';
 
+import Link from 'next/link';
+
 import { Checkbox, Form, FormProps } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 import { LockOutlined, PhoneOutlined } from '@ant-design/icons';
+import { authEndpoint } from '@/services/endpoint';
+import { constants } from '@/settings';
+import { postRequest } from '@/services/request';
 
 import Input from '@/components/core/common/form/Input';
 import InputPassword from '@/components/core/common/form/InputPassword';
-import { ButtonCommon } from '@/components/core/common/Button/button.styles';
+import Button from '@/components/core/common/Button';
 
 import * as S from './styles';
 
@@ -16,15 +21,39 @@ type FieldType = {
   remember?: string;
 };
 
-const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-  console.log('Success:', values);
-};
+// const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
+//   console.log('Success:', values);
+// };
 
 const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
   console.log('Failed:', errorInfo);
 };
 
 function FormSignin() {
+
+  const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
+    console.log('Success:', values);
+    try {
+      // example account
+      // ledinhdangkhoa10a9@gmail.com
+      // Admin123@
+      const data = {
+        username: values.email,
+        password: values.password,
+        isRemember: values.remember
+      }
+      const res: any = await postRequest(
+       constants.API_SERVER + authEndpoint.SIGN_IN,
+       {data}
+      )
+      console.log(res?.body);
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+  };
+
   return (
     <S.HomeWrapper>
       <Form
@@ -68,14 +97,16 @@ function FormSignin() {
           <S.LinkTag href=''>Quên mật khẩu</S.LinkTag>
         </S.RowRememberForgot>
         <FormItem>
-          <ButtonCommon $width={'100%'} type="primary" htmlType="submit">
+          <Button $width={'100%'} type="primary" htmlType="submit">
             Đăng nhập
-          </ButtonCommon>
+          </Button>
         </FormItem>
         <FormItem>
-          <ButtonCommon $width={'100%'} type="default" href='/sign-up'>
-            Đăng ký
-          </ButtonCommon>
+          <Link href={'/sign-up'}>
+            <Button $width={'100%'} type="default" >
+              Đăng ký
+            </Button>
+          </Link>
         </FormItem>
       </Form>
     </S.HomeWrapper>

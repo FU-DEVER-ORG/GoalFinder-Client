@@ -1,11 +1,12 @@
 'use client';
 
+import Link from 'next/link';
 import Image from 'next/image';
 import { Flex } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 
 import Input from '@/components/core/common/form/Input';
-import { ButtonCommon } from '@/components/core/common/Button/button.styles';
+import Button from '@/components/core/common/Button';
 
 import logo from '@/public/icon/layout/logo.svg';
 
@@ -27,8 +28,12 @@ function AuthLayout({ children }: AuthLayoutProps) {
             <Input placeholder="Tìm kiếm" prefix={<SearchOutlined />} />
           </S.InputWrap>
           <Flex gap={20}>
-            <ButtonCommon type='default' href='/sign-up'>Đăng ký</ButtonCommon>
-            <ButtonCommon type="primary" href='/sign-in'>Đăng nhập</ButtonCommon>
+            <Link href={'/sign-up'}>
+              <Button type='default'>Đăng ký</Button>
+            </Link>
+            <Link href={'/sign-in'}>
+              <Button type='primary'>Đăng nhập</Button>
+            </Link>
           </Flex>
         </S.Container>
       </S.Header>
