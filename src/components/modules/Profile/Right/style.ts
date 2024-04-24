@@ -12,12 +12,6 @@ export const MatchHistory = styled(Flex)`
   gap: 20px;
 `;
 export const TimeLineActivites = styled(Timeline)`
-  .ant-timeline
-    style__StyledTimeline-sc-4491373b-10
-    dNvpLi
-    css-dev-only-do-not-override-1kuana8 {
-    padding: 14px;
-  }
   .ant-timeline-item-content {
     display: flex;
   }

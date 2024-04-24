@@ -18,7 +18,7 @@ export default function Right() {
         <S.MatchHistory>
           <Timeline>
             {matchHistoryItems.map((item, index) => (
-              <Timeline.Item key={index}>
+              <Timeline.Item key={index} color="#4DAA57">
                 <S.Activites>
                   <S.Content>
                     <S.UserAction>Bảo Thắng đã tham gia</S.UserAction>
