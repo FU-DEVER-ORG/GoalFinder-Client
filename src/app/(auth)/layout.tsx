@@ -2,10 +2,10 @@ import { getCookie } from 'cookies-next';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
+import { constants } from '@/settings';
 import { checkToken } from '@/utils/checkToken';
 
 import AuthLayout from '@/components/core/layouts/AuthLayout';
-import { constants } from '@/settings';
 
 export default async function LayoutAuth({
   children,

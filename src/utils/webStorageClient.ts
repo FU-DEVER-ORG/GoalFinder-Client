@@ -1,8 +1,10 @@
 
 import _ from 'lodash';
-import { constants } from '@/settings';
 import { getCookie, setCookie } from 'cookies-next';
 import Cookies from 'js-cookie';
+
+import { constants } from '@/settings';
+
 
 const webStorageClient = {
   set(key: string, rawValue: any, option?: any) {

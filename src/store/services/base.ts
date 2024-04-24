@@ -5,8 +5,6 @@ import {
   fetchBaseQuery,
   BaseQueryFn,
 } from "@reduxjs/toolkit/query/react";
-import { error } from "console";
-
 
 // Define an interface for the custom request args
 interface CustomRequestArgs {

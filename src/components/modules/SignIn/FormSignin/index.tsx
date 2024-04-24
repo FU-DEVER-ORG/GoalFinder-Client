@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Checkbox, Form, FormProps } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 import { LockOutlined, PhoneOutlined } from '@ant-design/icons';
+
 import { useSignInMutation } from '@/store/services/auth';
 
 import Input from '@/components/core/common/form/Input';
@@ -13,7 +14,6 @@ import InputPassword from '@/components/core/common/form/InputPassword';
 import Button from '@/components/core/common/Button';
 
 import * as S from './styles';
-
 
 type FieldType = {
   email?: string;
@@ -49,8 +49,6 @@ function FormSignin() {
       // console.log(res?.data?.body?.accessToken);
       // webStorageClient.setToken(res?.data?.body?.accessToken, {maxAge: 60*4})
       router.push('/');
-
-
     } catch (error) {
       console.log(error);
       
