@@ -60,8 +60,17 @@ function FormSignUp() {
         </Form.Item>
 
         <Form.Item<FieldType>
+          dependencies={['password']}
           name="confirmPassword"
-          rules={[{ required: true, message: 'Hãy nhập lại đúng mật khẩu!' }]}
+          rules={[{ required: true, message: 'Hãy nhập lại đúng mật khẩu!' }, 
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+              }
+              return Promise.reject(new Error('Hãy nhập lại đúng mật khẩu!'));
+            },
+          }),]}
         >
           <InputPassword
             placeholder="*****"
