@@ -11,6 +11,7 @@ import { Flex } from 'antd';
 
 import Input from '../../common/form/Input';
 import NotificationDropdown from './NotificationDropdown';
+import FeedbackDropdown from './FeedbackDropdown';
 
 import logo from '@/public/icon/layout/logo.svg';
 
@@ -57,6 +58,7 @@ function MainLayout({ children }: MainLayoutProps) {
             </S.Avatar>
           </Flex>
           <NotificationDropdown />
+          <FeedbackDropdown />
         </S.Container>
       </S.Header>
       <S.Body>{children}</S.Body>

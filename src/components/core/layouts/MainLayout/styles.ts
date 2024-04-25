@@ -110,5 +110,4 @@ export const Down = styled(Flex)`
 
 export const Body = styled.div`
   padding-top: 80px;
-  // Add your styles here
 `;
