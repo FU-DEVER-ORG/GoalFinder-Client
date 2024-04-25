@@ -129,28 +129,28 @@ const FormRating: React.FC = () => {
 
   return (
     <>
-      <S.RatingTitle style={{ margin: '18px 0px' }}>
+      <S.RatingTitle>
         Chọn để tố cáo sủi kèo
       </S.RatingTitle>
       <S.PlayerWrapper>
         {players.map((player) => (
           <S.CustomButton
-            key={player.id}
-            onClick={() => toggleSelection(player.id)}
-            selected={selectedPlayers.includes(player.id)}
+            key={player?.id}
+            onClick={() => toggleSelection(player?.id)}
+            selected={selectedPlayers.includes(player?.id)}
           >
             <S.PlayerFlex>
-              <S.PlayerItemOrder>{player.id}</S.PlayerItemOrder>
+              <S.PlayerItemOrder>{player?.id}</S.PlayerItemOrder>
               <S.PlayerAvatarName>
-                <S.CustomAvatar src={player.avatar} />
-                {player.name}
+                <S.CustomAvatar src={player?.avatar} />
+                {player?.name}
               </S.PlayerAvatarName>
-              <S.PlayerItemAge>{player.age}</S.PlayerItemAge>
-              <S.PlayerItemPosition>{player.position}</S.PlayerItemPosition>
+              <S.PlayerItemAge>{player?.age}</S.PlayerItemAge>
+              <S.PlayerItemPosition>{player?.position}</S.PlayerItemPosition>
               <S.PlayerItemCompetitive>
-                {player.competitiveness}
+                {player?.competitiveness}
               </S.PlayerItemCompetitive>
-              <S.PlayerItemPhoneNum>{player.phoneNumber}</S.PlayerItemPhoneNum>
+              <S.PlayerItemPhoneNum>{player?.phoneNumber}</S.PlayerItemPhoneNum>
             </S.PlayerFlex>
           </S.CustomButton>
         ))}

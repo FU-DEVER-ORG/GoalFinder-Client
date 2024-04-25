@@ -190,7 +190,7 @@ export const PlayerAvatarName = styled.li`
 `;
 export const ConfirmButton = styled(Button)`
   width: 100%;
-
+ 
   margin-top: 18px;
 `;
 export const RatingTitle = styled.p`

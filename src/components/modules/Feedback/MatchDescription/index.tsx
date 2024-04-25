@@ -40,61 +40,61 @@ function MatchDescription() {
       <S.UserInfor>
         <Avatar src="/images/layout/avatar.jpeg" size={40} />
         <S.CustomFlex vertical>
-          <S.Name>{data.name}</S.Name>
+          <S.Name>{data?.name}</S.Name>
           <S.FlexPrestige>
             <S.CustomCrownFilled />
-            <S.PrestigeScore>{data.prestigeScore} Uy tín</S.PrestigeScore>
+            <S.PrestigeScore>{data?.prestigeScore} Uy tín</S.PrestigeScore>
           </S.FlexPrestige>
         </S.CustomFlex>
         <S.CustomEllipsisOutlined />
       </S.UserInfor>
       <S.FlexMatchInfor>
-        <S.TitleMatchInfor>{data.label}</S.TitleMatchInfor>
+        <S.TitleMatchInfor>{data?.label}</S.TitleMatchInfor>
         <S.ListMatchInfor>
           <S.ItemMatchInfor>
             <S.FlexBoxTextItem>
               <S.BoldText>Thời gian:</S.BoldText>
               <S.NoneBoldText>
-                {moment(data.date).format('LT')} |{' '}
-                {moment(data.date).format('L')}
+                {moment(data?.date).format('LT')} |{' '}
+                {moment(data?.date).format('L')}
               </S.NoneBoldText>
             </S.FlexBoxTextItem>
           </S.ItemMatchInfor>
           <S.ItemMatchInfor>
             <S.FlexBoxTextItem>
               <S.BoldText>Địa điểm:</S.BoldText>
-              <S.NoneBoldText>{data.location}</S.NoneBoldText>
+              <S.NoneBoldText>{data?.location}</S.NoneBoldText>
             </S.FlexBoxTextItem>
           </S.ItemMatchInfor>
           <S.ItemMatchInfor>
             <S.FlexBoxTextItem>
               <S.BoldText>Cạnh tranh:</S.BoldText>
-              <S.NoneBoldText>{data.competition}</S.NoneBoldText>
+              <S.NoneBoldText>{data?.competition}</S.NoneBoldText>
             </S.FlexBoxTextItem>
           </S.ItemMatchInfor>
           <S.ItemMatchInfor>
             <S.FlexBoxTextItem>
               <S.BoldText>Khu vực:</S.BoldText>
-              <S.NoneBoldText>{data.area}g</S.NoneBoldText>
+              <S.NoneBoldText>{data?.area}</S.NoneBoldText>
             </S.FlexBoxTextItem>
           </S.ItemMatchInfor>
           <S.ItemMatchInfor>
             <S.FlexBoxTextItem>
               <S.BoldText>Số lượng:</S.BoldText>
-              <S.NoneBoldText>{data.quantity}</S.NoneBoldText>
+              <S.NoneBoldText>{data?.quantity}</S.NoneBoldText>
             </S.FlexBoxTextItem>
           </S.ItemMatchInfor>
           <S.ItemMatchInfor>
             <S.FlexBoxTextItem>
               <S.BoldText>Tiền sân:</S.BoldText>
-              <S.NoneBoldText>{data.money}</S.NoneBoldText>
+              <S.NoneBoldText>{data?.money}</S.NoneBoldText>
             </S.FlexBoxTextItem>
           </S.ItemMatchInfor>
         </S.ListMatchInfor>
       </S.FlexMatchInfor>
       <S.ContainerDescription>
         <S.TitleDescription>Mô tả thêm:</S.TitleDescription>
-        <S.Description>{data.description}</S.Description>
+        <S.Description>{data?.description}</S.Description>
       </S.ContainerDescription>
     </S.FeedContainer>
   );
