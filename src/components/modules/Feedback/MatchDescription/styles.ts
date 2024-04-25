@@ -6,16 +6,18 @@ import BoxFlex from '@/components/core/common/BoxFlex';
 import Button from '@/components/core/common/Button';
 
 export const FeedContainer = styled(BoxFlex)`
-  width: 100%;
-  border-radius: 10px;
-  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  width: 100%;
+  border-radius: 10px;
+  padding: 0;
 `;
 
 export const UserInfor = styled(Flex)`
   width: 100%;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -26,6 +28,7 @@ export const UserInfor = styled(Flex)`
 export const CustomFlex = styled(Flex)`
   width: 588px;
   height: 35px;
+
   display: flex;
   flex-direction: column;
   align-items: end;
@@ -77,7 +80,9 @@ export const TitleMatchInfor = styled.p`
 
 export const ListMatchInfor = styled.ul`
   padding: 0;
+
   column-count: 2;
+
   @media (max-width: 480px) {
     column-count: 1;
   }
@@ -86,12 +91,14 @@ export const ListMatchInfor = styled.ul`
 export const ItemMatchInfor = styled.li`
   margin-bottom: 12px;
   margin-left: 20px;
+
   line-height: 1.2;
 `;
 
 export const FlexBoxTextItem = styled.div`
   width: 100%;
   max-width: 336px;
+
   display: inline-flex;
   flex-direction: row;
   gap: 8px;
@@ -111,6 +118,7 @@ export const NoneBoldText = styled.p`
   line-height: 19.36px;
   letter-spacing: 0.08em;
   white-space: nowrap;
+
   overflow: hidden;
   text-overflow: ellipsis;
 `;
@@ -138,7 +146,6 @@ export const Description = styled.p`
   letter-spacing: 0.08em;
   text-align: left;
 
-  // white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;

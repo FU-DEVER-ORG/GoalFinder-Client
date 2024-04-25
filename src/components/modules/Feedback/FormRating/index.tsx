@@ -115,7 +115,6 @@ const FormRating: React.FC = () => {
       competitiveness: 'Vui vẻ',
       phoneNumber: '987654321',
     },
-    // Add more players as needed
   ];
 
   const toggleSelection = (playerId: number) => {
@@ -126,10 +125,7 @@ const FormRating: React.FC = () => {
     }
   };
 
-  const handleSubmit = () => {
-    // Handle submission of selected players
-    console.log('Selected players:', selectedPlayers);
-  };
+  const handleSubmit = () => {};
 
   return (
     <>
@@ -144,23 +140,17 @@ const FormRating: React.FC = () => {
             selected={selectedPlayers.includes(player.id)}
           >
             <S.PlayerFlex>
-              <S.PlayerItemOrder >{player.id}</S.PlayerItemOrder>
+              <S.PlayerItemOrder>{player.id}</S.PlayerItemOrder>
               <S.PlayerAvatarName>
                 <S.CustomAvatar src={player.avatar} />
                 {player.name}
               </S.PlayerAvatarName>
-              <S.PlayerItemAge >
-                {player.age}
-                </S.PlayerItemAge>
-              <S.PlayerItemPosition>
-                {player.position}
-              </S.PlayerItemPosition>
+              <S.PlayerItemAge>{player.age}</S.PlayerItemAge>
+              <S.PlayerItemPosition>{player.position}</S.PlayerItemPosition>
               <S.PlayerItemCompetitive>
                 {player.competitiveness}
               </S.PlayerItemCompetitive>
-              <S.PlayerItemPhoneNum>
-                {player.phoneNumber}
-              </S.PlayerItemPhoneNum>
+              <S.PlayerItemPhoneNum>{player.phoneNumber}</S.PlayerItemPhoneNum>
             </S.PlayerFlex>
           </S.CustomButton>
         ))}
