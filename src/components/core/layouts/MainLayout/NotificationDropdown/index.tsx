@@ -1,6 +1,7 @@
-import { Avatar, Flex, Divider } from 'antd';
 import React from 'react';
-import { useState } from 'react';
+
+import { Avatar, Flex, Divider } from 'antd';
+
 import * as S from './styles';
 
 function Feature () {

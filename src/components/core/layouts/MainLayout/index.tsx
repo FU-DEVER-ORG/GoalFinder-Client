@@ -12,9 +12,10 @@ import {
 import logo from '@/public/icon/layout/logo.svg';
 import { Flex } from 'antd';
 import Input from '../../common/form/Input';
+import NotificationDropdown from './NotificationDropdown';
 
 import * as S from './styles';
-import NotificationDropdown from './NotificationDropdown';
+
 
 interface MainLayoutProps {
   children: React.ReactNode;
