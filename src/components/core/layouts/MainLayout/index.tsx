@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import Image from 'next/image';
 import {
   MehFilled,
@@ -8,14 +7,14 @@ import {
   CaretDownFilled,
   SearchOutlined,
 } from '@ant-design/icons';
-
-import logo from '@/public/icon/layout/logo.svg';
 import { Flex } from 'antd';
+
 import Input from '../../common/form/Input';
 import NotificationDropdown from './NotificationDropdown';
 
-import * as S from './styles';
+import logo from '@/public/icon/layout/logo.svg';
 
+import * as S from './styles';
 
 interface MainLayoutProps {
   children: React.ReactNode;
