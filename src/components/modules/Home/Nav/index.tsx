@@ -25,10 +25,12 @@ const items: MenuProps['items'] = menuItems.map((item, index) => ({
   href: `${item.href}`,
 }));
 
+
+
 function Nav() {
   return (
     <BoxFlex vertical gap={16}>
-      <MenuCss mode="inline" items={items} />
+      <MenuCss mode="inline" items={items} defaultSelectedKeys={['0']}/>
     </BoxFlex>
   );
 }
