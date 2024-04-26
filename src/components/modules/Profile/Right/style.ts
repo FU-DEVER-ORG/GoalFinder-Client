@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import { Card, Flex, Timeline } from 'antd';
 
 export const Right = styled(Flex)``;

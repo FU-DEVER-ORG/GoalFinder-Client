@@ -1,15 +1,14 @@
+import { Timeline } from 'antd';
 import Image from 'next/image';
-
-import location from '@/public/icon/match-propertiesIcon/location.svg';
-import rank from '@/public/icon/match-propertiesIcon/rank.svg';
-import stadiumCost from '@/public/icon/match-propertiesIcon/stadiumCost.svg';
-import people from '@/public/icon/match-propertiesIcon/people.svg';
-import area from '@/public/icon/match-propertiesIcon/area.svg';
-import time from '@/public/icon/match-propertiesIcon/time.svg';
-
 import * as S from './style';
 import { matchHistoryItems } from './actionList';
-import { Flex, Timeline } from 'antd';
+
+import area from '@/public/icon/match-propertiesIcon/area.svg';
+import location from '@/public/icon/match-propertiesIcon/location.svg';
+import people from '@/public/icon/match-propertiesIcon/people.svg';
+import rank from '@/public/icon/match-propertiesIcon/rank.svg';
+import stadiumCost from '@/public/icon/match-propertiesIcon/stadiumCost.svg';
+import time from '@/public/icon/match-propertiesIcon/time.svg';
 
 export default function Right() {
   return (

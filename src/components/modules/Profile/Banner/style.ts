@@ -1,16 +1,10 @@
-import styled from 'styled-components';
 import { Flex } from 'antd';
+import styled from 'styled-components';
 
 export const Header = styled(Flex)`
   margin-top: 10px;
   width: 100%;
   height: 560px;
-  position: relative;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   @media (max-width: 768px) {
     height: 460px;
   }
@@ -21,7 +15,13 @@ export const Header = styled(Flex)`
     height: 340px;
   }
 `;
-
+export const HeaderMain = styled(Flex)`
+  position: relative;
+  width: 100%;
+  background-color: white;
+  flex-direction: column;
+  align-items: center;
+`;
 export const Wrapper = styled.div`
   max-width: 1440px;
   position: absolute;

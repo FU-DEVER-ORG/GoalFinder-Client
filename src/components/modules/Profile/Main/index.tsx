@@ -5,7 +5,6 @@ import Left from '../Left';
 import Right from '../Right';
 
 import * as S from './style';
-
 export default function Profile() {
   return (
     <>
