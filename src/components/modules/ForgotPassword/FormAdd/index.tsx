@@ -7,7 +7,15 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { Form, Menu, Space, Statistic, Dropdown, message } from 'antd';
+import {
+  Form,
+  Menu,
+  Space,
+  Statistic,
+  Dropdown,
+  message,
+  FormProps,
+} from 'antd';
 import OTPInput from 'react-otp-input';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -15,6 +23,7 @@ import Modal from 'antd/es/modal/Modal';
 import { CaretDownOutlined } from '@ant-design/icons';
 
 import useModal from '@/hooks/useModal';
+import { useForgotPasswordMutation } from '@/store/services/auth';
 
 import Button from '@/components/core/common/Button';
 import Input from '@/components/core/common/form/Input';
@@ -34,6 +43,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
   const FormItem = Form.Item;
   const modalState = useModal();
   const [messageApi, contextHolder] = message.useMessage();
+  const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
 
   const phoneAreaData = [
     {
@@ -59,11 +69,17 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
     },
   ];
 
+  type FieldType = {
+    userName?: string;
+  };
+  const [dataForgot, setDataForgot] = useState<{
+    userName: string;
+  }>({ userName: '' });
+
   const [digits, setDigits] = useState<string[]>([]);
-
+  const [otpCode, setOtpCode] = useState<string>('');
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
-
-  const [targetTime, setTargetTime] = useState<number>(Date.now() + 30 * 1000);
+  const [targetTime, setTargetTime] = useState<number>(Date.now() + 60 * 1000);
 
   const [finish, setFinish] = useState<boolean>(false);
 
@@ -93,20 +109,69 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
     }
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit: FormProps<FieldType>['onFinish'] = async (values) => {
+    console.log(values.userName);
     try {
-      setNavigation('step2');
-      setTargetTime(Date.now() + 30 * 1000);
-    } catch (errorInfo) {}
+      const data = {
+        userName: values.userName!,
+      };
+      setDataForgot(data);
+      const res: any = await forgotPassword(data);
+      res?.data?.appCode === 'Auth.ForgotPassword.OPERATION_SUCCESS'
+        ? (setNavigation('step2'),
+          setTargetTime(Date.now() + 60 * 1000),
+          console.log('Mã xác thực OTP là: ', res?.data?.body?.otpCode),
+          setOtpCode(res?.data?.body?.otpCode))
+        : form.setFields([
+            {
+              value: '',
+              name: 'userName',
+              errors: ['Tài khoản không tồn tại'],
+            },
+          ]);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleSubmitVerification = async () => {
+  const handleSubmitVerification = () => {
     try {
       if (digits.length != 4) {
-        modalState.openModal();
+        form.setFields([
+          {
+            name: 'otp',
+            errors: ['OTP gồm 4 chữ cái, vui lòng kiểm tra lại'],
+          },
+        ]);
+        setTimeout(() => {
+          form.setFields([
+            {
+              name: 'otp',
+              errors: [],
+            },
+          ]);
+        }, 3000);
       }
-      if (navigation == 'step3' && digits.length === 4) {
-        route.push('/reset-password');
+      if (navigation === 'step3' && digits.length === 4) {
+        const otpCheck = digits.join('');
+        otpCheck === otpCode
+          ? (sessionStorage.setItem('otpCode', otpCode),
+            route.push('/reset-password'))
+          : (form.setFields([
+              {
+                value: '',
+                name: 'otp',
+                errors: ['Mã xác thực không đúng, vui lòng kiểm tra lại'],
+              },
+            ]),
+            setTimeout(() => {
+              form.setFields([
+                {
+                  name: 'otp',
+                  errors: [],
+                },
+              ]);
+            }, 3000));
       }
     } catch (error) {}
   };
@@ -120,30 +185,29 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
     setFinish(true);
   };
 
-  const success = () => {
-    messageApi
-      .open({
-        type: 'loading',
-        content: 'Mã xác thực đang được gửi tới bạn',
-        duration: 1,
-      })
-      .then(() => message.success('Mã xác thực đã được gửi', 2.5))
-      .then(() => setFinish(false))
-      .then(() => setTargetTime(Date.now() + 30 * 1000));
+  const resend = () => {
+    finish === true
+      ? messageApi
+          .open({
+            type: 'loading',
+            content: 'Mã xác thực đang được gửi tới bạn',
+            duration: 1,
+          })
+          .then(() => message.success('Mã xác thực đã được gửi', 1))
+          .then(async () => {
+            const res: any = await forgotPassword(dataForgot);
+            res?.data?.appCode === 'Auth.ForgotPassword.OPERATION_SUCCESS'
+              ? (console.log('Mã xác thực OTP là: ', res?.data?.body?.otpCode),
+                setOtpCode(res?.data?.body?.otpCode))
+              : console.log('Lỗi xác thực');
+          })
+          .then(() => setFinish(false))
+          .then(() => setTargetTime(Date.now() + 60 * 1000))
+      : modalState.openModal();
   };
 
   const renderInput = (inputProps: InputHTMLAttributes<HTMLInputElement>) => (
-    <input
-      {...inputProps}
-      onKeyPress={(e) => {
-        const isValidKey = /^\d$/.test(e.key);
-        if (!isValidKey) {
-          e.preventDefault();
-        }
-      }}
-      inputMode="numeric"
-      autoComplete="off"
-    />
+    <input {...inputProps} inputMode="text" autoComplete="off" />
   );
 
   useEffect(() => {
@@ -185,7 +249,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
         <S.Input>
           <Form form={form} onFinish={handleSubmit}>
             <FormItem
-              name="phone"
+              name="userName"
               rules={[
                 { required: true, message: 'Vui lòng nhập số điện thoại' },
               ]}
@@ -229,28 +293,29 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
         <>
           <S.Input>
             <Form form={form} onFinish={handleSubmitVerification}>
-              <S.InputNumber>
-                <OTPInput
-                  value={digits.join('')}
-                  onChange={(otp: string) => handleChange(otp, selectedIndex)}
-                  inputStyle={{
-                    overflow: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                  inputType="text"
-                  numInputs={4}
-                  renderSeparator={<span style={{ padding: '5px' }}></span>}
-                  renderInput={renderInput}
-                />
-              </S.InputNumber>
-
+              <FormItem name="otp">
+                <S.InputNumber>
+                  <OTPInput
+                    value={digits.join('')}
+                    onChange={(otp: string) => handleChange(otp, selectedIndex)}
+                    inputStyle={{
+                      overflow: 'none',
+                      display: 'flex',
+                      alignItems: 'center',
+                    }}
+                    inputType="text"
+                    numInputs={4}
+                    renderSeparator={<span style={{ padding: '5px' }}></span>}
+                    renderInput={renderInput}
+                  />
+                </S.InputNumber>
+              </FormItem>
               {navigation === 'step3' || navigation === 'step3_changeOTP' ? (
                 <S.CountdownContainer>
                   <Typography className="resendWrapper">
                     Không nhận được mã xác thực?
                     {contextHolder}
-                    <a className="resend" onClick={success}>
+                    <a className="resend" onClick={resend}>
                       Gửi lại
                     </a>
                   </Typography>
@@ -267,7 +332,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
                   <Typography className="resendWrapper">
                     Không nhận được mã xác thực?
                     {contextHolder}
-                    <a className="resend" onClick={success}>
+                    <a className="resend" onClick={resend}>
                       Gửi lại
                     </a>
                   </Typography>

@@ -1,6 +1,6 @@
-"use client";
-import { authEndpoint } from "@/services/endpoint";
-import { api } from "./base";
+'use client';
+import { authEndpoint } from '@/services/endpoint';
+import { api } from './base';
 
 export const authAPI = api.injectEndpoints({
   endpoints: (build) => ({
@@ -13,17 +13,39 @@ export const authAPI = api.injectEndpoints({
       }) => ({
         //todo
         url: authEndpoint.SIGN_IN,
-        method: "POST",
+        method: 'POST',
         body: data,
         flashError: true,
       }),
       //todo add invalidatesTags if need
     }),
+
+    forgotPassword: build.mutation({
+      query: (data: { userName: string }) => ({
+        url: authEndpoint.FORGOT_PASSWORD,
+        method: 'POST',
+        body: data,
+      }),
+    }),
+    resetPassword: build.mutation({
+      query: (data: {
+        otpCode: string;
+        newPassword: string;
+        confirmPassword: string;
+      }) => ({
+        url: authEndpoint.RESET_PASSWORD,
+        method: 'PATCH',
+        body: data,
+      }),
+    }),
+    //mutation for post put patch, param for get delete
     //todo add more api query ....
   }),
 });
 
 export const {
   useSignInMutation,
+  useForgotPasswordMutation,
+  useResetPasswordMutation,
   //todo addition in need
 } = authAPI;
