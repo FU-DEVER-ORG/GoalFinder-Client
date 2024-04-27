@@ -183,6 +183,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
 
   const onFinish = () => {
     setFinish(true);
+    setDigits(otpCode.split(''));
   };
 
   const resend = () => {
@@ -198,6 +199,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
             const res: any = await forgotPassword(dataForgot);
             res?.data?.appCode === 'Auth.ForgotPassword.OPERATION_SUCCESS'
               ? (console.log('Mã xác thực OTP là: ', res?.data?.body?.otpCode),
+                setDigits([]),
                 setOtpCode(res?.data?.body?.otpCode))
               : console.log('Lỗi xác thực');
           })
