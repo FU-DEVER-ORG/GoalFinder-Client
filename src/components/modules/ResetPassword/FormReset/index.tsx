@@ -23,6 +23,7 @@ const FormReset = () => {
 
   const REGEX_UPPER_CASE = /[A-Z]+/;
   const REGEX_DIGI_CASE = /[0-9]+/;
+  const REGEX_SPECIAL_CASE = /[^A-Za-z0-9\s]/;
 
   const validateReset = (_: any, value: string) => {
     return new Promise<void>((resolve, reject) => {
@@ -45,17 +46,19 @@ const FormReset = () => {
       } else {
         let countPasswordDigit = 0;
         let countPasswordUpper = 0;
+        let countPasswordSpecial = 0;
 
         if (REGEX_UPPER_CASE.test(value)) countPasswordUpper++;
         if (REGEX_DIGI_CASE.test(value)) countPasswordDigit++;
+        if (REGEX_SPECIAL_CASE.test(value)) countPasswordSpecial++;
 
         if (countPasswordUpper === 0) {
           reject('Mật khẩu phải chứa ít nhất 1 chữ cái viết hoa');
         } else if (countPasswordDigit === 0) {
           reject('Mật khẩu phải chứa ít nhất 1 chữ số');
-        } else {
-          resolve();
-        }
+        } else if (countPasswordSpecial === 0) {
+          reject('Mật khẩu phải chứa ít nhất 1 ký tự đặc biệt');
+        } else resolve();
       }
     });
   };
