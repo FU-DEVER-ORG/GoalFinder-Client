@@ -3,17 +3,20 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { LockOutlined } from '@ant-design/icons';
-import { Form, FormProps } from 'antd';
+import { Form, FormProps, message } from 'antd';
+
+import { useResetPasswordMutation } from '@/store/services/auth';
 
 import Button from '@/components/core/common/Button';
 import InputPassword from '@/components/core/common/form/InputPassword';
 
 import * as S from './styles';
-import { useResetPasswordMutation } from '@/store/services/auth';
 
 const FormReset = () => {
   const route = useRouter();
   const FormItem = Form.Item;
+  const [form] = Form.useForm();
+  const [messageResetSuccess, contextHolder] = message.useMessage();
 
   const otpCode = sessionStorage.getItem('otpCode');
 
@@ -77,57 +80,80 @@ const FormReset = () => {
         newPassword: values.newPassword!,
         confirmPassword: values.confirmPassword!,
       };
-      console.log('newPassword: ', data.newPassword);
-
       const res: any = await resetPassword(data);
-      console.log('test ', res?.data);
-      route.push('/sign-in');
+      res?.error?.data?.appCode ===
+      'Auth.ResetPasswordWithOtp.NEW_PASSWORD_CANT_BE_MATCH_WITH_OLD_PASSWORD'
+        ? form.setFields([
+            {
+              value: '',
+              name: 'newPassword',
+              errors: [
+                'Mật khẩu mới không được trùng với mật khẩu trước của bạn',
+              ],
+            },
+            {
+              value: '',
+              name: 'confirmPassword',
+            },
+          ])
+        : messageResetSuccess
+            .open({
+              type: 'success',
+              content: 'Đổi mật khẩu thành công',
+            })
+            .then(() => route.push('/sign-in'));
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <Form className="resetWrapper" onFinish={onFinish}>
-      <S.Input>
-        <FormItem rules={[{ validator: validatePassword }]} name="newPassword">
-          <InputPassword
-            width={'100%'}
-            placeholder="Mật khẩu"
-            prefix={<LockOutlined />}
-            label="Mật khẩu mới"
-            onChangeCapture={(e) => {
-              setPassword(e.currentTarget.value);
-            }}
-            autoComplete="newPassword"
-          />
-        </FormItem>
+    <>
+      {contextHolder}
+      <Form form={form} className="resetWrapper" onFinish={onFinish}>
+        <S.Input>
+          <FormItem
+            rules={[{ validator: validatePassword }]}
+            name="newPassword"
+          >
+            <InputPassword
+              width={'100%'}
+              placeholder="Mật khẩu"
+              prefix={<LockOutlined />}
+              label="Mật khẩu mới"
+              onChangeCapture={(e) => {
+                setPassword(e.currentTarget.value);
+              }}
+              autoComplete="newPassword"
+            />
+          </FormItem>
 
-        <FormItem
-          name="confirmPassword"
-          dependencies={['password']}
-          rules={[{ validator: validateReset }]}
-        >
-          <InputPassword
-            width={'100%'}
-            placeholder="Mật khẩu"
-            prefix={<LockOutlined />}
-            label="Xác nhận mật khẩu mới"
-            autoComplete="confirmPassword"
-          />
-        </FormItem>
-      </S.Input>
+          <FormItem
+            name="confirmPassword"
+            dependencies={['password']}
+            rules={[{ validator: validateReset }]}
+          >
+            <InputPassword
+              width={'100%'}
+              placeholder="Mật khẩu"
+              prefix={<LockOutlined />}
+              label="Xác nhận mật khẩu mới"
+              autoComplete="confirmPassword"
+            />
+          </FormItem>
+        </S.Input>
 
-      <FormItem>
-        <Button
-          $width={'100%'}
-          type="primary"
-          htmlType="submit"
-          className="login-form-button"
-        >
-          Lưu
-        </Button>
-      </FormItem>
-    </Form>
+        <FormItem>
+          <Button
+            $width={'100%'}
+            type="primary"
+            htmlType="submit"
+            className="login-form-button"
+          >
+            Lưu
+          </Button>
+        </FormItem>
+      </Form>
+    </>
   );
 };
 
