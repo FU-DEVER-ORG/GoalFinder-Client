@@ -4,12 +4,12 @@ import * as S from './styles';
 
 interface Player {
   id: number;
-  avatar: string;
-  name: string;
-  age: number;
-  position: string;
-  competitiveness: string;
-  phoneNumber: string;
+  avatar?: string;
+  name?: string;
+  age?: number;
+  position?: string;
+  competitiveness?: string;
+  phoneNumber?: string;
 }
 
 const FormRating: React.FC = () => {
@@ -133,7 +133,7 @@ const FormRating: React.FC = () => {
         Chọn để tố cáo sủi kèo
       </S.RatingTitle>
       <S.PlayerWrapper>
-        {players.map((player) => (
+        {players.map((player,index) => (
           <S.CustomButton
             key={player?.id}
             onClick={() => toggleSelection(player?.id)}
