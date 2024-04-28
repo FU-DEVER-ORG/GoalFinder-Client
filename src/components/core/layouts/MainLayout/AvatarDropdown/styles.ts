@@ -2,7 +2,7 @@ import { Flex } from 'antd';
 import styled from 'styled-components';
 
 export const NotificationWrapper = styled.div`
-  max-width: 380px;
+  width: 340px;
 
   padding: 12px 20px;
 
@@ -26,11 +26,13 @@ export const Heading = styled.div`
   h4 {
     font-size: 16px;
     font-weight: 800;
+    letter-spacing: 0.6px
   }
 
   h5 {
     font-size: 14px;
-    font-weight: 300;
+    font-weight: 200;
+    color:'#8C8C8C'
   }
 `;
 
