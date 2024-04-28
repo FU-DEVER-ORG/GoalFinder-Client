@@ -1,15 +1,23 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
 import {Form, FormProps } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 import { LockOutlined, PhoneOutlined } from '@ant-design/icons';
+
+import { authEndpoint } from '@/services/endpoint';
+import { postRequest } from '@/services/request';
+import { constants } from '@/settings';
 
 import Input from '@/components/core/common/form/Input';
 import InputPassword from '@/components/core/common/form/InputPassword';
 import Button from '@/components/core/common/Button';
 
+
 import * as S from './styles';
+
 
 type FieldType = {
   email?: string;
@@ -17,15 +25,32 @@ type FieldType = {
   confirmPassword?: string;
 };
 
-const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-  console.log('Success:', values);
-};
-
 const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
   console.log('Failed:', errorInfo);
 };
 
 function FormSignUp() {
+  const router = useRouter();
+  const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
+    console.log('Success:', values);
+    try {
+
+      const data = {
+        email: values.email,
+        password: values.confirmPassword,
+      }
+
+      const res :any = postRequest(
+        constants.API_SERVER + authEndpoint.SIGN_UP, 
+        {data}
+      ) 
+      console.log(res);
+      router.push('/sign-in');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <S.HomeWrapper>
       <Form

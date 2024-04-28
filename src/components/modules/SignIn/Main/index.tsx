@@ -3,7 +3,7 @@
 import Title from 'antd/es/typography/Title';
 
 import FormSignin from '@/components/modules/SignIn/FormSignin';
-import SignInSocial from '@/components/modules/SignInSocial';
+import SignInSocial from '@/components/lib/SignInSocial';
 
 import * as S from './styles';
 

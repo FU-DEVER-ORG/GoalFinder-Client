@@ -2,8 +2,9 @@
 
 import { Flex } from 'antd'
 
-import * as S from './styles';
 import Typography from '@/components/core/common/Typography';
+
+import * as S from './styles';
 
 function SignInSocial() {
     return (

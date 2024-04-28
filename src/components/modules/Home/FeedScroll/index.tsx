@@ -7,7 +7,9 @@ import * as S from './styles';
 function FeedScroll() {
   return (
     <S.Scroll flex={1} vertical gap={24}>
-      {Array(20).fill(<Feed />)}
+      {Array.from({length:20}, (_,index) =>(
+        <Feed key={index}/>
+      ))}
     </S.Scroll>
   );
 }
