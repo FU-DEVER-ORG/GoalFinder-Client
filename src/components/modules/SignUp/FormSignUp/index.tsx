@@ -3,14 +3,16 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+
 import { Form, FormProps } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 import { LockOutlined, PhoneOutlined } from '@ant-design/icons';
 
+import { useSignUpMutation } from '@/store/services/auth';
+
 import Input from '@/components/core/common/form/Input';
 import InputPassword from '@/components/core/common/form/InputPassword';
 import Button from '@/components/core/common/Button';
-import { useSignUpMutation } from '@/store/services/auth';
 
 import * as S from './styles';
 
