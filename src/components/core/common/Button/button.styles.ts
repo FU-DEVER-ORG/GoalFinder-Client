@@ -42,7 +42,7 @@ export const ButtonCommon = styled(Button)<ButtonPropsInterface>`
   }
 
   &:disabled {
-    color: #fff !important;
+    
   }
 
   ${(props) =>
@@ -77,7 +77,10 @@ export const ButtonCommon = styled(Button)<ButtonPropsInterface>`
 
   &.ant-btn-primary:disabled {
     background: ${({ theme }) => theme?.colors?.secondary} !important;
-    border-radius: ${(props) => props?.$borderRadius || '0px'} !important;
+    border-radius: ${(props) => props?.$borderRadius || '8px'} !important;
+    cursor: default !important;
+    color: #B8B8B8 !important;
+    border: 1px solid #B8B8B8 !important;
   }
 
   &.ant-btn-link {

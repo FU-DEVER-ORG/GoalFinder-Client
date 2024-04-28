@@ -1,10 +1,10 @@
-import { constants } from "@/settings";
-import webStorageClient from "@/utils/webStorageClient";
+import { constants } from '@/settings';
+import webStorageClient from '@/utils/webStorageClient';
 import {
   createApi,
   fetchBaseQuery,
   BaseQueryFn,
-} from "@reduxjs/toolkit/query/react";
+} from '@reduxjs/toolkit/query/react';
 
 // Define an interface for the custom request args
 interface CustomRequestArgs {
@@ -22,12 +22,12 @@ const baseQuerry: BaseQueryFn = fetchBaseQuery({
   prepareHeaders: (headers, { endpoint }) => {
     const accessToken = webStorageClient.getToken();
     //todo addtion in need
-    if (endpoint !== "upload") {
-      headers.set("Content-Type", "application/json");
+    if (endpoint !== 'upload') {
+      headers.set('Content-Type', 'application/json');
     }
 
     if (accessToken) {
-      headers.set("Authorization", `Bearer ${accessToken}`);
+      headers.set('Authorization', `Bearer ${accessToken}`);
     }
     return headers;
   },
@@ -36,7 +36,7 @@ const baseQuerry: BaseQueryFn = fetchBaseQuery({
 const baseQueryWithCustomRequest: CustomRequestFunction = async (
   args: CustomRequestArgs,
   api,
-  extraOptions
+  extraOptions,
 ) => {
   const result: any = await baseQuerry(args, api, extraOptions);
   const { flashError = false, flashSuccess = false } = args;
@@ -51,7 +51,7 @@ const baseQueryWithCustomRequest: CustomRequestFunction = async (
 
   if (flashSuccess) {
     //addition in need
-    console.log("success");
+    console.log('success');
   }
 
   return result;
@@ -65,7 +65,7 @@ export const api = createApi({
    * Otherwise, a single API definition should be used in order to support tag invalidation,
    * among other features
    */
-  reducerPath: "",
+  reducerPath: '',
   /**
    * A bare bones base query would just be `baseQuery: fetchBaseQuery({ baseUrl: '/' })`
    */
@@ -74,7 +74,7 @@ export const api = createApi({
    * Tag types must be defined in the original API definition
    * for any tags that would be provided by injected endpoints
    */
-  tagTypes: ["Levels", "SubAccount", "Me", "DetailSubAccount"],
+  tagTypes: ['Levels', 'SubAccount', 'Me', 'DetailSubAccount'],
   /**
    * This api has endpoints injected in adjacent files,
    * which is why no endpoints are shown below.

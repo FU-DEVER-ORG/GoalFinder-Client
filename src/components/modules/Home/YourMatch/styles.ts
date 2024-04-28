@@ -49,7 +49,9 @@ export const ItemsContainer = styled.div`
   align-items: center;
 `;
 
-export const CustomCalendarOutlined = styled(CalendarOutlined)<{$status: boolean;}>`
+export const CustomCalendarOutlined = styled(CalendarOutlined)<{
+  $status: boolean;
+}>`
   font-size: 21.43px;
 
   ${({ $status }) =>
@@ -112,7 +114,7 @@ export const CustomText = styled.p<{ $status: boolean }>`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  
+
   ${({ $status }) =>
     $status
       ? css`

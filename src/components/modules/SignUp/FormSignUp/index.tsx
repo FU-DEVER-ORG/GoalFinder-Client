@@ -140,7 +140,7 @@ function FormSignUp() {
           </Button>
         </FormItem>
         <FormItem>
-        <Link href={'/sign-in'}>
+          <Link href={'/sign-in'}>
             <Button $width={'100%'} type="default">
               Đăng nhập
             </Button>
@@ -148,7 +148,7 @@ function FormSignUp() {
         </FormItem>
       </Form>
     </S.HomeWrapper>
-  )
+  );
 }
 
-export default FormSignUp
+export default FormSignUp;

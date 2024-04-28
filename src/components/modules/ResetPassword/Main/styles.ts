@@ -2,12 +2,17 @@ import { Flex } from 'antd';
 import styled from 'styled-components';
 
 export const HomeWrapper = styled(Flex)`
-  padding: 50px 0px;
+  gap: 24px;
+  padding: 50px 20px;
 
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+
+  .resetWrapper {
+    width: 48%;
+
+    display: flex;
+    flex-direction: column;
+  }
 `;
-
-
