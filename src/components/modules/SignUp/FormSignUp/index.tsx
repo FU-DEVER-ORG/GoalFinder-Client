@@ -15,9 +15,37 @@ import Input from '@/components/core/common/form/Input';
 import InputPassword from '@/components/core/common/form/InputPassword';
 import Button from '@/components/core/common/Button';
 
-
 import * as S from './styles';
 
+const REGEX_UPPER_CASE = /[A-Z]+/;
+const REGEX_DIGI_CASE = /[0-9]+/;
+const REGEX_SPECIAL_CASE = /[^A-Za-z0-9\s]/;
+
+const validatePassword = (_: any, value: string) => {
+  return new Promise<void>((resolve, reject) => {
+    if (!value) {
+      reject('Vui lòng nhập mật khẩu');
+    } else if (value.length > 0 && value.length < 8) {
+      reject('Mật khẩu lớn hơn 8 ký tự');
+    } else {
+      let countPasswordDigit = 0;
+      let countPasswordUpper = 0;
+      let countPasswordSpecial = 0;
+
+      if (REGEX_UPPER_CASE.test(value)) countPasswordUpper++;
+      if (REGEX_DIGI_CASE.test(value)) countPasswordDigit++;
+      if (REGEX_SPECIAL_CASE.test(value)) countPasswordSpecial++;
+
+      if (countPasswordUpper === 0) {
+        reject('Mật khẩu phải chứa ít nhất 1 chữ cái viết hoa');
+      } else if (countPasswordDigit === 0) {
+        reject('Mật khẩu phải chứa ít nhất 1 chữ số');
+      } else if (countPasswordSpecial === 0) {
+        reject('Mật khẩu phải chứa ít nhất 1 ký tự đặc biệt');
+      } else resolve();
+    }
+  });
+};
 
 type FieldType = {
   email?: string;
@@ -74,7 +102,9 @@ function FormSignUp() {
         </FormItem>
         <Form.Item<FieldType>
           name="password"
-          rules={[{ required: true, message: 'Hãy nhập mật khẩu!' }]}
+          rules={[
+            {validator: validatePassword}
+          ]}
         >
           <InputPassword
             placeholder="*****"
