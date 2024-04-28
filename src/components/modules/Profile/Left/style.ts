@@ -88,7 +88,6 @@ export const Aboutme = styled(Flex)`
   @media (max-width: 1023px) {
     padding-bottom: 2px;
   }
-
   @media (max-width: 768px) {
     padding: 4px 0;
     display: grid;
@@ -113,7 +112,6 @@ export const Information = styled.span`
     font-size: 14px;
     padding-bottom: 2px;
   }
-
   @media (max-width: 768px) {
     font-size: 12px;
     padding: 4px 0;

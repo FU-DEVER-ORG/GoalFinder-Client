@@ -65,7 +65,6 @@ export const TitleText = styled.p`
   line-height: 19.36px;
   letter-spacing: 0.08em;
 `;
-
 export const ImageWrapper = styled.div`
   position: relative;
   width: 24px;
@@ -91,7 +90,6 @@ export const PropertiesList = styled.ul`
     column-gap: 20px;
   }
 `;
-
 export const Item = styled(Flex)`
   flex-direction: row;
   align-items: center;
@@ -110,7 +108,6 @@ export const Item = styled(Flex)`
     cursor: pointer;
   }
 `;
-
 export const ItemName = styled.span`
   font-size: 16px;
   font-weight: bold;
