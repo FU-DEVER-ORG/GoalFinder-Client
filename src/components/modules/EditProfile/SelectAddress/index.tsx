@@ -116,7 +116,7 @@ const SelectAddress = ({ form }: any) => {
                 });
               else setValue({ ...value, province: valueProvince });
             }}
-            //   filterOption={filterOption}
+            filterOption={filterOption}
             value={value.province}
             placeholder="Tỉnh/ Thành phố"
             options={option.province}
@@ -147,7 +147,7 @@ const SelectAddress = ({ form }: any) => {
                 });
               else setValue({ ...value, district: valueDistrict });
             }}
-            //   filterOption={filterOption}
+            filterOption={filterOption}
             placeholder="Huyện/ Quận"
             options={option.district}
           ></S.Select>
@@ -164,7 +164,7 @@ const SelectAddress = ({ form }: any) => {
             showSearch
             optionFilterProp="children"
             placeholder="Xã/ Đường"
-            //   filterOption={filterOption}
+            filterOption={filterOption}
             options={option.ward}
           ></S.Select>
         </div>

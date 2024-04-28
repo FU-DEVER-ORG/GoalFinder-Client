@@ -33,18 +33,22 @@ const FormItem = ({ form }: any) => {
 
   return (
     <S.WrapperItem vertical gap={24}>
-      <S.FormItem name="inputNickName">
+      <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Tên tài khoản</S.Typography>
-        <div className="full">
-          <S.Input />
-        </div>
-      </S.FormItem>
-      <S.FormItem name="inputFullName">
+        <S.FormItem name="userName">
+          <div className="full">
+            <S.Input />
+          </div>
+        </S.FormItem>
+      </S.Flex>
+      <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Họ và tên</S.Typography>
-        <div className="full">
-          <S.Input />
-        </div>
-      </S.FormItem>
+        <S.FormItem name="fullName">
+          <div className="full">
+            <S.Input />
+          </div>
+        </S.FormItem>
+      </S.Flex>
       <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Khu vực</S.Typography>
         <S.FlexWrapper justify="space-between">
@@ -53,7 +57,7 @@ const FormItem = ({ form }: any) => {
       </S.Flex>
       <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Trình độ</S.Typography>
-        <S.FormItem name="level">
+        <S.FormItem name="experience">
           <S.FlexWrapper justify="space-between">
             <S.RadioGroup name="ButtonLevel" optionType="button">
               <S.RadioButton value="professional">Chuyên nghiệp</S.RadioButton>
@@ -64,7 +68,7 @@ const FormItem = ({ form }: any) => {
       </S.Flex>
       <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Vị trí</S.Typography>
-        <S.FormItem name="position">
+        <S.FormItem name="positions">
           <S.CheckboxGroup>
             <S.FlexWrapper justify="space-between">
               <S.Checkbox type="checkbox" value="goalker" id="goalker" />
@@ -97,7 +101,7 @@ const FormItem = ({ form }: any) => {
       </S.Flex>
       <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Thái độ</S.Typography>
-        <S.FormItem name="attitude">
+        <S.FormItem name="competitionLevel">
           <S.FlexWrapper justify="space-between" gap={24}>
             <S.RadioGroup
               name="ButtonLevel"
@@ -112,7 +116,7 @@ const FormItem = ({ form }: any) => {
       </S.Flex>
       <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Giới thiệu</S.Typography>
-        <S.FormItem $full>
+        <S.FormItem $full name="description">
           <div className="containerTextArea">
             <S.TextAreaInput rows={4} />
           </div>

@@ -25,15 +25,15 @@ export const WrapperItem = styled(FlexFromAntd)`
 
     @media ${({ theme }) => theme.breakpoints.mdMax} {
       flex-wrap: wrap !important;
-
-      .full {
-        width: 100%;
-      }
     }
   }
 
   @media ${({ theme }) => theme.breakpoints.mdMax} {
     .ant-form-item {
+      width: 100% !important;
+    }
+
+    .full {
       width: 100% !important;
     }
   }
@@ -194,12 +194,16 @@ export const Label = styled.label<{ $color?: string }>`
   }
 `;
 export const Flex = styled(FlexFromAntd)`
-  flex-wrap: wrap !important;
+  @media ${({ theme }) => theme.breakpoints.mdMax} {
+    flex-wrap: wrap !important;
+  }
 `;
 export const Typography = styled(TypographyFromCommon)`
   min-width: 100px;
+
   @media ${({ theme }) => theme.breakpoints.mdMax} {
-    flex-wrap: wrap !important;
     padding-bottom: 8px;
+
+    margin: 0 !important;
   }
 `;
