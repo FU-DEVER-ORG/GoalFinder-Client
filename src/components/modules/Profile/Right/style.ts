@@ -1,5 +1,8 @@
-import styled from 'styled-components';
 import { Card, Flex, Timeline } from 'antd';
+
+import styled from 'styled-components';
+
+import devices from '@/style/themes/default/breakpoints';
 
 export const Right = styled(Flex)``;
 
@@ -9,6 +12,17 @@ export const MatchHistory = styled(Flex)`
   flex-direction: column;
   align-items: center;
   gap: 20px;
+
+  @media (${devices.mdMax}) {
+    width: 100%;
+    height: auto;
+    margin-top: 0;
+  }
+  @media (${devices.smMax}) {
+    width: 90%;
+    height: auto;
+    margin-top: 0;
+  }
 `;
 export const TimeLineActivites = styled(Timeline)`
   .ant-timeline-item-content {
@@ -24,21 +38,18 @@ export const TimeLineActivites = styled(Timeline)`
   }
 `;
 export const Activites = styled(Card)`
-  width: 750px;
-  height: 250px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  @media (max-width: 1090px) {
+
+  @media (${devices.xxlMax}) {
     width: 100%;
   }
-  @media (max-width: 1023px) {
-    width: 100%;
+  @media (${devices.lgMax}) {
     height: 260px;
   }
-  @media (max-width: 768px) {
-    width: 100%;
+  @media (${devices.mdMax}) {
     height: 270px;
   }
-  @media (max-width: 576px) {
+  @media (${devices.smMax}) {
     height: auto;
   }
 `;
@@ -84,8 +95,7 @@ export const PropertiesList = styled.ul`
   grid-template-columns: 0.8fr 1fr;
   grid-gap: 10px;
   align-items: center;
-
-  @media (max-width: 1090px) {
+  @media (${devices.xxlMax}) {
     row-gap: 14px;
     column-gap: 20px;
   }
@@ -98,9 +108,10 @@ export const Item = styled(Flex)`
   font-size: 16px;
   font-weight: 400;
   line-height: 16px;
-  @media (max-width: 1090px) {
+  @media (${devices.xxlMax}) {
     font-size: 14px;
   }
+
   transition: transform 0.3s ease;
   &:hover {
     transform: translateY(-4px);
@@ -111,7 +122,7 @@ export const Item = styled(Flex)`
 export const ItemName = styled.span`
   font-size: 16px;
   font-weight: bold;
-  @media (max-width: 1090px) {
+  @media (${devices.lgMax}) {
     font-size: 14px;
   }
 `;

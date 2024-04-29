@@ -1,7 +1,9 @@
 import Image from 'next/image';
-import * as S from './style';
 
 import pretigeIcon from '@/public/icon/match-propertiesIcon/prestigeIcon.svg';
+
+import * as S from './style';
+
 export default function Banner() {
   return (
     <>

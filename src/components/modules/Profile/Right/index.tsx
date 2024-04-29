@@ -1,6 +1,5 @@
-import { Timeline } from 'antd';
 import Image from 'next/image';
-import * as S from './style';
+import { Timeline } from 'antd';
 import { matchHistoryItems } from './actionList';
 
 import area from '@/public/icon/match-propertiesIcon/area.svg';
@@ -9,6 +8,8 @@ import people from '@/public/icon/match-propertiesIcon/people.svg';
 import rank from '@/public/icon/match-propertiesIcon/rank.svg';
 import stadiumCost from '@/public/icon/match-propertiesIcon/stadiumCost.svg';
 import time from '@/public/icon/match-propertiesIcon/time.svg';
+
+import * as S from './style';
 
 export default function Right() {
   return (

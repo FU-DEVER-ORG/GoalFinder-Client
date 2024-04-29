@@ -1,10 +1,12 @@
 'use client';
+
 import MainLayout from '@/components/core/layouts/MainLayout';
-import Banner from '../Banner';
-import Left from '../Left';
-import Right from '../Right';
+import Banner from '@/components/modules/Profile/Banner';
+import Left from '@/components/modules/Profile/Left';
+import Right from '@/components/modules/Profile/Right';
 
 import * as S from './style';
+
 export default function Profile() {
   return (
     <>

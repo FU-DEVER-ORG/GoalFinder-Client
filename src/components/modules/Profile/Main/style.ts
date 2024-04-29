@@ -1,5 +1,8 @@
-import styled from 'styled-components';
 import { Flex } from 'antd';
+
+import styled from 'styled-components';
+
+import devices from '@/style/themes/default/breakpoints';
 
 export const Container = styled(Flex)`
   width: 100%;
@@ -9,10 +12,10 @@ export const Container = styled(Flex)`
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  @media (max-width: 768px) {
+  @media (${devices.xlMax}) {
     padding: 10px 30px;
   }
-  @media (max-width: 576px) {
+  @media (${devices.smMax}) {
     padding: 10px 30px;
   }
 `;
@@ -20,22 +23,14 @@ export const Container = styled(Flex)`
 export const Body = styled(Flex)`
   display: flex;
   flex-direction: row;
-  gap: 20px;
   box-sizing: border-box;
-  @media (max-width: 1086px) {
+  gap: 20px;
+  @media (${devices.xlMax}) {
     width: 100%;
   }
-  @media (max-width: 890px) {
-    flex-direction: column;
-  }
-  @media (max-width: 870px) {
-    flex-direction: column;
-  }
-  @media (max-width: 768px) {
+  @media (${devices.mdMax}) {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-  @media (max-width: 576px) {
   }
 `;

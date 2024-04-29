@@ -1,16 +1,17 @@
 import Image from 'next/image';
-import * as S from './style';
 
 import ball from '@/public/icon/match-propertiesIcon/aboutme/ball.svg';
 import medal from '@/public/icon/match-propertiesIcon/aboutme/medal-outline.svg';
 import local from '@/public/icon/match-propertiesIcon/aboutme/navigate-circle-outline.svg';
 import reward from '@/public/icon/match-propertiesIcon/aboutme/reward.svg';
 
+import * as S from './style';
+
 export default function Left() {
   return (
     <>
       <S.Left>
-        <S.Introduction>
+        <S.Wrapper>
           <S.IntroTitle>Giới Thiệu</S.IntroTitle>
           <S.IntroQuotes>
             Âm nhạc, Nghệ thuật và Giải trí.
@@ -45,7 +46,7 @@ export default function Left() {
               <S.Information> Đá vui vẻ, Đá nghiêm túc</S.Information>
             </S.Aboutme>
           </S.Story>
-        </S.Introduction>
+        </S.Wrapper>
       </S.Left>
     </>
   );
