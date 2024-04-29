@@ -83,19 +83,10 @@ const FormReset = () => {
       const res: any = await resetPassword(data);
       res?.error?.data?.appCode ===
       'Auth.ResetPasswordWithOtp.NEW_PASSWORD_CANT_BE_MATCH_WITH_OLD_PASSWORD'
-        ? form.setFields([
-            {
-              value: '',
-              name: 'newPassword',
-              errors: [
-                'Mật khẩu mới không được trùng với mật khẩu trước của bạn',
-              ],
-            },
-            {
-              value: '',
-              name: 'confirmPassword',
-            },
-          ])
+        ? messageResetSuccess.open({
+            type: 'error',
+            content: 'Mật khẩu mới không được trùng với mật khẩu cũ',
+          })
         : messageResetSuccess
             .open({
               type: 'success',

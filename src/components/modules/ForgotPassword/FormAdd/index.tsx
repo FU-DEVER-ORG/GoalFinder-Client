@@ -61,7 +61,6 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
       code: '+49',
       flag: '/images/forgot-password/flag/49.jpg',
     },
-
     {
       country: 'Ý',
       code: '+39',
@@ -92,10 +91,10 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
   const menu = (
     <Menu onClick={handleMenuClick}>
       {phoneAreaData.map((area) => (
-        <Menu.Item key={area.code}>
-          <S.InputMenu key={area.code}>
-            <Typography>{area.country}</Typography>
-            <Image alt="" src={area.flag} width={25} height={20} />
+        <Menu.Item key={area?.code}>
+          <S.InputMenu key={area?.code}>
+            <Typography>{area?.country}</Typography>
+            <Image alt="" src={area?.flag} width={25} height={20} priority />
           </S.InputMenu>
         </Menu.Item>
       ))}
@@ -103,17 +102,17 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
   );
 
   function handleMenuClick(e: any): void {
-    const clickedCountry = phoneAreaData.find((area) => area.code === e.key);
+    const clickedCountry = phoneAreaData.find((area) => area?.code === e?.key);
     if (clickedCountry) {
       setSelectedCountry(clickedCountry);
     }
   }
 
   const handleSubmit: FormProps<FieldType>['onFinish'] = async (values) => {
-    console.log(values.userName);
+    console.log(values?.userName);
     try {
       const data = {
-        userName: values.userName!,
+        userName: values?.userName!,
       };
       setDataForgot(data);
       const res: any = await forgotPassword(data);
@@ -122,13 +121,10 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
           setTargetTime(Date.now() + 60 * 1000),
           console.log('Mã xác thực OTP là: ', res?.data?.body?.otpCode),
           setOtpCode(res?.data?.body?.otpCode))
-        : form.setFields([
-            {
-              value: '',
-              name: 'userName',
-              errors: ['Tài khoản không tồn tại'],
-            },
-          ]);
+        : messageApi.open({
+            type: 'error',
+            content: 'Tài khoản không tồn tại',
+          });
     } catch (error) {
       console.log(error);
     }
@@ -136,7 +132,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
 
   const handleSubmitVerification = () => {
     try {
-      if (digits.length != 4) {
+      if (digits?.length != 4) {
         form.setFields([
           {
             name: 'otp',
@@ -152,38 +148,27 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
           ]);
         }, 3000);
       }
-      if (navigation === 'step3' && digits.length === 4) {
-        const otpCheck = digits.join('');
+      if (navigation === 'step3' && digits?.length === 4) {
+        const otpCheck = digits?.join('');
         otpCheck === otpCode
           ? (sessionStorage.setItem('otpCode', otpCode),
             route.push('/reset-password'))
-          : (form.setFields([
-              {
-                value: '',
-                name: 'otp',
-                errors: ['Mã xác thực không đúng, vui lòng kiểm tra lại'],
-              },
-            ]),
-            setTimeout(() => {
-              form.setFields([
-                {
-                  name: 'otp',
-                  errors: [],
-                },
-              ]);
-            }, 3000));
+          : messageApi.open({
+              type: 'error',
+              content: 'Mã xác thực không đúng, vui lòng kiểm tra lại',
+            });
       }
     } catch (error) {}
   };
 
   const handleChange = (otp: string, index: number) => {
-    setDigits(otp.split(''));
+    setDigits(otp?.split(''));
     setSelectedIndex(index);
   };
 
   const onFinish = () => {
     setFinish(true);
-    setDigits(otpCode.split(''));
+    setDigits(otpCode?.split(''));
   };
 
   const resend = () => {
@@ -201,7 +186,10 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
               ? (console.log('Mã xác thực OTP là: ', res?.data?.body?.otpCode),
                 setDigits([]),
                 setOtpCode(res?.data?.body?.otpCode))
-              : console.log('Lỗi xác thực');
+              : messageApi.open({
+                  type: 'error',
+                  content: 'Lỗi xác thực',
+                });
           })
           .then(() => setFinish(false))
           .then(() => setTargetTime(Date.now() + 60 * 1000))
@@ -216,7 +204,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
     if (finish) setNavigation('step3_changeOTP');
     navigation === 'step1'
       ? setNavigation('step1')
-      : digits.length === 4
+      : digits?.length === 4
       ? setNavigation('step3')
       : finish === false
       ? setNavigation('step2')
@@ -225,6 +213,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
 
   return (
     <>
+      {contextHolder}
       <Modal
         wrapClassName="modalWrap"
         closeIcon={false}
@@ -298,7 +287,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
               <FormItem name="otp">
                 <S.InputNumber>
                   <OTPInput
-                    value={digits.join('')}
+                    value={digits?.join('')}
                     onChange={(otp: string) => handleChange(otp, selectedIndex)}
                     inputStyle={{
                       overflow: 'none',
@@ -316,7 +305,6 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
                 <S.CountdownContainer>
                   <Typography className="resendWrapper">
                     Không nhận được mã xác thực?
-                    {contextHolder}
                     <a className="resend" onClick={resend}>
                       Gửi lại
                     </a>

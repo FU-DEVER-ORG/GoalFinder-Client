@@ -25,6 +25,7 @@ function OTP() {
           src={'/images/forgot-password/Verification.svg'}
           width={150}
           height={150}
+          priority
         />
       </S.ImgLogo>
       <S.TypographyWrapper>
@@ -36,7 +37,7 @@ function OTP() {
               Mã xác thực OTP
             </Typography>
 
-            <Typography>
+            <Typography align="center">
               Một mã xác thực OTP được gửi tới số điện thoại ***** ***70, vui
               lòng kiểm tra
             </Typography>
