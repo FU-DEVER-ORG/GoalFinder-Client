@@ -19,10 +19,8 @@ import {
 import OTPInput from 'react-otp-input';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import Modal from 'antd/es/modal/Modal';
 import { CaretDownOutlined } from '@ant-design/icons';
 
-import useModal from '@/hooks/useModal';
 import { useForgotPasswordMutation } from '@/store/services/auth';
 
 import Button from '@/components/core/common/Button';
@@ -41,7 +39,6 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
   const [form] = Form.useForm();
   const { Countdown } = Statistic;
   const FormItem = Form.Item;
-  const modalState = useModal();
   const [messageApi, contextHolder] = message.useMessage();
   const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
 
@@ -172,28 +169,29 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
   };
 
   const resend = () => {
-    finish === true
-      ? messageApi
-          .open({
-            type: 'loading',
-            content: 'Mã xác thực đang được gửi tới bạn',
-            duration: 1,
-          })
-          .then(() => message.success('Mã xác thực đã được gửi', 1))
-          .then(async () => {
-            const res: any = await forgotPassword(dataForgot);
-            res?.data?.appCode === 'Auth.ForgotPassword.OPERATION_SUCCESS'
-              ? (console.log('Mã xác thực OTP là: ', res?.data?.body?.otpCode),
-                setDigits([]),
-                setOtpCode(res?.data?.body?.otpCode))
-              : messageApi.open({
-                  type: 'error',
-                  content: 'Lỗi xác thực',
-                });
-          })
-          .then(() => setFinish(false))
-          .then(() => setTargetTime(Date.now() + 60 * 1000))
-      : modalState.openModal();
+    messageApi
+      .open({
+        type: 'loading',
+        content: 'Mã xác thực đang được gửi tới bạn',
+        duration: 1,
+      })
+      .then(() => message.success('Mã xác thực đã được gửi', 1))
+      .then(async () => {
+        console.log(dataForgot);
+
+        const res: any = await forgotPassword(dataForgot);
+        console.log(res),
+          res?.data?.appCode === 'Auth.ForgotPassword.OPERATION_SUCCESS'
+            ? (console.log('Mã xác thực OTP là: ', res?.data?.body?.otpCode),
+              setDigits([]),
+              setOtpCode(res?.data?.body?.otpCode))
+            : messageApi.open({
+                type: 'error',
+                content: 'Lỗi xác thực',
+              });
+      })
+      .then(() => setFinish(false))
+      .then(() => setTargetTime(Date.now() + 60 * 1000));
   };
 
   const renderInput = (inputProps: InputHTMLAttributes<HTMLInputElement>) => (
@@ -214,27 +212,6 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
   return (
     <>
       {contextHolder}
-      <Modal
-        wrapClassName="modalWrap"
-        closeIcon={false}
-        width={'25%'}
-        open={modalState.visible}
-        onCancel={modalState.closeModal}
-        footer={null}
-        centered={true}
-      >
-        <S.ModalContent>
-          <Image
-            alt=""
-            src={'/images/forgot-password/Modal.png'}
-            width={100}
-            height={100}
-          />
-          <Typography variant="body-text-bold">
-            Một mã xác thực gồm 4 chữ số đã được gửi tới số điện thoại *******70
-          </Typography>
-        </S.ModalContent>
-      </Modal>
 
       {navigation === 'step1' ? (
         <S.Input>
