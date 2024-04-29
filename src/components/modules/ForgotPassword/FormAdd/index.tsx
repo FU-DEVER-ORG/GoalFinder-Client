@@ -180,15 +180,14 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
         console.log(dataForgot);
 
         const res: any = await forgotPassword(dataForgot);
-        console.log(res),
-          res?.data?.appCode === 'Auth.ForgotPassword.OPERATION_SUCCESS'
-            ? (console.log('Mã xác thực OTP là: ', res?.data?.body?.otpCode),
-              setDigits([]),
-              setOtpCode(res?.data?.body?.otpCode))
-            : messageApi.open({
-                type: 'error',
-                content: 'Lỗi xác thực',
-              });
+        res?.data?.appCode === 'Auth.ForgotPassword.OPERATION_SUCCESS'
+          ? (console.log('Mã xác thực OTP là: ', res?.data?.body?.otpCode),
+            setDigits([]),
+            setOtpCode(res?.data?.body?.otpCode))
+          : messageApi.open({
+              type: 'error',
+              content: 'Lỗi xác thực',
+            });
       })
       .then(() => setFinish(false))
       .then(() => setTargetTime(Date.now() + 60 * 1000));
