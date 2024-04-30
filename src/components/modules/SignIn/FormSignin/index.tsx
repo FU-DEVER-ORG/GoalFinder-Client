@@ -30,7 +30,7 @@ function FormSignin() {
   const [signIn, { isLoading }] = useSignInMutation();
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
-    console.log('Success:', values);
+    // console.log('Success:', values);
     try {
       // example account
       // ledinhdangkhoa10a9@gmail.com

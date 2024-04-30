@@ -5,18 +5,23 @@ import { Flex } from 'antd'
 import Typography from '@/components/core/common/Typography';
 
 import * as S from './styles';
+import { signIn } from 'next-auth/react';
 
 function SignInSocial() {
+    const handleClick = () =>{
+        signIn('google', {callbackUrl: 'http://localhost:3000/' });
+    }
+
     return (
         <Flex vertical gap={'10px'} align='center' >
             <Typography>
                 Đăng nhập bằng
             </Typography>
             <Flex gap={40}>
-                <S.ButtonLogo>
+                <S.ButtonLogo >
                     <S.ImgLogo preview={false} alt="" src={'/images/signin/logo-facebook.png'} />
                 </S.ButtonLogo>
-                <S.ButtonLogo>
+                <S.ButtonLogo onClick={handleClick}>
                     <S.ImgLogo preview={false} alt="" src={'/images/signin/logo-gg.png'} />
                 </S.ButtonLogo>
             </Flex>
