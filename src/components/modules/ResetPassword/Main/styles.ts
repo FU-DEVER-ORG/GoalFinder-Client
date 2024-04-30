@@ -14,5 +14,9 @@ export const HomeWrapper = styled(Flex)`
 
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 992px) {
+      width: 100%;
+    }
   }
 `;
