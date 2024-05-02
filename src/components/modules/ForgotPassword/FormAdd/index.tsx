@@ -116,7 +116,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
       res?.data?.appCode === 'Auth.ForgotPassword.OPERATION_SUCCESS'
         ? (setNavigation('step2'),
           setTargetTime(Date.now() + 60 * 1000),
-          console.log('Mã xác thực OTP là: ', res?.data?.body?.otpCode),
+          console.log('Mã xác thực là: ', res?.data?.body?.otpCode),
           setOtpCode(res?.data?.body?.otpCode))
         : messageApi.open({
             type: 'error',
@@ -127,7 +127,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
     }
   };
 
-  const handleSubmitVerification = () => {
+  const handleSubmitVerification = async () => {
     try {
       if (digits?.length != 4) {
         form.setFields([
@@ -146,14 +146,17 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
         }, 3000);
       }
       if (navigation === 'step3' && digits?.length === 4) {
-        const otpCheck = digits?.join('');
-        otpCheck === otpCode
-          ? (sessionStorage.setItem('otpCode', otpCode),
-            route.push('/reset-password'))
-          : messageApi.open({
-              type: 'error',
-              content: 'Mã xác thực không đúng, vui lòng kiểm tra lại',
-            });
+        const res: any = await forgotPassword(dataForgot);
+        if (res?.data?.appCode === 'Auth.ForgotPassword.OPERATION_SUCCESS') {
+          const otpCheck = digits?.join('');
+          otpCheck === otpCode
+            ? (sessionStorage.setItem('otpCode', otpCode),
+              route.push('/reset-password'))
+            : messageApi.open({
+                type: 'error',
+                content: 'Mã xác thực không đúng, vui lòng kiểm tra lại',
+              });
+        }
       }
     } catch (error) {}
   };
@@ -307,9 +310,6 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
 
               <FormItem>
                 <Button
-                  $backgroundColor={
-                    navigation === 'step3' ? '#0F6C19' : '#4DAA57'
-                  }
                   $width={'100%'}
                   type="primary"
                   htmlType="submit"
