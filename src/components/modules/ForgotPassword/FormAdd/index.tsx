@@ -19,7 +19,7 @@ import {
 import OTPInput from 'react-otp-input';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { CaretDownOutlined } from '@ant-design/icons';
+import { CaretDownOutlined, LoadingOutlined } from '@ant-design/icons';
 
 import { useForgotPasswordMutation } from '@/store/services/auth';
 
@@ -250,8 +250,9 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
                 type="primary"
                 htmlType="submit"
                 className="submit-button"
+                disabled={isLoading}
               >
-                Gửi mã OTP
+                {isLoading ? <LoadingOutlined /> : 'Gửi mã OTP'}
               </Button>
             </FormItem>
           </Form>
@@ -297,7 +298,6 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
 
                   <Typography className="resendWrapper">
                     Không nhận được mã xác thực?
-                    {contextHolder}
                     <a className="resend" onClick={resend}>
                       Gửi lại
                     </a>
@@ -314,8 +314,9 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
                   type="primary"
                   htmlType="submit"
                   className="submit-button"
+                  disabled={isLoading}
                 >
-                  Xác thực
+                  {isLoading ? <LoadingOutlined /> : 'Xác thực'}
                 </Button>
               </FormItem>
             </Form>

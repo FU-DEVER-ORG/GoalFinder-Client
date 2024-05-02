@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { LockOutlined } from '@ant-design/icons';
 import { Form, FormProps, message } from 'antd';
-
+import { LoadingOutlined } from '@ant-design/icons';
 import { useResetPasswordMutation } from '@/store/services/auth';
 
 import Button from '@/components/core/common/Button';
@@ -139,8 +139,9 @@ const FormReset = () => {
             type="primary"
             htmlType="submit"
             className="login-form-button"
+            disabled={isLoading}
           >
-            Lưu
+            {isLoading ? <LoadingOutlined /> : 'Lưu'}
           </Button>
         </FormItem>
       </Form>
