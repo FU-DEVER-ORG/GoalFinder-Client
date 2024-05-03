@@ -217,7 +217,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
 
       {navigation === 'step1' ? (
         <S.Input>
-          <Form form={form} onFinish={handleSubmit}>
+          <Form form={form} onFinish={handleSubmit} style={{ width: '400px' }}>
             <FormItem
               name="userName"
               rules={[
@@ -225,17 +225,16 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
               ]}
             >
               <Input
-                width={'100%'}
                 prefix={
                   <>
                     <Dropdown overlay={menu} placement="bottomLeft">
-                      <Space>
-                        <Button $full={false} $backgroundColor="#F5F7FA">
+                      <Space style={{ width: '60px', marginLeft: '-10px' }}>
+                        <Button $full={false} $width={'-webkit-fill-available'}>
                           <Image
                             alt=""
                             src={selectedCountry.flag}
-                            width={25}
-                            height={20}
+                            width={20}
+                            height={15}
                           />
                           <CaretDownOutlined />
                         </Button>

@@ -5,6 +5,7 @@ import Image from 'next/image';
 
 import Typography from '@/components/core/common/Typography';
 import FormAdd from '../FormAdd';
+import Title from 'antd/es/typography/Title';
 
 import * as S from './styles';
 
@@ -18,7 +19,7 @@ function OTP() {
 
   return (
     <S.AddMailWrapper>
-      <Typography variant="h2">Xác thực tài khoản</Typography>
+      <Title level={2}>Xác thực tài khoản</Title>
       <S.ImgLogo>
         <Image
           alt=""
@@ -30,12 +31,10 @@ function OTP() {
       </S.ImgLogo>
       <S.TypographyWrapper>
         {navigation === 'step1' ? (
-          <Typography variant="h5">Nhập số điện thoại</Typography>
+          <Title level={5}>Nhập số điện thoại</Title>
         ) : (
           <>
-            <Typography padding="0px 0px 20px 0px" variant="h5">
-              Mã xác thực OTP
-            </Typography>
+            <Title level={5}>Mã xác thực OTP</Title>
 
             <Typography align="center">
               Một mã xác thực OTP được gửi tới số điện thoại ***** ***70, vui
