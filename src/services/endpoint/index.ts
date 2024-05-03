@@ -5,10 +5,16 @@ const authEndpoint = {
   SIGN_IN: `/auth/sign-in`,
   SIGN_UP: `/auth/sign-up`,
 };
+
+const userEndpoint = {
+  UPDATE_USER : `/user/update`
+}
+
+
 const editProfileEndpoint = {
   PROVINCE: `${prefixBase}/province`,
   DISTRICT: `${prefixBase}/province/district`,
   WARD: `${prefixBase}/province/ward`,
 };
 //export endpoint
-export { authEndpoint, editProfileEndpoint };
+export { authEndpoint, editProfileEndpoint, userEndpoint };

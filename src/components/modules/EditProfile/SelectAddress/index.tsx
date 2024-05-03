@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { DefaultOptionType } from 'antd/es/select';
+import type { SelectProps } from 'antd';
 
 import { editProfileEndpoint as endPoint } from '@/services/endpoint';
 
@@ -47,10 +48,12 @@ const SelectAddress = ({ form }: any) => {
     return newText;
   };
 
-  const filterOption: boolean | optionType | undefined = (
-    input: string,
-    option: optionType,
-  ) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
+  const filterOption: SelectProps<optionType>['filterOption'] = (
+    input,
+    option,
+  ) =>
+    typeof option?.label === 'string' &&
+    (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
 
   const setEndPoint = (endPoint: string, id: number) => {
     return `${endPoint}/${id}`;

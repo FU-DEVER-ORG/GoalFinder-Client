@@ -18,6 +18,17 @@ const initialStatePosition: InterfaceStatePosition = {
   defender: false,
   striker: false,
 };
+
+const funny = '02569b52-d331-4b39-a89b-737cc0c55b13';
+const medium = '0a0a9174-e2ab-49ca-943f-dc62c26eb032';
+const seriously = '67c22803-9fef-45e4-9f93-184db1a15458';
+const nullValue = 'aa403b53-5ae7-4e50-8b02-92dce06ed1a9';
+const professional = '8e9bd942-4472-4c19-bdd4-8bab0d6346e2';
+const amateur = 'c99b2f00-cf5a-468f-a0ae-31cd95fecce6';
+const striker = '126aad71-81e0-4e56-8d74-c1d3f3e9b8c0';
+const defender = '697ed101-07cb-4745-a80f-488e695c830a';
+const goalker = '1e057224-2d18-459d-af0d-146c4c7d3a65';
+
 const FormItem = ({ form }: any) => {
   const [position, setPosition] = useState(initialStatePosition);
   const HandleClickPositionButton = (name: string) => {
@@ -57,23 +68,23 @@ const FormItem = ({ form }: any) => {
       </S.Flex>
       <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Trình độ</S.Typography>
-        <S.FormItem name="experience">
+        <S.FormItem name="experienceId">
           <S.FlexWrapper justify="space-between">
             <S.RadioGroup name="ButtonLevel" optionType="button">
-              <S.RadioButton value="professional">Chuyên nghiệp</S.RadioButton>
-              <S.RadioButton value="amateur">Nghiệp dư</S.RadioButton>
+              <S.RadioButton value={professional}>Chuyên nghiệp</S.RadioButton>
+              <S.RadioButton value={amateur}>Nghiệp dư</S.RadioButton>
             </S.RadioGroup>
           </S.FlexWrapper>
         </S.FormItem>
       </S.Flex>
       <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Vị trí</S.Typography>
-        <S.FormItem name="positions">
+        <S.FormItem name="positionIds">
           <S.CheckboxGroup>
             <S.FlexWrapper justify="space-between">
-              <S.Checkbox type="checkbox" value="goalker" id="goalker" />
-              <S.Checkbox type="checkbox" value="defender" id="defender" />
-              <S.Checkbox type="checkbox" value="striker" id="striker" />
+              <S.Checkbox type="checkbox" value={goalker} id="goalker" />
+              <S.Checkbox type="checkbox" value={defender} id="defender" />
+              <S.Checkbox type="checkbox" value={striker} id="striker" />
               <S.Label
                 htmlFor="goalker"
                 $color={colorBtnGoalker}
@@ -101,15 +112,17 @@ const FormItem = ({ form }: any) => {
       </S.Flex>
       <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Thái độ</S.Typography>
-        <S.FormItem name="competitionLevel">
+        <S.FormItem name="competitionLevelId">
           <S.FlexWrapper justify="space-between" gap={24}>
             <S.RadioGroup
               name="ButtonLevel"
               optionType="button"
               buttonStyle="solid"
+              defaultValue={nullValue}
             >
-              <S.RadioButton value="funny">Vui vẻ</S.RadioButton>
-              <S.RadioButton value="seriously">Nghiêm túc</S.RadioButton>
+              <S.RadioButton value={funny}>Vui vẻ</S.RadioButton>
+              <S.RadioButton value={medium}>Vừa phải</S.RadioButton>
+              <S.RadioButton value={seriously}>Nghiêm túc</S.RadioButton>
             </S.RadioGroup>
           </S.FlexWrapper>
         </S.FormItem>

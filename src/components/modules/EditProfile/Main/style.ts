@@ -5,4 +5,6 @@ export const EditWrapper = styled(Flex)`
   width: 100%;
 
   padding: 80px 0;
+
+  position: relative;
 `;

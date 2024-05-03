@@ -15,9 +15,15 @@ export const FormEditWrapper = styled(Flex)`
     width: 100%;
   }
 
-  @media ${({theme}) => theme.breakpoints.smMax} {
-    span{
-      font-size: ${({theme}) => theme.fontSize.sm} !important;
+  @media ${({ theme }) => theme.breakpoints.mdMax} {
+    span {
+      font-size: ${({ theme }) => theme.fontSize.sm} !important;
+    }
+  }
+
+  @media ${({ theme }) => theme.breakpoints.smMax} {
+    span {
+      font-size: ${({ theme }) => theme.fontSize.xs} !important;
     }
   }
 `;

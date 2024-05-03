@@ -90,14 +90,23 @@ export const FormItem = styled(Form.Item)<{ $full?: boolean }>`
     gap: 24px;
 
     width: 100% !important;
-
-    @media ${({ theme }) => theme.breakpoints.mdMax} {
-      gap: 12px;
-    }
   }
 
   @media ${({ theme }) => theme.breakpoints.mdMax} {
     max-width: none !important;
+   
+
+    .ant-radio-group,
+    .ant-form-item,
+    .ant-checkbox-group {
+      gap: 12px;
+    }
+  }
+
+  @media ${({ theme }) => theme.breakpoints.smMax} {
+    * {
+      font-size: ${({ theme }) => theme.fontSize.xs} !important;
+    }
   }
 `;
 export const TextAreaInput = styled(TextArea)`

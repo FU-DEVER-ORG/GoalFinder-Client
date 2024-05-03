@@ -26,6 +26,16 @@ export const FlexWrapper = styled.div`
   }
   .containerSelect {
     width: 32% !important;
+    @media ${({ theme }) => theme.breakpoints.mdMax} {
+      * {
+        font-size: ${({ theme }) => theme.fontSize.sm} !important;
+      }
+    }
+    @media ${({ theme }) => theme.breakpoints.smMax} {
+      * {
+        font-size: ${({ theme }) => theme.fontSize.xs} !important;
+      }
+    }
   }
 
   .ant-select-selector {
@@ -46,9 +56,5 @@ export const Select = styled(SelectFromCommon)<{ $isValue?: boolean }>`
 
   &:hover * {
     color: ${({ theme }) => theme.colors.primary} !important;
-  }
-
-  @media ${({ theme }) => theme.breakpoints.smMax} {
-    font-size: ${({ theme }) => theme.fontSize.sm} !important;
   }
 `;

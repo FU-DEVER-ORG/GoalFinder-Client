@@ -33,7 +33,6 @@ export const ImageWall = styled.div`
 
     user-select: none;
 
-
     z-index: 0;
   }
 
@@ -90,6 +89,8 @@ export const AvatarWrapper = styled.div`
   height: 160px;
   .ant-btn {
     position: absolute !important;
+    z-index: 2;
+    
     bottom: 10px;
     right: 10px;
 
@@ -115,15 +116,26 @@ export const AvatarWrapper = styled.div`
 
       bottom: 5px;
       right: 5px;
+
     }
   }
 `;
-export const Avatar = styled(Image)`
+export const Avatar = styled.div`
   width: 100%;
   height: 100%;
 
+  position: relative;
+
+  background-color: #fff;
+  overflow: hidden;
+
   border-radius: 50%;
   border: 4px solid #fff;
+
+  img {
+    width: 100% !important;
+    height: 100% !important;
+  }
 `;
 
 export const Button = styled(ButtonFromCommon)`

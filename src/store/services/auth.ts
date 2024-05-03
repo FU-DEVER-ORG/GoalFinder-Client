@@ -1,6 +1,6 @@
-"use client";
-import { authEndpoint } from "@/services/endpoint";
-import { api } from "./base";
+'use client';
+import { authEndpoint, userEndpoint } from '@/services/endpoint';
+import { api } from './base';
 
 export const authAPI = api.injectEndpoints({
   endpoints: (build) => ({
@@ -13,7 +13,30 @@ export const authAPI = api.injectEndpoints({
       }) => ({
         //todo
         url: authEndpoint.SIGN_IN,
-        method: "POST",
+        method: 'POST',
+        body: data,
+        flashError: true,
+      }),
+      //todo add invalidatesTags if need
+    }),
+
+    updateUser: build.mutation({
+      //todo addition data in need
+      query: (data: {
+        userName: string;
+        lastName: string;
+        firstName: string;
+        description: string;
+        address: string;
+        backgroundUrl: string;
+        avatarUrl: string;
+        experienceId: string;
+        positionIds: Array<string>;
+        competitionLevelId: string;
+      }) => ({
+        //todo
+        url: userEndpoint.UPDATE_USER,
+        method: 'PATCH',
         body: data,
         flashError: true,
       }),
@@ -25,5 +48,6 @@ export const authAPI = api.injectEndpoints({
 
 export const {
   useSignInMutation,
+  useUpdateUserMutation,
   //todo addition in need
 } = authAPI;
