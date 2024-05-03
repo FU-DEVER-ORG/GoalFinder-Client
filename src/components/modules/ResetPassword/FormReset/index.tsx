@@ -81,16 +81,13 @@ const FormReset = () => {
         confirmPassword: values.confirmPassword!,
       };
       const res: any = await resetPassword(data);
-      if (
-        res?.error?.data?.appCode ===
-        'Auth.ResetPasswordWithOtp.NEW_PASSWORD_CANT_BE_MATCH_WITH_OLD_PASSWORD'
-      )
-        messageResetSuccess.open({
-          type: 'error',
-          content: 'Mật khẩu mới không được trùng với mật khẩu cũ',
-        });
-      route.push('/sign-in');
-      message.success('Đổi mật khẩu thành công');
+      res?.error?.data?.appCode ===
+      'Auth.ResetPasswordWithOtp.NEW_PASSWORD_CANT_BE_MATCH_WITH_OLD_PASSWORD'
+        ? messageResetSuccess.open({
+            type: 'error',
+            content: 'Mật khẩu mới không được trùng với mật khẩu cũ',
+          })
+        : (route.push('/sign-in'), message.success('Đổi mật khẩu thành công'));
     } catch (error) {
       console.log(error);
     }
