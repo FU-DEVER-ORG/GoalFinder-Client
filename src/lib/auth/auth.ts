@@ -1,3 +1,5 @@
+import { constants } from "@/settings";
+import webStorageClient from "@/utils/webStorageClient";
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from 'next-auth/providers/google';
 
@@ -16,9 +18,21 @@ export const authOptions: NextAuthOptions = {
             if(!profile?.email){
                 throw new Error('No profile')
             }
-            console.log(account)
-            console.log(profile)
+            await console.log(account);
+            await console.log(profile)
 
+            // webStorageClient.setToken(account?.access_token!, 
+            //     {expires: new Date(Date.now() + 15*60*1000)}
+            //   );
+            // webStorageClient.set(
+            //     constants.USER_INFO,
+            //     {
+            //         name: profile?.name,
+            //         email: profile?.email,
+            //         image: profile?.image,
+            //     },
+            //     {expires: new Date(Date.now() + 20*60*1000)}
+            //   );
             return true;
         }
     }

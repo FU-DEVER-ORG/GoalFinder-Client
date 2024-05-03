@@ -8,8 +8,13 @@ import * as S from './styles';
 import { signIn } from 'next-auth/react';
 
 function SignInSocial() {
-    const handleClick = () =>{
-        signIn('google', {callbackUrl: 'http://localhost:3000/' });
+    const handleClick = async () => {
+        try {
+            await signIn('google', { callbackUrl: 'http://localhost:3000/' });
+            
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
