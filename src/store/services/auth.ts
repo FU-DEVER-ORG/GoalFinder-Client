@@ -42,12 +42,27 @@ export const authAPI = api.injectEndpoints({
       }),
       //todo add invalidatesTags if need
     }),
+    signUp: build.mutation({
+      //todo addition data in need
+      query: (data: {
+        email: string;
+        password: string;
+      }) => ({
+        //todo
+        url: authEndpoint.SIGN_UP,
+        method: "POST",
+        body: data,
+        flashError: true,
+      }),
+      //todo add invalidatesTags if need
+    }),
     //todo add more api query ....
   }),
 });
 
 export const {
   useSignInMutation,
+  useSignUpMutation,
   useUpdateUserMutation,
   //todo addition in need
 } = authAPI;
