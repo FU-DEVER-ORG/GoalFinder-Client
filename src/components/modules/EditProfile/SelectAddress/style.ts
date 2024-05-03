@@ -47,12 +47,6 @@ export const FlexWrapper = styled.div`
 export const Select = styled(SelectFromCommon)<{ $isValue?: boolean }>`
   transition: all 0.3s !important;
 
-  * {
-    color: ${(props) =>
-      props?.$isValue ? props.theme.colors.primary : '#d9d9d9'}!important;
-    border-color: ${(props) =>
-      props?.$isValue ? props.theme.colors.primary : '#d9d9d9'}!important;
-  }
 
   &:hover * {
     color: ${({ theme }) => theme.colors.primary} !important;

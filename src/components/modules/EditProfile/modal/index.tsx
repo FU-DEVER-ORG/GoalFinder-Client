@@ -1,5 +1,6 @@
-import { createContext } from 'react';
-const ReachableContext = createContext(null);
+
+import * as S from './style';
+
 type InterfaceInitialConfig = {
   title?: string;
   text?: string;
@@ -14,7 +15,7 @@ const config = ({ title, text }: InterfaceInitialConfig = initialConfig) => ({
   title: title,
   content: (
     <>
-      <ReachableContext.Consumer>{() => text}</ReachableContext.Consumer>
+      <S.ReachableContextConsumer>{() => text}</S.ReachableContextConsumer>
     </>
   ),
 });
