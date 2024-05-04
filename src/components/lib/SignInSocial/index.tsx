@@ -10,8 +10,7 @@ import { signIn } from 'next-auth/react';
 function SignInSocial() {
     const handleClick = async () => {
         try {
-            await signIn('google', { callbackUrl: 'http://localhost:3000/demo' });
-            
+            await signIn('google', { callbackUrl: process.env.NEXTAUTH_URL+'/demo' });
         } catch (error) {
             console.log(error)
         }

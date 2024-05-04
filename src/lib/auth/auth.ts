@@ -1,7 +1,9 @@
-import { constants } from "@/settings";
-import webStorageClient from "@/utils/webStorageClient";
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from 'next-auth/providers/google';
+
+import webStorageClient from "@/utils/webStorageClient";
+
+import { constants } from "@/settings";
 
 export const authOptions: NextAuthOptions = {
     session : {

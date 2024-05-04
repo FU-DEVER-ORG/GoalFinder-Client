@@ -30,11 +30,7 @@ function FormSignin() {
   const [signIn, { isLoading }] = useSignInMutation();
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
-    // console.log('Success:', values);
     try {
-      // example account
-      // ledinhdangkhoa10a9@gmail.com
-      // Admin123@
       const data = {
         username: values.email!,
         password: values.password!,
@@ -91,7 +87,7 @@ function FormSignin() {
           <FormItem<FieldType> name="isRemember" valuePropName="checked">
             <Checkbox>Nhớ mật khẩu</Checkbox>
           </FormItem>
-          <S.LinkTag href="">Quên mật khẩu</S.LinkTag>
+          <S.LinkTag href="/forgot-password">Quên mật khẩu</S.LinkTag>
         </S.RowRememberForgot>
         <FormItem>
           <Button $width={'100%'} type="primary" htmlType="submit">

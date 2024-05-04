@@ -8,9 +8,10 @@ import {
   CaretDownFilled,
   SearchOutlined,
 } from '@ant-design/icons';
+import { Flex } from 'antd';
 
 import logo from '@/public/icon/layout/logo.svg';
-import { Flex } from 'antd';
+
 import Input from '@/components/core/common/form/Input';
 
 import * as S from './styles';
