@@ -32,15 +32,15 @@ export const ContentWrapper = styled(Flex)`
 
   background-color: #ffffff;
 
-  @media (max-width: 1024px) {
+  @media ${({theme}) => theme.breakpoints.xlMax} {
     width: 80%;
   }
 
-  @media (max-width: 768px) {
+  @media ${({theme}) => theme.breakpoints.mdMax} {
     width: 90%;
   }
 
-  @media (max-width: 480px) {
+  @media ${({theme}) => theme.breakpoints.smMax} {
     width: 100%;
   }
 `;

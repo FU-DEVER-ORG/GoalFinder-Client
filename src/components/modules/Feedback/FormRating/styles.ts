@@ -20,11 +20,11 @@ export const PlayerItem = styled.li`
 
   margin: auto 0px;
 
-  @media (max-width: 768px) {
+  @media ${({theme}) => theme.breakpoints.mdMax} {
     font-size: 12px;
   }
 
-  @media (max-width: 480px) {
+  @media ${({theme}) => theme.breakpoints.smMax} {
     font-size: 10px;
   }
 `;
@@ -38,11 +38,11 @@ export const PlayerItemOrder = styled.li`
 
   margin: auto 0px;
 
-  @media (max-width: 768px) {
+  @media ${({theme}) => theme.breakpoints.mdMax} {
     font-size: 12px;
   }
 
-  @media (max-width: 480px) {
+  @media ${({theme}) => theme.breakpoints.smMax} {
     font-size: 10px;
   }
 `;
@@ -56,11 +56,11 @@ export const PlayerItemAge = styled.li`
 
   margin: auto 0px;
 
-  @media (max-width: 768px) {
+  @media ${({theme}) => theme.breakpoints.mdMax} {
     font-size: 12px;
   }
 
-  @media (max-width: 480px) {
+  @media ${({theme}) => theme.breakpoints.smMax} {
     font-size: 10px;
   }
 `;
@@ -74,11 +74,11 @@ export const PlayerItemPosition = styled.li`
 
   margin: auto 0px;
 
-  @media (max-width: 768px) {
+  @media ${({theme}) => theme.breakpoints.mdMax} {
     font-size: 12px;
   }
 
-  @media (max-width: 480px) {
+  @media ${({theme}) => theme.breakpoints.smMax} {
     font-size: 10px;
   }
 `;
@@ -92,11 +92,11 @@ export const PlayerItemCompetitive = styled.li`
 
   margin: auto 0px;
 
-  @media (max-width: 768px) {
+  @media ${({theme}) => theme.breakpoints.mdMax} {
     font-size: 12px;
   }
 
-  @media (max-width: 480px) {
+  @media ${({theme}) => theme.breakpoints.smMax} {
     font-size: 10px;
   }
 `;
@@ -110,11 +110,11 @@ export const PlayerItemPhoneNum = styled.li`
 
   margin: auto 0px;
 
-  @media (max-width: 768px) {
+  @media ${({theme}) => theme.breakpoints.mdMax} {
     font-size: 12px;
   }
 
-  @media (max-width: 480px) {
+  @media ${({theme}) => theme.breakpoints.smMax} {
     font-size: 10px;
   }
 `;
@@ -126,8 +126,9 @@ export const CustomButton = styled(Button)<{ selected: boolean }>`
   type: 'default';
 
   color: black !important;
-  background: ${({ selected }) => selected ? '#FFC6C6' : '#C6FFCC'} !important;
-  
+  background: ${({ selected }) =>
+    selected ? '#FFC6C6' : '#C6FFCC'} !important;
+
   margin: 6px 20px;
   padding: 0 !important;
 
@@ -135,19 +136,19 @@ export const CustomButton = styled(Button)<{ selected: boolean }>`
     color: black !important;
   }
 
-  @media (max-width: 768px) {
+  @media ${({theme}) => theme.breakpoints.smMax} {
     max-height: 60px !important;
     height: 60px !important;
 
     margin: 3px 10px;
   }
 
-  @media (max-width: 480px) {
-    max-height: 40px !important;
-    height: 40px !important;
+  // @media (max-width: 480px) {
+  //   max-height: 40px !important;
+  //   height: 40px !important;
 
-    margin: 3px 10px;
-  }
+  //   margin: 3px 10px;
+  // }
 `;
 
 export const PlayerFlex = styled(Flex)`
@@ -161,10 +162,9 @@ export const CustomAvatar = styled(Avatar)`
 
   margin-right: 20px !important;
 
-  @media (max-width: 480px) {
-    width: 20px !important;
-    height: 20px !important;
-    
+  @media ${({theme}) => theme.breakpoints.smMax} {
+ 
+
     margin-right: 10px !important;
   }
 `;
@@ -173,24 +173,27 @@ export const PlayerAvatarName = styled.li`
 
   text-align: left;
   list-style: none;
-  
+
   line-height: 24px;
   font-weight: 500;
   font-size: 16px;
 
-  @media (max-width: 768px) {
+  @media ${({theme}) => theme.breakpoints.mdMax} {
     font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  @media (max-width: 480px) {
+  @media ${({theme}) => theme.breakpoints.smMax} {
     font-size: 10px;
-
+    overflow: hidden;
+    text-overflow: ellipsis;
     margin: auto 0px;
   }
 `;
 export const ConfirmButton = styled(Button)`
   width: 100%;
- 
+
   margin-top: 18px;
 `;
 export const RatingTitle = styled.p`
@@ -199,6 +202,6 @@ export const RatingTitle = styled.p`
 
   text-align: left;
   text-decoration: underline;
-  
+
   margin: 18px 0px;
 `;
