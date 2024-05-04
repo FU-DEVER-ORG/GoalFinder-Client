@@ -141,15 +141,13 @@ const FormRating: React.FC = () => {
           >
             <S.PlayerFlex>
               <S.PlayerItemOrder>{player?.id}</S.PlayerItemOrder>
-              <S.PlayerAvatarName>
-                <S.CustomAvatar src={player?.avatar} />
-                {player?.name}
-              </S.PlayerAvatarName>
+              <S.PlayerAvatar>
+                <S.CustomAvatar src={player?.avatar}/>
+              </S.PlayerAvatar>
+              <S.PlayerName>{player?.name}</S.PlayerName>
               <S.PlayerItemAge>{player?.age}</S.PlayerItemAge>
               <S.PlayerItemPosition>{player?.position}</S.PlayerItemPosition>
-              <S.PlayerItemCompetitive>
-                {player?.competitiveness}
-              </S.PlayerItemCompetitive>
+              <S.PlayerItemCompetitive>{player?.competitiveness}</S.PlayerItemCompetitive>
               <S.PlayerItemPhoneNum>{player?.phoneNumber}</S.PlayerItemPhoneNum>
             </S.PlayerFlex>
           </S.CustomButton>

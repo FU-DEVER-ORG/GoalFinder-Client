@@ -16,9 +16,9 @@ export default async function LayoutAuth({
 
   const isAuth = await checkToken(token);
 
-  // if (!isAuth) {
-  //   redirect('sign-in');
-  // }
+  if (!isAuth) {
+    redirect('sign-in');
+  }
 
   return <MainLayout>{children}</MainLayout>;
 }

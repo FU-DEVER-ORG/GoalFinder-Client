@@ -8,10 +8,8 @@ export const RatingHeader = styled.p`
 
   text-align: center;
 
-  @media (max-width: 480px) {
-    font-size: 16px;
-
-    margin: 70px 0 12px 0;
+  @media ${({theme}) => theme.breakpoints.mdMax}{
+    margin-bottom: 12px;
   }
 `;
 export const CustomHR = styled.hr`
@@ -21,6 +19,10 @@ export const CustomHR = styled.hr`
 
   border: none;
   margin-bottom: 24px;
+
+  @media ${({theme}) => theme.breakpoints.mdMax}{
+    margin-bottom: 12px;
+  }
 `;
 export const ContentWrapper = styled(Flex)`
   width: 60%;
@@ -42,10 +44,22 @@ export const ContentWrapper = styled(Flex)`
 
   @media ${({theme}) => theme.breakpoints.smMax} {
     width: 100%;
+    padding: 15px;
   }
+
+  @media ${({theme}) => theme.breakpoints.xsMax} {
+    padding: 12px;
+  }
+ 
 `;
 export const FeedbackWrapper = styled(Flex)`
   flex-direction: column;
 
+  margin-top: 40px;
+
   backgroundcolor: #f9f9fa;
+
+  @media ${({theme}) => theme.breakpoints.smMax} {
+    margin-top: 0px;
+  }
 `;

@@ -13,6 +13,10 @@ export const FeedContainer = styled(BoxFlex)`
   width: 100%;
   border-radius: 10px;
   padding: 0;
+
+  @media ${({theme}) => theme.breakpoints.mdMax} {
+    gap: 12px;
+  }
 `;
 
 export const UserInfor = styled(Flex)`
@@ -33,6 +37,10 @@ export const CustomFlex = styled(Flex)`
   flex-direction: column;
   align-items: end;
   flex-grow: 1;
+
+  @media ${({theme}) => theme.breakpoints.mdMax} {
+    width: 80%;
+  }
 `;
 
 export const Name = styled.p`
@@ -83,7 +91,7 @@ export const ListMatchInfor = styled.ul`
 
   column-count: 2;
 
-  @media (max-width: 480px) {
+  @media ${({theme}) => theme.breakpoints.smMax} {
     column-count: 1;
   }
 `;
@@ -102,6 +110,10 @@ export const FlexBoxTextItem = styled.div`
   display: inline-flex;
   flex-direction: row;
   gap: 8px;
+
+  @media ${({theme}) => theme.breakpoints.smMax} {
+    max-width: max-content;
+  }
 `;
 
 export const BoldText = styled.p`

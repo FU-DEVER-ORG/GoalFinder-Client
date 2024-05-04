@@ -12,22 +12,6 @@ export const PlayerWrapper = styled.ul`
   border-radius: 10px;
 `;
 
-export const PlayerItem = styled.li`
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  list-style: none;
-
-  margin: auto 0px;
-
-  @media ${({theme}) => theme.breakpoints.mdMax} {
-    font-size: 12px;
-  }
-
-  @media ${({theme}) => theme.breakpoints.smMax} {
-    font-size: 10px;
-  }
-`;
 export const PlayerItemOrder = styled.li`
   width: 5%;
 
@@ -38,11 +22,11 @@ export const PlayerItemOrder = styled.li`
 
   margin: auto 0px;
 
-  @media ${({theme}) => theme.breakpoints.mdMax} {
+  @media ${({ theme }) => theme.breakpoints.smMax} {
     font-size: 12px;
   }
 
-  @media ${({theme}) => theme.breakpoints.smMax} {
+  @media ${({ theme }) => theme.breakpoints.xsMax} {
     font-size: 10px;
   }
 `;
@@ -56,11 +40,11 @@ export const PlayerItemAge = styled.li`
 
   margin: auto 0px;
 
-  @media ${({theme}) => theme.breakpoints.mdMax} {
+  @media ${({ theme }) => theme.breakpoints.smMax} {
     font-size: 12px;
   }
 
-  @media ${({theme}) => theme.breakpoints.smMax} {
+  @media ${({ theme }) => theme.breakpoints.xsMax} {
     font-size: 10px;
   }
 `;
@@ -74,11 +58,11 @@ export const PlayerItemPosition = styled.li`
 
   margin: auto 0px;
 
-  @media ${({theme}) => theme.breakpoints.mdMax} {
+  @media ${({ theme }) => theme.breakpoints.smMax} {
     font-size: 12px;
   }
 
-  @media ${({theme}) => theme.breakpoints.smMax} {
+  @media ${({ theme }) => theme.breakpoints.xsMax} {
     font-size: 10px;
   }
 `;
@@ -92,11 +76,11 @@ export const PlayerItemCompetitive = styled.li`
 
   margin: auto 0px;
 
-  @media ${({theme}) => theme.breakpoints.mdMax} {
+  @media ${({ theme }) => theme.breakpoints.smMax} {
     font-size: 12px;
   }
 
-  @media ${({theme}) => theme.breakpoints.smMax} {
+  @media ${({ theme }) => theme.breakpoints.xsMax} {
     font-size: 10px;
   }
 `;
@@ -110,11 +94,13 @@ export const PlayerItemPhoneNum = styled.li`
 
   margin: auto 0px;
 
-  @media ${({theme}) => theme.breakpoints.mdMax} {
+  @media ${({ theme }) => theme.breakpoints.smMax} {
     font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  @media ${({theme}) => theme.breakpoints.smMax} {
+  @media ${({ theme }) => theme.breakpoints.xsMax} {
     font-size: 10px;
   }
 `;
@@ -126,8 +112,7 @@ export const CustomButton = styled(Button)<{ selected: boolean }>`
   type: 'default';
 
   color: black !important;
-  background: ${({ selected }) =>
-    selected ? '#FFC6C6' : '#C6FFCC'} !important;
+  background: ${({ selected }) => selected ? '#FFC6C6' : '#C6FFCC'} !important;
 
   margin: 6px 20px;
   padding: 0 !important;
@@ -136,19 +121,12 @@ export const CustomButton = styled(Button)<{ selected: boolean }>`
     color: black !important;
   }
 
-  @media ${({theme}) => theme.breakpoints.smMax} {
+  @media ${({ theme }) => theme.breakpoints.smMax} {
     max-height: 60px !important;
     height: 60px !important;
 
     margin: 3px 10px;
   }
-
-  // @media (max-width: 480px) {
-  //   max-height: 40px !important;
-  //   height: 40px !important;
-
-  //   margin: 3px 10px;
-  // }
 `;
 
 export const PlayerFlex = styled(Flex)`
@@ -156,20 +134,35 @@ export const PlayerFlex = styled(Flex)`
 
   align-item: center;
 `;
+
 export const CustomAvatar = styled(Avatar)`
   width: 40px !important;
   height: 40px !important;
 
   margin-right: 20px !important;
 
-  @media ${({theme}) => theme.breakpoints.smMax} {
- 
+  @media ${({ theme }) => theme.breakpoints.smMax} {
+    width: 30px !important;
+    height: 30px !important;
+  }
 
-    margin-right: 10px !important;
+  @media ${({ theme }) => theme.breakpoints.xsMax} {
+    width: 25px !important;
+    height: 25px !important;
   }
 `;
-export const PlayerAvatarName = styled.li`
-  width: 30%;
+
+export const PlayerAvatar = styled.li`
+  width: 7.5%;
+
+  text-align: left;
+  list-style: none;
+
+  margin: auto 0px;
+`;
+
+export const PlayerName = styled.li`
+  width: 22.5%;
 
   text-align: left;
   list-style: none;
@@ -178,17 +171,19 @@ export const PlayerAvatarName = styled.li`
   font-weight: 500;
   font-size: 16px;
 
-  @media ${({theme}) => theme.breakpoints.mdMax} {
-    font-size: 12px;
+  margin: auto 0px;
+
+  @media ${({ theme }) => theme.breakpoints.mdMax} {
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  @media ${({theme}) => theme.breakpoints.smMax} {
+  @media ${({ theme }) => theme.breakpoints.smMax} {
+    font-size: 12px;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.xsMax} {
     font-size: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin: auto 0px;
   }
 `;
 export const ConfirmButton = styled(Button)`
