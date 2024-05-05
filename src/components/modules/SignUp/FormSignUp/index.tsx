@@ -130,7 +130,7 @@ function FormSignUp() {
           />
         </Form.Item>
         <FormItem>
-          <Button $width={'100%'} type="primary" htmlType="submit">
+          <Button $width={'100%'} type="primary" htmlType="submit" loading={isLoading}>
             Đăng ký
           </Button>
         </FormItem>

@@ -21,6 +21,11 @@ type FieldType = {
   isRemember?: boolean;
 };
 
+interface MessValidate {
+  typeMess: String;
+  messNoti: String;
+}
+
 const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
   console.log('Failed:', errorInfo);
 };
@@ -36,14 +41,10 @@ function FormSignin() {
         password: values.password!,
         isRemember: values.isRemember!,
       };
-      // const res: any = await postRequest(
-      //  constants.API_SERVER + authEndpoint.SIGN_IN,
-      //  {data}
-      // )
+      
       const res: any = await signIn(data);
       console.log(res?.data);
-      // console.log(res?.data?.body?.accessToken);
-      // webStorageClient.setToken(res?.data?.body?.accessToken, {maxAge: 60*4})
+      
       router.push('/');
     } catch (error) {
       console.log(error);
@@ -90,7 +91,7 @@ function FormSignin() {
           <S.LinkTag href="/forgot-password">Quên mật khẩu</S.LinkTag>
         </S.RowRememberForgot>
         <FormItem>
-          <Button $width={'100%'} type="primary" htmlType="submit">
+          <Button $width={'100%'} type="primary" htmlType="submit" loading={isLoading}>
             Đăng nhập
           </Button>
         </FormItem>
