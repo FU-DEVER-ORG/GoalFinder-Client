@@ -4,18 +4,18 @@ import { Flex } from 'antd'
 
 import Typography from '@/components/core/common/Typography';
 
-import * as S from './styles';
 import { signIn } from 'next-auth/react';
+
+import * as S from './styles';
 
 function SignInSocial() {
     const handleClick = async () => {
         try {
-            await signIn('google', { callbackUrl: process.env.NEXTAUTH_URL+'/demo' });
+            await signIn('google', { callbackUrl: 'http://localhost:3000/demo' });
         } catch (error) {
             console.log(error)
         }
     }
-
     return (
         <Flex vertical gap={'10px'} align='center' >
             <Typography>
