@@ -2,10 +2,13 @@ import styled from 'styled-components';
 
 export const Input = styled.div`
   position: relative;
-  width: 100%;
 
   .ant-btn-default {
-    border: 1px solid #f5f7fa !important;
+    border: none !important;
+  }
+
+  .ant-space-item {
+    width: -webkit-fill-available;
   }
 
   .resend {
@@ -22,7 +25,6 @@ export const Input = styled.div`
 `;
 
 export const InputNumber = styled.div`
-  width: 100%;
   gap: 15px;
   padding-bottom: 12px;
 
@@ -53,7 +55,7 @@ export const InputNumber = styled.div`
 `;
 
 export const InputMenu = styled.div`
-  width: 100%;
+  width: 150px;
   gap: 10px;
 
   display: flex;
