@@ -252,9 +252,9 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
                 type="primary"
                 htmlType="submit"
                 className="submit-button"
-                disabled={isLoading}
+                loading={isLoading}
               >
-                {isLoading ? <LoadingOutlined /> : 'Gửi mã OTP'}
+                Gửi mã OTP
               </Button>
             </FormItem>
           </Form>
@@ -313,9 +313,9 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
                   type="primary"
                   htmlType="submit"
                   className="submit-button"
-                  disabled={isLoading}
+                  loading={isLoading}
                 >
-                  {isLoading ? <LoadingOutlined /> : 'Xác thực'}
+                  Xác thực
                 </Button>
               </FormItem>
             </Form>

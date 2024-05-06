@@ -134,9 +134,9 @@ const FormReset = () => {
             type="primary"
             htmlType="submit"
             className="login-form-button"
-            disabled={isLoading}
+            loading={isLoading}
           >
-            {isLoading ? <LoadingOutlined /> : 'Lưu'}
+            Lưu
           </Button>
         </FormItem>
       </Form>
