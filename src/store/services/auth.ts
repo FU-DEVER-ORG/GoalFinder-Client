@@ -45,6 +45,26 @@ export const authAPI = api.injectEndpoints({
       //todo add invalidatesTags if need
     }),
 
+    forgotPassword: build.mutation({
+      query: (data: { userName: string }) => ({
+        url: authEndpoint.FORGOT_PASSWORD,
+        method: 'POST',
+        body: data,
+      }),
+    }),
+    resetPassword: build.mutation({
+      query: (data: {
+        otpCode: string;
+        newPassword: string;
+        confirmPassword: string;
+      }) => ({
+        url: authEndpoint.RESET_PASSWORD,
+        method: 'PATCH',
+        body: data,
+      }),
+    }),
+    //mutation for post put patch, param for get delete
+
     getUser: build.query({
       //todo addition data in need
       query: (userName: string) => ({
@@ -63,6 +83,8 @@ export const authAPI = api.injectEndpoints({
 export const {
   useSignInMutation,
   useSignUpMutation,
+  useForgotPasswordMutation,
+  useResetPasswordMutation,
   useUpdateUserMutation,
   useGetUserQuery,
   //todo addition in need
