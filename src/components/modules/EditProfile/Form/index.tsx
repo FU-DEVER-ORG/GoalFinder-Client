@@ -1,18 +1,25 @@
-import { Flex, Form, Modal } from 'antd';
+import { Flex, Form } from 'antd';
 
-import { useUpdateUserMutation } from '@/store/services/auth';
-import { config } from '@/components/modules/EditProfile/modal';
+import { useGetUserQuery, useUpdateUserMutation } from '@/store/services/auth';
+import Config from '@/components/modules/EditProfile/message';
+import { constants } from '@/settings';
+import webStorageClient from '@/utils/webStorageClient';
 
 import ImageWall from '@/components/modules/EditProfile/InputImage';
 import FormItem from '@/components/modules/EditProfile/InputItem';
-import Loading from '@/components/modules/EditProfile/loading';
 
 import * as S from './style';
+import Button from '@/components/core/common/Button';
+import { useState } from 'react';
 
 const FormPage = () => {
   const [UpdateUser, { isLoading }] = useUpdateUserMutation();
+  const userName = webStorageClient.get(constants.USER_NAME);
+  const data = useGetUserQuery('/match');
+  console.log('data', data);
 
   const [form] = Form.useForm();
+  const config = Config();
 
   const onFinish = async (values: any) => {
     const name = values?.fullName?.split(' ');
@@ -30,37 +37,42 @@ const FormPage = () => {
       competitionLevelId: values?.competitionLevelId ?? '',
       address: `${values.province}<token>${values.district}<token>${values.ward}`,
     };
-    // console.log('data', data);
+    config.loading();
     const res: any = await UpdateUser(data);
     if (res?.error) onFinishFail(res?.error);
     else onFinishSuccess();
   };
 
   const onFinishSuccess = () => {
-    const data = {
-      title: 'Cập nhật thông tin thành công',
-      text: 'Nhâp ok để chuyển về trang cá nhân',
-    };
-    Modal.success(config(data));
+    config.close();
+    config.success();
   };
 
   const onFinishFail = (e: any) => {
-    const data = {
-      title: 'Không thể cập nhập thông tin',
-      text: e.error,
-    };
-    Modal.error(config(data));
+    config.close();
+    config.error();
   };
 
   return (
     <>
-      <Loading $isLoading={isLoading} $fixed />
+      {config.contextHolder}
       <S.FormEditWrapper align="center" gap={24} vertical>
         <S.Tittle>Chỉnh sửa thông tin cá nhân</S.Tittle>
         <Form form={form} name="edit form" onFinish={onFinish}>
           <Flex gap={24} vertical>
             <ImageWall form={form} />
             <FormItem form={form} />
+            <div className="btn">
+              <Button
+                type="primary"
+                $color="#fff"
+                $width="100%"
+                htmlType="submit"
+                loading={isLoading}
+              >
+                Xác nhận
+              </Button>
+            </div>
           </Flex>
         </Form>
       </S.FormEditWrapper>

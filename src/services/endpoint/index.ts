@@ -7,9 +7,9 @@ const authEndpoint = {
 };
 
 const userEndpoint = {
-  UPDATE_USER : `/user/update`
-}
-
+  UPDATE_USER: `/user/update`,
+  USER: `/user`,
+};
 
 const editProfileEndpoint = {
   PROVINCE: `${prefixBase}/province`,

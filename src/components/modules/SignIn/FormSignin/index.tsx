@@ -45,7 +45,7 @@ function FormSignin() {
       //  {data}
       // )
       const res: any = await signIn(data);
-      console.log(res?.data);
+      console.log('first', res);
       // console.log(res?.data?.body?.accessToken);
       // webStorageClient.setToken(res?.data?.body?.accessToken, {maxAge: 60*4})
       router.push('/');

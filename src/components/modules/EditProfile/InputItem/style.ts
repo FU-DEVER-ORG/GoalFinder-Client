@@ -69,8 +69,13 @@ export const FlexWrapper = styled(FlexFromAntd)`
 
   @media ${({ theme }) => theme.breakpoints.mdMax} {
     gap: 12px;
+    width: 100% !important;
+  }
+  @media ${({ theme }) => theme.breakpoints.smMax} {
+    gap: 12px;
 
     flex-wrap: wrap !important;
+
     width: 100% !important;
   }
 `;
@@ -130,6 +135,16 @@ export const RadioGroup = styled(Radio.Group)`
       color: #fff !important;
     }
   }
+
+  @media ${({ theme }) => theme.breakpoints.smMax} {
+    gap: 12px;
+
+    flex-wrap: wrap !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+  }
 `;
 export const RadioButton = styled(Radio.Button)`
   display: flex !important;
@@ -139,6 +154,7 @@ export const RadioButton = styled(Radio.Button)`
   width: 100% !important;
   height: 100% !important;
 
+  padding: 12px 20px !important;
   border-radius: 8px;
   border: 1px solid #d9d9d9 !important;
 
@@ -181,7 +197,7 @@ export const Label = styled.label<{ $color?: string }>`
     props?.$color ? '#fff' : props.theme.colors.primary};
 
   border-radius: 8px;
-  padding: 12px 20px;
+  padding: 12px 20px !important;
 
   cursor: pointer;
   transition: all 0.3s !important;
@@ -201,6 +217,7 @@ export const Label = styled.label<{ $color?: string }>`
     color: ${(props) => props?.$color || '#fff'} !important ;
     transition: all 0.3s !important;
   }
+  
 `;
 export const Flex = styled(FlexFromAntd)`
   @media ${({ theme }) => theme.breakpoints.mdMax} {

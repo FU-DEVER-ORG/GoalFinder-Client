@@ -135,11 +135,6 @@ const FormItem = ({ form }: any) => {
           </div>
         </S.FormItem>
       </S.Flex>
-      <S.FormItem>
-        <Button type="primary" $color="#fff" $width="100%" htmlType="submit">
-          Xác nhận
-        </Button>
-      </S.FormItem>
     </S.WrapperItem>
   );
 };

@@ -6,6 +6,7 @@ const ACCESS_TOKEN = '_access_token';
 const REFRESH_TOKEN = '_refresh_token';
 const IS_AUTH = '_is_auth';
 const USER_INFO = "_user_info";
+const USER_NAME = "_user_name";
 const ASSETS_URL = "https://api.cloudinary.com/v1_1/dmeetnppd/image/upload";
 
 
@@ -18,6 +19,7 @@ const constants = {
     IS_AUTH,
     USER_INFO,
     TIME_FORMAT,
-    ASSETS_URL
+    ASSETS_URL,
+    USER_NAME
 }
 export default constants;

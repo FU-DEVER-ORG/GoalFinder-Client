@@ -1,4 +1,4 @@
-import { Flex } from 'antd';
+import { Flex, Form } from 'antd';
 import styled from 'styled-components';
 
 export const FormEditWrapper = styled(Flex)`
@@ -14,6 +14,13 @@ export const FormEditWrapper = styled(Flex)`
   .ant-form {
     width: 100%;
   }
+  .btn {
+    padding: 0 20px;
+  }
+
+  span{
+    line-height: 1.6 !important;
+  }
 
   @media ${({ theme }) => theme.breakpoints.mdMax} {
     span {
@@ -27,6 +34,17 @@ export const FormEditWrapper = styled(Flex)`
     }
   }
 `;
+
+export const FormItem = styled(Form.Item)<{ $full?: boolean }>`
+  padding: 0 20px !important;
+
+  @media ${({ theme }) => theme.breakpoints.smMax} {
+    * {
+      font-size: ${({ theme }) => theme.fontSize.xs} !important;
+    }
+  }
+`;
+
 export const Tittle = styled.label`
   display: flex;
   justify-content: center;
