@@ -8,7 +8,7 @@ import Button from '@/components/core/common/Button';
 
 import * as S from './styles';
 
-async function Home() {
+function Home() {
   return (
     <S.HomeWrapper gap={24}>
       <S.Left vertical gap={24}>

@@ -45,6 +45,12 @@ function FormSignin() {
       const res: any = await signIn(data);
       const errorMessage = res?.error?.data?.appCode;
       if(res?.data?.appCode === "Auth.Login.OPERATION_SUCCESS"){
+        const curMessage = messageApiData.find((value) => value.describe === res?.data?.appCode)
+        await messageApi.open({
+          type: 'success',
+          content: curMessage?.message,
+          duration: curMessage?.time
+        });
         router.push('/');
       }else if(errorMessage){
         const curMessage = messageApiData.find((value) => value.describe === errorMessage )
