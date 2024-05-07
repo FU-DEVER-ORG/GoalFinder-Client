@@ -13,7 +13,7 @@ const textRemoves: any = {
   ward: ['Thị trấn ', 'Xã ', 'Thị xã ', 'Phường '],
 };
 
-interface optionType extends DefaultOptionType {
+interface OptionType extends DefaultOptionType {
   label?: string;
   value?: string;
   id?: number;
@@ -24,7 +24,7 @@ type InterFaceinitialStateValue = {
   ward: null | string;
 };
 
-const initialStateData: optionType = {
+const initialStateData: OptionType = {
   province: [],
   district: [],
   ward: [],
@@ -47,10 +47,6 @@ const SelectAddress = ({ form }: any) => {
     return newText;
   };
 
-  const filterOption: boolean | optionType | undefined = (
-    input: string,
-    option: optionType,
-  ) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
 
   const setEndPoint = (endPoint: string, id: number) => {
     return `${endPoint}/${id}`;
