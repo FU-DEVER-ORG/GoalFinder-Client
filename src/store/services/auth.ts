@@ -15,7 +15,7 @@ export const authAPI = api.injectEndpoints({
       }) => ({
         //todo
         url: authEndpoint.SIGN_IN,
-        method: "POST",
+        method: 'POST',
         body: data,
         flashError: true,
       }),
@@ -23,13 +23,10 @@ export const authAPI = api.injectEndpoints({
     }),
     signUp: build.mutation({
       //todo addition data in need
-      query: (data: {
-        email: string;
-        password: string;
-      }) => ({
+      query: (data: { email: string; password: string }) => ({
         //todo
         url: authEndpoint.SIGN_UP,
-        method: "POST",
+        method: 'POST',
         body: data,
         flashError: true,
       }),
@@ -41,7 +38,26 @@ export const authAPI = api.injectEndpoints({
         method: 'GET',
         flashError: true,
       }),
-    })
+    }),
+    forgotPassword: build.mutation({
+      query: (data: { userName: string }) => ({
+        url: authEndpoint.FORGOT_PASSWORD,
+        method: 'POST',
+        body: data,
+      }),
+    }),
+    resetPassword: build.mutation({
+      query: (data: {
+        otpCode: string;
+        newPassword: string;
+        confirmPassword: string;
+      }) => ({
+        url: authEndpoint.RESET_PASSWORD,
+        method: 'PATCH',
+        body: data,
+      }),
+    }),
+    //mutation for post put patch, param for get delete
     //todo add more api query ....
   }),
 });
@@ -50,5 +66,7 @@ export const {
   useSignInMutation,
   useSignUpMutation,
   useGetMatchQuery,
+  useForgotPasswordMutation,
+  useResetPasswordMutation,
   //todo addition in need
 } = authAPI;

@@ -2,8 +2,7 @@ import { Flex } from 'antd';
 import styled from 'styled-components';
 
 export const AddMailWrapper = styled(Flex)`
-  gap: 40px;
-  width: 48%;
+  gap: 24px;
 
   justify-content: center;
   flex-direction: column;

@@ -7,14 +7,21 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { Form, Menu, Space, Statistic, Dropdown, message } from 'antd';
+import {
+  Form,
+  Menu,
+  Space,
+  Statistic,
+  Dropdown,
+  message,
+  FormProps,
+} from 'antd';
 import OTPInput from 'react-otp-input';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import Modal from 'antd/es/modal/Modal';
-import { CaretDownOutlined } from '@ant-design/icons';
+import { CaretDownOutlined, LoadingOutlined } from '@ant-design/icons';
 
-import useModal from '@/hooks/useModal';
+import { useForgotPasswordMutation } from '@/store/services/auth';
 
 import Button from '@/components/core/common/Button';
 import Input from '@/components/core/common/form/Input';
@@ -32,8 +39,8 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
   const [form] = Form.useForm();
   const { Countdown } = Statistic;
   const FormItem = Form.Item;
-  const modalState = useModal();
   const [messageApi, contextHolder] = message.useMessage();
+  const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
 
   const phoneAreaData = [
     {
@@ -51,7 +58,6 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
       code: '+49',
       flag: '/images/forgot-password/flag/49.jpg',
     },
-
     {
       country: 'Ý',
       code: '+39',
@@ -59,11 +65,17 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
     },
   ];
 
+  type FieldType = {
+    userName?: string;
+  };
+  const [dataForgot, setDataForgot] = useState<{
+    userName: string;
+  }>({ userName: '' });
+
   const [digits, setDigits] = useState<string[]>([]);
-
+  const [otpCode, setOtpCode] = useState<string>('');
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
-
-  const [targetTime, setTargetTime] = useState<number>(Date.now() + 30 * 1000);
+  const [targetTime, setTargetTime] = useState<number>(Date.now() + 60 * 1000);
 
   const [finish, setFinish] = useState<boolean>(false);
 
@@ -76,10 +88,10 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
   const menu = (
     <Menu onClick={handleMenuClick}>
       {phoneAreaData.map((area) => (
-        <Menu.Item key={area.code}>
-          <S.InputMenu key={area.code}>
-            <Typography>{area.country}</Typography>
-            <Image alt="" src={area.flag} width={25} height={20} />
+        <Menu.Item key={area?.code}>
+          <S.InputMenu key={area?.code}>
+            <Typography>{area?.country}</Typography>
+            <Image alt="" src={area?.flag} width={25} height={20} priority />
           </S.InputMenu>
         </Menu.Item>
       ))}
@@ -87,70 +99,118 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
   );
 
   function handleMenuClick(e: any): void {
-    const clickedCountry = phoneAreaData.find((area) => area.code === e.key);
+    const clickedCountry = phoneAreaData.find((area) => area?.code === e?.key);
     if (clickedCountry) {
       setSelectedCountry(clickedCountry);
     }
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit: FormProps<FieldType>['onFinish'] = async (values) => {
     try {
-      setNavigation('step2');
-      setTargetTime(Date.now() + 30 * 1000);
-    } catch (errorInfo) {}
+      const data = {
+        userName: values?.userName!,
+      };
+      setDataForgot(data);
+      const res: any = await forgotPassword(data).unwrap();
+      console.log('resolve');
+      console.log(res);
+
+      // xu ly
+
+      // console.log(res);
+
+      // if (res?.error) throw res?.error;
+      // if (res?.data) {
+      //   setNavigation('step2');
+      //   setTargetTime(Date.now() + 60 * 1000);
+      //   console.log('Mã xác thực là: ', res?.data?.body?.otpCode);
+      //   setOtpCode(res?.data?.body?.otpCode);
+      // }
+    } catch (error) {
+      // xử lý lỗi ở đây
+
+      console.log('reject', error);
+    }
   };
 
   const handleSubmitVerification = async () => {
     try {
-      if (digits.length != 4) {
-        modalState.openModal();
+      if (digits?.length != 4) {
+        form.setFields([
+          {
+            name: 'otp',
+            errors: ['OTP gồm 4 chữ cái, vui lòng kiểm tra lại'],
+          },
+        ]);
+        setTimeout(() => {
+          form.setFields([
+            {
+              name: 'otp',
+              errors: [],
+            },
+          ]);
+        }, 3000);
       }
-      if (navigation == 'step3' && digits.length === 4) {
-        route.push('/reset-password');
+      if (navigation === 'step3' && digits?.length === 4) {
+        const res: any = await forgotPassword(dataForgot);
+        if (res?.data?.appCode === 'Auth.ForgotPassword.OPERATION_SUCCESS') {
+          const otpCheck = digits?.join('');
+          otpCheck === otpCode
+            ? (sessionStorage.setItem('otpCode', otpCode),
+              route.push('/reset-password'))
+            : messageApi.open({
+                type: 'error',
+                content: 'Mã xác thực không đúng, vui lòng kiểm tra lại',
+              });
+        }
       }
     } catch (error) {}
   };
 
   const handleChange = (otp: string, index: number) => {
-    setDigits(otp.split(''));
+    setDigits(otp?.split(''));
     setSelectedIndex(index);
   };
 
   const onFinish = () => {
     setFinish(true);
+    setDigits(otpCode?.split(''));
   };
 
-  const success = () => {
+  const resend = () => {
     messageApi
       .open({
         type: 'loading',
         content: 'Mã xác thực đang được gửi tới bạn',
         duration: 1,
       })
-      .then(() => message.success('Mã xác thực đã được gửi', 2.5))
+      .then(() => message.success('Mã xác thực đã được gửi', 1))
+      .then(async () => {
+        console.log(dataForgot);
+
+        const res: any = await forgotPassword(dataForgot);
+        res?.data?.appCode === 'Auth.ForgotPassword.OPERATION_SUCCESS'
+          ? (console.log('Mã xác thực OTP là: ', res?.data?.body?.otpCode),
+            setDigits([]),
+            setOtpCode(res?.data?.body?.otpCode))
+          : messageApi.open({
+              type: 'error',
+              content: 'Lỗi xác thực',
+            });
+      })
       .then(() => setFinish(false))
-      .then(() => setTargetTime(Date.now() + 30 * 1000));
+      .then(() => setTargetTime(Date.now() + 60 * 1000));
   };
 
   const renderInput = (inputProps: InputHTMLAttributes<HTMLInputElement>) => (
-    <input
-      {...inputProps}
-      onKeyPress={(e) => {
-        const isValidKey = /^\d$/.test(e.key);
-        if (!isValidKey) {
-          e.preventDefault();
-        }
-      }}
-      inputMode="numeric"
-      autoComplete="off"
-    />
+    <input {...inputProps} inputMode="text" autoComplete="off" />
   );
 
   useEffect(() => {
     if (finish) setNavigation('step3_changeOTP');
     navigation === 'step1'
       ? setNavigation('step1')
-      : digits.length === 4
+      : digits?.length === 4
       ? setNavigation('step3')
       : finish === false
       ? setNavigation('step2')
@@ -159,49 +219,28 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
 
   return (
     <>
-      <Modal
-        wrapClassName="modalWrap"
-        closeIcon={false}
-        width={'25%'}
-        open={modalState.visible}
-        onCancel={modalState.closeModal}
-        footer={null}
-        centered={true}
-      >
-        <S.ModalContent>
-          <Image
-            alt=""
-            src={'/images/forgot-password/Modal.png'}
-            width={100}
-            height={100}
-          />
-          <Typography variant="body-text-bold">
-            Một mã xác thực gồm 4 chữ số đã được gửi tới số điện thoại *******70
-          </Typography>
-        </S.ModalContent>
-      </Modal>
+      {contextHolder}
 
       {navigation === 'step1' ? (
         <S.Input>
-          <Form form={form} onFinish={handleSubmit}>
+          <Form form={form} onFinish={handleSubmit} style={{ width: '400px' }}>
             <FormItem
-              name="phone"
+              name="userName"
               rules={[
                 { required: true, message: 'Vui lòng nhập số điện thoại' },
               ]}
             >
               <Input
-                width={'100%'}
                 prefix={
                   <>
                     <Dropdown overlay={menu} placement="bottomLeft">
-                      <Space>
-                        <Button $full={false} $backgroundColor="#F5F7FA">
+                      <Space style={{ width: '60px', marginLeft: '-10px' }}>
+                        <Button $full={false} $width={'-webkit-fill-available'}>
                           <Image
                             alt=""
                             src={selectedCountry.flag}
-                            width={25}
-                            height={20}
+                            width={20}
+                            height={15}
                           />
                           <CaretDownOutlined />
                         </Button>
@@ -219,6 +258,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
                 type="primary"
                 htmlType="submit"
                 className="submit-button"
+                loading={isLoading}
               >
                 Gửi mã OTP
               </Button>
@@ -229,28 +269,28 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
         <>
           <S.Input>
             <Form form={form} onFinish={handleSubmitVerification}>
-              <S.InputNumber>
-                <OTPInput
-                  value={digits.join('')}
-                  onChange={(otp: string) => handleChange(otp, selectedIndex)}
-                  inputStyle={{
-                    overflow: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                  inputType="text"
-                  numInputs={4}
-                  renderSeparator={<span style={{ padding: '5px' }}></span>}
-                  renderInput={renderInput}
-                />
-              </S.InputNumber>
-
+              <FormItem name="otp">
+                <S.InputNumber>
+                  <OTPInput
+                    value={digits?.join('')}
+                    onChange={(otp: string) => handleChange(otp, selectedIndex)}
+                    inputStyle={{
+                      overflow: 'none',
+                      display: 'flex',
+                      alignItems: 'center',
+                    }}
+                    inputType="text"
+                    numInputs={4}
+                    renderSeparator={<span style={{ padding: '5px' }}></span>}
+                    renderInput={renderInput}
+                  />
+                </S.InputNumber>
+              </FormItem>
               {navigation === 'step3' || navigation === 'step3_changeOTP' ? (
                 <S.CountdownContainer>
                   <Typography className="resendWrapper">
                     Không nhận được mã xác thực?
-                    {contextHolder}
-                    <a className="resend" onClick={success}>
+                    <a className="resend" onClick={resend}>
                       Gửi lại
                     </a>
                   </Typography>
@@ -266,8 +306,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
 
                   <Typography className="resendWrapper">
                     Không nhận được mã xác thực?
-                    {contextHolder}
-                    <a className="resend" onClick={success}>
+                    <a className="resend" onClick={resend}>
                       Gửi lại
                     </a>
                   </Typography>
@@ -276,13 +315,11 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
 
               <FormItem>
                 <Button
-                  $backgroundColor={
-                    navigation === 'step3' ? '#0F6C19' : '#4DAA57'
-                  }
                   $width={'100%'}
                   type="primary"
                   htmlType="submit"
                   className="submit-button"
+                  loading={isLoading}
                 >
                   Xác thực
                 </Button>
