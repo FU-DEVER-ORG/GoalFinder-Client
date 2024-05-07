@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import { Checkbox, Form, FormProps } from 'antd';
+import { Checkbox, Form, FormProps, message } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 import { LockOutlined, PhoneOutlined } from '@ant-design/icons';
 
@@ -21,10 +21,21 @@ type FieldType = {
   isRemember?: boolean;
 };
 
-interface MessValidate {
-  typeMess: String;
-  messNoti: String;
-}
+const messageApiData = [
+  {
+    type: "error",
+    describe: "Auth.Login.USER_PASSWORD_IS_NOT_CORRECT",
+    message: "Mật khẩu của bạn không đúng !",
+    time: 3
+  },
+  {
+    type: "error",
+    describe: "Auth.Login.USER_IS_NOT_FOUND",
+    message: "Không tìm thấy tài khoản !",
+    time: 3
+  },
+];
+
 
 const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
   console.log('Failed:', errorInfo);
@@ -33,7 +44,8 @@ const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
 function FormSignin() {
   const router = useRouter();
   const [signIn, { isLoading }] = useSignInMutation();
-
+  const [messageApi, contextHolder] = message.useMessage();
+  
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     try {
       const data = {
@@ -41,69 +53,79 @@ function FormSignin() {
         password: values.password!,
         isRemember: values.isRemember!,
       };
-      
       const res: any = await signIn(data);
-      console.log(res?.data);
-      
-      router.push('/');
+      const errorMessage = res?.error?.data?.appCode;
+      if(res?.data?.appCode === "Auth.Login.OPERATION_SUCCESS"){
+        router.push('/');
+      }else if(errorMessage){
+        const curMessage = messageApiData.find((value) => value.describe === errorMessage )
+        messageApi.open({
+          type: 'error',
+          content: curMessage?.message,
+          duration: curMessage?.time
+        });
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <S.HomeWrapper>
-      <Form
-        name="basic"
-        style={{ width: '100%' }}
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
-      >
-        <FormItem<FieldType>
-          label=""
-          name="email"
-          rules={[{ required: true, message: 'Hãy nhập số điện thoại!' }]}
+    <>
+      {contextHolder}
+      <S.HomeWrapper>
+        <Form
+          name="basic"
+          style={{ width: '100%' }}
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
         >
-          <Input
-            placeholder="0XXXXXXXX"
-            prefix={<PhoneOutlined />}
-            isRequired
-            label="Số điện thoại"
-          />
-        </FormItem>
-        <Form.Item<FieldType>
-          name="password"
-          rules={[{ required: true, message: 'Hãy nhập mật khẩu!' }]}
-        >
-          <InputPassword
-            placeholder="*****"
-            prefix={<LockOutlined />}
-            isRequired
-            label="Mật khẩu"
-          />
-        </Form.Item>
-        <S.RowRememberForgot>
-          <FormItem<FieldType> name="isRemember" valuePropName="checked">
-            <Checkbox>Nhớ mật khẩu</Checkbox>
+          <FormItem<FieldType>
+            label=""
+            name="email"
+            rules={[{ required: true, message: 'Hãy nhập số điện thoại!' }]}
+          >
+            <Input
+              placeholder="0XXXXXXXX"
+              prefix={<PhoneOutlined />}
+              isRequired
+              label="Số điện thoại"
+            />
           </FormItem>
-          <S.LinkTag href="/forgot-password">Quên mật khẩu</S.LinkTag>
-        </S.RowRememberForgot>
-        <FormItem>
-          <Button $width={'100%'} type="primary" htmlType="submit" loading={isLoading}>
-            Đăng nhập
-          </Button>
-        </FormItem>
-        <FormItem>
-          <Link href={'/sign-up'}>
-            <Button $width={'100%'} type="default">
-              Đăng ký
+          <Form.Item<FieldType>
+            name="password"
+            rules={[{ required: true, message: 'Hãy nhập mật khẩu!' }]}
+          >
+            <InputPassword
+              placeholder="*****"
+              prefix={<LockOutlined />}
+              isRequired
+              label="Mật khẩu"
+            />
+          </Form.Item>
+          <S.RowRememberForgot>
+            <FormItem<FieldType> name="isRemember" valuePropName="checked">
+              <Checkbox>Nhớ mật khẩu</Checkbox>
+            </FormItem>
+            <S.LinkTag href="/forgot-password">Quên mật khẩu</S.LinkTag>
+          </S.RowRememberForgot>
+          <FormItem>
+            <Button $width={'100%'} type="primary" htmlType="submit" loading={isLoading}>
+              Đăng nhập
             </Button>
-          </Link>
-        </FormItem>
-      </Form>
-    </S.HomeWrapper>
+          </FormItem>
+          <FormItem>
+            <Link href={'/sign-up'}>
+              <Button $width={'100%'} type="default">
+                Đăng ký
+              </Button>
+            </Link>
+          </FormItem>
+        </Form>
+      </S.HomeWrapper>
+    </>
   );
 }
 

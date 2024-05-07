@@ -12,6 +12,8 @@ function SignInSocial() {
     const handleClick = async () => {
         try {
             await signIn('google', { callbackUrl: 'http://localhost:3000/demo' });
+
+            
         } catch (error) {
             console.log(error)
         }

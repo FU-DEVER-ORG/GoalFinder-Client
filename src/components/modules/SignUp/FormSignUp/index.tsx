@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import { Form, FormProps } from 'antd';
+import { Form, FormProps, message } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 import { LockOutlined, PhoneOutlined } from '@ant-design/icons';
 
@@ -51,6 +51,21 @@ type FieldType = {
   confirmPassword?: string;
 };
 
+const messageApiData = [
+  {
+    type: 'error',
+    describe: "Auth.Register.USER_IS_EXISTED",
+    message: "Số điện thoại đã tồn tại !",
+    time: 3
+  },
+  {
+    type: 'success',
+    describe: "Auth.Register.OPERATION_SUCCESS",
+    message: "Đăng ký tài khoản thành công",
+    time: 2
+  },
+];
+
 const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
   console.log('Failed:', errorInfo);
 };
@@ -58,91 +73,109 @@ const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
 function FormSignUp() {
   const router = useRouter();
   const [signUp, { isLoading }] = useSignUpMutation();
+  const [messageApi, contextHolder] = message.useMessage();
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
-    console.log('Success:', values);
     try {
       const data = {
         email: values.email!,
         password: values.confirmPassword!,
       };
-
       const res: any = await signUp(data);
-      router.push('/sign-in');
+      const errorMessage = res?.error?.data?.appCode;
+      if (res?.data?.appCode === "Auth.Register.OPERATION_SUCCESS") {
+        const curMessage = messageApiData.find((value) => value.describe === res?.data?.appCode)
+        await messageApi.open({
+          type: 'success',
+          content: curMessage?.message,
+          duration: curMessage?.time
+        });
+        router.push('/sign-in');
+      } else if (errorMessage) {
+        const curMessage = messageApiData.find((value) => value.describe === errorMessage)
+        messageApi.open({
+          type: 'error',
+          content: curMessage?.message,
+          duration: curMessage?.time
+        });
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <S.HomeWrapper>
-      <Form
-        name="basic"
-        style={{ width: '100%' }}
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
-      >
-        <FormItem<FieldType>
-          name="email"
-          rules={[{ required: true, message: 'Hãy nhập số điện thoại!' }]}
+    <>
+      {contextHolder}
+      <S.HomeWrapper>
+        <Form
+          name="basic"
+          style={{ width: '100%' }}
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
         >
-          <Input
-            placeholder="0xxxxxxxx"
-            prefix={<PhoneOutlined />}
-            isRequired
-            label="Số điện thoại"
-          />
-        </FormItem>
-        <Form.Item<FieldType>
-          name="password"
-          rules={[
-            { validator: validatePassword }
-          ]}
-        >
-          <InputPassword
-            placeholder="*****"
-            prefix={<LockOutlined />}
-            isRequired
-            label="Mật khẩu"
-          />
-        </Form.Item>
+          <FormItem<FieldType>
+            name="email"
+            rules={[{ required: true, message: 'Hãy nhập số điện thoại!' }]}
+          >
+            <Input
+              placeholder="0xxxxxxxx"
+              prefix={<PhoneOutlined />}
+              isRequired
+              label="Số điện thoại"
+            />
+          </FormItem>
+          <Form.Item<FieldType>
+            name="password"
+            rules={[
+              { validator: validatePassword }
+            ]}
+          >
+            <InputPassword
+              placeholder="*****"
+              prefix={<LockOutlined />}
+              isRequired
+              label="Mật khẩu"
+            />
+          </Form.Item>
 
-        <Form.Item<FieldType>
-          dependencies={['password']}
-          name="confirmPassword"
-          rules={[{ required: true, message: 'Hãy nhập lại đúng mật khẩu!' },
-          ({ getFieldValue }) => ({
-            validator(_, value) {
-              if (!value || getFieldValue('password') === value) {
-                return Promise.resolve();
-              }
-              return Promise.reject(new Error('Hãy nhập lại đúng mật khẩu!'));
-            },
-          }),]}
-        >
-          <InputPassword
-            placeholder="*****"
-            prefix={<LockOutlined />}
-            isRequired
-            label="Nhập lại mật khẩu"
-          />
-        </Form.Item>
-        <FormItem>
-          <Button $width={'100%'} type="primary" htmlType="submit" loading={isLoading}>
-            Đăng ký
-          </Button>
-        </FormItem>
-        <FormItem>
-          <Link href={'/sign-in'}>
-            <Button $width={'100%'} type="default">
-              Đăng nhập
+          <Form.Item<FieldType>
+            dependencies={['password']}
+            name="confirmPassword"
+            rules={[{ required: true, message: 'Hãy nhập lại đúng mật khẩu!' },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue('password') === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error('Hãy nhập lại đúng mật khẩu!'));
+              },
+            }),]}
+          >
+            <InputPassword
+              placeholder="*****"
+              prefix={<LockOutlined />}
+              isRequired
+              label="Nhập lại mật khẩu"
+            />
+          </Form.Item>
+          <FormItem>
+            <Button $width={'100%'} type="primary" htmlType="submit" loading={isLoading}>
+              Đăng ký
             </Button>
-          </Link>
-        </FormItem>
-      </Form>
-    </S.HomeWrapper>
+          </FormItem>
+          <FormItem>
+            <Link href={'/sign-in'}>
+              <Button $width={'100%'} type="default">
+                Đăng nhập
+              </Button>
+            </Link>
+          </FormItem>
+        </Form>
+      </S.HomeWrapper>
+    </>
   );
 }
 
