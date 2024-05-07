@@ -106,24 +106,30 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
   }
 
   const handleSubmit: FormProps<FieldType>['onFinish'] = async (values) => {
-    console.log(values?.userName);
     try {
       const data = {
         userName: values?.userName!,
       };
       setDataForgot(data);
-      const res: any = await forgotPassword(data);
-      res?.data?.appCode === 'Auth.ForgotPassword.OPERATION_SUCCESS'
-        ? (setNavigation('step2'),
-          setTargetTime(Date.now() + 60 * 1000),
-          console.log('Mã xác thực là: ', res?.data?.body?.otpCode),
-          setOtpCode(res?.data?.body?.otpCode))
-        : messageApi.open({
-            type: 'error',
-            content: 'Tài khoản không tồn tại',
-          });
+      const res: any = await forgotPassword(data).unwrap();
+      console.log('resolve');
+      console.log(res);
+
+      // xu ly
+
+      // console.log(res);
+
+      // if (res?.error) throw res?.error;
+      // if (res?.data) {
+      //   setNavigation('step2');
+      //   setTargetTime(Date.now() + 60 * 1000);
+      //   console.log('Mã xác thực là: ', res?.data?.body?.otpCode);
+      //   setOtpCode(res?.data?.body?.otpCode);
+      // }
     } catch (error) {
-      console.log(error);
+      // xử lý lỗi ở đây
+
+      console.log('reject', error);
     }
   };
 
