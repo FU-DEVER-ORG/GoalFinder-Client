@@ -1,10 +1,6 @@
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from 'next-auth/providers/google';
 
-import webStorageClient from "@/utils/webStorageClient";
-
-import { constants } from "@/settings";
-
 export const authOptions: NextAuthOptions = {
     session : {
         strategy: 'jwt'
@@ -22,19 +18,6 @@ export const authOptions: NextAuthOptions = {
             }
             await console.log(account);
             await console.log(profile)
-
-            // webStorageClient.setToken(account?.access_token!, 
-            //     {expires: new Date(Date.now() + 15*60*1000)}
-            //   );
-            // webStorageClient.set(
-            //     constants.USER_INFO,
-            //     {
-            //         name: profile?.name,
-            //         email: profile?.email,
-            //         image: profile?.image,
-            //     },
-            //     {expires: new Date(Date.now() + 20*60*1000)}
-            //   );
             return true;
         }
     }

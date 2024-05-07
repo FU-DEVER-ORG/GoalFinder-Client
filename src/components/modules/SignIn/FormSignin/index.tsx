@@ -8,10 +8,12 @@ import FormItem from 'antd/es/form/FormItem';
 import { LockOutlined, PhoneOutlined } from '@ant-design/icons';
 
 import { useSignInMutation } from '@/store/services/auth';
+import { messageApiData } from '@/lib/api/constant';
 
 import Input from '@/components/core/common/form/Input';
 import InputPassword from '@/components/core/common/form/InputPassword';
 import Button from '@/components/core/common/Button';
+
 
 import * as S from './styles';
 
@@ -21,20 +23,7 @@ type FieldType = {
   isRemember?: boolean;
 };
 
-const messageApiData = [
-  {
-    type: "error",
-    describe: "Auth.Login.USER_PASSWORD_IS_NOT_CORRECT",
-    message: "Mật khẩu của bạn không đúng !",
-    time: 3
-  },
-  {
-    type: "error",
-    describe: "Auth.Login.USER_IS_NOT_FOUND",
-    message: "Không tìm thấy tài khoản !",
-    time: 3
-  },
-];
+
 
 
 const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {

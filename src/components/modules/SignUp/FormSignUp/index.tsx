@@ -9,6 +9,8 @@ import { LockOutlined, PhoneOutlined } from '@ant-design/icons';
 
 import { useSignUpMutation } from '@/store/services/auth';
 
+import { messageApiData } from '@/lib/api/constant';
+
 import Input from '@/components/core/common/form/Input';
 import InputPassword from '@/components/core/common/form/InputPassword';
 import Button from '@/components/core/common/Button';
@@ -50,21 +52,6 @@ type FieldType = {
   password?: string;
   confirmPassword?: string;
 };
-
-const messageApiData = [
-  {
-    type: 'error',
-    describe: "Auth.Register.USER_IS_EXISTED",
-    message: "Số điện thoại đã tồn tại !",
-    time: 3
-  },
-  {
-    type: 'success',
-    describe: "Auth.Register.OPERATION_SUCCESS",
-    message: "Đăng ký tài khoản thành công",
-    time: 2
-  },
-];
 
 const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
   console.log('Failed:', errorInfo);
