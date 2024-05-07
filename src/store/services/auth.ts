@@ -1,5 +1,7 @@
 "use client";
-import { authEndpoint } from "@/services/endpoint";
+
+import { authEndpoint, matchEndpoint } from "@/services/endpoint";
+
 import { api } from "./base";
 
 export const authAPI = api.injectEndpoints({
@@ -33,6 +35,13 @@ export const authAPI = api.injectEndpoints({
       }),
       //todo add invalidatesTags if need
     }),
+    getMatch: build.query ({
+      query: () =>({
+        url: matchEndpoint.MATCH,
+        method: 'GET',
+        flashError: true,
+      }),
+    })
     //todo add more api query ....
   }),
 });
@@ -40,5 +49,6 @@ export const authAPI = api.injectEndpoints({
 export const {
   useSignInMutation,
   useSignUpMutation,
+  useGetMatchQuery,
   //todo addition in need
 } = authAPI;
