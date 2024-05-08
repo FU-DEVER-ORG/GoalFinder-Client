@@ -1,45 +1,47 @@
 import Button from '@/components/core/common/Button';
-import SelectAddress from '@/components/modules/CreateMatch/SelectAddress';
 import Datepicker from '@/components/core/common/form/Datepicker';
+import SelectAddress from '../../EditProfile/SelectAddress';
 
 import * as S from './style';
+import * as SS from '../../EditProfile/InputItem/style'
+
 
 const FormItem = ({ form }: any) => {
   return (
-    <S.WrapperItem vertical gap={24}>
-      <S.FormItem>
-        <S.Typography variant="caption-small">Tiêu đề</S.Typography>
+    <SS.WrapperItem vertical gap={24}>
+      <SS.FormItem>
+        <SS.Typography variant="caption-small">Tiêu đề</SS.Typography>
         <div className="full">
-          <S.Input placeholder='Nhập tiêu đề'/>
+          <SS.Input placeholder='Nhập tiêu đề'/>
         </div>
-      </S.FormItem>
-      <S.FormItem>
-        <S.Typography variant="caption-small">Thời gian</S.Typography>
-        <S.FlexWrapper>
+      </SS.FormItem>
+      <SS.FormItem>
+        <SS.Typography variant="caption-small">Thời gian</SS.Typography>
+        <SS.FlexWrapper>
           <S.Timepicker placeholder="Giờ" type="range" />
           <Datepicker placeholder="Ngày" />
-        </S.FlexWrapper>
-      </S.FormItem>
-      <S.Flex justify="space-between" align="center">
-        <S.Typography variant="caption-small">Khu vực</S.Typography>
-        <S.FlexWrapper justify="space-between">
+        </SS.FlexWrapper>
+      </SS.FormItem>
+      <SS.Flex justify="space-between" align="center">
+        <SS.Typography variant="caption-small">Khu vực</SS.Typography>
+        <SS.FlexWrapper justify="space-between">
           <SelectAddress form={form} />
-        </S.FlexWrapper>
-      </S.Flex>
-      <S.FormItem>
-        <S.Typography variant="caption-small">Địa điểm</S.Typography>
+        </SS.FlexWrapper>
+      </SS.Flex>
+      <SS.FormItem>
+        <SS.Typography variant="caption-small">Địa điểm</SS.Typography>
         <div className="full">
-          <S.Input placeholder='Nhập địa điểm'/>
+          <SS.Input placeholder='Nhập địa điểm'/>
         </div>
-      </S.FormItem>
-      <S.FormItem>
-        <S.Typography variant="caption-small">Số lượng</S.Typography>
+      </SS.FormItem>
+      <SS.FormItem>
+        <SS.Typography variant="caption-small">Số lượng</SS.Typography>
         <div className="full">
-          <S.Input type="number" placeholder='Số lượng cầu thủ'/>
+          <SS.Input type="number" placeholder='Số lượng cầu thủ'/>
         </div>
-      </S.FormItem>
-      <S.FormItem>
-        <S.Typography variant="caption-small">Cạnh tranh</S.Typography>
+      </SS.FormItem>
+      <SS.FormItem>
+        <SS.Typography variant="caption-small">Cạnh tranh</SS.Typography>
         <div className="full">
           <S.Select
             options={[
@@ -49,31 +51,31 @@ const FormItem = ({ form }: any) => {
             defaultValue={'vuive'}
           ></S.Select>
         </div>
-      </S.FormItem>
-      <S.FormItem>
-        <S.Typography variant="caption-small">Tiền sân</S.Typography>
+      </SS.FormItem>
+      <SS.FormItem>
+        <SS.Typography variant="caption-small">Tiền sân</SS.Typography>
         <div className="full">
-          <S.Input type="number" placeholder='Nhập số tiền'/>
+          <SS.Input type="number" placeholder='Nhập số tiền'/>
         </div>
-      </S.FormItem>
-      <S.FormItem>
-        <S.Typography variant="caption-small">Mô tả thêm</S.Typography>
+      </SS.FormItem>
+      <SS.FormItem>
+        <SS.Typography variant="caption-small">Mô tả thêm</SS.Typography>
         <div className="full">
         <S.TextAreaInput className="ant-input" placeholder='Nhập mô tả...'/>
         </div>
-      </S.FormItem>
-      <S.FormItem>
-        <S.Typography variant="caption-small">Uy tín tối thiểu</S.Typography>
+      </SS.FormItem>
+      <SS.FormItem>
+        <SS.Typography variant="caption-small">Uy tín tối thiểu</SS.Typography>
         <div className="full">
-          <S.Input type="number" placeholder='Nhập uy tín'/>
+          <SS.Input type="number" placeholder='Nhập uy tín'/>
         </div>
-      </S.FormItem>
-      <S.FormItem>
+      </SS.FormItem>
+      <SS.FormItem>
         <Button type="primary" $color="#fff" $width="100%" htmlType="submit">
           Xác nhận
         </Button>
-      </S.FormItem>
-    </S.WrapperItem>
+      </SS.FormItem>
+    </SS.WrapperItem>
   );
 };
 

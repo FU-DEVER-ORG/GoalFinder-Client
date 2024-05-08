@@ -7,7 +7,7 @@ import * as S from './style';
 const Main = () => {
   return (
     <S.EditWrapper justify="center" align="center">
-      <Form></Form>
+      <Form/>
     </S.EditWrapper>
   );
 };
