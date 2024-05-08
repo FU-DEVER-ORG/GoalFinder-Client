@@ -112,9 +112,6 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
       };
       setDataForgot(data);
       const res: any = await forgotPassword(data).unwrap();
-      console.log('resolve');
-      console.log(res);
-
       // xu ly
 
       // console.log(res);
@@ -129,7 +126,6 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
     } catch (error) {
       // xử lý lỗi ở đây
 
-      console.log('reject', error);
     }
   };
 

@@ -3,13 +3,14 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import { Form, FormProps, message } from 'antd';
+import {
+  Form,
+  FormProps,
+} from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 import { LockOutlined, PhoneOutlined } from '@ant-design/icons';
 
 import { useSignUpMutation } from '@/store/services/auth';
-
-import { messageApiData } from '@/lib/api/constant';
 
 import Input from '@/components/core/common/form/Input';
 import InputPassword from '@/components/core/common/form/InputPassword';
@@ -60,7 +61,6 @@ const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
 function FormSignUp() {
   const router = useRouter();
   const [signUp, { isLoading }] = useSignUpMutation();
-  const [messageApi, contextHolder] = message.useMessage();
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     try {
@@ -68,32 +68,14 @@ function FormSignUp() {
         email: values.email!,
         password: values.confirmPassword!,
       };
-      const res: any = await signUp(data);
-      const errorMessage = res?.error?.data?.appCode;
-      if (res?.data?.appCode === "Auth.Register.OPERATION_SUCCESS") {
-        const curMessage = messageApiData.find((value) => value.describe === res?.data?.appCode)
-        await messageApi.open({
-          type: 'success',
-          content: curMessage?.message,
-          duration: curMessage?.time
-        });
-        router.push('/sign-in');
-      } else if (errorMessage) {
-        const curMessage = messageApiData.find((value) => value.describe === errorMessage)
-        messageApi.open({
-          type: 'error',
-          content: curMessage?.message,
-          duration: curMessage?.time
-        });
-      }
+      const res: any = await signUp(data).unwrap();
+      router.push('/sign-in')
     } catch (error) {
-      console.log(error);
     }
   };
 
   return (
     <>
-      {contextHolder}
       <S.HomeWrapper>
         <Form
           name="basic"
