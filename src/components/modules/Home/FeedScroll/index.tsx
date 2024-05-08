@@ -6,6 +6,7 @@ import { useGetMatchQuery } from '@/store/services/auth';
 
 import Feed from '../Feed';
 import * as S from './styles';
+import { Skeleton } from 'antd';
 
 function FeedScroll() {
   const { data, isLoading } = useGetMatchQuery("");
@@ -21,7 +22,9 @@ function FeedScroll() {
   return (
     <S.Scroll vertical gap={24}>
       {isLoading ? (
-        <div>Loading...</div>
+        <S.FeedContainer>
+          <Skeleton avatar paragraph={{ rows: 4 }} />
+        </S.FeedContainer>
       ) : (
         items.map((item, index) => (
           <Feed key={index} data={item} />
