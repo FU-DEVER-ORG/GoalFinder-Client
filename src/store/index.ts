@@ -1,20 +1,21 @@
-import { configureStore, ConfigureStoreOptions } from "@reduxjs/toolkit";
-import { setupListeners } from "@reduxjs/toolkit/query";
+import { configureStore, ConfigureStoreOptions } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
 
-import { api } from "./services/base";
-import auth from "./features/auth";
+import { api } from './services/base';
+import auth from './features/auth';
+import { rtkQueryErrorLogger } from './middleware/rtkQueryErrorLogger';
 
 export const createStore = (
-  option?: ConfigureStoreOptions["preloadedState"] | undefined
+  option?: ConfigureStoreOptions['preloadedState'] | undefined,
 ) =>
   configureStore({
     reducer: {
-        //todo state for adding reducer
-        [api.reducerPath]: api.reducer,
-        auth,
+      //todo state for adding reducer
+      [api.reducerPath]: api.reducer,
+      auth,
     },
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(api.middleware),
+      getDefaultMiddleware().concat(api.middleware).concat(rtkQueryErrorLogger),
     ...option,
   });
 export const store = createStore();
