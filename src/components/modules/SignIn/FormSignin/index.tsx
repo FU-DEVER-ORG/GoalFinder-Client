@@ -3,12 +3,11 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import { Checkbox, Form, FormProps, message } from 'antd';
+import { Checkbox, Form, FormProps } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 import { LockOutlined, PhoneOutlined } from '@ant-design/icons';
 
 import { useSignInMutation } from '@/store/services/auth';
-import { messageApiData } from '@/lib/api/constant';
 
 import Input from '@/components/core/common/form/Input';
 import InputPassword from '@/components/core/common/form/InputPassword';
@@ -23,9 +22,6 @@ type FieldType = {
   isRemember?: boolean;
 };
 
-
-
-
 const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
   console.log('Failed:', errorInfo);
 };
@@ -33,7 +29,6 @@ const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
 function FormSignin() {
   const router = useRouter();
   const [signIn, { isLoading }] = useSignInMutation();
-  const [messageApi, contextHolder] = message.useMessage();
   
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     try {
@@ -42,32 +37,15 @@ function FormSignin() {
         password: values.password!,
         isRemember: values.isRemember!,
       };
-      const res: any = await signIn(data);
-      const errorMessage = res?.error?.data?.appCode;
-      if(res?.data?.appCode === "Auth.Login.OPERATION_SUCCESS"){
-        const curMessage = messageApiData.find((value) => value.describe === res?.data?.appCode)
-        await messageApi.open({
-          type: 'success',
-          content: curMessage?.message,
-          duration: curMessage?.time
-        });
-        router.push('/');
-      }else if(errorMessage){
-        const curMessage = messageApiData.find((value) => value.describe === errorMessage )
-        messageApi.open({
-          type: 'error',
-          content: curMessage?.message,
-          duration: curMessage?.time
-        });
-      }
+      const res: any = await signIn(data).unwrap();
+      router.push('/');
     } catch (error) {
-      console.log(error);
+      console.log("reject:"+error);
     }
   };
 
   return (
     <>
-      {contextHolder}
       <S.HomeWrapper>
         <Form
           name="basic"
