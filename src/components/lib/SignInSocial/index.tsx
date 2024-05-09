@@ -11,7 +11,7 @@ import * as S from './styles';
 function SignInSocial() {
     const handleClick = async () => {
         try {
-            await signIn('google', { callbackUrl: '/demo' });
+            await signIn('google', { callbackUrl: '/' });
         } catch (error) {
             console.log(error)
         }

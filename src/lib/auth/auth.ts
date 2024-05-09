@@ -1,5 +1,7 @@
+import { constants } from "@/settings";
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from 'next-auth/providers/google';
+import { cookies } from "next/headers";
 
 export const authOptions: NextAuthOptions = {
     session : {
@@ -16,8 +18,12 @@ export const authOptions: NextAuthOptions = {
             if(!profile?.email){
                 throw new Error('No profile')
             }
-            await console.log(account);
-            await console.log(profile)
+            console.log(account);
+            // await console.log(account?.access_token);
+            console.log(profile)
+            const accessTokenDemo = account?.access_token as string;
+            // console.log(accessTokenDemo);
+            cookies().set(constants.ACCESS_TOKEN, accessTokenDemo)     
             return true;
         }
     }

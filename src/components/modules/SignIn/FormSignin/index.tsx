@@ -48,60 +48,58 @@ function FormSignin() {
   };
 
   return (
-    <>
-      <S.HomeWrapper>
-        <Form
-          name="basic"
-          style={{ width: '100%' }}
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-          autoComplete="off"
+    <S.HomeWrapper>
+      <Form
+        name="basic"
+        style={{ width: '100%' }}
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
+      >
+        <FormItem<FieldType>
+          label=""
+          name="email"
+          rules={[{ required: true, message: 'Hãy nhập số điện thoại!' }]}
         >
-          <FormItem<FieldType>
-            label=""
-            name="email"
-            rules={[{ required: true, message: 'Hãy nhập số điện thoại!' }]}
-          >
-            <Input
-              placeholder="0XXXXXXXX"
-              prefix={<PhoneOutlined />}
-              isRequired
-              label="Số điện thoại"
-            />
+          <Input
+            placeholder="0XXXXXXXX"
+            prefix={<PhoneOutlined />}
+            isRequired
+            label="Số điện thoại"
+          />
+        </FormItem>
+        <Form.Item<FieldType>
+          name="password"
+          rules={[{ required: true, message: 'Hãy nhập mật khẩu!' }]}
+        >
+          <InputPassword
+            placeholder="*****"
+            prefix={<LockOutlined />}
+            isRequired
+            label="Mật khẩu"
+          />
+        </Form.Item>
+        <S.RowRememberForgot>
+          <FormItem<FieldType> name="isRemember" valuePropName="checked">
+            <Checkbox>Nhớ mật khẩu</Checkbox>
           </FormItem>
-          <Form.Item<FieldType>
-            name="password"
-            rules={[{ required: true, message: 'Hãy nhập mật khẩu!' }]}
-          >
-            <InputPassword
-              placeholder="*****"
-              prefix={<LockOutlined />}
-              isRequired
-              label="Mật khẩu"
-            />
-          </Form.Item>
-          <S.RowRememberForgot>
-            <FormItem<FieldType> name="isRemember" valuePropName="checked">
-              <Checkbox>Nhớ mật khẩu</Checkbox>
-            </FormItem>
-            <S.LinkTag href="/forgot-password">Quên mật khẩu</S.LinkTag>
-          </S.RowRememberForgot>
-          <FormItem>
-            <Button $width={'100%'} type="primary" htmlType="submit" loading={isLoading}>
-              Đăng nhập
+          <S.LinkTag href="/forgot-password">Quên mật khẩu</S.LinkTag>
+        </S.RowRememberForgot>
+        <FormItem>
+          <Button $width={'100%'} type="primary" htmlType="submit" loading={isLoading}>
+            Đăng nhập
+          </Button>
+        </FormItem>
+        <FormItem>
+          <Link href={'/sign-up'}>
+            <Button $width={'100%'} type="default">
+              Đăng ký
             </Button>
-          </FormItem>
-          <FormItem>
-            <Link href={'/sign-up'}>
-              <Button $width={'100%'} type="default">
-                Đăng ký
-              </Button>
-            </Link>
-          </FormItem>
-        </Form>
-      </S.HomeWrapper>
-    </>
+          </Link>
+        </FormItem>
+      </Form>
+    </S.HomeWrapper>
   );
 }
 
