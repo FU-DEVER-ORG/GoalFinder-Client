@@ -11,7 +11,7 @@ import * as S from './styles';
 import { MenuItem } from '@/model/entites/Feed';
 
 function FeedScroll() {
-  const { data : posts, isLoading } = useGetMatchQuery("") ;
+  const { data : posts, isLoading } = useGetMatchQuery() ;
   const [items, setItems] = useState<MenuItem[]>([]);
   return (
     <S.Scroll vertical gap={24}>

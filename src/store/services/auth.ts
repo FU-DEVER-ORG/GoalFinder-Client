@@ -34,9 +34,10 @@ export const authAPI = api.injectEndpoints({
       //todo add invalidatesTags if need
     }),
     getMatch: build.query ({
-      query: (data: MenuItem) =>({
+      query: (data) =>({
         url: matchEndpoint.MATCH,
         method: 'GET',
+        body: data,
         flashError: true,
       }),
     }),
