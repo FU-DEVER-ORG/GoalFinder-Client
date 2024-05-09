@@ -3,6 +3,7 @@
 import { authEndpoint, matchEndpoint } from "@/services/endpoint";
 
 import { api } from "./base";
+import { MenuItem } from "@/model/entites/Feed";
 
 export const authAPI = api.injectEndpoints({
   endpoints: (build) => ({
@@ -33,7 +34,7 @@ export const authAPI = api.injectEndpoints({
       //todo add invalidatesTags if need
     }),
     getMatch: build.query ({
-      query: () =>({
+      query: (data: MenuItem) =>({
         url: matchEndpoint.MATCH,
         method: 'GET',
         flashError: true,
