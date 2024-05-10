@@ -23,6 +23,7 @@ type InterfaceData = {
   description: string;
   avatarUrl: string;
   backgroundUrl: string;
+  address: string;
 };
 const experienceInfors = [
   {
@@ -72,6 +73,7 @@ const initialData = {
   description: '',
   avatarUrl: '',
   backgroundUrl: '',
+  address: '',
 };
 
 const FormPage = () => {
@@ -109,6 +111,7 @@ const FormPage = () => {
           description: currenntData?.description,
           avatarUrl: currenntData?.avatarUrl,
           backgroundUrl: currenntData?.backgroundUrl,
+          address : currenntData?.address
         };
         setCurrentDataUser(newData);
         form.setFieldsValue(newData);
