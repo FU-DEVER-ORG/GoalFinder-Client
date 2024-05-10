@@ -10,7 +10,7 @@ const authEndpoint = {
 
 const userEndpoint = {
   UPDATE_USER: `/user/update`,
-  USER: `/user`,
+  USER: `/user/profile`,
 };
 
 const editProfileEndpoint = {

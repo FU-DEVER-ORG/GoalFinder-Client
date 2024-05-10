@@ -65,7 +65,7 @@ export const authAPI = api.injectEndpoints({
     }),
     //mutation for post put patch, param for get delete
 
-    getUser: build.query({
+    getProfile: build.query({
       //todo addition data in need
       query: (userName: string) => ({
         //todo
@@ -86,6 +86,6 @@ export const {
   useForgotPasswordMutation,
   useResetPasswordMutation,
   useUpdateUserMutation,
-  useGetUserQuery,
+  useGetProfileQuery,
   //todo addition in need
 } = authAPI;

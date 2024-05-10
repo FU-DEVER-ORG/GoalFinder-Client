@@ -87,30 +87,45 @@ export const FormItem = styled(Form.Item)<{ $full?: boolean }>`
 
   color: #d9d9d9;
 
+  .ant-form-item-control-input-content {
+    display: block !important;
+  }
+
   .ant-radio-group,
   .ant-form-item,
-  .ant-checkbox-group {
+  .ant-checkbox-group,
+  textarea {
     display: flex !important;
     justify-content: space-between !important;
+    flex-wrap: nowrap !important;
+
     gap: 24px;
 
-    width: 100% !important;
+    height: 100% !important;
+    width: 440px !important;
   }
 
   @media ${({ theme }) => theme.breakpoints.mdMax} {
-    max-width: none !important;
-   
-
     .ant-radio-group,
     .ant-form-item,
-    .ant-checkbox-group {
-      gap: 12px;
+    .ant-checkbox-group,
+    textarea {
+      width: 100% !important;
     }
   }
 
   @media ${({ theme }) => theme.breakpoints.smMax} {
     * {
       font-size: ${({ theme }) => theme.fontSize.xs} !important;
+    }
+    .ant-radio-group,
+    .ant-form-item,
+    .ant-checkbox-group {
+      flex-wrap: wrap !important;
+
+      gap: 12px;
+
+      width: 100% !important;
     }
   }
 `;
@@ -143,7 +158,6 @@ export const RadioGroup = styled(Radio.Group)`
 
     width: 100% !important;
     height: 100% !important;
-
   }
 `;
 export const RadioButton = styled(Radio.Button)`
@@ -180,6 +194,8 @@ export const Button = styled(ButtonFromCommon)`
   }
 `;
 export const CheckboxGroup = styled(CheckboxFromAtnd.Group)`
+  display: flex;
+
   width: 100% !important;
 
   label {
@@ -217,7 +233,6 @@ export const Label = styled.label<{ $color?: string }>`
     color: ${(props) => props?.$color || '#fff'} !important ;
     transition: all 0.3s !important;
   }
-  
 `;
 export const Flex = styled(FlexFromAntd)`
   @media ${({ theme }) => theme.breakpoints.mdMax} {

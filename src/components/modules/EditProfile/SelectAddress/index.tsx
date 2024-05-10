@@ -6,6 +6,7 @@ import type { SelectProps } from 'antd';
 import { editProfileEndpoint as endPoint } from '@/services/endpoint';
 
 import * as S from './style';
+import { current } from '@reduxjs/toolkit';
 
 const HOST = 'https://vapi.vnappmob.com';
 const textRemoves: any = {
@@ -20,9 +21,9 @@ interface optionType extends DefaultOptionType {
   id?: number;
 }
 type InterFaceinitialStateValue = {
-  province: null | string;
-  district: null | string;
-  ward: null | string;
+  province: string;
+  district: string;
+  ward: string;
 };
 
 const initialStateData: optionType = {
@@ -31,20 +32,17 @@ const initialStateData: optionType = {
   ward: [],
 };
 const initialStateValue: InterFaceinitialStateValue = {
-  province: null,
-  district: null,
-  ward: null,
+  province: '',
+  district: '',
+  ward: '',
 };
-const SelectAddress = ({ form }: any) => {
+const SelectAddress = ({ form, address }: any) => {
   const [value, setValue] = useState(initialStateValue);
   const [option, setOption] = useState(initialStateData);
 
-  const removeUselessText = (text: string, listTextRemove: Array<string>) => {
-    const newText = listTextRemove.reduce(
-      (result: string, textRemove: string) =>
-        result.length > 10 ? result.replace(textRemove, '') : result,
-      text,
-    );
+  const removeUselessText = (text: string, textRemove: string) => {
+    const newText =
+      text.length > 10 ? text.replace(`${textRemove} `, '') : text;
     return newText;
   };
 
@@ -66,7 +64,7 @@ const SelectAddress = ({ form }: any) => {
         const newOption = data?.results.map((vn: any) => {
           const label = removeUselessText(
             vn[`${type}_name`],
-            textRemoves[type],
+            vn[`${type}_type`],
           );
           return {
             value: vn[`${type}_name`],
@@ -88,6 +86,38 @@ const SelectAddress = ({ form }: any) => {
   useEffect(() => {
     GetRequest('province', endPoint.PROVINCE);
   }, []);
+  useEffect(() => {
+    const [province, district, ward] = address?.split(' - ') ?? [];
+    if (province && district && ward) {
+      GetRequest(
+        'district',
+        setEndPoint(
+          endPoint.DISTRICT,
+          option?.province?.find(
+            ({ value }: { value: string }) => value == province,
+          )?.id,
+        ),
+      );
+      setValue({
+        district,
+        province,
+        ward,
+      });
+    }
+  }, [address]);
+  useEffect(() => {
+    const { district } = value;
+    GetRequest(
+      'ward',
+      setEndPoint(
+        endPoint.WARD,
+        option?.district?.find(
+          ({ value }: { value: string }) => value == district,
+        )?.id,
+      ),
+    );
+  }, [option.district]);
+
   return (
     <>
       <S.FormItem name="province">

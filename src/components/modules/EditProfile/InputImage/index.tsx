@@ -24,7 +24,7 @@ const initialLoadingImage = {
   background: false,
 };
 
-const ImageWall = ({ form }: any) => {
+const ImageWall = ({ form, currentData }: any) => {
   const [modal, contextHolder] = Modal.useModal();
   const [imageWall, setImageWall] = useState<string | null>(null);
   const [imageAvatar, setImageAvatar] = useState<string | null>(null);
@@ -75,6 +75,9 @@ const ImageWall = ({ form }: any) => {
     const input = document.getElementById(name);
     input?.click();
   }
+
+  const { backgroundUrl, avatarUrl } = currentData;
+
   return (
     <S.ImageWallWrapper>
       <S.ImageWall>
@@ -82,7 +85,7 @@ const ImageWall = ({ form }: any) => {
         <Loading $isLoading={loadingImage.background} />
         {loadingImage.background || (
           <Image
-            src={imageWall || image}
+            src={imageWall ?? backgroundUrl ?? image}
             alt="wall"
             width={640}
             height={640}
@@ -90,7 +93,7 @@ const ImageWall = ({ form }: any) => {
           ></Image>
         )}
         <Form.Item
-          name="backgroundURL"
+          name="backgroundUrl"
           valuePropName="fileList"
           getValueFromEvent={normFile}
         >
@@ -122,7 +125,7 @@ const ImageWall = ({ form }: any) => {
 
           {loadingImage.avatar || (
             <Image
-              src={imageAvatar || image}
+              src={imageAvatar ?? avatarUrl ?? image}
               alt="avatar"
               width={200}
               height={200}
@@ -130,7 +133,7 @@ const ImageWall = ({ form }: any) => {
           )}
         </S.Avatar>
         <Form.Item
-          name="avatarURL"
+          name="avatarUrl"
           valuePropName="fileList"
           getValueFromEvent={normFile}
         >
