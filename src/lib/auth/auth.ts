@@ -20,10 +20,8 @@ export const authOptions: NextAuthOptions = {
                 throw new Error('No profile')
             }
             console.log(account);
-            // await console.log(account?.access_token);
             console.log(profile)
             const accessTokenDemo = account?.access_token as string;
-            // console.log(accessTokenDemo);
             cookies().set(constants.ACCESS_TOKEN, accessTokenDemo)     
             return true;
         }
