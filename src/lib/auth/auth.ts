@@ -1,7 +1,8 @@
-import { constants } from "@/settings";
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from 'next-auth/providers/google';
 import { cookies } from "next/headers";
+
+import { constants } from "@/settings";
 
 export const authOptions: NextAuthOptions = {
     session : {

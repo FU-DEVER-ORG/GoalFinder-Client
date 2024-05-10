@@ -75,76 +75,74 @@ function FormSignUp() {
   };
 
   return (
-    <>
-      <S.HomeWrapper>
-        <Form
-          name="basic"
-          style={{ width: '100%' }}
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-          autoComplete="off"
+    <S.HomeWrapper>
+      <Form
+        name="basic"
+        style={{ width: '100%' }}
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
+      >
+        <FormItem<FieldType>
+          name="email"
+          rules={[{ required: true, message: 'Hãy nhập số điện thoại!' }]}
         >
-          <FormItem<FieldType>
-            name="email"
-            rules={[{ required: true, message: 'Hãy nhập số điện thoại!' }]}
-          >
-            <Input
-              placeholder="0xxxxxxxx"
-              prefix={<PhoneOutlined />}
-              isRequired
-              label="Số điện thoại"
-            />
-          </FormItem>
-          <Form.Item<FieldType>
-            name="password"
-            rules={[
-              { validator: validatePassword }
-            ]}
-          >
-            <InputPassword
-              placeholder="*****"
-              prefix={<LockOutlined />}
-              isRequired
-              label="Mật khẩu"
-            />
-          </Form.Item>
+          <Input
+            placeholder="0xxxxxxxx"
+            prefix={<PhoneOutlined />}
+            isRequired
+            label="Số điện thoại"
+          />
+        </FormItem>
+        <Form.Item<FieldType>
+          name="password"
+          rules={[
+            { validator: validatePassword }
+          ]}
+        >
+          <InputPassword
+            placeholder="*****"
+            prefix={<LockOutlined />}
+            isRequired
+            label="Mật khẩu"
+          />
+        </Form.Item>
 
-          <Form.Item<FieldType>
-            dependencies={['password']}
-            name="confirmPassword"
-            rules={[{ required: true, message: 'Hãy nhập lại đúng mật khẩu!' },
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue('password') === value) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(new Error('Hãy nhập lại đúng mật khẩu!'));
-              },
-            }),]}
-          >
-            <InputPassword
-              placeholder="*****"
-              prefix={<LockOutlined />}
-              isRequired
-              label="Nhập lại mật khẩu"
-            />
-          </Form.Item>
-          <FormItem>
-            <Button $width={'100%'} type="primary" htmlType="submit" loading={isLoading}>
-              Đăng ký
+        <Form.Item<FieldType>
+          dependencies={['password']}
+          name="confirmPassword"
+          rules={[{ required: true, message: 'Hãy nhập lại đúng mật khẩu!' },
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+              }
+              return Promise.reject(new Error('Hãy nhập lại đúng mật khẩu!'));
+            },
+          }),]}
+        >
+          <InputPassword
+            placeholder="*****"
+            prefix={<LockOutlined />}
+            isRequired
+            label="Nhập lại mật khẩu"
+          />
+        </Form.Item>
+        <FormItem>
+          <Button $width={'100%'} type="primary" htmlType="submit" loading={isLoading}>
+            Đăng ký
+          </Button>
+        </FormItem>
+        <FormItem>
+          <Link href={'/sign-in'}>
+            <Button $width={'100%'} type="default">
+              Đăng nhập
             </Button>
-          </FormItem>
-          <FormItem>
-            <Link href={'/sign-in'}>
-              <Button $width={'100%'} type="default">
-                Đăng nhập
-              </Button>
-            </Link>
-          </FormItem>
-        </Form>
-      </S.HomeWrapper>
-    </>
+          </Link>
+        </FormItem>
+      </Form>
+    </S.HomeWrapper>
   );
 }
 
