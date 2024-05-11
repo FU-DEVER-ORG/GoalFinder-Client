@@ -16,12 +16,13 @@ import Button from "@/components/core/common/Button";
 import Table from "@/components/core/common/Table";
 import Input from "@/components/core/common/form/Input";
 
-import * as S from "./style";
 import InputPassword from "@/components/core/common/form/InputPassword";
 import InputNumber from "@/components/core/common/form/InputNumber";
 import Select from "@/components/core/common/form/Select";
 import Datepicker from "@/components/core/common/form/Datepicker";
 import Timepicker from "@/components/core/common/form/Timepicker";
+
+import * as S from "./style";
 
 interface DataType {
   key: string;
