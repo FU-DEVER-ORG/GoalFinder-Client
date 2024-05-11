@@ -121,29 +121,32 @@ const FormPage = () => {
   }, [data]);
 
   const onFinish = async (values: any) => {
-    const name = values?.fullName?.split(' ');
-    const firstName = name?.slice(0, name.length - 1).join(' ');
-    const lastName = name?.slice(-1)[0];
+    try {
+      const name = values?.fullName?.split(' ');
+      const firstName = name?.slice(0, name.length - 1).join(' ');
+      const lastName = name?.slice(-1)[0];
 
-    const data: any = {
-      nickName: values?.nickName,
-      firstName: firstName,
-      lastName: lastName,
-      backgroundUrl: values?.backgroundUrl,
-      avatarUrl: values?.avatarUrl,
-      description: values?.description,
-      positionIds: values?.positionIds ?? [],
-      experienceId: values?.experienceId,
-      competitionLevelId: values?.competitionLevelId,
-      address:
-        values?.province && values?.district && values?.ward
-          ? `${values.province} - ${values.district} - ${values.ward}`
-          : currentDataUser?.address,
-    };
-    config.loading();
-    const res: any = await UpdateUser(data);
-    if (res?.error) onFinishFail(res?.error.data);
-    else onFinishSuccess();
+      const data: any = {
+        nickName: values?.nickName,
+        firstName: firstName,
+        lastName: lastName,
+        backgroundUrl: values?.backgroundUrl,
+        avatarUrl: values?.avatarUrl,
+        description: values?.description,
+        positionIds: values?.positionIds ?? [],
+        experienceId: values?.experienceId,
+        competitionLevelId: values?.competitionLevelId,
+        address:
+          values?.province && values?.district && values?.ward
+            ? `${values.province} - ${values.district} - ${values.ward}`
+            : currentDataUser?.address,
+      };
+      config.loading();
+      await UpdateUser(data).unwrap();
+      onFinishSuccess();
+    } catch (err) {
+      onFinishFail(err);
+    }
   };
 
   const onFinishSuccess = () => {

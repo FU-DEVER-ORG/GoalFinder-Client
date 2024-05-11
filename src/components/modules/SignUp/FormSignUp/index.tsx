@@ -3,8 +3,10 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-
-import { Form, FormProps } from 'antd';
+import {
+  Form,
+  FormProps,
+} from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 import { LockOutlined, PhoneOutlined } from '@ant-design/icons';
 
@@ -61,17 +63,14 @@ function FormSignUp() {
   const [signUp, { isLoading }] = useSignUpMutation();
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
-    console.log('Success:', values);
     try {
       const data = {
         email: values.email!,
         password: values.confirmPassword!,
       };
-
-      const res: any = await signUp(data);
-      router.push('/sign-in');
+      await signUp(data).unwrap();
+      router.push('/sign-in')
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -131,7 +130,7 @@ function FormSignUp() {
           />
         </Form.Item>
         <FormItem>
-          <Button $width={'100%'} type="primary" htmlType="submit">
+          <Button $width={'100%'} type="primary" htmlType="submit" loading={isLoading}>
             Đăng ký
           </Button>
         </FormItem>
