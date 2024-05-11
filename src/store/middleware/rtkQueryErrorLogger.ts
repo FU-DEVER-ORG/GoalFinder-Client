@@ -11,7 +11,9 @@ export const rtkQueryErrorLogger: Middleware =
     if (isRejectedWithValue(action)) {
       console.log(action?.payload?.data?.appCode);
 
-      message.error(errorMessage?.[action?.payload?.data?.appCode]);
+      message.error(
+        errorMessage?.[action?.payload?.data?.appCode ?? 'INTERNET_FAIL'],
+      );
     }
     return next(action);
   };

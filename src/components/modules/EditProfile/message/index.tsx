@@ -3,25 +3,23 @@ import { message } from 'antd';
 
 const Config = () => {
   const [messageApi, contextHolder] = message.useMessage();
-  const key = 'updatable';
   const success = () => {
     messageApi.open({
       type: 'success',
-      content: 'Cập nhật thông tin thành công',
+      content: 'Cập nhật thông tin thành công!',
     });
   };
 
   const error = () => {
     messageApi.open({
       type: 'error',
-      content: 'Cập nhật thông tin thất bại',
+      content: 'Cập nhật thông tin thất bại!',
     });
   };
   const loading = () => {
     messageApi.open({
-      key,
       type: 'loading',
-      content: 'Đang gửi',
+      content: 'Đang cập nhật!',
       duration: 200,
     });
   };

@@ -1,18 +1,19 @@
 import { Flex, Form } from 'antd';
-import axios from 'axios';
+import { useEffect, useState } from 'react';
 
-import { useUpdateUserMutation } from '@/store/services/auth';
+import {
+  useGetProfileQuery,
+  useUpdateUserMutation,
+} from '@/store/services/auth';
 import Config from '@/components/modules/EditProfile/message';
 import { constants } from '@/settings';
 import webStorageClient from '@/utils/webStorageClient';
 
 import ImageWall from '@/components/modules/EditProfile/InputImage';
 import FormItem from '@/components/modules/EditProfile/InputItem';
+import Button from '@/components/core/common/Button';
 
 import * as S from './style';
-import Button from '@/components/core/common/Button';
-import { useEffect, useState } from 'react';
-import { userEndpoint } from '@/services/endpoint';
 
 type InterfaceData = {
   nickName: string;
@@ -81,49 +82,48 @@ const FormPage = () => {
   const [currentDataUser, setCurrentDataUser] =
     useState<InterfaceData>(initialData);
   const [form] = Form.useForm();
+
   const config = Config();
   const nickName = webStorageClient.get(constants.USER_NAME);
+  const { data } = useGetProfileQuery(nickName);
 
   useEffect(() => {
-    axios(`${constants.API_SERVER}/${userEndpoint.USER}/${nickName}`).then(
-      ({ data }) => {
-        const currenntData = data?.body?.userDetail;
-        const positionIds: Array<string> = [];
-        positionInfors.forEach((position) => {
-          if (currenntData.positions.includes(position.name))
-            positionIds.push(position.id);
-        });
-        const experienceId = experienceInfors.find(
-          (experience) => experience.name === currenntData?.experience,
-        )?.id;
+    if (data) {
+      const currenntData = data?.body?.userDetail;
+      const positionIds: Array<string> = [];
+      positionInfors.forEach((position) => {
+        if (currenntData.positions.includes(position.name))
+          positionIds.push(position.id);
+      });
+      const experienceId = experienceInfors.find(
+        (experience) => experience.name === currenntData?.experience,
+      )?.id;
 
-        const competitionLevelId = competitionLevelInfors.find(
-          (competitionLevel) =>
-            competitionLevel.name === currenntData?.competitionLevel,
-        )?.id;
+      const competitionLevelId = competitionLevelInfors.find(
+        (competitionLevel) =>
+          competitionLevel.name === currenntData?.competitionLevel,
+      )?.id;
 
-        const newData: InterfaceData = {
-          nickName: currenntData.nickName,
-          fullName: `${currenntData.firstName} ${currenntData.lastName}`,
-          experienceId,
-          positionIds,
-          competitionLevelId,
-          description: currenntData?.description,
-          avatarUrl: currenntData?.avatarUrl,
-          backgroundUrl: currenntData?.backgroundUrl,
-          address : currenntData?.address
-        };
-        setCurrentDataUser(newData);
-        form.setFieldsValue(newData);
-      },
-    );
-  }, []);
+      const newData: InterfaceData = {
+        nickName: currenntData.nickName,
+        fullName: `${currenntData.firstName} ${currenntData.lastName}`,
+        experienceId,
+        positionIds,
+        competitionLevelId,
+        description: currenntData?.description,
+        avatarUrl: currenntData?.avatarUrl,
+        backgroundUrl: currenntData?.backgroundUrl,
+        address: currenntData?.address,
+      };
+      setCurrentDataUser(newData);
+      form.setFieldsValue(newData);
+    }
+  }, [data]);
 
   const onFinish = async (values: any) => {
     const name = values?.fullName?.split(' ');
     const firstName = name?.slice(0, name.length - 1).join(' ');
     const lastName = name?.slice(-1)[0];
-    console.log('first', values);
 
     const data: any = {
       nickName: values?.nickName,
@@ -142,7 +142,7 @@ const FormPage = () => {
     };
     config.loading();
     const res: any = await UpdateUser(data);
-    if (res?.error) onFinishFail(res?.error);
+    if (res?.error) onFinishFail(res?.error.data);
     else onFinishSuccess();
   };
 
@@ -153,7 +153,6 @@ const FormPage = () => {
 
   const onFinishFail = (e: any) => {
     config.close();
-    config.error();
   };
 
   return (
@@ -163,7 +162,11 @@ const FormPage = () => {
         <S.Tittle>Chỉnh sửa thông tin cá nhân</S.Tittle>
         <Form form={form} name="edit form" onFinish={onFinish}>
           <Flex gap={24} vertical>
-            <ImageWall form={form} currentData={currentDataUser} />
+            <ImageWall
+              form={form}
+              backgroundUrl={currentDataUser.backgroundUrl}
+              avatarUrl={currentDataUser.avatarUrl}
+            />
             <FormItem form={form} currentData={currentDataUser} />
             <div className="btn">
               <Button

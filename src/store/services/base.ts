@@ -22,9 +22,6 @@ const baseQuerry: BaseQueryFn = fetchBaseQuery({
   prepareHeaders: (headers, { endpoint }) => {
     const accessToken = webStorageClient.getToken();
     //todo addtion in need
-    if (endpoint !== 'upload') {
-      headers.set('Content-Type', 'application/json');
-    }
 
     if (accessToken) {
       headers.set('Authorization', `Bearer ${accessToken}`);

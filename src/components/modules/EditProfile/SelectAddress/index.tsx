@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { DefaultOptionType } from 'antd/es/select';
 import type { SelectProps } from 'antd';
@@ -6,7 +6,6 @@ import type { SelectProps } from 'antd';
 import { editProfileEndpoint as endPoint } from '@/services/endpoint';
 
 import * as S from './style';
-import { current } from '@reduxjs/toolkit';
 
 const HOST = 'https://vapi.vnappmob.com';
 const textRemoves: any = {

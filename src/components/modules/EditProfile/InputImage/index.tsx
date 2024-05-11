@@ -24,7 +24,7 @@ const initialLoadingImage = {
   background: false,
 };
 
-const ImageWall = ({ form, currentData }: any) => {
+const ImageWall = ({ form, backgroundUrl, avatarUrl }: any) => {
   const [modal, contextHolder] = Modal.useModal();
   const [imageWall, setImageWall] = useState<string | null>(null);
   const [imageAvatar, setImageAvatar] = useState<string | null>(null);
@@ -75,8 +75,6 @@ const ImageWall = ({ form, currentData }: any) => {
     const input = document.getElementById(name);
     input?.click();
   }
-
-  const { backgroundUrl, avatarUrl } = currentData;
 
   return (
     <S.ImageWallWrapper>

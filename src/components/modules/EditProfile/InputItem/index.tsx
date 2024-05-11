@@ -1,11 +1,10 @@
-import { Checkbox, Flex } from 'antd';
 import { useEffect, useState } from 'react';
 
-import Button from '@/components/core/common/Button';
+import { constants } from '@/settings';
+
 import SelectAddress from '@/components/modules/EditProfile/SelectAddress';
 
 import * as S from './style';
-import { constants } from '@/settings';
 
 type InterfaceStatePosition = {
   goalker: boolean;
