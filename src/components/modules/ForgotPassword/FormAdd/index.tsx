@@ -111,7 +111,7 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
         userName: values?.userName!,
       };
       setDataForgot(data);
-      const res: any = await forgotPassword(data).unwrap();
+      await forgotPassword(data).unwrap();
       // xu ly
 
       // console.log(res);
