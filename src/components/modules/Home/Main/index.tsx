@@ -1,7 +1,5 @@
 'use client';
 
-import { Flex } from 'antd';
-
 import UserInfo from '../UserInfo';
 import Nav from '../Nav';
 import YourMatch from '../YourMatch';

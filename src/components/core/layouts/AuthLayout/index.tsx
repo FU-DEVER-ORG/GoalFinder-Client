@@ -37,7 +37,9 @@ function AuthLayout({ children }: AuthLayoutProps) {
           </Flex>
         </S.Container>
       </S.Header>
-      <S.Body>{children}</S.Body>
+      <S.Body>
+        {children}
+      </S.Body>
     </S.LayoutWrapper>
   );
 }
