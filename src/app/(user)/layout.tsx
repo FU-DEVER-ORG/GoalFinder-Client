@@ -12,14 +12,14 @@ export default async function LayoutAuth({
 }: {
   children: React.ReactNode;
 }) {
-  const token = getCookie(constants.ACCESS_TOKEN, { cookies });
-  console.log(token);
+  // const token = getCookie(constants.ACCESS_TOKEN, { cookies });
+  // console.log(token);
 
-  const isAuth = await checkToken(token);
+  // const isAuth = await checkToken(token);
 
-  if (!isAuth) {
-    redirect('sign-in');
-  }
+  // if (!isAuth) {
+  //   redirect('sign-in');
+  // }
 
   return <MainLayout>{children}</MainLayout>;
 }

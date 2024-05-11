@@ -10,5 +10,9 @@ const editProfileEndpoint = {
   DISTRICT: `${prefixBase}/province/district`,
   WARD: `${prefixBase}/province/ward`,
 };
+
+const userProfile = {
+  PROFILE_DETAL: `/user/profile/{nickname}`,
+};
 //export endpoint
-export { authEndpoint, editProfileEndpoint };
+export { authEndpoint, editProfileEndpoint, userProfile };

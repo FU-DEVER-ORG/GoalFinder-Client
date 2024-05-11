@@ -7,8 +7,10 @@ import devices from '@/style/themes/default/breakpoints';
 export const Right = styled(Flex)``;
 
 export const MatchHistory = styled(Flex)`
-  margin-top: 6px;
   width: 100%;
+
+  margin-top: 6px;
+
   flex-direction: column;
   align-items: center;
   gap: 20px;
@@ -18,13 +20,10 @@ export const MatchHistory = styled(Flex)`
     height: auto;
     margin-top: 0;
   }
-  @media (${devices.smMax}) {
-    width: 90%;
-    height: auto;
-    margin-top: 0;
-  }
 `;
 export const TimeLineActivites = styled(Timeline)`
+  width: 100%;
+
   .ant-timeline-item-content {
     display: flex;
   }
@@ -40,16 +39,26 @@ export const TimeLineActivites = styled(Timeline)`
 export const Activites = styled(Card)`
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 
+  flex: 1;
   @media (${devices.xxlMax}) {
-    width: 100%;
+    width: 590px;
+  }
+  @media (${devices.xlMax}) {
+    width: 560px;
   }
   @media (${devices.lgMax}) {
-    height: 260px;
+    width: 450px;
   }
   @media (${devices.mdMax}) {
-    height: 270px;
+    width: 500px;
+    height: 240px;
   }
   @media (${devices.smMax}) {
+    width: 340px;
+    height: auto;
+  }
+  @media (${devices.xsMax}) {
+    width: 250px;
     height: auto;
   }
 `;
@@ -57,12 +66,29 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  @media (${devices.mdMax}) {
+    gap: 16px;
+  }
+  @media (${devices.smMax}) {
+    gap: 14px;
+  }
 `;
 export const UserAction = styled.span`
   font-size: 24px;
   font-weight: 400;
   line-height: 29.05px;
   text-align: left;
+
+  @media (${devices.mdMax}) {
+    font-size: 22px;
+
+    line-height: 26.05px;
+  }
+  @media (${devices.smMax}) {
+    font-size: 20px;
+
+    line-height: 26.05px;
+  }
 `;
 
 export const Title = styled(Flex)`
@@ -75,6 +101,16 @@ export const TitleText = styled.p`
   font-weight: 500;
   line-height: 19.36px;
   letter-spacing: 0.08em;
+  @media (${devices.mdMax}) {
+    font-size: 14px;
+
+    line-height: 16.05px;
+  }
+  @media (${devices.smMax}) {
+    font-size: 14px;
+
+    line-height: 16.05px;
+  }
 `;
 export const ImageWrapper = styled.div`
   position: relative;
@@ -83,6 +119,7 @@ export const ImageWrapper = styled.div`
 `;
 export const MatchProperties = styled.div`
   width: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -90,11 +127,14 @@ export const MatchProperties = styled.div`
 `;
 export const PropertiesList = styled.ul`
   width: 100%;
+
   list-style: none;
+
   display: grid;
   grid-template-columns: 0.8fr 1fr;
   grid-gap: 10px;
   align-items: center;
+
   @media (${devices.xxlMax}) {
     row-gap: 14px;
     column-gap: 20px;
@@ -105,6 +145,7 @@ export const Item = styled(Flex)`
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
+
   font-size: 16px;
   font-weight: 400;
   line-height: 16px;
@@ -120,6 +161,8 @@ export const Item = styled(Flex)`
   }
 `;
 export const ItemName = styled.span`
+  flex: 1;
+  margin-left: 8px;
   font-size: 16px;
   font-weight: bold;
   @media (${devices.lgMax}) {

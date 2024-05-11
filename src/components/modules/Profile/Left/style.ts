@@ -6,7 +6,7 @@ import devices from '@/style/themes/default/breakpoints';
 
 export const Left = styled(Flex)`
   width: 380px;
-  height: 320px;
+  height: 300px;
   @media (${devices.xlMax}) {
     width: 350px;
     height: 280px;
@@ -100,6 +100,8 @@ export const ImageWrapper = styled.div`
   height: 24px;
 `;
 export const Information = styled.span`
+  flex: 1;
+  margin-left: 8px;
   font-size: 16px;
   font-weight: 400;
   line-height: 19.36px;

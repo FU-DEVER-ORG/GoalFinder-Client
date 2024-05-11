@@ -5,23 +5,26 @@ import styled from 'styled-components';
 import devices from '@/style/themes/default/breakpoints';
 
 export const Header = styled(Flex)`
-  margin-top: 10px;
+  margin-top: -64px;
   width: 100%;
   height: 560px;
   @media (${devices.mdMax}) {
-    height: 440px;
+    height: 540px;
   }
   @media (${devices.smMax}) {
-    height: 430px;
+    height: 550px;
   }
   @media (${devices.xsMax}) {
-    height: 360px;
+    height: 550px;
   }
 `;
 export const HeaderMain = styled(Flex)`
-  position: relative;
   width: 100%;
+
   background-color: white;
+
+  position: relative;
+
   flex-direction: column;
   align-items: center;
 `;
@@ -37,14 +40,12 @@ export const Wrapper = styled.div`
 
   border-radius: 12px;
 
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 
   @media (${devices.mdMax}) {
-    height: auto;
   }
   @media (${devices.smMax}) {
     width: 88%;
-    height: auto;
   }
 `;
 export const CoverImage = styled.img`
@@ -61,7 +62,6 @@ export const BannerUser = styled(Flex)`
   left: 50px;
   bottom: -150px;
 
-  width: 100%
   gap: 30px;
 
   display: flex;
@@ -77,7 +77,7 @@ export const BannerUser = styled(Flex)`
   @media (${devices.mdMax}) {
     left: 30px;
     bottom: -120px;
-    
+
     gap: 20px;
 
     flex-direction: row;
@@ -167,6 +167,7 @@ export const PrestigeScore = styled.span`
   font-weight: 400;
   line-height: 29.05px;
   text-align: left;
+
   @media (${devices.xlMax}) {
     font-size: 20px;
     line-height: 28px;
