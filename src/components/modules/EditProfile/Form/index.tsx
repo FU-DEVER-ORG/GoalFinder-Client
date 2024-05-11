@@ -18,9 +18,9 @@ import * as S from './style';
 type InterfaceData = {
   nickName: string;
   fullName: string;
-  experienceId?: string | undefined;
+  experienceId: string | undefined;
   positionIds: Array<string>;
-  competitionLevelId?: string | undefined;
+  competitionLevelId: string | undefined;
   description: string;
   avatarUrl: string;
   backgroundUrl: string;

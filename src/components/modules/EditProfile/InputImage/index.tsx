@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 import { UploadImage } from '@/utils/uploadImage';
-import { config } from '@/components/modules/EditProfile/modal';
+import Config from '@/components/modules/EditProfile/message';
 
 import Button from '@/components/core/common/Button';
 import Loading from '@/components/modules/EditProfile/loading';
@@ -31,11 +31,12 @@ const ImageWall = ({ form, backgroundUrl, avatarUrl }: any) => {
   const [loadingImage, setLoadingImage] =
     useState<InterfaceLoadingImage>(initialLoadingImage);
 
+  const config = Config();
   const normFile = async (e: any) => {
     const files = e.target?.files;
     for (const file of files)
       if (!file?.type?.includes('image/') || file?.size >= FOUR_BYTES) {
-        modal.error(config());
+        config.error('Không thể tải file không phải ảnh!');
         return false;
       }
     try {
@@ -46,6 +47,7 @@ const ImageWall = ({ form, backgroundUrl, avatarUrl }: any) => {
       const url = await UploadImage(files);
       switch (e.target.id) {
         case 'background':
+          console.log('1', 1);
           setImageWall(url);
           form.setFieldsValue({
             backgroundURL: url,
@@ -58,17 +60,13 @@ const ImageWall = ({ form, backgroundUrl, avatarUrl }: any) => {
           });
           break;
       }
-      setLoadingImage({
-        ...loadingImage,
-        [e.target.id]: false,
-      });
     } catch (err) {
-      const content = {
-        title: 'Lỗi không thể tải hình ảnh',
-        text: `Có vẻ như đã có một sự cố bất đắc dĩ nào đó đã làm hình ảnh không thể tải lên, xin vui lòng thử lại!`,
-      };
-      modal.error(config(content));
+      config.error('Đường truyền không ổn định!');
     }
+    setLoadingImage({
+      ...loadingImage,
+      [e.target.id]: false,
+    });
   };
 
   function OpenUploadFile(name: string) {
@@ -77,84 +75,87 @@ const ImageWall = ({ form, backgroundUrl, avatarUrl }: any) => {
   }
 
   return (
-    <S.ImageWallWrapper>
-      <S.ImageWall>
-        <S.BlurWall />
-        <Loading $isLoading={loadingImage.background} />
-        {loadingImage.background || (
-          <Image
-            src={imageWall ?? backgroundUrl ?? image}
-            alt="wall"
-            width={640}
-            height={640}
-            className="image_wall"
-          ></Image>
-        )}
-        <Form.Item
-          name="backgroundUrl"
-          valuePropName="fileList"
-          getValueFromEvent={normFile}
-        >
-          <input type="file" name="" id="background" accept="image/*" />
-        </Form.Item>
-        <S.Button
-          onClick={() => OpenUploadFile('background')}
-          $borderRadius="4px"
-          $backgroundColor="#E4E6EB"
-          $color="#000000"
-          $fontSize="12px"
-          $fontWeight="400"
-          type="primary"
-          icon={
+    <>
+      {config.contextHolder}
+      <S.ImageWallWrapper>
+        <S.ImageWall>
+          <S.BlurWall />
+          <Loading $isLoading={loadingImage.background} />
+          {loadingImage.background || (
+            <Image
+              src={imageWall ?? backgroundUrl ?? image}
+              alt="wall"
+              width={640}
+              height={640}
+              className="image_wall"
+            ></Image>
+          )}
+          <Form.Item
+            name="backgroundUrl"
+            valuePropName="fileList"
+            getValueFromEvent={normFile}
+          >
+            <input type="file" name="" id="background" accept="image/*" />
+          </Form.Item>
+          <S.Button
+            onClick={() => OpenUploadFile('background')}
+            $borderRadius="4px"
+            $backgroundColor="#E4E6EB"
+            $color="#000000"
+            $fontSize="12px"
+            $fontWeight="400"
+            type="primary"
+            icon={
+              <Image
+                src={camera_icon}
+                alt="icon camera"
+                width={30}
+                height={30}
+              ></Image>
+            }
+          >
+            <p className="typography">Thêm ảnh bìa</p>
+          </S.Button>
+        </S.ImageWall>
+        <S.AvatarWrapper>
+          <S.Avatar>
+            <Loading $isLoading={loadingImage.avatar} />
+
+            {loadingImage.avatar || (
+              <Image
+                src={imageAvatar ?? avatarUrl ?? image}
+                alt="avatar"
+                width={200}
+                height={200}
+              ></Image>
+            )}
+          </S.Avatar>
+          <Form.Item
+            name="avatarUrl"
+            valuePropName="fileList"
+            getValueFromEvent={normFile}
+          >
+            <input type="file" id="avatar" accept="image/*" />
+          </Form.Item>
+          <Button
+            $borderRadius="50px"
+            $width={24}
+            type="primary"
+            onClick={() => {
+              OpenUploadFile('avatar');
+            }}
+          >
             <Image
               src={camera_icon}
               alt="icon camera"
               width={30}
               height={30}
             ></Image>
-          }
-        >
-          <p className="typography">Thêm ảnh bìa</p>
-        </S.Button>
-      </S.ImageWall>
-      <S.AvatarWrapper>
-        <S.Avatar>
-          <Loading $isLoading={loadingImage.avatar} />
-
-          {loadingImage.avatar || (
-            <Image
-              src={imageAvatar ?? avatarUrl ?? image}
-              alt="avatar"
-              width={200}
-              height={200}
-            ></Image>
-          )}
-        </S.Avatar>
-        <Form.Item
-          name="avatarUrl"
-          valuePropName="fileList"
-          getValueFromEvent={normFile}
-        >
-          <input type="file" id="avatar" accept="image/*" />
-        </Form.Item>
-        <Button
-          $borderRadius="50px"
-          $width={24}
-          type="primary"
-          onClick={() => {
-            OpenUploadFile('avatar');
-          }}
-        >
-          <Image
-            src={camera_icon}
-            alt="icon camera"
-            width={30}
-            height={30}
-          ></Image>
-        </Button>
-      </S.AvatarWrapper>
-      {contextHolder}
-    </S.ImageWallWrapper>
+          </Button>
+        </S.AvatarWrapper>
+        {contextHolder}
+      </S.ImageWallWrapper>
+    </>
   );
 };
 

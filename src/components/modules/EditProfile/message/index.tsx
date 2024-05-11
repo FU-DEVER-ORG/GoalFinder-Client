@@ -10,10 +10,10 @@ const Config = () => {
     });
   };
 
-  const error = () => {
+  const error = (text = 'Cập nhật thông tin thất bại!') => {
     messageApi.open({
       type: 'error',
-      content: 'Cập nhật thông tin thất bại!',
+      content: text,
     });
   };
   const loading = () => {

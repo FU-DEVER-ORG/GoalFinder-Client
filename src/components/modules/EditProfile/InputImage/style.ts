@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import styled from 'styled-components';
 
 import ButtonFromCommon from '@/components/core/common/Button';
