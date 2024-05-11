@@ -41,7 +41,7 @@ function FormSignin() {
         password: values.password!,
         isRemember: values.isRemember!,
       };
-      const res: any = await signIn(data).unwrap();
+      await signIn(data).unwrap();
       router.push('/')
     } catch (error) {
     }

@@ -68,7 +68,7 @@ function FormSignUp() {
         email: values.email!,
         password: values.confirmPassword!,
       };
-      const res: any = await signUp(data).unwrap();
+      await signUp(data).unwrap();
       router.push('/sign-in')
     } catch (error) {
     }
