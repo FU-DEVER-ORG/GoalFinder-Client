@@ -18,9 +18,9 @@ import * as S from './style';
 type InterfaceData = {
   nickName: string;
   fullName: string;
-  experienceId: string | undefined;
+  experienceId?: string;
   positionIds: Array<string>;
-  competitionLevelId: string | undefined;
+  competitionLevelId?: string;
   description: string;
   avatarUrl: string;
   backgroundUrl: string;
@@ -85,7 +85,7 @@ const FormPage = () => {
 
   const config = Config();
   const nickName = webStorageClient.get(constants.USER_NAME);
-  const { data } = useGetProfileQuery(nickName);
+  const { data } = nickName && useGetProfileQuery(nickName);
 
   useEffect(() => {
     if (data) {

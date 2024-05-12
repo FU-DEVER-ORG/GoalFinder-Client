@@ -1,5 +1,5 @@
 import { Form, Modal } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 import { UploadImage } from '@/utils/uploadImage';
@@ -8,7 +8,8 @@ import Config from '@/components/modules/EditProfile/message';
 import Button from '@/components/core/common/Button';
 import Loading from '@/components/modules/EditProfile/loading';
 
-import image from '@/public/images/layout/avatar.jpeg';
+import avatar_default from '@/public/images/layout/avatar_default.png';
+import background_default from '@/public/images/layout/background_default.png';
 import camera_icon from '@/public/icon/layout/camera-flip.svg';
 
 import * as S from './style';
@@ -24,10 +25,13 @@ const initialLoadingImage = {
   background: false,
 };
 
+type InterfaceImageUpload = {
+  backgroundUrl?: string;
+  avatarUrl?: string;
+};
+
 const ImageWall = ({ form, backgroundUrl, avatarUrl }: any) => {
-  const [modal, contextHolder] = Modal.useModal();
-  const [imageWall, setImageWall] = useState<string | null>(null);
-  const [imageAvatar, setImageAvatar] = useState<string | null>(null);
+  const [imageUpload, setImageUpload] = useState<InterfaceImageUpload>();
   const [loadingImage, setLoadingImage] =
     useState<InterfaceLoadingImage>(initialLoadingImage);
 
@@ -47,14 +51,13 @@ const ImageWall = ({ form, backgroundUrl, avatarUrl }: any) => {
       const url = await UploadImage(files);
       switch (e.target.id) {
         case 'background':
-          console.log('1', 1);
-          setImageWall(url);
+          setImageUpload({ ...imageUpload, backgroundUrl: url });
           form.setFieldsValue({
             backgroundURL: url,
           });
           break;
         case 'avatar':
-          setImageAvatar(url);
+          setImageUpload({ ...imageUpload, avatarUrl: url });
           form.setFieldsValue({
             avatarURL: url,
           });
@@ -74,6 +77,16 @@ const ImageWall = ({ form, backgroundUrl, avatarUrl }: any) => {
     input?.click();
   }
 
+  useEffect(() => {
+    const newImageUpload = {
+      avatarUrl: undefined,
+      backgroundUrl: undefined,
+    };
+    if (avatarUrl) newImageUpload.avatarUrl = avatarUrl;
+    if (backgroundUrl) newImageUpload.backgroundUrl = backgroundUrl;
+    setImageUpload(newImageUpload);
+  }, [avatarUrl, backgroundUrl]);
+
   return (
     <>
       {config.contextHolder}
@@ -83,7 +96,7 @@ const ImageWall = ({ form, backgroundUrl, avatarUrl }: any) => {
           <Loading $isLoading={loadingImage.background} />
           {loadingImage.background || (
             <Image
-              src={imageWall ?? backgroundUrl ?? image}
+              src={imageUpload?.backgroundUrl ?? background_default}
               alt="wall"
               width={640}
               height={640}
@@ -123,7 +136,7 @@ const ImageWall = ({ form, backgroundUrl, avatarUrl }: any) => {
 
             {loadingImage.avatar || (
               <Image
-                src={imageAvatar ?? avatarUrl ?? image}
+                src={imageUpload?.avatarUrl ?? avatar_default}
                 alt="avatar"
                 width={200}
                 height={200}
@@ -153,7 +166,6 @@ const ImageWall = ({ form, backgroundUrl, avatarUrl }: any) => {
             ></Image>
           </Button>
         </S.AvatarWrapper>
-        {contextHolder}
       </S.ImageWallWrapper>
     </>
   );
