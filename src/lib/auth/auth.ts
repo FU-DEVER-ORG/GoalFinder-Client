@@ -19,8 +19,8 @@ export const authOptions: NextAuthOptions = {
       if (!profile?.email) {
         throw new Error('No profile');
       }
-      console.log(account);
-      console.log(profile);
+    //   console.log(account);
+    //   console.log(profile);
       const accessTokenDemo = account?.access_token as string;
       cookies().set(constants.ACCESS_TOKEN, accessTokenDemo);
       return true;

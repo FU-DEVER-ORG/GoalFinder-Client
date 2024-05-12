@@ -1,4 +1,4 @@
-import { Form, Modal } from 'antd';
+import { Form } from 'antd';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 

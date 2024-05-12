@@ -25,7 +25,7 @@ const slice = createSlice({
       })
       .addMatcher(authAPI.endpoints.signIn.matchFulfilled, (state, action) => {
         // webStorageClient.set(constants.IS_AUTH, (state.isAuth = true));
-        console.log(action);
+        // console.log(action);
         webStorageClient.setToken(action?.payload?.body?.accessToken, {
           expires: new Date(Date.now() + 15 * 60 * 1000),
         });
