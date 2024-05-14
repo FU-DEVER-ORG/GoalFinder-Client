@@ -36,8 +36,7 @@ const slice = createSlice({
         );
         webStorageClient.set(
           constants.USER_NAME,
-          action?.payload?.body?.user.nickName ||
-            action?.payload?.body?.user.email,
+          action?.payload?.body?.user.nickName,
           { expires: new Date(Date.now() + 20 * 60 * 1000) },
         );
       })

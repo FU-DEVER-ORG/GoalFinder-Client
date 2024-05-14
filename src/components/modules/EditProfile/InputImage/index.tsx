@@ -30,7 +30,7 @@ type InterfaceImageUpload = {
   avatarUrl?: string;
 };
 
-const ImageWall = ({ form, backgroundUrl, avatarUrl }: any) => {
+const ImageWall = ({ form, backgroundUrl, avatarUrl, nickName }: any) => {
   const [imageUpload, setImageUpload] = useState<InterfaceImageUpload>();
   const [loadingImage, setLoadingImage] =
     useState<InterfaceLoadingImage>(initialLoadingImage);
@@ -48,18 +48,18 @@ const ImageWall = ({ form, backgroundUrl, avatarUrl }: any) => {
         ...loadingImage,
         [e.target.id]: true,
       });
-      const url = await UploadImage(files);
+      const url = await UploadImage(files, `${e.target.id}_${nickName}`);
       switch (e.target.id) {
         case 'background':
           setImageUpload({ ...imageUpload, backgroundUrl: url });
           form.setFieldsValue({
-            backgroundURL: url,
+            backgroundUrl: url,
           });
           break;
         case 'avatar':
           setImageUpload({ ...imageUpload, avatarUrl: url });
           form.setFieldsValue({
-            avatarURL: url,
+            avatarUrl: url,
           });
           break;
       }

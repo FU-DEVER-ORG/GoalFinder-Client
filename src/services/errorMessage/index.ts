@@ -6,7 +6,7 @@ export const errorMessage: any = {
   'Auth.Login.USER_IS_NOT_FOUND': 'Không tìm thấy tài khoản !',
   'Auth.Register.OPERATION_SUCCESS': 'Đăng ký tài khoản thành công',
   'Auth.Login.OPERATION_SUCCESS': 'Đăng nhập thành công',
-  'User.UpdateUserInfo.INPUT_VALIDATION_FAIL':
-    'Chưa điền hết tất cả các trường!',
-  "INTERNET_FAIL" : 'Đường truyền internet không ổn định!',
+  'User.UpdateUserInfo.INPUT_VALIDATION_FAIL': 'Hãy điền đầy đủ các thông tin!',
+  INTERNET_FAIL: 'Đường truyền internet không ổn định!',
+  'User.UpdateUserInfo.USERNAME_IS_ALREADY_TAKEN': 'Tên tài khoản đã tồn tại',
 };

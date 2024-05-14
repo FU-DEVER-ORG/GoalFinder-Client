@@ -17,6 +17,10 @@ const AMATEUR = 'c99b2f00-cf5a-468f-a0ae-31cd95fecce6';
 const STRIKER = '126aad71-81e0-4e56-8d74-c1d3f3e9b8c0';
 const DEFENDER = '7bfadb87-4950-4627-aa93-c0312ff492a5';
 const GOALDER = '697ed101-07cb-4745-a80f-488e695c830a';
+const BACKGROUND_DEFAULT =
+  'https://res.cloudinary.com/dmeetnppd/image/upload/v1715528947/background_default.png';
+const AVATAR_DEFAULT =
+  'https://res.cloudinary.com/dmeetnppd/image/upload/v1715528950/avatar_default.png';
 
 //...more in need
 //addition in here
@@ -38,5 +42,7 @@ const constants = {
   STRIKER,
   DEFENDER,
   GOALDER,
+  BACKGROUND_DEFAULT,
+  AVATAR_DEFAULT,
 };
 export default constants;

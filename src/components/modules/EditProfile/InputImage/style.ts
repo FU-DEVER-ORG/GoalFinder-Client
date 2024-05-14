@@ -143,6 +143,7 @@ export const Button = styled(ButtonFromCommon)`
 
   .ant-btn-icon {
     margin: 0 !important;
+    aspect-ratio: 1/ 1 !important;
   }
 
   .typography {

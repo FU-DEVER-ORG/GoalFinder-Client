@@ -47,7 +47,23 @@ const FormItem = ({ form, currentData }: any) => {
     <S.WrapperItem vertical gap={24}>
       <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Tên tài khoản</S.Typography>
-        <S.FormItem name="nickName">
+        <S.FormItem
+          name="nickName"
+          rules={[
+            {
+              validator: async (_: any, name: string) => {
+                if (name.includes(' '))
+                  return Promise.reject(
+                    new Error('Tên tài khoản không được có khoảng trắng!'),
+                  );
+                if (name.length === 0 && currentData.nickName.length === 0)
+                  return Promise.reject(
+                    new Error('Tên tài khoản của bạn chưa có!'),
+                  );
+              },
+            },
+          ]}
+        >
           <S.Input />
         </S.FormItem>
       </S.Flex>

@@ -111,8 +111,8 @@ const FormPage = () => {
         positionIds,
         competitionLevelId,
         description: currenntData?.description,
-        avatarUrl: currenntData?.avatarUrl,
-        backgroundUrl: currenntData?.backgroundUrl,
+        avatarUrl: currenntData?.avatarUrl ?? constants.AVATAR_DEFAULT,
+        backgroundUrl: currenntData?.backgroundUrl ?? constants.AVATAR_DEFAULT,
         address: currenntData?.address,
       };
       setCurrentDataUser(newData);
@@ -143,13 +143,14 @@ const FormPage = () => {
       };
       config.loading();
       await UpdateUser(data).unwrap();
-      onFinishSuccess();
+      onFinishSuccess(values?.nickName);
     } catch (err) {
       onFinishFail(err);
     }
   };
 
-  const onFinishSuccess = () => {
+  const onFinishSuccess = (nickName: string) => {
+    webStorageClient.set(constants.USER_NAME, nickName);
     config.close();
     config.success();
   };
@@ -169,6 +170,7 @@ const FormPage = () => {
               form={form}
               backgroundUrl={currentDataUser.backgroundUrl}
               avatarUrl={currentDataUser.avatarUrl}
+              nickName={nickName}
             />
             <FormItem form={form} currentData={currentDataUser} />
             <div className="btn">
