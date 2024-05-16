@@ -10,8 +10,12 @@ import { MenuItem } from '@/model/entites/Feed';
 import * as S from './styles';
 
 function FeedScroll() {
-  const { data, isLoading } = useGetMatchQuery();
-  const posts: MenuItem[] = data?.body?.footballMatches || [];
+  const { posts = [], isLoading } = useGetMatchQuery(undefined, {
+    selectFromResult: ({ data }) => ({
+      posts: data?.body?.footballMatches || [],
+      isLoading: !data,
+    }),
+  });
   return (
     <S.Scroll vertical gap={24}>
       {isLoading ? (

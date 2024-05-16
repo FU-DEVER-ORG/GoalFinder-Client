@@ -39,9 +39,6 @@ export const authAPI = api.injectEndpoints({
         body: data,
         flashError: true,
       }),
-      transformResponse: (response: any) => {
-        return response;
-      },
     }),
     forgotPassword: build.mutation({
       query: (data: { userName: string }) => ({
