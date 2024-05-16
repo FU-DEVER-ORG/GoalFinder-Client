@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { LockOutlined } from '@ant-design/icons';
 import { Form, FormProps, message } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
 import { useResetPasswordMutation } from '@/store/services/auth';
 
 import Button from '@/components/core/common/Button';
@@ -16,7 +15,6 @@ const FormReset = () => {
   const route = useRouter();
   const FormItem = Form.Item;
   const [form] = Form.useForm();
-  const [messageResetSuccess, contextHolder] = message.useMessage();
 
   const otpCode = sessionStorage.getItem('otpCode');
 
@@ -73,74 +71,61 @@ const FormReset = () => {
   };
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
-    console.log('otp test: ', otpCode);
     try {
       const data = {
         otpCode: otpCode!,
         newPassword: values.newPassword!,
         confirmPassword: values.confirmPassword!,
       };
-      const res: any = await resetPassword(data);
-      res?.error?.data?.appCode ===
-      'Auth.ResetPasswordWithOtp.NEW_PASSWORD_CANT_BE_MATCH_WITH_OLD_PASSWORD'
-        ? messageResetSuccess.open({
-            type: 'error',
-            content: 'Mật khẩu mới không được trùng với mật khẩu cũ',
-          })
-        : (route.push('/sign-in'), message.success('Đổi mật khẩu thành công'));
-    } catch (error) {
-      console.log(error);
-    }
+      const payload = await resetPassword(data).unwrap();
+      console.log(payload);
+      route.push('/sign-in');
+      message.success('Đổi mật khẩu thành công');
+    } catch (error) {}
   };
   return (
-    <>
-      {contextHolder}
-      <Form form={form} className="resetWrapper" onFinish={onFinish}>
-        <S.Input>
-          <FormItem
-            rules={[{ validator: validatePassword }]}
-            name="newPassword"
-          >
-            <InputPassword
-              width={'100%'}
-              placeholder="Mật khẩu"
-              prefix={<LockOutlined />}
-              label="Mật khẩu mới"
-              onChangeCapture={(e) => {
-                setPassword(e.currentTarget.value);
-              }}
-              autoComplete="newPassword"
-            />
-          </FormItem>
-
-          <FormItem
-            name="confirmPassword"
-            dependencies={['password']}
-            rules={[{ validator: validateReset }]}
-          >
-            <InputPassword
-              width={'100%'}
-              placeholder="Mật khẩu"
-              prefix={<LockOutlined />}
-              label="Xác nhận mật khẩu mới"
-              autoComplete="confirmPassword"
-            />
-          </FormItem>
-        </S.Input>
-
-        <FormItem>
-          <Button
-            $width={'100%'}
-            type="primary"
-            htmlType="submit"
-            className="login-form-button"
-            loading={isLoading}
-          >
-            Lưu
-          </Button>
+    <Form form={form} className="resetWrapper" onFinish={onFinish}>
+      <S.Input>
+        <FormItem rules={[{ validator: validatePassword }]} name="newPassword">
+          <InputPassword
+            width={'100%'}
+            placeholder="Mật khẩu"
+            prefix={<LockOutlined />}
+            label="Mật khẩu mới"
+            onChangeCapture={(e) => {
+              setPassword(e.currentTarget.value);
+            }}
+            autoComplete="newPassword"
+          />
         </FormItem>
-      </Form>
-    </>
+
+        <FormItem
+          name="confirmPassword"
+          dependencies={['password']}
+          rules={[{ validator: validateReset }]}
+        >
+          <InputPassword
+            width={'100%'}
+            placeholder="Mật khẩu"
+            prefix={<LockOutlined />}
+            label="Xác nhận mật khẩu mới"
+            autoComplete="confirmPassword"
+          />
+        </FormItem>
+      </S.Input>
+
+      <FormItem>
+        <Button
+          $width={'100%'}
+          type="primary"
+          htmlType="submit"
+          className="login-form-button"
+          loading={isLoading}
+        >
+          Lưu
+        </Button>
+      </FormItem>
+    </Form>
   );
 };
 

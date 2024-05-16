@@ -6,7 +6,10 @@ export const errorMessage: any = {
   'Auth.Login.USER_IS_NOT_FOUND': 'Không tìm thấy tài khoản !',
   'Auth.Register.OPERATION_SUCCESS': 'Đăng ký tài khoản thành công',
   'Auth.Login.OPERATION_SUCCESS': 'Đăng nhập thành công',
-  'User.UpdateUserInfo.INPUT_VALIDATION_FAIL': 'Hãy điền đầy đủ các thông tin!',
-  INTERNET_FAIL: 'Đường truyền internet không ổn định!',
-  'User.UpdateUserInfo.USERNAME_IS_ALREADY_TAKEN': 'Tên tài khoản đã tồn tại',
+  'Auth.ResetPasswordWithOtp.NEW_PASSWORD_CANT_BE_MATCH_WITH_OLD_PASSWORD':
+    'Mật khẩu mới không được trùng với mật khẩu cũ',
+  'Auth.ResetPasswordWithOtp.OTP_CODE_NOT_FOUND':
+    'Vui lòng đặt mật khẩu sau ít phút nữa',
+  'Auth.ForgotPassword.USER_WITH_EMAIL_IS_NOT_FOUND':
+    'Không tìm thấy tài khoản !',
 };
