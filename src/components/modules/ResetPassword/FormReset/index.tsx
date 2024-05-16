@@ -84,53 +84,48 @@ const FormReset = () => {
     } catch (error) {}
   };
   return (
-    <>
-      <Form form={form} className="resetWrapper" onFinish={onFinish}>
-        <S.Input>
-          <FormItem
-            rules={[{ validator: validatePassword }]}
-            name="newPassword"
-          >
-            <InputPassword
-              width={'100%'}
-              placeholder="Mật khẩu"
-              prefix={<LockOutlined />}
-              label="Mật khẩu mới"
-              onChangeCapture={(e) => {
-                setPassword(e.currentTarget.value);
-              }}
-              autoComplete="newPassword"
-            />
-          </FormItem>
-
-          <FormItem
-            name="confirmPassword"
-            dependencies={['password']}
-            rules={[{ validator: validateReset }]}
-          >
-            <InputPassword
-              width={'100%'}
-              placeholder="Mật khẩu"
-              prefix={<LockOutlined />}
-              label="Xác nhận mật khẩu mới"
-              autoComplete="confirmPassword"
-            />
-          </FormItem>
-        </S.Input>
-
-        <FormItem>
-          <Button
-            $width={'100%'}
-            type="primary"
-            htmlType="submit"
-            className="login-form-button"
-            loading={isLoading}
-          >
-            Lưu
-          </Button>
+    <Form form={form} className="resetWrapper" onFinish={onFinish}>
+      <S.Input>
+        <FormItem rules={[{ validator: validatePassword }]} name="newPassword">
+          <InputPassword
+            width={'100%'}
+            placeholder="Mật khẩu"
+            prefix={<LockOutlined />}
+            label="Mật khẩu mới"
+            onChangeCapture={(e) => {
+              setPassword(e.currentTarget.value);
+            }}
+            autoComplete="newPassword"
+          />
         </FormItem>
-      </Form>
-    </>
+
+        <FormItem
+          name="confirmPassword"
+          dependencies={['password']}
+          rules={[{ validator: validateReset }]}
+        >
+          <InputPassword
+            width={'100%'}
+            placeholder="Mật khẩu"
+            prefix={<LockOutlined />}
+            label="Xác nhận mật khẩu mới"
+            autoComplete="confirmPassword"
+          />
+        </FormItem>
+      </S.Input>
+
+      <FormItem>
+        <Button
+          $width={'100%'}
+          type="primary"
+          htmlType="submit"
+          className="login-form-button"
+          loading={isLoading}
+        >
+          Lưu
+        </Button>
+      </FormItem>
+    </Form>
   );
 };
 
