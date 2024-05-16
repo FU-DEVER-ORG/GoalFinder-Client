@@ -19,7 +19,7 @@ import {
 import OTPInput from 'react-otp-input';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { CaretDownOutlined, LoadingOutlined } from '@ant-design/icons';
+import { CaretDownOutlined } from '@ant-design/icons';
 
 import { useForgotPasswordMutation } from '@/store/services/auth';
 
@@ -111,25 +111,13 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
         userName: values?.userName!,
       };
       setDataForgot(data);
-      const res: any = await forgotPassword(data).unwrap();
-      console.log('resolve');
-      console.log(res);
-
-      // xu ly
-
-      // console.log(res);
-
-      // if (res?.error) throw res?.error;
-      // if (res?.data) {
-      //   setNavigation('step2');
-      //   setTargetTime(Date.now() + 60 * 1000);
-      //   console.log('Mã xác thực là: ', res?.data?.body?.otpCode);
-      //   setOtpCode(res?.data?.body?.otpCode);
-      // }
+      const payload = await forgotPassword(data).unwrap();
+      setNavigation('step2');
+      setTargetTime(Date.now() + 60 * 1000);
+      console.log('Mã xác thực là: ', payload?.body?.otpCode);
+      setOtpCode(payload?.body?.otpCode);
     } catch (error) {
-      // xử lý lỗi ở đây
-
-      console.log('reject', error);
+      console.error('rejected', error);
     }
   };
 
@@ -152,16 +140,15 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
         }, 3000);
       }
       if (navigation === 'step3' && digits?.length === 4) {
-        const res: any = await forgotPassword(dataForgot);
-        if (res?.data?.appCode === 'Auth.ForgotPassword.OPERATION_SUCCESS') {
-          const otpCheck = digits?.join('');
-          otpCheck === otpCode
-            ? (sessionStorage.setItem('otpCode', otpCode),
-              route.push('/reset-password'))
-            : messageApi.open({
-                type: 'error',
-                content: 'Mã xác thực không đúng, vui lòng kiểm tra lại',
-              });
+        const otpCheck = digits?.join('');
+        if (otpCode === otpCheck) {
+          sessionStorage.setItem('otpCode', otpCode);
+          route.push('/reset-password');
+        } else {
+          messageApi.open({
+            type: 'error',
+            content: 'Mã xác thực không đúng, vui lòng kiểm tra lại',
+          });
         }
       }
     } catch (error) {}
@@ -186,17 +173,18 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
       })
       .then(() => message.success('Mã xác thực đã được gửi', 1))
       .then(async () => {
-        console.log(dataForgot);
+        try {
+          const payload = await forgotPassword(dataForgot).unwrap();
 
-        const res: any = await forgotPassword(dataForgot);
-        res?.data?.appCode === 'Auth.ForgotPassword.OPERATION_SUCCESS'
-          ? (console.log('Mã xác thực OTP là: ', res?.data?.body?.otpCode),
-            setDigits([]),
-            setOtpCode(res?.data?.body?.otpCode))
-          : messageApi.open({
-              type: 'error',
-              content: 'Lỗi xác thực',
-            });
+          console.log('Mã xác thực OTP là: ', payload?.body?.otpCode);
+          setDigits([]);
+          setOtpCode(payload?.body?.otpCode);
+        } catch (error) {
+          messageApi.open({
+            type: 'error',
+            content: 'Lỗi xác thực',
+          });
+        }
       })
       .then(() => setFinish(false))
       .then(() => setTargetTime(Date.now() + 60 * 1000));
