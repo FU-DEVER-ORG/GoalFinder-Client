@@ -1,8 +1,8 @@
 import { Flex } from 'antd';
 
-import themeColors from '@/styles/themes/default/colors';
+import Typography from '../../Typography';
 
-import Typography from '@/components/common/Typography';
+import themeColors from '@/style/themes/default/colors';
 
 import * as S from './phoneNumber';
 
@@ -34,7 +34,7 @@ export default function PhoneNumberByCountry({
       )}
       <S.PhoneNumberWrapper
         limitMaxLength={15}
-        defaultCountry="FR"
+        defaultCountry="VN"
         disabled={isDisable}
         value={currentInstanceForm?.getFieldValue(nameField)}
         onChange={(value: string) => {
