@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { LockOutlined } from '@ant-design/icons';
 import { Form, FormProps, message } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
 import { useResetPasswordMutation } from '@/store/services/auth';
 
 import Button from '@/components/core/common/Button';
@@ -73,24 +72,17 @@ const FormReset = () => {
   };
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
-    console.log('otp test: ', otpCode);
     try {
       const data = {
         otpCode: otpCode!,
         newPassword: values.newPassword!,
         confirmPassword: values.confirmPassword!,
       };
-      const res: any = await resetPassword(data);
-      res?.error?.data?.appCode ===
-      'Auth.ResetPasswordWithOtp.NEW_PASSWORD_CANT_BE_MATCH_WITH_OLD_PASSWORD'
-        ? messageResetSuccess.open({
-            type: 'error',
-            content: 'Mật khẩu mới không được trùng với mật khẩu cũ',
-          })
-        : (route.push('/sign-in'), message.success('Đổi mật khẩu thành công'));
-    } catch (error) {
-      console.log(error);
-    }
+      const payload = await resetPassword(data).unwrap();
+      console.log(payload);
+      route.push('/sign-in');
+      message.success('Đổi mật khẩu thành công');
+    } catch (error) {}
   };
   return (
     <>
