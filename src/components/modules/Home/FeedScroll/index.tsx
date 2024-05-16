@@ -1,18 +1,17 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { Skeleton } from 'antd';
 
 import Feed from '../Feed';
 
 import { useGetMatchQuery } from '@/store/services/auth';
-
-import * as S from './styles';
 import { MenuItem } from '@/model/entites/Feed';
 
+import * as S from './styles';
+
 function FeedScroll() {
-  const { data : posts, isLoading } = useGetMatchQuery() ;
-  const [items, setItems] = useState<MenuItem[]>([]);
+  const { data, isLoading } = useGetMatchQuery();
+  const posts: MenuItem[] = data?.body?.footballMatches || [];
   return (
     <S.Scroll vertical gap={24}>
       {isLoading ? (
@@ -20,7 +19,7 @@ function FeedScroll() {
           <Skeleton avatar paragraph={{ rows: 4 }} />
         </S.FeedContainer>
       ) : (
-        posts?.items?.map((post : any) => (
+        posts.map((post: MenuItem) => (
           <Feed key={post.id} data={post} />
         ))
       )}
