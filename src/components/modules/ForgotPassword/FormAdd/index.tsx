@@ -141,13 +141,15 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
       }
       if (navigation === 'step3' && digits?.length === 4) {
         const otpCheck = digits?.join('');
-        otpCode === otpCheck
-          ? (sessionStorage.setItem('otpCode', otpCode),
-            route.push('/reset-password'))
-          : messageApi.open({
-              type: 'error',
-              content: 'Mã xác thực không đúng, vui lòng kiểm tra lại',
-            });
+        if (otpCode === otpCheck) {
+          sessionStorage.setItem('otpCode', otpCode);
+          route.push('/reset-password');
+        } else {
+          messageApi.open({
+            type: 'error',
+            content: 'Mã xác thực không đúng, vui lòng kiểm tra lại',
+          });
+        }
       }
     } catch (error) {}
   };
@@ -174,9 +176,9 @@ const FormAdd = ({ navigation, setNavigation }: PageProps) => {
         try {
           const payload = await forgotPassword(dataForgot).unwrap();
 
-          console.log('Mã xác thực OTP là: ', payload?.body?.otpCode),
-            setDigits([]),
-            setOtpCode(payload?.body?.otpCode);
+          console.log('Mã xác thực OTP là: ', payload?.body?.otpCode);
+          setDigits([]);
+          setOtpCode(payload?.body?.otpCode);
         } catch (error) {
           messageApi.open({
             type: 'error',

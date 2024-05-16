@@ -10,4 +10,6 @@ export const errorMessage: any = {
     'Mật khẩu mới không được trùng với mật khẩu cũ',
   'Auth.ResetPasswordWithOtp.OTP_CODE_NOT_FOUND':
     'Vui lòng đặt mật khẩu sau ít phút nữa',
+  'Auth.ForgotPassword.USER_WITH_EMAIL_IS_NOT_FOUND':
+    'Không tìm thấy tài khoản !',
 };

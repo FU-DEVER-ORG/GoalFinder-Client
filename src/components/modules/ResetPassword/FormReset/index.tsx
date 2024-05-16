@@ -15,7 +15,6 @@ const FormReset = () => {
   const route = useRouter();
   const FormItem = Form.Item;
   const [form] = Form.useForm();
-  const [messageResetSuccess, contextHolder] = message.useMessage();
 
   const otpCode = sessionStorage.getItem('otpCode');
 
@@ -86,7 +85,6 @@ const FormReset = () => {
   };
   return (
     <>
-      {contextHolder}
       <Form form={form} className="resetWrapper" onFinish={onFinish}>
         <S.Input>
           <FormItem
