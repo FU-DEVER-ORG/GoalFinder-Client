@@ -18,5 +18,7 @@ const editProfileEndpoint = {
   DISTRICT: `${prefixBase}/province/district`,
   WARD: `${prefixBase}/province/ward`,
 };
-//export endpoint
-export { authEndpoint, editProfileEndpoint, userEndpoint };
+const matchEndpoint = {
+  MATCH: `/match`,
+};
+export { authEndpoint, editProfileEndpoint, matchEndpoint };
