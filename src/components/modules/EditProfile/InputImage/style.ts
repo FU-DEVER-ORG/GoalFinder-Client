@@ -1,5 +1,6 @@
-import Image from 'next/image';
 import styled from 'styled-components';
+
+import ButtonFromCommon from '@/components/core/common/Button';
 
 export const ImageWallWrapper = styled.div`
   display: block;
@@ -19,13 +20,17 @@ export const ImageWall = styled.div`
   max-height: 250px;
   aspect-ratio: 64 / 25;
 
+  overflow: hidden;
+
   .image_wall {
     position: absolute !important;
 
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% !important;
 
-    object-fit: cover;
+    object-fit: cover !important;
+
+    user-select: none;
 
     z-index: 0;
   }
@@ -35,23 +40,20 @@ export const ImageWall = styled.div`
 
     display: flex !important;
     align-items: center;
-    
+
     bottom: 10px;
     right: 10px;
-    
+
     border: 0 !important;
-    
+
     z-index: 2;
     @media ${({ theme }) => theme.breakpoints.mdMax} {
       padding: 5px 10px !important;
-      
-      img {
 
+      img {
         width: 20px;
         height: 20px;
-      
       }
-    
     }
 
     p {
@@ -62,17 +64,20 @@ export const ImageWall = styled.div`
       width: 30px;
       height: 30px;
     }
-
   }
 `;
 export const BlurWall = styled.span`
   position: absolute;
   inset: 0;
 
+  pointer-events: none !important;
+  user-select: none !important;
+
   box-shadow: inset 0 -30px 20px -10px rgba(0, 0, 0, 0.5);
 
   z-index: 1;
 `;
+
 export const AvatarWrapper = styled.div`
   position: absolute;
   bottom: 0;
@@ -83,7 +88,9 @@ export const AvatarWrapper = styled.div`
   height: 160px;
   .ant-btn {
     position: absolute !important;
-    bottom: 48px;
+    z-index: 2;
+    
+    bottom: 10px;
     right: 10px;
 
     width: 50px !important;
@@ -103,18 +110,46 @@ export const AvatarWrapper = styled.div`
 
     left: 20px;
     .ant-btn {
-      width: 40px !important;
-      height: 40px !important;
+      width: 30px !important;
+      height: 30px !important;
 
-      bottom: 35px;
+      bottom: 5px;
       right: 5px;
+
     }
   }
 `;
-export const Avatar = styled(Image)`
+export const Avatar = styled.div`
   width: 100%;
   height: 100%;
 
+  position: relative;
+
+  background-color: #fff;
+  overflow: hidden;
+
   border-radius: 50%;
   border: 4px solid #fff;
+
+  img {
+    width: 100% !important;
+    height: 100% !important;
+  }
+`;
+
+export const Button = styled(ButtonFromCommon)`
+  padding: 5px 10px !important;
+  color: #fff;
+
+  .ant-btn-icon {
+    margin: 0 !important;
+    aspect-ratio: 1/ 1 !important;
+  }
+
+  .typography {
+    display: block !important;
+    @media ${({ theme }) => theme.breakpoints.mdMax} {
+      display: none !important;
+    }
+  }
 `;
