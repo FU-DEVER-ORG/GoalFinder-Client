@@ -1,7 +1,7 @@
-import { Checkbox, Flex } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import Button from '@/components/core/common/Button';
+import { constants } from '@/settings';
+
 import SelectAddress from '@/components/modules/EditProfile/SelectAddress';
 
 import * as S from './style';
@@ -18,8 +18,24 @@ const initialStatePosition: InterfaceStatePosition = {
   defender: false,
   striker: false,
 };
-const FormItem = ({ form }: any) => {
+
+const FormItem = ({ form, currentData }: any) => {
   const [position, setPosition] = useState(initialStatePosition);
+
+  const colorBtnGoalker = position.goalker ? '' : '#d9d9d9';
+  const colorBtnDefender = position.defender ? '' : '#d9d9d9';
+  const colorBtnStriker = position.striker ? '' : '#d9d9d9';
+
+  const { experience, positionIds, experienceId, address } = currentData;
+
+  useEffect(() => {
+    setPosition({
+      goalker: positionIds?.includes(constants.GOALDER),
+      defender: positionIds?.includes(constants.DEFENDER),
+      striker: positionIds?.includes(constants.STRIKER),
+    });
+  }, [currentData]);
+
   const HandleClickPositionButton = (name: string) => {
     const NewPosition = {
       ...position,
@@ -27,102 +43,118 @@ const FormItem = ({ form }: any) => {
     };
     setPosition(NewPosition);
   };
-  const colorBtnGoalker = position.goalker ? '' : '#d9d9d9';
-  const colorBtnDefender = position.defender ? '' : '#d9d9d9';
-  const colorBtnStriker = position.striker ? '' : '#d9d9d9';
-
   return (
     <S.WrapperItem vertical gap={24}>
-      <S.FormItem name="inputNickName">
+      <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Tên tài khoản</S.Typography>
-        <div className="full">
+        <S.FormItem
+          name="nickName"
+          rules={[
+            {
+              validator: async (_: any, name: string) => {
+                if (name.includes(' '))
+                  return Promise.reject(
+                    new Error('Tên tài khoản không được có khoảng trắng!'),
+                  );
+                if (name.length === 0 && currentData.nickName.length === 0)
+                  return Promise.reject(
+                    new Error('Tên tài khoản của bạn chưa có!'),
+                  );
+              },
+            },
+          ]}
+        >
           <S.Input />
-        </div>
-      </S.FormItem>
-      <S.FormItem name="inputFullName">
+        </S.FormItem>
+      </S.Flex>
+      <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Họ và tên</S.Typography>
-        <div className="full">
+        <S.FormItem name="fullName">
           <S.Input />
-        </div>
-      </S.FormItem>
+        </S.FormItem>
+      </S.Flex>
       <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Khu vực</S.Typography>
         <S.FlexWrapper justify="space-between">
-          <SelectAddress form={form} />
+          <SelectAddress form={form} address={address} />
         </S.FlexWrapper>
       </S.Flex>
       <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Trình độ</S.Typography>
-        <S.FormItem name="level">
-          <S.FlexWrapper justify="space-between">
-            <S.RadioGroup name="ButtonLevel" optionType="button">
-              <S.RadioButton value="professional">Chuyên nghiệp</S.RadioButton>
-              <S.RadioButton value="amateur">Nghiệp dư</S.RadioButton>
-            </S.RadioGroup>
-          </S.FlexWrapper>
+        <S.FormItem name="experienceId" defaultValue={experience}>
+          <S.RadioGroup name="ButtonLevel" optionType="button">
+            <S.RadioButton value={constants.PROFESSIONAL}>
+              Chuyên nghiệp
+            </S.RadioButton>
+            <S.RadioButton value={constants.AMATEUR}>Nghiệp dư</S.RadioButton>
+          </S.RadioGroup>
         </S.FormItem>
       </S.Flex>
       <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Vị trí</S.Typography>
-        <S.FormItem name="position">
-          <S.CheckboxGroup>
-            <S.FlexWrapper justify="space-between">
-              <S.Checkbox type="checkbox" value="goalker" id="goalker" />
-              <S.Checkbox type="checkbox" value="defender" id="defender" />
-              <S.Checkbox type="checkbox" value="striker" id="striker" />
-              <S.Label
-                htmlFor="goalker"
-                $color={colorBtnGoalker}
-                onClick={() => HandleClickPositionButton('goalker')}
-              >
-                <span>Thủ môn</span>
-              </S.Label>
-              <S.Label
-                htmlFor="defender"
-                $color={colorBtnDefender}
-                onClick={() => HandleClickPositionButton('defender')}
-              >
-                <span>Hậu vệ</span>
-              </S.Label>
-              <S.Label
-                htmlFor="striker"
-                $color={colorBtnStriker}
-                onClick={() => HandleClickPositionButton('striker')}
-              >
-                <span>Tiền đạo</span>
-              </S.Label>
-            </S.FlexWrapper>
+        <S.FormItem name="positionIds">
+          <S.CheckboxGroup defaultValue={experienceId}>
+            <S.Checkbox
+              type="checkbox"
+              value={constants.GOALDER}
+              id="goalker"
+            />
+            <S.Checkbox
+              type="checkbox"
+              value={constants.DEFENDER}
+              id="defender"
+            />
+            <S.Checkbox
+              type="checkbox"
+              value={constants.STRIKER}
+              id="striker"
+            />
+            <S.Label
+              htmlFor="goalker"
+              $color={colorBtnGoalker}
+              onClick={() => HandleClickPositionButton('goalker')}
+            >
+              <span>Thủ môn</span>
+            </S.Label>
+            <S.Label
+              htmlFor="defender"
+              $color={colorBtnDefender}
+              onClick={() => HandleClickPositionButton('defender')}
+            >
+              <span>Hậu vệ</span>
+            </S.Label>
+            <S.Label
+              htmlFor="striker"
+              $color={colorBtnStriker}
+              onClick={() => HandleClickPositionButton('striker')}
+            >
+              <span>Tiền đạo</span>
+            </S.Label>
           </S.CheckboxGroup>
         </S.FormItem>
       </S.Flex>
       <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Thái độ</S.Typography>
-        <S.FormItem name="attitude">
-          <S.FlexWrapper justify="space-between" gap={24}>
-            <S.RadioGroup
-              name="ButtonLevel"
-              optionType="button"
-              buttonStyle="solid"
-            >
-              <S.RadioButton value="funny">Vui vẻ</S.RadioButton>
-              <S.RadioButton value="seriously">Nghiêm túc</S.RadioButton>
-            </S.RadioGroup>
-          </S.FlexWrapper>
+        <S.FormItem name="competitionLevelId">
+          <S.RadioGroup
+            name="ButtonLevel"
+            optionType="button"
+            buttonStyle="solid"
+          >
+            <S.RadioButton value={constants.FUNNY}>Vui vẻ</S.RadioButton>
+            <S.RadioButton value={constants.MEDIUM}>Vừa phải</S.RadioButton>
+            <S.RadioButton value={constants.SERIOUSLY}>
+              Nghiêm túc
+            </S.RadioButton>
+          </S.RadioGroup>
         </S.FormItem>
       </S.Flex>
       <S.Flex justify="space-between" align="center">
         <S.Typography variant="caption-small">Giới thiệu</S.Typography>
-        <S.FormItem $full>
-          <div className="containerTextArea">
-            <S.TextAreaInput rows={4} />
-          </div>
+        <S.FormItem name="description">
+          <S.TextAreaInput rows={4} />
         </S.FormItem>
       </S.Flex>
-      <S.FormItem>
-        <Button type="primary" $color="#fff" $width="100%" htmlType="submit">
-          Xác nhận
-        </Button>
-      </S.FormItem>
     </S.WrapperItem>
   );
 };

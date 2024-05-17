@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { DefaultOptionType } from 'antd/es/select';
+import type { SelectProps } from 'antd';
 
 import { editProfileEndpoint as endPoint } from '@/services/endpoint';
 
@@ -19,9 +20,9 @@ interface optionType extends DefaultOptionType {
   id?: number;
 }
 type InterFaceinitialStateValue = {
-  province: null | string;
-  district: null | string;
-  ward: null | string;
+  province: string;
+  district: string;
+  ward: string;
 };
 
 const initialStateData: optionType = {
@@ -30,27 +31,26 @@ const initialStateData: optionType = {
   ward: [],
 };
 const initialStateValue: InterFaceinitialStateValue = {
-  province: null,
-  district: null,
-  ward: null,
+  province: '',
+  district: '',
+  ward: '',
 };
-const SelectAddress = ({ form }: any) => {
+const SelectAddress = ({ form, address }: any) => {
   const [value, setValue] = useState(initialStateValue);
   const [option, setOption] = useState(initialStateData);
 
-  const removeUselessText = (text: string, listTextRemove: Array<string>) => {
-    const newText = listTextRemove.reduce(
-      (result: string, textRemove: string) =>
-        result.length > 10 ? result.replace(textRemove, '') : result,
-      text,
-    );
+  const removeUselessText = (text: string, textRemove: string) => {
+    const newText =
+      text.length > 10 ? text.replace(`${textRemove} `, '') : text;
     return newText;
   };
 
-  const filterOption: boolean | optionType | undefined = (
-    input: string,
-    option: optionType,
-  ) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
+  const filterOption: SelectProps<optionType>['filterOption'] = (
+    input,
+    option,
+  ) =>
+    typeof option?.label === 'string' &&
+    (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
 
   const setEndPoint = (endPoint: string, id: number) => {
     return `${endPoint}/${id}`;
@@ -63,7 +63,7 @@ const SelectAddress = ({ form }: any) => {
         const newOption = data?.results.map((vn: any) => {
           const label = removeUselessText(
             vn[`${type}_name`],
-            textRemoves[type],
+            vn[`${type}_type`],
           );
           return {
             value: vn[`${type}_name`],
@@ -85,6 +85,38 @@ const SelectAddress = ({ form }: any) => {
   useEffect(() => {
     GetRequest('province', endPoint.PROVINCE);
   }, []);
+  useEffect(() => {
+    const [province, district, ward] = address?.split(' - ') ?? [];
+    if (province && district && ward) {
+      GetRequest(
+        'district',
+        setEndPoint(
+          endPoint.DISTRICT,
+          option?.province?.find(
+            ({ value }: { value: string }) => value == province,
+          )?.id,
+        ),
+      );
+      setValue({
+        district,
+        province,
+        ward,
+      });
+    }
+  }, [address]);
+  useEffect(() => {
+    const { district } = value;
+    GetRequest(
+      'ward',
+      setEndPoint(
+        endPoint.WARD,
+        option?.district?.find(
+          ({ value }: { value: string }) => value == district,
+        )?.id,
+      ),
+    );
+  }, [option.district]);
+
   return (
     <>
       <S.FormItem name="province">
@@ -116,7 +148,7 @@ const SelectAddress = ({ form }: any) => {
                 });
               else setValue({ ...value, province: valueProvince });
             }}
-            //   filterOption={filterOption}
+            filterOption={filterOption}
             value={value.province}
             placeholder="Tỉnh/ Thành phố"
             options={option.province}
@@ -147,7 +179,7 @@ const SelectAddress = ({ form }: any) => {
                 });
               else setValue({ ...value, district: valueDistrict });
             }}
-            //   filterOption={filterOption}
+            filterOption={filterOption}
             placeholder="Huyện/ Quận"
             options={option.district}
           ></S.Select>
@@ -164,7 +196,7 @@ const SelectAddress = ({ form }: any) => {
             showSearch
             optionFilterProp="children"
             placeholder="Xã/ Đường"
-            //   filterOption={filterOption}
+            filterOption={filterOption}
             options={option.ward}
           ></S.Select>
         </div>

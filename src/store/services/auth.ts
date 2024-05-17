@@ -21,12 +21,24 @@ export const authAPI = api.injectEndpoints({
       }),
       //todo add invalidatesTags if need
     }),
+
     signUp: build.mutation({
       //todo addition data in need
       query: (data: { email: string; password: string }) => ({
         //todo
         url: authEndpoint.SIGN_UP,
         method: 'POST',
+        body: data,
+        flashError: true,
+      }),
+      //todo add invalidatesTags if need
+    }),
+    updateUser: build.mutation({
+      //todo addition data in need
+      query: (data: UserUpdateInterface) => ({
+        //todo
+        url: userEndpoint.UPDATE_USER,
+        method: 'PATCH',
         body: data,
         flashError: true,
       }),
@@ -59,6 +71,18 @@ export const authAPI = api.injectEndpoints({
       }),
     }),
     //mutation for post put patch, param for get delete
+
+    getProfile: build.query({
+      //todo addition data in need
+      query: (userName: string) => ({
+        //todo
+        url: `${userEndpoint.USER}/${userName}`,
+        method: 'GET',
+        flashError: true,
+      }),
+      //todo add invalidatesTags if need
+    }),
+
     //todo add more api query ....
   }),
 });
@@ -69,5 +93,7 @@ export const {
   useGetMatchQuery,
   useForgotPasswordMutation,
   useResetPasswordMutation,
+  useUpdateUserMutation,
+  useGetProfileQuery,
   //todo addition in need
 } = authAPI;

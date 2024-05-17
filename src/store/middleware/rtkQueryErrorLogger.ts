@@ -9,7 +9,10 @@ import { message } from 'antd';
 export const rtkQueryErrorLogger: Middleware =
   (api: MiddlewareAPI) => (next) => (action: any) => {
     if (isRejectedWithValue(action)) {
-      message.error(errorMessage?.[action?.payload?.data?.appCode]);
+
+      message.error(
+        errorMessage?.[action?.payload?.data?.appCode ?? 'INTERNET_FAIL'],
+      );
     }
     return next(action);
   };
