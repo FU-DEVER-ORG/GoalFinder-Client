@@ -21,4 +21,8 @@ const editProfileEndpoint = {
 const matchEndpoint = {
   MATCH: `/match`,
 };
-export { authEndpoint, editProfileEndpoint, matchEndpoint };
+const userProfile = {
+  PROFILE_DETAL: `/user/profile/{nickname}`,
+};
+//export endpoint
+export { authEndpoint, editProfileEndpoint, userProfile, matchEndpoint };

@@ -21,7 +21,6 @@ const baseQuerry: BaseQueryFn = fetchBaseQuery({
   baseUrl: constants.API_SERVER,
   prepareHeaders: (headers, { endpoint }) => {
     const accessToken = webStorageClient.getToken();
-    //todo addtion in need
 
     if (accessToken) {
       headers.set('Authorization', `Bearer ${accessToken}`);

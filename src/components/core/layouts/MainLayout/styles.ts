@@ -4,15 +4,13 @@ import styled from 'styled-components';
 export const LayoutWrapper = styled.main`
   background-color: ${(props) => props?.theme?.colors?.backgroundGray};
 
-  min-height: 100vh;
+  
 `;
 
 export const Header = styled.header`
   background-color: ${(props) => props?.theme?.colors?.backgroundWhite};
 
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
-
-
 
   position: fixed;
   top: 0;

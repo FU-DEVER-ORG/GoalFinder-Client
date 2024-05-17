@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { Timeline } from 'antd';
-import { matchHistoryItems } from './actionList';
 
 import area from '@/public/icon/match-propertiesIcon/area.svg';
 import location from '@/public/icon/match-propertiesIcon/location.svg';
@@ -11,19 +10,34 @@ import time from '@/public/icon/match-propertiesIcon/time.svg';
 
 import * as S from './style';
 
-export default function Right() {
+interface FootBallMatch {
+  id: string;
+  pitchAddress: string;
+  maxMatchPlayersNeed: number;
+  pitchPrice: number;
+  description: string;
+  startTime: string;
+  address: string;
+  competitionLevel: string;
+}
+
+interface matchHistory {
+  footballMatch: FootBallMatch[];
+  userName: string;
+}
+export default function Right({ footballMatch, userName }: matchHistory) {
   return (
     <>
       <S.Right>
         <S.MatchHistory>
           <Timeline>
-            {matchHistoryItems.map((item, index) => (
+            {footballMatch.map((match, index) => (
               <Timeline.Item key={index} color="#4DAA57">
                 <S.Activites>
                   <S.Content>
-                    <S.UserAction>Bảo Thắng đã tham gia</S.UserAction>
+                    <S.UserAction>{userName} đã tham gia</S.UserAction>
                     <S.Title>
-                      <S.TitleText>{item.valueTitleAction}</S.TitleText>
+                      <S.TitleText>{match.description}</S.TitleText>
                     </S.Title>
                     <S.MatchProperties>
                       <S.PropertiesList>
@@ -31,33 +45,33 @@ export default function Right() {
                           <S.ImageWrapper>
                             <Image src={time} alt="" fill sizes="auto" />
                           </S.ImageWrapper>
-                          <span>{item.valueTime}</span>
+                          <span>{match.startTime}</span>
                         </S.Item>
                         <S.Item>
                           <S.ImageWrapper>
                             <Image src={rank} alt="" fill sizes="auto" />
                           </S.ImageWrapper>
-                          <span>{item.valueRank}</span>
+                          <span>{match.competitionLevel}</span>
                         </S.Item>
                         <S.Item>
                           <S.ImageWrapper>
                             <Image src={people} alt="" fill sizes="auto" />
                           </S.ImageWrapper>
-                          <span>{item.valuePeople}</span>
+                          <span>{match.maxMatchPlayersNeed} người</span>
                         </S.Item>
 
                         <S.Item>
                           <S.ImageWrapper>
                             <Image src={location} alt="" fill sizes="auto" />
                           </S.ImageWrapper>
-                          <span>{item.valueLocation}</span>
+                          <span>{match.address}</span>
                         </S.Item>
 
                         <S.Item>
                           <S.ImageWrapper>
                             <Image src={area} alt="" fill sizes="auto" />
                           </S.ImageWrapper>
-                          <span>{item.valueArea}</span>
+                          <span>{match.pitchAddress}</span>
                         </S.Item>
 
                         <S.Item>
@@ -65,7 +79,7 @@ export default function Right() {
                             <Image src={stadiumCost} alt="" fill sizes="auto" />
                           </S.ImageWrapper>
 
-                          <span>{item.costStadium} VNĐ</span>
+                          <span>{match.pitchPrice} VNĐ</span>
                         </S.Item>
                       </S.PropertiesList>
                     </S.MatchProperties>
