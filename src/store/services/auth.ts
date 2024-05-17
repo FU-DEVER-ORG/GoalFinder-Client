@@ -1,6 +1,8 @@
-'use client';
-import { authEndpoint } from '@/services/endpoint';
-import { api } from './base';
+"use client";
+
+import { authEndpoint, matchEndpoint } from "@/services/endpoint";
+
+import { api } from "./base";
 
 export const authAPI = api.injectEndpoints({
   endpoints: (build) => ({
@@ -30,7 +32,14 @@ export const authAPI = api.injectEndpoints({
       }),
       //todo add invalidatesTags if need
     }),
-
+    getMatch: build.query<any, void> ({
+      query: (data) =>({
+        url: matchEndpoint.MATCH,
+        method: 'GET',
+        body: data,
+        flashError: true,
+      }),
+    }),
     forgotPassword: build.mutation({
       query: (data: { userName: string }) => ({
         url: authEndpoint.FORGOT_PASSWORD,
@@ -57,6 +66,7 @@ export const authAPI = api.injectEndpoints({
 export const {
   useSignInMutation,
   useSignUpMutation,
+  useGetMatchQuery,
   useForgotPasswordMutation,
   useResetPasswordMutation,
   //todo addition in need
